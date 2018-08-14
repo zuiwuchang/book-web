@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs';
-import { Item } from '../../shared/markdown/item';
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',

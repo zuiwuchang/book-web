@@ -4,6 +4,7 @@ import { Utils } from '../../utils';
 import { Book } from '../../../core/protocol/book';
 import { BookService } from '../../../core/monitor/book.service';
 import { Title } from "@angular/platform-browser";
+import { HighlightJsService } from 'angular2-highlight-js';
 @Component({
   selector: 'app-markdown-view',
   templateUrl: './markdown-view.component.html',
@@ -21,7 +22,11 @@ export class MarkdownViewComponent implements OnInit, OnDestroy {
 
   private _book: string = '';
   private _chapter: string = '';
-  constructor(private title: Title, private http: HttpClient, private bookService: BookService) { }
+  markdown = '';
+  constructor(private title: Title,
+    private http: HttpClient,
+    private bookService: BookService,
+  ) { }
   ngOnInit() {
   }
   @Input()
@@ -62,7 +67,7 @@ export class MarkdownViewComponent implements OnInit, OnDestroy {
       Chapter: this._chapter
     }).subscribe(
       (text: string) => {
-        console.log(text);
+        this.markdown = text;
         this.status = this.Success;
       },
       (e) => {

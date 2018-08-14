@@ -6,7 +6,6 @@ import { Title } from "@angular/platform-browser";
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
   constructor(private title: Title) { }
 
   ngOnInit() {

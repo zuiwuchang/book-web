@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+
 import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -37,6 +38,7 @@ import { ViewComponent } from './app/view/view.component';
 
     MatListModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatButtonModule,
     MatTooltipModule, MatProgressSpinnerModule,
+
 
     SharedModule,
     
