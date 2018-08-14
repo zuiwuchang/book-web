@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/css/bootstrap.min.css";
+@import "assets/css/Material.Icons.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.menu-btn{
+    outline: 0 none !important;
+    border: none;
+}
+.center{
+    display:flex;           /*Flex布局*/
+    align-items:center;     /*指定垂直居中*/
+    justify-content:center; /*指定水平居中*/
+}
+.hide{
+    display: none;
+}

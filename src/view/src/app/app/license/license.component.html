@@ -1,0 +1,18 @@
+<div class="hide" #title i18n>Title License</div>
+<div [ngSwitch]="status">
+  <ng-template [ngSwitchCase]="Nil">
+    <div class="center">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+  <ng-template [ngSwitchCase]="Error">
+    <div class="alert alert-warning">
+      <strong i18n>Error</strong> {{error}}
+      <hr>
+      <button mat-button i18n (click)="onRetry()">Retry</button>
+    </div>
+  </ng-template>
+  <ng-template [ngSwitchCase]="Success">
+    <pre>{{text}}</pre>
+  </ng-template>
+</div>

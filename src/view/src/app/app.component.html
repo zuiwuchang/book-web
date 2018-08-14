@@ -1,0 +1,36 @@
+<mat-sidenav-container>
+  <mat-sidenav fixedInViewport="true" mode="side" #sideNav>
+    <mat-nav-list>
+      <a [routerLink]="['/view', bookID(book),'0']" mat-list-item>{{book?.Name}}</a>
+      <mat-divider></mat-divider>
+      <a *ngFor="let item of book?.Chapter;" [routerLink]="['/view', book?.ID, item.ID]" mat-list-item>{{item.Name}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- 導航欄 -->
+    <mat-toolbar class="header" color="primary">
+      <button *ngIf="bookOk()" (click)="sideNav.toggle()" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Expand Tooltip">
+        <mat-icon>{{sideNav.opened?'close':'menu'}}</mat-icon>
+      </button>
+      <button routerLink="/view/home/0" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Home Tooltip">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button (click)="openSource()" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Source Tooltip">
+        <mat-icon>code</mat-icon>
+      </button>
+      <button routerLink="/license" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="License Tooltip">
+        <mat-icon>import_contacts</mat-icon>
+      </button>
+      <button routerLink="/about" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
+        <mat-icon>info</mat-icon>
+      </button>
+      <span style="flex: 1 1 auto;"></span>
+      <button routerLink="/login" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Login Tooltip">
+        <mat-icon>input</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="router">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
