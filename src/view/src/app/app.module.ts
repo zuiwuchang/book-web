@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './app/about/about.component';
 import { LicenseComponent } from './app/license/license.component';
 import { ViewComponent } from './app/view/view.component';
+import { EditComponent } from './app/edit/edit.component';
 
 
 
@@ -29,7 +30,8 @@ import { ViewComponent } from './app/view/view.component';
     AppComponent,
     AboutComponent,
     LicenseComponent,
-    ViewComponent
+    ViewComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule, RouterModule,

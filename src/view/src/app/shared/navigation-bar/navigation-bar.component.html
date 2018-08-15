@@ -13,6 +13,16 @@
     <mat-icon>info</mat-icon>
   </button>
   <span style="flex: 1 1 auto;"></span>
+  <div [appShow]="isPageView()">
+    <button [routerLink]="['/edit',getBookID(),getChapterID()]" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Edit Tooltip">
+      <mat-icon>create</mat-icon>
+    </button>
+  </div>
+  <div [appShow]="isPageEdit()">
+    <button [routerLink]="['/view',getBookID(),getChapterID()]" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="View Tooltip">
+      <mat-icon>visibility</mat-icon>
+    </button>
+  </div>
   <div [appShow]="session">
     <button class="menu-btn" mat-icon-button matTooltip="{{session?.Nickname}}" [matMenuTriggerFor]="menuPerson">
       <mat-icon>person_pin</mat-icon>
@@ -21,7 +31,7 @@
       <button class="menu-btn" mat-menu-item (click)="onLogout()">
         <mat-icon>no_meeting_room</mat-icon>
         <ng-container i18n>Logout</ng-container>
-      </button>      
+      </button>
     </mat-menu>
   </div>
   <div [appHide]="session">

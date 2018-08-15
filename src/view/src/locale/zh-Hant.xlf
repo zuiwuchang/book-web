@@ -111,7 +111,7 @@
         <target>提交</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/login/login.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
@@ -119,7 +119,7 @@
         <target>取消</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/login/login.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="438fdc617a22c8dd029e74b64ab66355e36eeb9d" datatype="html">
@@ -154,12 +154,36 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="c0eef28336045cdd322f0890600448c020ef1111" datatype="html">
+        <source>Edit Tooltip</source>
+        <target>編輯</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c305daaf34bfd8d7ffb69b9466fbcfc665b563bd" datatype="html">
+        <source>View Tooltip</source>
+        <target>瀏覽</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+        <source>Logout</source>
+        <target>登出</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cd5d318e16c3fdc48a3b4a4a2ca40982439f3ed0" datatype="html">
         <source>Login Tooltip</source>
         <target>登入</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
@@ -167,7 +191,7 @@
         <target>更多功能</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
@@ -175,7 +199,7 @@
         <target>章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
@@ -183,7 +207,7 @@
         <target>段落</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a366d4c41f1716b8003f47cac41282ba04dc2f1c" datatype="html">

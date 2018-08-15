@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs';
 import { SettingService } from '../../core/setting/setting.service';
 @Component({
-  selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class ViewComponent implements OnInit, OnDestroy {
+export class EditComponent implements OnInit {
   book: string = '';
   chapter: string = '';
   private subscription: Subscription = null;
@@ -22,7 +22,7 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.book = p.book;
         this.chapter = p.chapter;
 
-        this.settingService.updatePage(1,this.book, this.chapter);
+        this.settingService.updatePage(2, this.book, this.chapter);
       },
       (e) => {
         console.warn(e);
@@ -36,4 +36,5 @@ export class ViewComponent implements OnInit, OnDestroy {
     }
     this.settingService.updatePage(0);
   }
+
 }

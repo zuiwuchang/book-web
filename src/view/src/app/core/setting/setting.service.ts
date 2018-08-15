@@ -11,10 +11,15 @@ export class SettingService {
   getSetting(): Setting {
     return this.setting;
   }
-  toggleChapter(){
+  toggleChapter() {
     this.setting.Chapter = !this.setting.Chapter;
   }
-  toggleHeader(){
+  toggleHeader() {
     this.setting.Header = !this.setting.Header;
+  }
+  updatePage(page: number, book?: string, chapter?: string) {
+    this.setting.Page = page;
+    this.setting.BookID = book;
+    this.setting.ChapterID = chapter;
   }
 }
