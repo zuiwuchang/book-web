@@ -44,3 +44,11 @@ func BookChapter(id, chapter string) string {
 	}
 	return fmt.Sprintf("%s/%s/%s/README.md", _FileRoot, id, chapter)
 }
+
+// BookAssets 返回靜態 資源 檔案
+func BookAssets(id, chapter, name string) string {
+	if chapter == "" {
+		return fmt.Sprintf("%s/%s/assets/%s", _FileRoot, id, name)
+	}
+	return fmt.Sprintf("%s/%s/%s/assets/%s", _FileRoot, id, chapter, name)
+}

@@ -4,6 +4,8 @@
 google [www.google.com](https://www.google.com)
 url test [url](123/456)
 
+![](tux.jpg)
+![foo](foo.jpg)     simple, assumes units are in px
 ```bash
 # test
 sudo reboot

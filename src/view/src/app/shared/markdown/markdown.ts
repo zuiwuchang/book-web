@@ -12,7 +12,7 @@ export class MarkdownHeader {
 export class Markdown {
     HTML: SafeHtml = ''
     Header: Array<MarkdownHeader> = null;
-    constructor(domSanitizer: DomSanitizer, markdown: string) {
+    constructor(domSanitizer: DomSanitizer, book: string, chapter: string, markdown: string) {
         const headers = new Array<MarkdownHeader>();
         let autoID = 0;
         showdown.extension('custom-header-id', function () {
@@ -44,8 +44,41 @@ export class Markdown {
                 },
             }];
         });
-        const converter = new showdown.Converter();
-        converter.addExtension("custom-header-id")
+        showdown.extension('targetlink', function () {
+            const matchABS = /^(http\:\/\/)|(https\:\/\/)(\/)/i;
+            return [{
+                type: 'lang',
+                regex: /!?\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)/g,
+                replace: function (wholematch, linkText, url, a, b, title, c, target) {
+                    if (!matchABS.test(url)) {
+                        url = "/book/assets/" + book + "/" + chapter + "/" + url;
+                    }
+                    let result;
+                    if (wholematch[0] == "!") {
+                        result = '<img src="' + url + '" style="max-width:100%;">';
+                    } else {
+                        result = '<a href="' + url + '"';
+
+                        if (typeof title != 'undefined' && title !== '' && title !== null) {
+                            title = title.replace(/"/g, '&quot;');
+                            title = showdown.helper.escapeCharacters(title, '*_', false);
+                            result += ' title="' + title + '"';
+                        }
+
+                        if (typeof target != 'undefined' && target !== '' && target !== null) {
+                            result += ' target="_blank"';
+                        }
+
+                        result += '>' + linkText + '</a>';
+                    }
+                    return result;
+                }
+            }];
+        });
+        const converter = new showdown.Converter({
+            extensions: ['custom-header-id', 'targetlink'],
+            parseImgDimensions: true,
+        });
         const html = converter.makeHtml(markdown);
         this.HTML = domSanitizer.bypassSecurityTrustHtml(html);
         if (headers.length > 0) {

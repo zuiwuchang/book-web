@@ -17,11 +17,14 @@ export class MarkdownComponent implements OnInit {
   book: Book = null;
   constructor(private domSanitizer: DomSanitizer,
     private highlightJsService: HighlightJsService,
-    private settingService:SettingService,
+    private settingService: SettingService,
   ) { }
   @Input()
   set val(markdown: string) {
-    this.markdown = new Markdown(this.domSanitizer, markdown);
+    this.markdown = new Markdown(this.domSanitizer,
+      this.settingService.getSetting().BookID,
+      this.settingService.getSetting().ChapterID,
+      markdown);
     this.update = true;
   }
   ngOnInit() {

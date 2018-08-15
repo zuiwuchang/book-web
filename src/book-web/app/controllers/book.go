@@ -47,3 +47,10 @@ func (c Book) Chapter() revel.Result {
 	}
 	return c.RenderJSON(str)
 }
+
+// Assets 返回 靜態內容
+func (c Book) Assets(book, chapter, name string) revel.Result {
+	var mBook manipulator.Book
+	filename := mBook.Assets(book, chapter, name)
+	return c.RenderFileName(filename, revel.NoDisposition)
+}

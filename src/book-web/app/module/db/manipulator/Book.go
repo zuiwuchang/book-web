@@ -37,3 +37,8 @@ func (Book) Chapter(id, chapter string) (str string, e error) {
 	str = string(b)
 	return
 }
+
+// Assets 返回 靜態資源 路徑
+func (Book) Assets(book, chapter, name string) string {
+	return BookAssets(book, chapter, name)
+}
