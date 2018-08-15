@@ -11,7 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -37,7 +37,7 @@ import { ViewComponent } from './app/view/view.component';
     BrowserAnimationsModule, HttpClientModule,
 
     MatListModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatButtonModule,
-    MatTooltipModule, MatProgressSpinnerModule,
+    MatTooltipModule, MatProgressSpinnerModule,MatMenuModule,
 
 
     SharedModule,

@@ -1,0 +1,19 @@
+.sidenav-right{
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    right: 16px;
+    padding-bottom: 64px;
+    min-width: 130px;
+    height: 600px;
+}
+.sidenav-left{
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 64px;
+    min-width: 130px;
+    background-color: #fafafa;
+    box-shadow: 6px 0 6px rgba(0,0,0,.1);
+}

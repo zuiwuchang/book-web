@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Utils } from '../../utils';
+import { Book } from '../../../core/protocol/book';
 import { HighlightJsService } from 'angular2-highlight-js';
-
+import { Markdown } from '../markdown';
+import { Setting } from '../../../core/setting/setting';
+import { SettingService } from '../../../core/setting/setting.service';
 @Component({
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
@@ -10,13 +12,16 @@ import { HighlightJsService } from 'angular2-highlight-js';
 })
 export class MarkdownComponent implements OnInit {
   private update: boolean = false;
-  html: SafeHtml = null;
+  markdown: Markdown = null;
+  @Input()
+  book: Book = null;
   constructor(private domSanitizer: DomSanitizer,
-    private highlightJsService: HighlightJsService
+    private highlightJsService: HighlightJsService,
+    private settingService:SettingService,
   ) { }
   @Input()
   set val(markdown: string) {
-    this.html = this.domSanitizer.bypassSecurityTrustHtml(Utils.MakeHtml(markdown));
+    this.markdown = new Markdown(this.domSanitizer, markdown);
     this.update = true;
   }
   ngOnInit() {
@@ -34,5 +39,31 @@ export class MarkdownComponent implements OnInit {
         this.highlightJsService.highlight(arrs[i]);
       }
     }
+  }
+  onChange(id) {
+    if (!this.elementRef || !this.elementRef.nativeElement) {
+      return;
+    }
+    const ele = this.elementRef.nativeElement.querySelector('#' + id);
+    if (!ele) {
+      return
+    }
+    const val = ele.offsetTop;
+    window.scroll({
+      top: val,
+      behavior: "smooth"
+    })
+  }
+  bookID(book: Book) {
+    if (book) {
+      return book.ID;
+    }
+    return "";
+  }
+  isChapter() {
+    return this.settingService.getSetting().Chapter;
+  }
+  isHeader() {
+    return this.settingService.getSetting().Header;
   }
 }

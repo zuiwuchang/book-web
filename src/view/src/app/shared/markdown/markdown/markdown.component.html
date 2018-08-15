@@ -1,2 +1,16 @@
-<section #view [innerHtml]="html" highlight-js-content="code">
-</section>
+<mat-drawer-container>
+    <mat-drawer class="sidenav-left" mode="side" [opened]="isChapter()">
+        <mat-nav-list>
+            <a [routerLink]="['/view', bookID(book),'0']" mat-list-item>{{book?.Name}}</a>
+            <mat-divider></mat-divider>
+            <a *ngFor="let item of book?.Chapter;" [routerLink]="['/view', book?.ID, item.ID]" mat-list-item>{{item.Name}}</a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer class="sidenav-right" mode="side" [opened]="isHeader()" position="end">
+        <app-markdown-bar [items]="markdown?.Header" (valChange)="onChange($event)"></app-markdown-bar>
+    </mat-drawer>
+    <mat-drawer-content>
+        <section #view [innerHtml]="markdown?.HTML" highlight-js-content="code">
+        </section>
+    </mat-drawer-content>
+</mat-drawer-container>

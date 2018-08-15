@@ -1,4 +1,4 @@
-#   begin *yes* {: #ids }
+#   begin *yes* {: #ids}
 
 111111
 =====
@@ -6,7 +6,36 @@
 --  
 ---
 ---
-# test 1
+# test 1 {: #test}
+
+```go
+package main
+import (
+    "fmt"
+)
+func main(){
+    fmt.Println("yes")
+}
+```
+
+```go
+package main
+import (
+    "fmt"
+)
+func main(){
+    fmt.Println("yes")
+}
+```
+```go
+package main
+import (
+    "fmt"
+)
+func main(){
+    fmt.Println("yes")
+}
+```
 -
 # 123 h1
 - a

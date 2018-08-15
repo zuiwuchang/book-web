@@ -1,16 +1,14 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../utils';
 import { Book } from '../../../core/protocol/book';
-import { BookService } from '../../../core/monitor/book.service';
 import { Title } from "@angular/platform-browser";
-import { HighlightJsService } from 'angular2-highlight-js';
 @Component({
   selector: 'app-markdown-view',
   templateUrl: './markdown-view.component.html',
   styleUrls: ['./markdown-view.component.css']
 })
-export class MarkdownViewComponent implements OnInit, OnDestroy {
+export class MarkdownViewComponent implements OnInit {
   readonly InitBook = 0;
   readonly ErrorBook = 1;
   readonly InitChapter = 2;
@@ -23,9 +21,9 @@ export class MarkdownViewComponent implements OnInit, OnDestroy {
   private _book: string = '';
   private _chapter: string = '';
   markdown = '';
+  bookInfo:Book = null;
   constructor(private title: Title,
     private http: HttpClient,
-    private bookService: BookService,
   ) { }
   ngOnInit() {
   }
@@ -50,7 +48,7 @@ export class MarkdownViewComponent implements OnInit, OnDestroy {
           this.error = "unknow result";
           this.status = this.ErrorBook;
         }
-        this.bookService.Update(book);
+        this.bookInfo = book;
         this.title.setTitle(book.Name);
         this.status = this.InitChapter;
         this.initChapter();
@@ -75,9 +73,6 @@ export class MarkdownViewComponent implements OnInit, OnDestroy {
         this.status = this.ErrorChapter;
       },
     );
-  }
-  ngOnDestroy() {
-    this.bookService.Update(null);
   }
   onRetry() {
     this.status = this.InitBook;

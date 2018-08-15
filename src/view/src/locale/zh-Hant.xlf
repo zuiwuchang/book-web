@@ -7,7 +7,11 @@
         <target>錯誤</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
+          <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/license/license.component.html</context>
@@ -19,19 +23,15 @@
         <target>重試</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
+          <context context-type="linenumber">19</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/license/license.component.html</context>
           <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="be04c16512b8c879249c22f4064d2ae6a7cf9a3d" datatype="html">
-        <source>Expand Tooltip</source>
-        <target>章節</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="438fdc617a22c8dd029e74b64ab66355e36eeb9d" datatype="html">
@@ -39,7 +39,7 @@
         <target>首頁</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="558cf284a586969d529d302380efe98f7bfb218f" datatype="html">
@@ -47,7 +47,7 @@
         <target>源碼</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bc1f34fbcd508eeefebcc2033e6509cb9d3c0d1e" datatype="html">
@@ -55,7 +55,7 @@
         <target>協議</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e203fbda1a68c2ee0b206d0959f9323d3deac894" datatype="html">
@@ -63,7 +63,7 @@
         <target>關於</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cd5d318e16c3fdc48a3b4a4a2ca40982439f3ed0" datatype="html">
@@ -71,7 +71,31 @@
         <target>登入</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
+        <source>Apps Tooltip</source>
+        <target>更多功能</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
+        <source>Book Chapter</source>
+        <target>章節</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
+        <source>Book Chapter Header</source>
+        <target>段落</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a366d4c41f1716b8003f47cac41282ba04dc2f1c" datatype="html">

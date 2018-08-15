@@ -7,6 +7,8 @@ google [www.google.com](https://www.google.com)
 # test
 sudo reboot
 ```
+
+# Example
 ```go
 package main
 import (
