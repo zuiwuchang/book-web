@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 @NgModule({
   imports: [
     CommonModule, RouterModule,
@@ -22,9 +23,9 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule, MatListModule, MatMenuModule
   ],
   providers: [HighlightJsService],
-  declarations: [MarkdownViewComponent, MarkdownComponent, MarkdownBarComponent],
+  declarations: [MarkdownViewComponent, MarkdownComponent, MarkdownBarComponent, NavigationBarComponent],
   exports: [
-    MarkdownViewComponent,
+    MarkdownViewComponent,NavigationBarComponent,
   ]
 })
 export class SharedModule { }

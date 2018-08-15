@@ -1,0 +1,32 @@
+<!-- 導航欄 -->
+<mat-toolbar class="header" color="primary">
+  <button routerLink="/view/home/0" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Home Tooltip">
+    <mat-icon>home</mat-icon>
+  </button>
+  <button (click)="openSource()" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Source Tooltip">
+    <mat-icon>code</mat-icon>
+  </button>
+  <button routerLink="/license" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="License Tooltip">
+    <mat-icon>import_contacts</mat-icon>
+  </button>
+  <button routerLink="/about" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
+    <mat-icon>info</mat-icon>
+  </button>
+  <span style="flex: 1 1 auto;"></span>
+  <button routerLink="/login" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Login Tooltip">
+    <mat-icon>input</mat-icon>
+  </button>
+  <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Apps Tooltip" [matMenuTriggerFor]="menu">
+      <mat-icon>apps</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+      <button class="menu-btn" mat-menu-item (click)="toggleChapter()">
+          <mat-icon>{{isChapter()?'close':'menu'}}</mat-icon>
+          <ng-container i18n>Book Chapter</ng-container>
+      </button>
+      <button class="menu-btn" mat-menu-item (click)="toggleHeader()">
+          <mat-icon>{{isHeader()?'close':'menu'}}</mat-icon>
+          <ng-container i18n>Book Chapter Header</ng-container>
+      </button>
+  </mat-menu>
+</mat-toolbar>
