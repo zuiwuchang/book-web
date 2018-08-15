@@ -32,59 +32,136 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="62029286ca62531f2dbe4708f6d3509c5cde0438" datatype="html">
+        <source>connecting to server, please wait...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1442dfa12ebc2953b7cff782acf40848b4102939" datatype="html">
+        <source>Welcome <x id="INTERPOLATION" equiv-text="{{session?.Nickname}}"/>, you have logged in</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bd4960dae6ed2a772e2ca2ecd20e1f5ff9b0641e" datatype="html">
+        <source>Name Invalid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7c02d98be5bd37ba5ea76c613b88ca3adbdc5b7f" datatype="html">
+        <source>Password Invalid (min 8 length)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3eb49d60bd859eb2d9d3a6d380cdf4e0b8252333" datatype="html">
+        <source>Remember me</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6ec7246a378fbc3777070cada0ab7278c0a3910e" datatype="html">
+        <source>wait complete,ignore request,try later</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd" datatype="html">
+        <source>Submit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/login/login.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="438fdc617a22c8dd029e74b64ab66355e36eeb9d" datatype="html">
         <source>Home Tooltip</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="558cf284a586969d529d302380efe98f7bfb218f" datatype="html">
         <source>Source Tooltip</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bc1f34fbcd508eeefebcc2033e6509cb9d3c0d1e" datatype="html">
         <source>License Tooltip</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e203fbda1a68c2ee0b206d0959f9323d3deac894" datatype="html">
         <source>About Tooltip</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cd5d318e16c3fdc48a3b4a4a2ca40982439f3ed0" datatype="html">
         <source>Login Tooltip</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
         <source>Apps Tooltip</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
         <source>Book Chapter</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
         <source>Book Chapter Header</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>

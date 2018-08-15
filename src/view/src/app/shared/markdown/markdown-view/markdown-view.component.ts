@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Utils } from '../../utils';
+import { Utils } from '../../../core/utils';
 import { Book } from '../../../core/protocol/book';
 import { Title } from "@angular/platform-browser";
 @Component({

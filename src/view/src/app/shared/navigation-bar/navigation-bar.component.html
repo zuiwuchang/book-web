@@ -13,20 +13,33 @@
     <mat-icon>info</mat-icon>
   </button>
   <span style="flex: 1 1 auto;"></span>
-  <button routerLink="/login" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Login Tooltip">
-    <mat-icon>input</mat-icon>
-  </button>
+  <div [appShow]="session">
+    <button class="menu-btn" mat-icon-button matTooltip="{{session?.Nickname}}" [matMenuTriggerFor]="menuPerson">
+      <mat-icon>person_pin</mat-icon>
+    </button>
+    <mat-menu #menuPerson="matMenu">
+      <button class="menu-btn" mat-menu-item (click)="onLogout()">
+        <mat-icon>no_meeting_room</mat-icon>
+        <ng-container i18n>Logout</ng-container>
+      </button>      
+    </mat-menu>
+  </div>
+  <div [appHide]="session">
+    <button (click)="onLogin()" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Login Tooltip">
+      <mat-icon>input</mat-icon>
+    </button>
+  </div>
   <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Apps Tooltip" [matMenuTriggerFor]="menu">
-      <mat-icon>apps</mat-icon>
+    <mat-icon>apps</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-      <button class="menu-btn" mat-menu-item (click)="toggleChapter()">
-          <mat-icon>{{isChapter()?'close':'menu'}}</mat-icon>
-          <ng-container i18n>Book Chapter</ng-container>
-      </button>
-      <button class="menu-btn" mat-menu-item (click)="toggleHeader()">
-          <mat-icon>{{isHeader()?'close':'menu'}}</mat-icon>
-          <ng-container i18n>Book Chapter Header</ng-container>
-      </button>
+    <button class="menu-btn" mat-menu-item (click)="toggleChapter()">
+      <mat-icon>{{isChapter()?'close':'menu'}}</mat-icon>
+      <ng-container i18n>Book Chapter</ng-container>
+    </button>
+    <button class="menu-btn" mat-menu-item (click)="toggleHeader()">
+      <mat-icon>{{isHeader()?'close':'menu'}}</mat-icon>
+      <ng-container i18n>Book Chapter Header</ng-container>
+    </button>
   </mat-menu>
 </mat-toolbar>

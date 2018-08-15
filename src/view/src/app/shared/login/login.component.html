@@ -1,0 +1,42 @@
+<h1 mat-dialog-title i18n>Login</h1>
+<div mat-dialog-content *ngIf="!isInit">
+  <p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </p>
+  <p>
+    <ng-container i18n>connecting to server, please wait...</ng-container>
+  </p>
+</div>
+<div mat-dialog-content *ngIf="isInit">
+  <div [appShow]="session!=null" i18n>Welcome {{session?.Nickname}}, you have logged in</div>
+
+  <form (submit)="onSubmit()" [appShow]="session==null" #loginForm="ngForm">
+    <p>
+      <mat-form-field class="full-width">
+        <input [disabled]="disabled" cdkFocusInitial matInput required [(ngModel)]="name" name="name" i18n-placeholder placeholder="Name"
+          #valName="ngModel">
+        <mat-error i18n>Name Invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input type="password" [disabled]="disabled" matInput required minlength="8" [(ngModel)]="password" name="password" i18n-placeholder
+          placeholder="Password" #valPassword="ngModel">
+        <mat-error i18n>Password Invalid (min 8 length)</mat-error>
+      </mat-form-field>
+      <mat-slide-toggle [disabled]="disabled" [(ngModel)]="remember" name="remember" i18n>Remember me</mat-slide-toggle>
+    </p>
+    <p class="alert alert-warning" role="alert" [appShow]="isIgnore">
+      <ng-container i18n>wait complete,ignore request,try later</ng-container>
+    </p>
+    <p class="alert alert-warning" role="alert" [appHide]="error==null">
+      {{error}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="error=null">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </p>
+
+    <div mat-dialog-actions>
+      <button type="submit" mat-button i18n [disabled]="disabled || loginForm.invalid">Submit</button>
+      <button type="button" mat-button (click)="onCancel()" i18n>Cancel</button>
+    </div>
+  </form>
+</div>

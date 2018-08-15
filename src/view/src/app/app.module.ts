@@ -18,19 +18,18 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './app/login/login.component';
 import { AboutComponent } from './app/about/about.component';
 import { LicenseComponent } from './app/license/license.component';
 import { ViewComponent } from './app/view/view.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     AboutComponent,
     LicenseComponent,
-    ViewComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule, RouterModule,
