@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 
 import { ShowDirective } from './show.directive';
 import { HideDirective } from './hide.directive';
+import { MarkdownEditComponent } from './markdown/markdown-edit/markdown-edit.component';
 @NgModule({
   imports: [
     CommonModule, RouterModule,FormsModule,
@@ -39,10 +40,10 @@ import { HideDirective } from './hide.directive';
   declarations: [MarkdownViewComponent, MarkdownComponent,
     MarkdownBarComponent, NavigationBarComponent, LoginComponent,
 
-    ShowDirective,HideDirective
+    ShowDirective,HideDirective, MarkdownEditComponent
   ],
   exports: [
-    MarkdownViewComponent, NavigationBarComponent
+    MarkdownViewComponent, NavigationBarComponent,MarkdownEditComponent
   ],
   entryComponents: [
     LoginComponent

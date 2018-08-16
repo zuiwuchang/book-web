@@ -13,6 +13,14 @@
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/app/license/license.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
@@ -26,6 +34,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
           <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/license/license.component.html</context>
@@ -184,6 +200,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b6452c26d4b1f0e249309132f4826342a6756d1e" datatype="html">
+        <source>Title Edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a366d4c41f1716b8003f47cac41282ba04dc2f1c" datatype="html">
