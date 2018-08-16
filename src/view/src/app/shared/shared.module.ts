@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { ShowDirective } from './show.directive';
 import { HideDirective } from './hide.directive';
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
+import { DialogFilesComponent } from './dialog-files/dialog-files.component';
 
 @NgModule({
   imports: [
@@ -35,13 +36,13 @@ import { DialogErrorComponent } from './dialog-error/dialog-error.component';
   declarations: [
     NavigationBarComponent, LoginComponent,
 
-    ShowDirective,HideDirective, DialogErrorComponent
+    ShowDirective,HideDirective, DialogErrorComponent, DialogFilesComponent,DialogFilesComponent
   ],
   exports: [
-    NavigationBarComponent,ShowDirective,HideDirective,DialogErrorComponent
+    NavigationBarComponent,ShowDirective,HideDirective,DialogErrorComponent,DialogFilesComponent
   ],
   entryComponents: [
-    LoginComponent,DialogErrorComponent
+    LoginComponent,DialogErrorComponent,DialogFilesComponent
   ]
 })
 export class SharedModule { }

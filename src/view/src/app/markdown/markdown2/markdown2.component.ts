@@ -6,7 +6,7 @@ import { Markdown } from '../markdown';
 import { SettingService } from '../../core/setting/setting.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { DialogErrorComponent } from '../../shared/dialog-error/dialog-error.component';
+import { DialogFilesComponent } from '../../shared/dialog-files/dialog-files.component';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../core/utils';
 import * as SimpleMDE from 'simplemde';
@@ -83,7 +83,19 @@ export class Markdown2Component implements OnInit, AfterViewInit {
           className: "fas fa-upload",
           title: "File management",
           action: (editor) => {
-            console.log("File management")
+            const settting = this.settingService.getSetting();
+            this.dialog.open(
+              DialogFilesComponent,
+              {
+                width: '80%',
+                maxWidth: 800,
+                data: {
+                  book: settting.BookID,
+                  chapter: settting.ChapterID,
+                },
+                disableClose:true,
+              },
+            )
           },
         },
         "|", "bold", "italic",
