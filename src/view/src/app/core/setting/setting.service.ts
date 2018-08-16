@@ -22,4 +22,7 @@ export class SettingService {
     this.setting.BookID = book;
     this.setting.ChapterID = chapter;
   }
+  updateFull(yes: boolean) {
+    this.setting.Full = yes;
+  }
 }

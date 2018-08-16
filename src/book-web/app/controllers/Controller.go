@@ -3,9 +3,12 @@ package controllers
 import (
 	"book-web/app/module/db/data"
 	"book-web/app/module/protocol"
+	"errors"
 	"github.com/revel/revel"
 	"strings"
 )
+
+var errPermissionDenied = errors.New("Permission Denied")
 
 // Controller 為 控制器的 提供了 輔助方法
 type Controller struct {
@@ -72,4 +75,9 @@ func (c Controller) MarshalSession(session *protocol.Session) {
 	}
 	keys[protocol.SessionColNickname] = session.Nickname
 	keys[protocol.SessionColName] = session.Name
+}
+
+// RenderPermissionDenied .
+func (c Controller) RenderPermissionDenied() revel.Result {
+	return c.RenderError(errPermissionDenied)
 }

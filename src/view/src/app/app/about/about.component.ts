@@ -9,6 +9,7 @@ export class AboutComponent implements OnInit {
   constructor(private title: Title) { }
 
   ngOnInit() {
+    
   }
   @ViewChild('title')
   private titleRef: ElementRef;

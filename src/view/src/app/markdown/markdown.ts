@@ -85,7 +85,11 @@ export class Markdown {
             parseImgDimensions: true,
         });
         const html = converter.makeHtml(markdown);
-        this.HTML = domSanitizer.bypassSecurityTrustHtml(html);
+        if(domSanitizer){
+            this.HTML = domSanitizer.bypassSecurityTrustHtml(html);
+        }else{
+            this.HTML = html;
+        }
         if (headers.length > 0) {
             let div = document.createElement("div");
             div.innerHTML = html;

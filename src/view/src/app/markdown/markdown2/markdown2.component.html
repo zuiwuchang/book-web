@@ -1,0 +1,32 @@
+<div class="hide" #msgRouter i18n>Error Router not save</div>
+<div class="hide" #msgSaveWait i18n>wait request,ignore save request.</div>
+<div class="hide" #msgNoChange i18n>Not Data Change,ignore save</div>
+<div class="hide" #msgSaveSuccess i18n>Save Success</div>
+<mat-drawer-container>
+  <mat-drawer class="sidenav-left" mode="side" [opened]="isChapter()">
+    <mat-nav-list>
+      <mat-list-item>
+        <p matLine (click)="onRouter(bookID(book),'0')">{{book?.Name}}</p>
+        <button class="menu-btn" mat-icon-button (click)="onChapterSort(book)"><mat-icon>sort</mat-icon></button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let item of book?.Chapter;">
+        <p matLine (click)="onRouter(book?.ID, item.ID)">{{item.Name}}</p>
+        <button class="menu-btn" mat-icon-button (click)="onChapterEdit(book,item.ID,item.Name)"><mat-icon>edit</mat-icon></button>
+        <button class="menu-btn" mat-icon-button (click)="onChapterRemove(book,item.ID)"><mat-icon>delete</mat-icon></button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button class="menu-btn" mat-icon-button (click)="onChapterNew(book)"><mat-icon>add</mat-icon></button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer class="sidenav-right" mode="side" [opened]="isHeader()" position="end">
+    <app-markdown-bar [items]="markdown?.Header" (valChange)="onChange($event)"></app-markdown-bar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <section #view highlight-js-content="code">
+      <textarea #textarea></textarea>
+    </section>
+  </mat-drawer-content>
+</mat-drawer-container>

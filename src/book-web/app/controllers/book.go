@@ -54,3 +54,33 @@ func (c Book) Assets(book, chapter, name string) revel.Result {
 	filename := mBook.Assets(book, chapter, name)
 	return c.RenderFileName(filename, revel.NoDisposition)
 }
+
+// Save 保存 檔案
+func (c Book) Save() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID      string
+		Chapter string
+		Val     string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	if params.Chapter == "0" {
+		params.Chapter = ""
+	}
+	// 執行 請求
+	var mBook manipulator.Book
+	e = mBook.UpdateChapter(params.ID, params.Chapter, params.Val)
+	if e != nil {
+		return c.RenderError(e)
+	}
+
+	return c.RenderJSON(nil)
+}

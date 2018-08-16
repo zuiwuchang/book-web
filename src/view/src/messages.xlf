@@ -2,52 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
-        <source>Error</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app/license/license.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="38e0956efb7c78e758d638c8f1e5c99859b82836" datatype="html">
-        <source>Retry</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-view/markdown-view.component.html</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app/license/license.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
         <source>Login</source>
         <context-group purpose="location">
@@ -129,83 +83,133 @@
         <source>Home Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="558cf284a586969d529d302380efe98f7bfb218f" datatype="html">
         <source>Source Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bc1f34fbcd508eeefebcc2033e6509cb9d3c0d1e" datatype="html">
         <source>License Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e203fbda1a68c2ee0b206d0959f9323d3deac894" datatype="html">
         <source>About Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c0eef28336045cdd322f0890600448c020ef1111" datatype="html">
         <source>Edit Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c305daaf34bfd8d7ffb69b9466fbcfc665b563bd" datatype="html">
         <source>View Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
         <source>Logout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cd5d318e16c3fdc48a3b4a4a2ca40982439f3ed0" datatype="html">
         <source>Login Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
         <source>Apps Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
         <source>Book Chapter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
         <source>Book Chapter Header</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
+        <source>Error</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-error/dialog-error.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown-view/markdown-view.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown-view/markdown-view.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/license/license.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="38e0956efb7c78e758d638c8f1e5c99859b82836" datatype="html">
+        <source>Retry</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown-view/markdown-view.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown-view/markdown-view.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/license/license.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b6452c26d4b1f0e249309132f4826342a6756d1e" datatype="html">
         <source>Title Edit</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="sourcefile">app/markdown/markdown-edit/markdown-edit.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
@@ -221,6 +225,34 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/license/license.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b4f9f403fc2030f27bff7c0b90abf14ed18949b5" datatype="html">
+        <source>Error Router not save</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="01163af000e2dab2fff2c3ef426377f6f3f9856a" datatype="html">
+        <source>wait request,ignore save request.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ccf570204983860c7c54eaa8d69c6472451303d" datatype="html">
+        <source>Not Data Change,ignore save</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1aba1ddddaea6316b27da281445bc78209f142e7" datatype="html">
+        <source>Save Success</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
     </body>

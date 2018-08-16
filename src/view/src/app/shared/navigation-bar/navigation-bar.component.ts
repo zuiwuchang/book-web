@@ -76,6 +76,9 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   isPageEdit(){
     return this.session && (this.settingService.getSetting().Page == 2);
   }
+  isFull(){
+    return this.settingService.getSetting().Full;
+  }
   getBookID(){
     return this.settingService.getSetting().BookID;
   }

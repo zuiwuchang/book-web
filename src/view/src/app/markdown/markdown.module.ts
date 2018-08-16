@@ -19,18 +19,22 @@ import { MatInputModule } from '@angular/material/input';
 
 
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { SharedModule } from '../shared/shared.module';
 
 import { MarkdownViewComponent } from './markdown-view/markdown-view.component';
 import { MarkdownBarComponent } from './markdown-bar/markdown-bar.component';
 import { MarkdownComponent } from './markdown/markdown.component';
 import { MarkdownEditComponent } from './markdown-edit/markdown-edit.component';
+import { Markdown2Component } from './markdown2/markdown2.component';
 @NgModule({
   imports: [
-    CommonModule,FormsModule,RouterModule,
+    CommonModule, FormsModule, RouterModule,
 
     MatButtonModule, MatProgressBarModule, MatSidenavModule, MatIconModule,
     MatToolbarModule, MatListModule, MatMenuModule, MatDialogModule, MatTooltipModule,
-    MatFormFieldModule,MatSlideToggleModule,MatInputModule,
+    MatFormFieldModule, MatSlideToggleModule, MatInputModule,
+
+    SharedModule,
 
     HighlightJsModule
   ],
@@ -38,9 +42,10 @@ import { MarkdownEditComponent } from './markdown-edit/markdown-edit.component';
   declarations: [
     MarkdownViewComponent, MarkdownComponent, MarkdownBarComponent,
     MarkdownEditComponent,
+    Markdown2Component,
   ],
-  exports:[
-    MarkdownViewComponent,MarkdownEditComponent
+  exports: [
+    MarkdownViewComponent, MarkdownEditComponent
   ]
 })
 export class MarkdownModule { }

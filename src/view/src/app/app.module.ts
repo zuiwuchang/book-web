@@ -24,7 +24,7 @@ import { LicenseComponent } from './app/license/license.component';
 import { ViewComponent } from './app/view/view.component';
 import { EditComponent } from './app/edit/edit.component';
 
-
+import {ToasterModule, ToasterService} from 'angular2-toaster';
 
 @NgModule({
   declarations: [
@@ -39,14 +39,15 @@ import { EditComponent } from './app/edit/edit.component';
     BrowserAnimationsModule, HttpClientModule,
 
     MatListModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatButtonModule,
-    MatTooltipModule, MatProgressSpinnerModule,MatMenuModule,
+    MatTooltipModule, MatProgressSpinnerModule, MatMenuModule,
 
+    ToasterModule.forRoot(),
 
-    SharedModule,MarkdownModule,
-    
+    SharedModule, MarkdownModule,
+
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

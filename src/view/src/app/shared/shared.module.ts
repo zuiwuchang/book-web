@@ -16,11 +16,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 
-
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { LoginComponent } from './login/login.component';
 import { ShowDirective } from './show.directive';
 import { HideDirective } from './hide.directive';
+import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 
 @NgModule({
   imports: [
@@ -28,19 +28,20 @@ import { HideDirective } from './hide.directive';
 
     MatButtonModule, MatProgressBarModule, MatSidenavModule, MatIconModule,
     MatToolbarModule, MatListModule, MatMenuModule, MatDialogModule, MatTooltipModule,
-    MatFormFieldModule,MatSlideToggleModule,MatInputModule
+    MatFormFieldModule,MatSlideToggleModule,MatInputModule,
+
   ],
   providers: [],
   declarations: [
     NavigationBarComponent, LoginComponent,
 
-    ShowDirective,HideDirective
+    ShowDirective,HideDirective, DialogErrorComponent
   ],
   exports: [
-    NavigationBarComponent
+    NavigationBarComponent,ShowDirective,HideDirective,DialogErrorComponent
   ],
   entryComponents: [
-    LoginComponent
+    LoginComponent,DialogErrorComponent
   ]
 })
 export class SharedModule { }

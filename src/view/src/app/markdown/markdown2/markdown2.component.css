@@ -15,3 +15,15 @@
     background-color: #fafafa;
     box-shadow: 6px 0 6px rgba(0,0,0,.1);
 }
+.sidenav-tools{
+    position: fixed;
+    top: 64px;
+    background-color: #fafafa;
+    padding-right: 18px;
+}
+textarea{
+    height: 100%;
+}
+.editor-toolbar{
+    z-index: 1024;
+}

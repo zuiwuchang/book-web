@@ -2,7 +2,10 @@
 @import "assets/css/bootstrap.min.css";
 @import "assets/css/Material.Icons.css";
 @import "assets/js/highlight/9.12.0/styles/androidstudio.css";
+@import "~angular2-toaster/toaster.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css"; 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~simplemde/dist/simplemde.min.css";
 .menu-btn{
     outline: 0 none !important;
     border: none;

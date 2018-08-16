@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Book } from '../../core/protocol/book';
 import { HighlightJsService } from 'angular2-highlight-js';
 import { Markdown } from '../markdown';
