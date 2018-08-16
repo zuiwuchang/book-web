@@ -55,7 +55,12 @@ export class Markdown {
                     }
                     let result;
                     if (wholematch[0] == "!") {
-                        result = '<img src="' + url + '" style="max-width:100%;">';
+                        if (typeof linkText != 'undefined' && linkText !== '' && linkText !== null) {
+                            linkText = linkText.replace(/"/g, '&quot;');
+                            result = '<img src="' + url + '" alt="' + linkText + '" style="max-width:100%;">';                            
+                        } else {
+                            result = '<img src="' + url + '" style="max-width:100%;">';
+                        }
                     } else {
                         result = '<a href="' + url + '"';
 

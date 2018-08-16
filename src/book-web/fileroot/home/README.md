@@ -1,6 +1,6 @@
 #   begin *yes* {: #ids}
 
-![](tux.jpg)
+![](assets/tux.jpg)
 [tux.tar.gz](tux.tar.gz)
 
 111111
