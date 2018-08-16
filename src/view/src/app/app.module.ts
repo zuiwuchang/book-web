@@ -14,6 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { SharedModule } from './shared/shared.module';
+import { MarkdownModule } from './markdown/markdown.module';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -41,7 +42,7 @@ import { EditComponent } from './app/edit/edit.component';
     MatTooltipModule, MatProgressSpinnerModule,MatMenuModule,
 
 
-    SharedModule,
+    SharedModule,MarkdownModule,
     
     AppRoutingModule
   ],

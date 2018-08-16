@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Book } from '../../../core/protocol/book';
+import { Book } from '../../core/protocol/book';
 import { HighlightJsService } from 'angular2-highlight-js';
 import { Markdown } from '../markdown';
-import { Setting } from '../../../core/setting/setting';
-import { SettingService } from '../../../core/setting/setting.service';
+import { SettingService } from '../../core/setting/setting.service';
 @Component({
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',

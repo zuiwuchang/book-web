@@ -1,14 +1,14 @@
-import { Component, OnInit, Input,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Utils } from '../../../core/utils';
-import { Book } from '../../../core/protocol/book';
+import { Utils } from '../../core/utils';
+import { Book } from '../../core/protocol/book';
 import { Title } from "@angular/platform-browser";
 @Component({
-  selector: 'app-markdown-edit',
-  templateUrl: './markdown-edit.component.html',
-  styleUrls: ['./markdown-edit.component.css']
+  selector: 'app-markdown-view',
+  templateUrl: './markdown-view.component.html',
+  styleUrls: ['./markdown-view.component.css']
 })
-export class MarkdownEditComponent implements OnInit {
+export class MarkdownViewComponent implements OnInit {
   readonly InitBook = 0;
   readonly ErrorBook = 1;
   readonly InitChapter = 2;
@@ -39,14 +39,6 @@ export class MarkdownEditComponent implements OnInit {
       this.initChapter();
     }
   }
-  @ViewChild('title')
-  private titleRef: ElementRef;
-  private getTitle(){
-    if(!this.titleRef){
-      return "Edit";
-    }
-    return this.titleRef.nativeElement.innerText;
-  }
   private initBook() {
     this.http.post("/book/view", {
       ID: this._book,
@@ -57,7 +49,7 @@ export class MarkdownEditComponent implements OnInit {
           this.status = this.ErrorBook;
         }
         this.bookInfo = book;
-        this.title.setTitle(this.getTitle()+" - "+book.Name);
+        this.title.setTitle(book.Name);
         this.status = this.InitChapter;
         this.initChapter();
       },
