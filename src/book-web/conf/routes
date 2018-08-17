@@ -27,3 +27,4 @@ GET     /public/*filepath                       Static.Serve("public")
 GET       /:controller/:action                    :controller.:action
 POST       /:controller/:action                    :controller.:action
 GET     /book/assets/:book/:chapter/assets/:name     Book.Assets
+POST    /book/upload/:book/:chapter     Book.Upload

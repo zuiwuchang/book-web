@@ -2,7 +2,12 @@ package controllers
 
 import (
 	"book-web/app/module/db/manipulator"
+	"book-web/app/module/utils"
+	"fmt"
 	"github.com/revel/revel"
+	"io"
+	"mime/multipart"
+	"os"
 )
 
 // Book .
@@ -161,4 +166,67 @@ func (c Book) RenameAssets() revel.Result {
 	}
 
 	return c.RenderJSON(nil)
+}
+
+// Upload 上傳 檔案
+func (c Book) Upload(book, chapter string) revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+
+	// 返回 檔案夾
+	var mBook manipulator.Book
+	dir, e := mBook.DirectoryAssets(book, chapter)
+	if e != nil {
+		return c.RenderError(e)
+	}
+
+	fmt.Println(dir)
+
+	for _, file := range c.Params.Files["file"] {
+		e = c.createFile(dir, file)
+		if e != nil {
+			return c.RenderError(e)
+		}
+	}
+	return c.RenderText("File is uploaded")
+}
+func (c Book) createFile(dir string, file *multipart.FileHeader) (e error) {
+	name := file.Filename
+	if !utils.IsFilename(name) {
+		e = fmt.Errorf("%v is not a file name", name)
+		return
+	}
+	// 驗證 存在
+	filename := dir + "/" + name
+	var f *os.File
+	f, e = os.Open(filename)
+	if e == nil {
+		f.Close()
+		e = fmt.Errorf("%v already exists", name)
+		return
+	} else if !os.IsNotExist(e) {
+		return
+	}
+
+	// 創建 檔案
+	f, e = os.Create(filename)
+	if e != nil {
+		return
+	}
+	defer f.Close()
+
+	var src multipart.File
+	src, e = file.Open()
+	if e != nil {
+		return
+	}
+	defer src.Close()
+	_, e = io.Copy(f, src)
+	if e != nil {
+		return
+	}
+	return
 }

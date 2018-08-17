@@ -1,0 +1,49 @@
+<div ng2FileDrop [ngClass]="{'another-file-over-class': hasAnotherDropZoneOver}" (fileOver)="fileOverAnother($event)" [uploader]="uploader"
+  class="well my-drop-zone">
+  <div class="view">
+    <input #file type="file" name="filename" class="hide" ng2FileSelect [uploader]="uploader" multiple />
+    <ng-container i18n>Queue length</ng-container> : {{ uploader?.queue?.length }}
+    <mat-list>
+      <mat-list-item *ngFor="let item of uploader.queue">
+        <p matLine>
+          {{item?.file?.name}}
+          <mat-icon *ngIf="item.isSuccess" fontSet="fas" fontIcon="fa-check-square" color="primary"></mat-icon>
+          <mat-icon *ngIf="item.isCancel" fontSet="fas" fontIcon="fa-ban" color="accent"></mat-icon>
+          <mat-icon *ngIf="item.isError" fontSet="fas" fontIcon="fa-exclamation-triangle" color="warn"></mat-icon>
+          <mat-icon *ngIf="item.isUploading" fontSet="fas" fontIcon="fa-spinner" color="primary"></mat-icon>
+        </p>
+        <p matLine>{{getSize(item?.file?.size) }}</p>
+        <p matLine>
+          <mat-progress-bar mode="determinate" value="{{item.progress}}"></mat-progress-bar>
+        </p>
+
+        <button mat-icon-button (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+          <mat-icon>cloud_upload</mat-icon>
+        </button>
+        <button mat-icon-button (click)="item.cancel()" [disabled]="!item.isUploading">
+          <mat-icon>cancel</mat-icon>
+        </button>
+        <button mat-icon-button (click)="item.remove()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+    <div>
+      <p>
+        <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
+      </p>
+      <p>
+        <button mat-button (click)="file.click()" i18n>Select Files</button>
+        <button mat-button (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+          <ng-container i18n>Upload all file</ng-container>
+        </button>
+        <button mat-button (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+          <ng-container i18n>Upload cancel all file</ng-container>
+        </button>
+        <button mat-button (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+          <ng-container i18n>Upload remove all file</ng-container>
+        </button>
+      </p>
+    </div>
+  </div>
+</div>

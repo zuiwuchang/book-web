@@ -127,6 +127,35 @@ func (Book) ListAssets(id, chapter string) (names []string, e error) {
 	return
 }
 
+// DirectoryAssets 返回 靜態資源 檔案夾
+func (Book) DirectoryAssets(id, chapter string) (dir string, e error) {
+	// 驗證 參數
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	chapter, e = data.CheckBookChapterID(chapter)
+	if e != nil {
+		return
+	}
+	dir = BookDirectoryAssets(id, chapter)
+
+	var f *os.File
+	f, e = os.Open(dir)
+	if e == nil {
+		f.Close()
+		return
+	}
+	if os.IsNotExist(e) {
+		e = os.MkdirAll(dir, fileperm.Directory)
+		if e != nil {
+			return
+		}
+		return
+	}
+	return
+}
+
 // UpdateChapter 更新章節內容
 func (Book) UpdateChapter(id, chapter, val string) (e error) {
 	// 驗證 參數
@@ -187,7 +216,7 @@ func (m Book) RenameAssets(id, chapter, name, newname string) (e error) {
 	f, e = os.Open(newname)
 	if e == nil {
 		f.Close()
-		e = fmt.Errorf("%v already exists", tmp)
+		e = fmt.Errorf("%s already exists", tmp)
 		return
 	} else if os.IsNotExist(e) {
 		e = nil

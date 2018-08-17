@@ -30,6 +30,7 @@
     "crypto-js": "^3.1.9-1",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
+    "ng2-file-upload": "^1.3.0",
     "remove": "^0.1.5",
     "rxjs": "^6.2.2",
     "showdown": "^1.8.6",

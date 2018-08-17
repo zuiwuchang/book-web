@@ -210,15 +210,15 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="06b37792b48c29813a10ebc2396a59c67a1263bb" datatype="html">
-        <source>Files Info</source>
+      <trans-unit id="a6ebbafda6e27bae7bd59174751598f4ab01d217" datatype="html">
+        <source>Files Upload</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a6ebbafda6e27bae7bd59174751598f4ab01d217" datatype="html">
-        <source>Files Upload</source>
+      <trans-unit id="06b37792b48c29813a10ebc2396a59c67a1263bb" datatype="html">
+        <source>Files Info</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
           <context context-type="linenumber">9</context>
@@ -316,6 +316,41 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
           <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d2225b3e00af653ad30e16f0f5ede3a42ffc206b" datatype="html">
+        <source>Queue length</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68635380a12e90f80223c01dba0c572c2b19dc05" datatype="html">
+        <source>Select Files</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c328d95876c4d432be175ac4bf14d9b698416768" datatype="html">
+        <source>Upload all file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6276360f457a8f0a657f6b0993d19867491636e8" datatype="html">
+        <source>Upload cancel all file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="05ad0f6357f934ff17f8d123bc2584811c4c6107" datatype="html">
+        <source>Upload remove all file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b4f9f403fc2030f27bff7c0b90abf14ed18949b5" datatype="html">
