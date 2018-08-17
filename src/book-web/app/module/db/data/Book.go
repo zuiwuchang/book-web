@@ -31,6 +31,12 @@ func CheckBookChapterID(id string) (string, error) {
 	return id, nil
 }
 
+// IsBookChapterID 返回 id 是否 符合 命名 規範
+func IsBookChapterID(id string) (yes bool) {
+	yes = matchID.MatchString(id)
+	return
+}
+
 // BookChapter 書 章節定義
 type BookChapter struct {
 	// 章節名稱
@@ -55,19 +61,16 @@ func (d *Book) Format() {
 	}
 	arrs := make([]BookChapter, 0, len(d.Chapter))
 	keysID := make(map[string]bool)
-	keysName := make(map[string]bool)
 	for _, node := range d.Chapter {
 		node.ID = strings.TrimSpace(node.ID)
 		node.Name = strings.TrimSpace(node.Name)
 		// 忽略無效 或 重複的章節
 		if !matchID.MatchString(node.ID) ||
-			keysID[node.ID] ||
-			keysName[node.Name] {
+			keysID[node.ID] {
 			continue
 		}
 		// 添加 記錄
 		keysID[node.ID] = true
-		keysName[node.Name] = true
 		arrs = append(arrs, node)
 	}
 	d.Chapter = arrs

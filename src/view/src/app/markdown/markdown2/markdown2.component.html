@@ -2,22 +2,31 @@
 <div class="hide" #msgSaveWait i18n>wait request,ignore save request.</div>
 <div class="hide" #msgNoChange i18n>Not Data Change,ignore save</div>
 <div class="hide" #msgSaveSuccess i18n>Save Success</div>
+<div class="hide" #msgRequest i18n>wait request,ignore request.</div>
+<div class="hide" #msgSureTitle i18n>Title Sure Remove Chapter</div>
+<div class="hide" #msgSureText i18n>Text Sure Remove Chapter</div>
 <mat-drawer-container>
   <mat-drawer class="sidenav-left" mode="side" [opened]="isChapter()">
     <mat-nav-list>
       <mat-list-item>
         <p matLine (click)="onRouter(bookID(book),'0')">{{book?.Name}}</p>
-        <button class="menu-btn" mat-icon-button (click)="onChapterSort(book)"><mat-icon>sort</mat-icon></button>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item *ngFor="let item of book?.Chapter;">
-        <p matLine (click)="onRouter(book?.ID, item.ID)">{{item.Name}}</p>
-        <button class="menu-btn" mat-icon-button (click)="onChapterEdit(book,item.ID,item.Name)"><mat-icon>edit</mat-icon></button>
-        <button class="menu-btn" mat-icon-button (click)="onChapterRemove(book,item.ID)"><mat-icon>delete</mat-icon></button>
-      </mat-list-item>
+      <div [sortablejs]="book?.Chapter">
+        <mat-list-item *ngFor="let item of book?.Chapter;">
+          <p matLine (click)="onRouter(book?.ID, item.ID)">{{item.Name}}</p>
+          <button class="menu-btn" mat-icon-button [disabled]="isRequest" i18n-matTooltip matTooltip="Edit Chapter" (click)="onChapterEdit(book,item.ID,item.Name)"><mat-icon>edit</mat-icon></button>
+          <button class="menu-btn" mat-icon-button [disabled]="isRequest" i18n-matTooltip matTooltip="Delete Chapter" (click)="onChapterRemove(book,item.ID,item.Name)"><mat-icon>delete</mat-icon></button>
+        </mat-list-item>
+      </div>
       <mat-divider></mat-divider>
       <mat-list-item>
-        <button class="menu-btn" mat-icon-button (click)="onChapterNew(book)"><mat-icon>add</mat-icon></button>
+        <button class="menu-btn" mat-icon-button [disabled]="isRequest" i18n-matTooltip matTooltip="New Chapter" (click)="onChapterNew(book)">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button class="menu-btn" mat-icon-button [disabled]="isRequest" i18n-matTooltip matTooltip="Sort Chapter" (click)="onChapterSort(book)">
+          <mat-icon>sort</mat-icon>
+        </button>
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>

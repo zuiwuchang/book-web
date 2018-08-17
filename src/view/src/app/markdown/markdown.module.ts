@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 
 
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { SortablejsModule } from 'angular-sortablejs';
+
 import { SharedModule } from '../shared/shared.module';
 
 import { MarkdownViewComponent } from './markdown-view/markdown-view.component';
@@ -36,7 +38,7 @@ import { Markdown2Component } from './markdown2/markdown2.component';
 
     SharedModule,
 
-    HighlightJsModule
+    HighlightJsModule,SortablejsModule
   ],
   providers: [HighlightJsService],
   declarations: [

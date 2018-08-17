@@ -54,3 +54,13 @@ func BookAssets(id, chapter, name string) string {
 func BookDirectoryAssets(id, chapter string) string {
 	return fmt.Sprintf("%s/%s/%s/assets", _FileRoot, id, chapter)
 }
+
+// BookChapterDirectory 返回 章節 檔案夾
+func BookChapterDirectory(id, chapter string) string {
+	return fmt.Sprintf("%s/%s/%s", _FileRoot, id, chapter)
+}
+
+// BookDirectory 返回 書 檔案夾
+func BookDirectory(id string) string {
+	return fmt.Sprintf("%s/%s", _FileRoot, id)
+}

@@ -230,3 +230,28 @@ func (c Book) createFile(dir string, file *multipart.FileHeader) (e error) {
 	}
 	return
 }
+
+// RemoveChapter 刪除 章節
+func (c Book) RemoveChapter() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID      string
+		Chapter string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+
+	var mBook manipulator.Book
+	e = mBook.RemoveChapter(params.ID, params.Chapter)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(nil)
+}

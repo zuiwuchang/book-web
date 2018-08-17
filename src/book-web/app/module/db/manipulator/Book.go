@@ -15,13 +15,55 @@ type Book struct {
 }
 
 // Get 返回指定的 書
-func (Book) Get(id string) (book *data.Book, e error) {
+func (m Book) Get(id string) (book *data.Book, e error) {
 	// 驗證 參數
 	id, e = data.CheckBookID(id)
 	if e != nil {
 		return
 	}
 
+	// 讀取 定義
+	book, e = m.get(id)
+	if e != nil {
+		return
+	}
+	filename := BookDirectory(id)
+	f, e := os.Open(filename)
+	if e != nil {
+		return
+	}
+	defer f.Close()
+	var infos []os.FileInfo
+	infos, e = f.Readdir(0)
+	if e != nil {
+		return
+	}
+	keys := make(map[string]bool)
+	if book.Chapter == nil {
+		book.Chapter = make([]data.BookChapter, 0, 10)
+	} else {
+		for i := 0; i < len(book.Chapter); i++ {
+			keys[book.Chapter[i].ID] = true
+		}
+	}
+	for _, info := range infos {
+		key := info.Name()
+		if key == "0" ||
+			keys[key] ||
+			!data.IsBookChapterID(key) {
+			continue
+		}
+		book.Chapter = append(book.Chapter, data.BookChapter{
+			ID:   key,
+			Name: "_" + key,
+		})
+		keys[key] = true
+	}
+	return
+}
+
+// Get 返回指定的 書
+func (Book) get(id string) (book *data.Book, e error) {
 	// 讀取 定義
 	filepath := BookDefinition(id)
 	b, e := ioutil.ReadFile(filepath)
@@ -37,6 +79,18 @@ func (Book) Get(id string) (book *data.Book, e error) {
 	// 標準化數據
 	book.Format()
 	book.ID = id
+	return
+}
+func (Book) save(book data.Book) (e error) {
+	filepath := BookDefinition(book.ID)
+	book.ID = ""
+
+	var b []byte
+	b, e = json.Marshal(book)
+	if e != nil {
+		return
+	}
+	e = ioutil.WriteFile(filepath, b, fileperm.File)
 	return
 }
 
@@ -228,5 +282,45 @@ func (m Book) RenameAssets(id, chapter, name, newname string) (e error) {
 	if e != nil {
 		return
 	}
+	return
+}
+
+// RemoveChapter 刪除 章節
+func (m Book) RemoveChapter(id, chapter string) (e error) {
+	// 驗證 參數
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	chapter, e = data.CheckBookChapterID(chapter)
+	if e != nil {
+		return
+	}
+	if chapter == "0" {
+		e = fmt.Errorf("can't remove root chapter")
+		return
+	}
+	// 讀取 定義
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+
+	// 讀取 定義
+	var book *data.Book
+	book, e = m.get(id)
+	for i := 0; i < len(book.Chapter); i++ {
+		if book.Chapter[i].ID == chapter {
+			book.Chapter = append(book.Chapter[:i], book.Chapter[i+1:]...)
+			// 存儲 新定義
+			e = m.save(*book)
+			if e != nil {
+				return
+			}
+			break
+		}
+	}
+	// 刪除 檔案夾
+	os.RemoveAll(BookChapterDirectory(id, chapter))
 	return
 }

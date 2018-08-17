@@ -24,8 +24,8 @@ import { LicenseComponent } from './app/license/license.component';
 import { ViewComponent } from './app/view/view.component';
 import { EditComponent } from './app/edit/edit.component';
 
-import {ToasterModule, ToasterService} from 'angular2-toaster';
-
+import { ToasterModule, ToasterService } from 'angular2-toaster';
+import { SortablejsModule } from 'angular-sortablejs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +42,7 @@ import {ToasterModule, ToasterService} from 'angular2-toaster';
     MatTooltipModule, MatProgressSpinnerModule, MatMenuModule,
 
     ToasterModule.forRoot(),
+    SortablejsModule.forRoot({ animation: 150}),
 
     SharedModule, MarkdownModule,
 

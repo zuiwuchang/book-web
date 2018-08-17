@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../core/utils';
 import * as SimpleMDE from 'simplemde';
 import { ToasterService } from 'angular2-toaster';
+import { DialogSureComponent } from '../../shared/dialog-sure/dialog-sure.component';
 @Component({
   selector: 'app-markdown2',
   templateUrl: './markdown2.component.html',
@@ -21,6 +22,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
   markdown: Markdown = null;
   private oldText = "";
   isVisibility: boolean = true;
+  isRequest = false;
   @Input()
   book: Book = null;
   constructor(private domSanitizer: DomSanitizer,
@@ -93,7 +95,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
                   book: settting.BookID,
                   chapter: settting.ChapterID,
                 },
-                disableClose:true,
+                disableClose: true,
               },
             )
           },
@@ -227,10 +229,63 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     }
     console.log("edit", chapterID, chapterName)
   }
-  onChapterRemove(book: Book, chapterID: string) {
+  @ViewChild("msgRequest")
+  private msgRequest: ElementRef;
+  @ViewChild('msgSureTitle')
+  private msgSureTitle: ElementRef;
+  @ViewChild('msgSureText')
+  private msgSureText: ElementRef;
+  onChapterRemove(book: Book, chapterID: string, chapterName: string) {
     if (!book || !book.Chapter || book.Chapter.length == 0) {
       return;
     }
-    console.log("remove", chapterID)
+    if (this.isRequest) {
+      this.toasterService.pop('warning', '', this.msgRequest.nativeElement.innerText);
+    }
+
+    const dialogRef = this.dialog.open(
+      DialogSureComponent,
+      {
+        width: '80%',
+        maxWidth: 800,
+        data: {
+          title: this.msgSureTitle.nativeElement.innerText,
+          text: this.msgSureText.nativeElement.innerText + " - " + chapterName,
+        },
+      },
+    )
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.doRemove(book, chapterID);
+      }
+    });
+  }
+  private doRemove(book: Book, chapterID: string) {
+    if (!book || !book.Chapter || book.Chapter.length == 0) {
+      return;
+    }
+    if (this.isRequest) {
+      this.toasterService.pop('warning', '', this.msgRequest.nativeElement.innerText);
+    }
+
+    this.isRequest = true;
+    this.httpClient.post("/Book/RemoveChapter", {
+      ID: book.ID,
+      Chapter: chapterID,
+    }).subscribe(
+      () => {
+        this.isRequest = false;
+        for (let i = 0; i < book.Chapter.length; i++) {
+          if (chapterID == book.Chapter[i].ID) {
+            book.Chapter.splice(i, 1);
+            break;
+          }
+        }
+      },
+      e => {
+        this.isRequest = false;
+        this.toasterService.pop('error', '', Utils.ResolveError(e));
+      }
+    );
   }
 }
