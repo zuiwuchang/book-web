@@ -101,6 +101,10 @@
           <context context-type="sourcefile">app/shared/dialog-sure/dialog-sure.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="438fdc617a22c8dd029e74b64ab66355e36eeb9d" datatype="html">
         <source>Home Tooltip</source>
@@ -253,6 +257,10 @@
           <context context-type="sourcefile">app/shared/dialog-sure/dialog-sure.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="38e0956efb7c78e758d638c8f1e5c99859b82836" datatype="html">
         <source>Retry</source>
@@ -304,6 +312,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/license/license.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d438fadfdcaab681912629a26e1e011374f9971" datatype="html">
+        <source>File Rename</source>
+        <target>檔案重命名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ea089321b1598c8eab968be77a48c03f1487b36f" datatype="html">
+        <source>File Rename placeholder</source>
+        <target>請輸入檔案新名稱</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="acf84b7e8ebe05a4e2f6846ebc2fefc656105a25" datatype="html">
+        <source>Invalid File Name</source>
+        <target>無效的檔案名稱</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="667b29b149a10ed6b33daef56bd7e7a87a7ace71" datatype="html">

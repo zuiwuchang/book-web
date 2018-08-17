@@ -5,6 +5,7 @@ import { Utils } from '../../../core/utils';
 import { ToasterService } from 'angular2-toaster';
 import { MatDialog } from '@angular/material';
 import { DialogSureComponent } from '../../dialog-sure/dialog-sure.component';
+import { FileRenameComponent } from '../file-rename/file-rename.component';
 @Component({
   selector: 'app-files-view',
   templateUrl: './files-view.component.html',
@@ -95,6 +96,60 @@ export class FilesViewComponent implements OnInit {
           if (name == this.items[i]) {
             this.items.splice(i, 1);
             break;
+          }
+        }
+        this.toasterService.pop('success', '', 'Success');
+      },
+      (e) => {
+        this.request = false;
+        this.toasterService.pop('error', '', Utils.ResolveError(e));
+      });
+  }
+  onRename(name: string) {
+    if (this.isDisabled()) {
+      console.log("disabled,ignore rename");
+      return;
+    }
+    const dialogRef = this.dialog.open(
+      FileRenameComponent,
+      {
+        width: '80%',
+        maxWidth: 800,
+        data: {
+          val:name,
+        }
+      },
+    )
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.doRename(name, result);
+      }
+    });
+  }
+  doRename(name, newname) {
+    if (this.isDisabled()) {
+      console.log("disabled,ignore rename");
+      return;
+    }else if (name == newname){
+      return;
+    }
+
+    this.request = true;
+    this.httpClient.post("/Book/RenameAssets",
+      {
+        ID: this.shared.book,
+        Chapter: this.shared.chapter,
+        Name: name,
+        Newname:newname
+      }
+    ).subscribe(
+      () => {
+        this.request = false;
+        for (let i = 0; i < this.items.length; i++) {
+          if (name == this.items[i]) {
+            this.items[i] = newname;
+          }else if(newname == this.items[i]){
+            this.items.splice(i,1);
           }
         }
         this.toasterService.pop('success', '', 'Success');

@@ -2,6 +2,7 @@ package manipulator
 
 import (
 	"book-web/app/module/db/data"
+	"book-web/app/module/utils"
 	"encoding/json"
 	"fmt"
 	"gitlab.com/king011/king-go/os/fileperm"
@@ -71,6 +72,11 @@ func (Book) Assets(id, chapter, name string) (str string, e error) {
 	if e != nil {
 		return
 	}
+	if !utils.IsFilename(name) {
+		e = fmt.Errorf("%v is not a file name", name)
+		return
+	}
+
 	str = BookAssets(id, chapter, name)
 	return
 }
@@ -142,12 +148,54 @@ func (Book) UpdateChapter(id, chapter, val string) (e error) {
 }
 
 // RemoveAssets 刪除 靜態 資源
-func (m Book) RemoveAssets(id, chapter, val string) (e error) {
-	val, e = m.Assets(id, chapter, val)
+func (m Book) RemoveAssets(id, chapter, name string) (e error) {
+	name, e = m.Assets(id, chapter, name)
 	if e != nil {
 		return
 	}
-	e = os.Remove(val)
+	e = os.Remove(name)
+	if e != nil {
+		return
+	}
+	return
+}
+
+// RenameAssets 靜態 資源 改名
+func (m Book) RenameAssets(id, chapter, name, newname string) (e error) {
+	// 驗證 參數
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	chapter, e = data.CheckBookChapterID(chapter)
+	if e != nil {
+		return
+	}
+	if !utils.IsFilename(name) {
+		e = fmt.Errorf("%v is not a file name", name)
+		return
+	}
+	if !utils.IsFilename(newname) {
+		e = fmt.Errorf("%v is not a file name", newname)
+		return
+	}
+
+	name = BookAssets(id, chapter, name)
+	tmp := newname
+	newname = BookAssets(id, chapter, newname)
+	var f *os.File
+	f, e = os.Open(newname)
+	if e == nil {
+		f.Close()
+		e = fmt.Errorf("%v already exists", tmp)
+		return
+	} else if os.IsNotExist(e) {
+		e = nil
+	} else {
+		return
+	}
+
+	e = os.Rename(name, newname)
 	if e != nil {
 		return
 	}

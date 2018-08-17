@@ -133,3 +133,32 @@ func (c Book) RemoveAssets() revel.Result {
 
 	return c.RenderJSON(nil)
 }
+
+// RenameAssets 靜態 資源 改名
+func (c Book) RenameAssets() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID      string
+		Chapter string
+		Name    string
+		Newname string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+
+	// 執行 請求
+	var mBook manipulator.Book
+	e = mBook.RenameAssets(params.ID, params.Chapter, params.Name, params.Newname)
+	if e != nil {
+		return c.RenderError(e)
+	}
+
+	return c.RenderJSON(nil)
+}

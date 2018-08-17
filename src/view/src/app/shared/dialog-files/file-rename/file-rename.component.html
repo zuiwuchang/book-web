@@ -1,0 +1,13 @@
+<h1 mat-dialog-title i18n>File Rename</h1>
+<div mat-dialog-content>
+  <form #form="ngForm">
+    <mat-form-field class="full-width">
+      <input matInput required appValidatorsFileName [(ngModel)]="data.val" name="val" i18n-placeholder placeholder="File Rename placeholder" #valName="ngModel">
+      <mat-error i18n>Invalid File Name</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button type="button" mat-button i18n [disabled]="form.invalid" (click)="onSure()">Sure</button>
+  <button type="button" mat-button (click)="onCancel()" i18n>Cancel</button>
+</div>

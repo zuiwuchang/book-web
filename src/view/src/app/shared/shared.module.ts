@@ -25,6 +25,8 @@ import { DialogFilesComponent } from './dialog-files/dialog-files.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FilesViewComponent } from './dialog-files/files-view/files-view.component';
 import { DialogSureComponent } from './dialog-sure/dialog-sure.component';
+import { FileRenameComponent } from './dialog-files/file-rename/file-rename.component';
+import { ValidatorsFileNameDirective } from './validators/validators-file-name.directive';
 @NgModule({
   imports: [
     CommonModule, RouterModule, FormsModule,
@@ -38,16 +40,21 @@ import { DialogSureComponent } from './dialog-sure/dialog-sure.component';
   declarations: [
     NavigationBarComponent, LoginComponent,
 
-    ShowDirective, HideDirective, 
-    
-    DialogErrorComponent, DialogFilesComponent, FilesViewComponent, DialogSureComponent
+    ShowDirective, HideDirective,
+
+    ValidatorsFileNameDirective,
+
+    DialogErrorComponent, DialogFilesComponent, FilesViewComponent, DialogSureComponent,
+    FileRenameComponent
   ],
   exports: [
-    NavigationBarComponent, ShowDirective, HideDirective, 
-    DialogErrorComponent, DialogFilesComponent,DialogSureComponent
+    NavigationBarComponent, ShowDirective, HideDirective,
+
+    ValidatorsFileNameDirective,
+    DialogErrorComponent, DialogFilesComponent, DialogSureComponent
   ],
   entryComponents: [
-    LoginComponent, DialogErrorComponent, DialogFilesComponent,DialogSureComponent
+    LoginComponent, DialogErrorComponent, DialogFilesComponent, DialogSureComponent, FileRenameComponent
   ]
 })
 export class SharedModule { }
