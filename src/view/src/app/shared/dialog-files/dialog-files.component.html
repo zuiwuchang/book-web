@@ -1,10 +1,18 @@
 <h1 mat-dialog-title i18n>Dialog Files</h1>
 <div mat-dialog-content>
-  <form>
-
-  </form>
+  <mat-tab-group>
+    <mat-tab i18n-label label="Files Info">
+      <div class="view">
+        <app-files-view></app-files-view>
+      </div>
+    </mat-tab>
+    <mat-tab i18n-label label="Files Upload">
+      <div class="view">
+        Content 2
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
 <div mat-dialog-actions>
-  <button type="button" mat-button (click)="onCancel()" [disabled]="disabled" i18n>Cancel</button>
-  <br>
+  <button type="button" mat-button (click)="onCancel()" [disabled]="shared.disabled" i18n>Cancel</button>
 </div>

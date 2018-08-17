@@ -22,27 +22,32 @@ import { ShowDirective } from './show.directive';
 import { HideDirective } from './hide.directive';
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 import { DialogFilesComponent } from './dialog-files/dialog-files.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { FilesViewComponent } from './dialog-files/files-view/files-view.component';
+import { DialogSureComponent } from './dialog-sure/dialog-sure.component';
 @NgModule({
   imports: [
-    CommonModule, RouterModule,FormsModule,
+    CommonModule, RouterModule, FormsModule,
 
     MatButtonModule, MatProgressBarModule, MatSidenavModule, MatIconModule,
     MatToolbarModule, MatListModule, MatMenuModule, MatDialogModule, MatTooltipModule,
-    MatFormFieldModule,MatSlideToggleModule,MatInputModule,
+    MatFormFieldModule, MatSlideToggleModule, MatInputModule, MatTabsModule,
 
   ],
   providers: [],
   declarations: [
     NavigationBarComponent, LoginComponent,
 
-    ShowDirective,HideDirective, DialogErrorComponent, DialogFilesComponent,DialogFilesComponent
+    ShowDirective, HideDirective, 
+    
+    DialogErrorComponent, DialogFilesComponent, FilesViewComponent, DialogSureComponent
   ],
   exports: [
-    NavigationBarComponent,ShowDirective,HideDirective,DialogErrorComponent,DialogFilesComponent
+    NavigationBarComponent, ShowDirective, HideDirective, 
+    DialogErrorComponent, DialogFilesComponent,DialogSureComponent
   ],
   entryComponents: [
-    LoginComponent,DialogErrorComponent,DialogFilesComponent
+    LoginComponent, DialogErrorComponent, DialogFilesComponent,DialogSureComponent
   ]
 })
 export class SharedModule { }

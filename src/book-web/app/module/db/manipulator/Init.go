@@ -39,7 +39,7 @@ func BookDefinition(id string) string {
 
 // BookChapter 返回 章節 檔案
 func BookChapter(id, chapter string) string {
-	if chapter == "" {
+	if chapter == "0" {
 		return fmt.Sprintf("%s/%s/README.md", _FileRoot, id)
 	}
 	return fmt.Sprintf("%s/%s/%s/README.md", _FileRoot, id, chapter)
@@ -47,8 +47,10 @@ func BookChapter(id, chapter string) string {
 
 // BookAssets 返回靜態 資源 檔案
 func BookAssets(id, chapter, name string) string {
-	if chapter == "" {
-		return fmt.Sprintf("%s/%s/assets/%s", _FileRoot, id, name)
-	}
 	return fmt.Sprintf("%s/%s/%s/assets/%s", _FileRoot, id, chapter, name)
+}
+
+// BookDirectoryAssets 返回靜態 資源 檔案夾路徑
+func BookDirectoryAssets(id, chapter string) string {
+	return fmt.Sprintf("%s/%s/%s/assets", _FileRoot, id, chapter)
 }

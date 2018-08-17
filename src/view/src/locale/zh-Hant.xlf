@@ -17,6 +17,10 @@
           <context context-type="sourcefile">app/shared/login/login.component.html</context>
           <context context-type="linenumber">7</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="1442dfa12ebc2953b7cff782acf40848b4102939" datatype="html">
         <source>Welcome <x id="INTERPOLATION" equiv-text="{{session?.Nickname}}"/>, you have logged in</source>
@@ -91,7 +95,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-sure/dialog-sure.component.html</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="438fdc617a22c8dd029e74b64ab66355e36eeb9d" datatype="html">
@@ -209,6 +217,10 @@
           <context context-type="sourcefile">app/app/license/license.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a818ee587e89f110cd0063aa5d5eb0115302495b" datatype="html">
         <source>Dialog Files</source>
@@ -216,6 +228,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="06b37792b48c29813a10ebc2396a59c67a1263bb" datatype="html">
+        <source>Files Info</source>
+        <target>檔案詳情</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a6ebbafda6e27bae7bd59174751598f4ab01d217" datatype="html">
+        <source>Files Upload</source>
+        <target>檔案上傳</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f0dc0497ad16adbd386a3b2f2c55d81c51a1f029" datatype="html">
+        <source>Sure</source>
+        <target>確認</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-sure/dialog-sure.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="38e0956efb7c78e758d638c8f1e5c99859b82836" datatype="html">
@@ -241,6 +277,10 @@
           <context context-type="sourcefile">app/app/license/license.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b6452c26d4b1f0e249309132f4826342a6756d1e" datatype="html">
         <source>Title Edit</source>
@@ -264,6 +304,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/license/license.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="667b29b149a10ed6b33daef56bd7e7a87a7ace71" datatype="html">
+        <source>Sure? Remove File</source>
+        <target>檔案刪去將無法恢復！請確認？</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4553a1ccb75b16e397e286de811b262e8ccda3d2" datatype="html">
+        <source>Title Sure Remove File</source>
+        <target>刪除檔案</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b4f9f403fc2030f27bff7c0b90abf14ed18949b5" datatype="html">

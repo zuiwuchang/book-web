@@ -22,7 +22,7 @@ func CheckBookID(id string) (string, error) {
 // CheckBookChapterID 驗證 id 是否 符合規範
 func CheckBookChapterID(id string) (string, error) {
 	id = strings.TrimSpace(id)
-	if id == "" {
+	if id == "0" {
 		return id, nil
 	}
 	if !matchID.MatchString(id) {

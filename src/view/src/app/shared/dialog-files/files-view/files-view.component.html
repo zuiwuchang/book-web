@@ -1,0 +1,23 @@
+<div class="hide" #msgSure i18n>Sure? Remove File</div>
+<div class="hide" #msgTitle i18n>Title Sure Remove File</div>
+<div [appShow]="!isInit && request">
+  <p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </p>
+  <p>
+    <ng-container i18n>connecting to server, please wait...</ng-container>
+  </p>
+</div>
+<div class="alert alert-warning" role="alert" [appShow]="error">
+  <strong i18n>Error</strong> {{error}}
+  <hr>
+  <button mat-button i18n (click)="Refresh()" [disabled]="isDisabled()">Retry</button>
+</div>
+<mat-list>
+  <mat-list-item *ngFor="let item of items;">
+    <p matLine>assets/{{item}}</p>
+    <button class="menu-btn" mat-icon-button [disabled]="isDisabled()" (click)="onRemove(item)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
