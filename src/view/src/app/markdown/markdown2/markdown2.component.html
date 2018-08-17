@@ -1,22 +1,26 @@
-<div class="hide" #msgRouter i18n>Error Router not save</div>
-<div class="hide" #msgSaveWait i18n>wait request,ignore save request.</div>
-<div class="hide" #msgNoChange i18n>Not Data Change,ignore save</div>
-<div class="hide" #msgSaveSuccess i18n>Save Success</div>
-<div class="hide" #msgRequest i18n>wait request,ignore request.</div>
-<div class="hide" #msgSureTitle i18n>Title Sure Remove Chapter</div>
-<div class="hide" #msgSureText i18n>Text Sure Remove Chapter</div>
+<div #xi18n class="hide">
+  <div data-key="router" i18n>Error Router not save</div>
+  <div data-key="save.wait" i18n>wait request,ignore save request.</div>
+  <div data-key="no.change" i18n>Not Data Change,ignore save</div>
+  <div data-key="save.success" i18n>Save Success</div>
+  <div data-key="request.wait" i18n>wait request,ignore request.</div>
+  <div data-key="sure.title" i18n>Title Sure Remove Chapter</div>
+  <div data-key="sure.text" i18n>Text Sure Remove Chapter</div>
+  <div data-key="new.title" i18n>Chapter New Title</div>
+  <div data-key="modify.title" i18n>Chapter Modify Title</div>
+</div>
 <mat-drawer-container>
   <mat-drawer class="sidenav-left" mode="side" [opened]="isChapter()">
     <mat-nav-list>
-      <mat-list-item>
-        <p matLine (click)="onRouter(bookID(book),'0')">{{book?.Name}}</p>
+      <mat-list-item (click)="onRouter(bookID(book),'0',$event)">
+        <p matLine>{{book?.Name}}</p>
       </mat-list-item>
       <mat-divider></mat-divider>
       <div [sortablejs]="book?.Chapter">
-        <mat-list-item *ngFor="let item of book?.Chapter;">
-          <p matLine (click)="onRouter(book?.ID, item.ID)">{{item.Name}}</p>
-          <button class="menu-btn" mat-icon-button [disabled]="isRequest" i18n-matTooltip matTooltip="Edit Chapter" (click)="onChapterEdit(book,item.ID,item.Name)"><mat-icon>edit</mat-icon></button>
-          <button class="menu-btn" mat-icon-button [disabled]="isRequest" i18n-matTooltip matTooltip="Delete Chapter" (click)="onChapterRemove(book,item.ID,item.Name)"><mat-icon>delete</mat-icon></button>
+        <mat-list-item *ngFor="let item of book?.Chapter;" (click)="onRouter(book?.ID, item.ID)">
+          <p matLine>{{item.Name}}</p>
+          <button class="menu-btn" mat-icon-button [disabled]="isRequest" i18n-matTooltip matTooltip="Edit Chapter" (click)="onChapterEdit($event,book,item.ID,item.Name)"><mat-icon>edit</mat-icon></button>
+          <button class="menu-btn" mat-icon-button [disabled]="isRequest" i18n-matTooltip matTooltip="Delete Chapter" (click)="onChapterRemove($event,book,item.ID,item.Name)"><mat-icon>delete</mat-icon></button>
         </mat-list-item>
       </div>
       <mat-divider></mat-divider>

@@ -255,3 +255,81 @@ func (c Book) RemoveChapter() revel.Result {
 	}
 	return c.RenderJSON(nil)
 }
+
+// NewChapter 新建 章節
+func (c Book) NewChapter() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID      string
+		Chapter string
+		Name    string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+
+	var mBook manipulator.Book
+	e = mBook.NewChapter(params.ID, params.Chapter, params.Name)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(nil)
+}
+
+// ModifyChapter 修改章節
+func (c Book) ModifyChapter() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID         string
+		OldChapter string
+		Chapter    string
+		Name       string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+
+	var mBook manipulator.Book
+	e = mBook.ModifyChapter(params.ID, params.OldChapter, params.Chapter, params.Name)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(nil)
+}
+
+// SortChapter 排序章節
+func (c Book) SortChapter() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID      string
+		Chapter []string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+
+	var mBook manipulator.Book
+	e = mBook.SortChapter(params.ID, params.Chapter)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(nil)
+}

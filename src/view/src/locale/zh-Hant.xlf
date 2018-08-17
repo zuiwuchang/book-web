@@ -102,6 +102,10 @@
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
@@ -262,8 +266,44 @@
           <context context-type="linenumber">6</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
           <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7cf4d9e81df51650a783e1377b69eb800bc5bb94" datatype="html">
+        <source>Chapter Name placeholder</source>
+        <target>請輸入章節名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7a2a9203a438682ac35a37de323d3a968bd4372c" datatype="html">
+        <source>Invalid Chapter Name</source>
+        <target>無效的名稱</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7315b67493eecb05f4c0b291a71cca9b1bc46248" datatype="html">
+        <source>Chapter ID placeholder</source>
+        <target>請輸入章節ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ce8cb999c1da39cf2c02be0204b94d2aa63d9d7e" datatype="html">
+        <source>Invalid Chapter ID</source>
+        <target>ID只能是英文字母或數字以及-的組合，且必須以英文字母開始。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="38e0956efb7c78e758d638c8f1e5c99859b82836" datatype="html">
@@ -419,7 +459,7 @@
         <target>在檔案保存前，無法離開當前頁面。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="01163af000e2dab2fff2c3ef426377f6f3f9856a" datatype="html">
@@ -427,7 +467,7 @@
         <target>正在等待服務器響應，忽略本次保存操縱。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5ccf570204983860c7c54eaa8d69c6472451303d" datatype="html">
@@ -435,7 +475,7 @@
         <target>數據未變化，無需保存。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1aba1ddddaea6316b27da281445bc78209f142e7" datatype="html">
@@ -443,7 +483,7 @@
         <target>保存成功</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="51ebf4d96aa0c34a4055cf8037db03c40eb3194d" datatype="html">
@@ -451,7 +491,7 @@
         <target>正在等待服務器響應，忽略本次請求，請稍後重試。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dcec7a6477837d3deae305b560cfaeb7964d4b94" datatype="html">
@@ -459,7 +499,7 @@
         <target>刪除章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6cd043838e6d6f8c0228b56322f87d61506c62df" datatype="html">
@@ -467,7 +507,23 @@
         <target>章節刪除後將無法恢復，請確認操縱？</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c9c272a446c543409cffd2bccc45a32d09933f13" datatype="html">
+        <source>Chapter New Title</source>
+        <target>新章節</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2b419e4dca3fa5a1710caca76c1add7d0e20da7a" datatype="html">
+        <source>Chapter Modify Title</source>
+        <target>編輯章節</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f7a6b0b92036ebf19280ee5c92773ee2c4ba1e63" datatype="html">
@@ -475,7 +531,7 @@
         <target>修改</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="523792b38b726c926ac3a8f544d23f47917ea033" datatype="html">
@@ -483,7 +539,7 @@
         <target>刪除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="158b1fb046945af0852d6a01bbb336aa21adc43b" datatype="html">
@@ -491,7 +547,7 @@
         <target>新增</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5d586c4ce3eb8d1fae9832be5d89295001e40646" datatype="html">
@@ -499,7 +555,7 @@
         <target>保存序列</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
     </body>

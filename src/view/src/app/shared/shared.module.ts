@@ -31,6 +31,8 @@ import { DialogSureComponent } from './dialog-sure/dialog-sure.component';
 import { FileRenameComponent } from './dialog-files/file-rename/file-rename.component';
 import { ValidatorsFileNameDirective } from './validators/validators-file-name.directive';
 import { FilesUploadComponent } from './dialog-files/files-upload/files-upload.component';
+import { DialogChapterComponent } from './dialog-chapter/dialog-chapter.component';
+import { ValidatorsIdDirective } from './validators/validators-id.directive';
 
 @NgModule({
   imports: [
@@ -52,17 +54,20 @@ import { FilesUploadComponent } from './dialog-files/files-upload/files-upload.c
     ValidatorsFileNameDirective,
 
     DialogErrorComponent, DialogFilesComponent, FilesViewComponent, DialogSureComponent,
-    FileRenameComponent,
-    FilesUploadComponent
+    FileRenameComponent,FilesUploadComponent,
+    DialogChapterComponent,
+    ValidatorsIdDirective
   ],
   exports: [
     NavigationBarComponent, ShowDirective, HideDirective,
 
     ValidatorsFileNameDirective,
-    DialogErrorComponent, DialogFilesComponent, DialogSureComponent
+    DialogErrorComponent, DialogFilesComponent, DialogSureComponent,
+    DialogChapterComponent
   ],
   entryComponents: [
-    LoginComponent, DialogErrorComponent, DialogFilesComponent, DialogSureComponent, FileRenameComponent
+    LoginComponent, DialogErrorComponent, DialogFilesComponent, DialogSureComponent, FileRenameComponent,
+    DialogChapterComponent
   ]
 })
 export class SharedModule { }

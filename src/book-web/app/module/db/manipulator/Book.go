@@ -4,11 +4,14 @@ import (
 	"book-web/app/module/db/data"
 	"book-web/app/module/utils"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"gitlab.com/king011/king-go/os/fileperm"
 	"io/ioutil"
 	"os"
 )
+
+var errSortExpired = errors.New("sort expired")
 
 // Book .
 type Book struct {
@@ -81,9 +84,8 @@ func (Book) get(id string) (book *data.Book, e error) {
 	book.ID = id
 	return
 }
-func (Book) save(book data.Book) (e error) {
+func (Book) save(book *data.Book) (e error) {
 	filepath := BookDefinition(book.ID)
-	book.ID = ""
 
 	var b []byte
 	b, e = json.Marshal(book)
@@ -292,16 +294,11 @@ func (m Book) RemoveChapter(id, chapter string) (e error) {
 	if e != nil {
 		return
 	}
-	chapter, e = data.CheckBookChapterID(chapter)
-	if e != nil {
-		return
-	}
 	if chapter == "0" {
 		e = fmt.Errorf("can't remove root chapter")
 		return
 	}
-	// 讀取 定義
-	id, e = data.CheckBookID(id)
+	chapter, e = data.CheckBookChapterID(chapter)
 	if e != nil {
 		return
 	}
@@ -313,7 +310,7 @@ func (m Book) RemoveChapter(id, chapter string) (e error) {
 		if book.Chapter[i].ID == chapter {
 			book.Chapter = append(book.Chapter[:i], book.Chapter[i+1:]...)
 			// 存儲 新定義
-			e = m.save(*book)
+			e = m.save(book)
 			if e != nil {
 				return
 			}
@@ -322,5 +319,172 @@ func (m Book) RemoveChapter(id, chapter string) (e error) {
 	}
 	// 刪除 檔案夾
 	os.RemoveAll(BookChapterDirectory(id, chapter))
+	return
+}
+
+// NewChapter 新建 章節
+func (m Book) NewChapter(id, chapter, name string) (e error) {
+	// 驗證 參數
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	if chapter == "0" {
+		e = fmt.Errorf("can't remove root chapter")
+		return
+	}
+	chapter, e = data.CheckBookChapterID(chapter)
+	if e != nil {
+		return
+	}
+
+	// 讀取 定義
+	var book *data.Book
+	book, e = m.get(id)
+	if book.Chapter == nil {
+		book.Chapter = make([]data.BookChapter, 0, 1)
+	} else {
+		for i := 0; i < len(book.Chapter); i++ {
+			if book.Chapter[i].ID == chapter {
+				e = fmt.Errorf("chapter[%s] already exists", chapter)
+				return
+			}
+		}
+	}
+	book.Chapter = append(book.Chapter, data.BookChapter{
+		ID:   chapter,
+		Name: name,
+	})
+	// 儲存定義
+	e = m.save(book)
+	if e != nil {
+		return
+	}
+	// 創建 初始檔案
+	filename := BookChapterDirectory(id, chapter)
+	os.MkdirAll(filename, fileperm.Directory)
+	os.MkdirAll(filename+"/assets", fileperm.Directory)
+	ioutil.WriteFile(filename+"/README.md", []byte(fmt.Sprintf(`# %v`, name)), fileperm.File)
+	return
+}
+
+// ModifyChapter 修改章節
+func (m Book) ModifyChapter(id, oldChapter, chapter, name string) (e error) {
+	// 驗證 參數
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	if chapter == "0" {
+		e = fmt.Errorf("can't modify root chapter")
+		return
+	}
+	chapter, e = data.CheckBookChapterID(chapter)
+	if e != nil {
+		return
+	}
+	if oldChapter == "0" {
+		e = fmt.Errorf("can't modify root chapter")
+		return
+	}
+	oldChapter, e = data.CheckBookChapterID(oldChapter)
+	if e != nil {
+		return
+	}
+
+	// 讀取 定義
+	var book *data.Book
+	book, e = m.Get(id)
+	find := false
+	for i := 0; i < len(book.Chapter); i++ {
+		if chapter != oldChapter {
+			if book.Chapter[i].ID == chapter {
+				e = fmt.Errorf("chapter[%s] already exists", chapter)
+				return
+			}
+		}
+
+		if book.Chapter[i].ID == oldChapter {
+			find = true
+			if book.Chapter[i].Name != name {
+				book.Chapter[i].Name = name
+			} else if oldChapter == chapter {
+				// 無需修改
+				return
+			}
+
+			if chapter != oldChapter {
+				book.Chapter[i].ID = chapter
+			}
+		}
+	}
+	if !find {
+		e = fmt.Errorf("chapter[%s] is not exist", oldChapter)
+		return
+	}
+
+	// 需要 改id
+	if chapter != oldChapter {
+		e = os.Rename(BookChapterDirectory(id, oldChapter), BookChapterDirectory(id, chapter))
+		if e != nil {
+			return
+		}
+	}
+
+	// 儲存定義
+	e = m.save(book)
+	if e != nil {
+		return
+	}
+	return
+}
+
+// SortChapter 排序章節
+func (m Book) SortChapter(id string, chapters []string) (e error) {
+	// 驗證 參數
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	for i := 0; i < len(chapters); i++ {
+		if chapters[i] == "0" {
+			e = fmt.Errorf("can't sort root chapter")
+			return
+		}
+		chapters[i], e = data.CheckBookChapterID(chapters[i])
+		if e != nil {
+			return
+		}
+	}
+	// 讀取定義
+	var book *data.Book
+	book, e = m.Get(id)
+	num := len(book.Chapter)
+	if num != len(chapters) {
+		e = errSortExpired
+		return
+	}
+	keys := make(map[string]data.BookChapter)
+	for i := 0; i < len(book.Chapter); i++ {
+		keys[book.Chapter[i].ID] = book.Chapter[i]
+	}
+
+	// 參加新 序列
+	arrs := make([]data.BookChapter, 0, num)
+	for _, id := range chapters {
+		if node, ok := keys[id]; ok {
+			arrs = append(arrs, node)
+		} else {
+			e = errSortExpired
+			return
+		}
+	}
+
+	// 儲存定義
+	book.Chapter = arrs
+	e = m.save(book)
+	if e != nil {
+		return
+	}
 	return
 }
