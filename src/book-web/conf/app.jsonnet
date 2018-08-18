@@ -8,11 +8,11 @@
         // 顯示昵稱
         Nickname:"king",
         // 密碼
-        //Password:"Cerberus is an idea",
+        //Password:"cerberus is an idea",
         // 密碼是否爲hash值
         //PasswordSha512:false,
         // 密碼
-        Password:"892B6A8F81D852177DAE8A0CFE7A489D2A4965D8AC9EF4DA9F50E5071D30DEC0D2020EC64FC61FC7C806FB0CCCE5F4510C9A2A348BA171EFCF5D8843AE39A63D",
+        Password:"6ef9fa16dc05ed44ca6f2890c61b9caacbb97f48ee7006d10d5151a5183bf54c08b1c4fe227e36f3cd01512643953d16753f63e92fd5698ef4af51a1651c70cb",
         // 密碼是否爲hash值
         PasswordSha512:true,
     },
@@ -23,8 +23,7 @@
             ID:"zh-Hant",
             // 正則規則 匹配成功的 全部作爲 此語言顯示
             Rules:[
-                "^zh",
-                ""
+                ".*"
             ],
         },
     ],

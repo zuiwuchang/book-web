@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"book-web/app/module/configure"
 	"book-web/app/module/db/manipulator"
 	"github.com/revel/revel"
 	"net/http"
@@ -18,19 +19,12 @@ func (c App) Index() revel.Result {
 	// 識別語言
 	locale := strings.ToLower(strings.TrimSpace(c.Request.Locale))
 
-	if locale == "zh" { // 中文
+	locale = configure.Get().MatchLocale(locale)
+	if locale == "" {
+		revel.WARN.Println("unknow locale use default")
 		locale = "zh-Hant"
-	} else if strings.HasPrefix(locale, "zh-") { // 中文 語系
-		// 殘體
-		if strings.HasPrefix(locale, "zh-cn") || strings.HasPrefix(locale, "zh-hans") {
-			locale = "zh-Hans"
-		} else { //中文
-			locale = "zh-Hant"
-		}
-	} else {
-		// 無法識別 使用 英文
-		locale = "en-US"
 	}
+
 	return c.Redirect("/angular/" + locale)
 	//return c.Render()
 }

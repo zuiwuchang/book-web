@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/google/go-jsonnet"
 	"io/ioutil"
+	"path/filepath"
 	"strings"
 )
 
@@ -15,10 +16,35 @@ var _Configure Configure
 type Configure struct {
 	basePath string
 	FileRoot string
+	Root     Root
+	Locale   []Locale
 }
 
+// MatchLocale .
+func (c *Configure) MatchLocale(locale string) string {
+	for i := 0; i < len(c.Locale); i++ {
+		if c.Locale[i].ID == "" {
+			continue
+		}
+		for _, match := range c.Locale[i].rules {
+			if match.MatchString(locale) {
+				return c.Locale[i].ID
+			}
+		}
+	}
+	return ""
+}
 func (c *Configure) format() {
 	c.FileRoot = strings.TrimSpace(c.FileRoot)
+	if c.FileRoot == "" {
+		c.FileRoot = c.basePath + "/fileroot"
+	} else if !filepath.IsAbs(c.FileRoot) {
+		c.FileRoot = c.basePath + "/" + c.FileRoot
+	}
+	c.Root.format()
+	for i := 0; i < len(c.Locale); i++ {
+		c.Locale[i].format()
+	}
 }
 
 // Load .

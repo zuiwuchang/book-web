@@ -1,35 +1,21 @@
 package manipulator
 
 import (
-	"book-web/app/module/utils"
+	"book-web/app/module/configure"
 	"fmt"
-	"github.com/revel/revel"
-	"path/filepath"
-	"strings"
 )
 
 var _FileRoot string
 
 // Init 初始化 設置
 func Init() {
-	// 檔案 根目錄
-	_FileRoot = strings.TrimSpace(revel.Config.StringDefault("fileroot", "fileroot"))
-	if !filepath.IsAbs(_FileRoot) {
-		_FileRoot = revel.BasePath + "/" + _FileRoot
-	}
+	cnf := configure.Get()
+	_FileRoot = cnf.FileRoot
+
 	// 用戶信息
-	_User.Name = strings.TrimSpace(revel.Config.StringDefault("user.name", "king"))
-	_User.Nickname, _ = revel.Config.String("user.nickname")
-	_User.Nickname = strings.TrimSpace(_User.Nickname)
-	if _User.Nickname == "" {
-		_User.Nickname = _User.Name
-	}
-	pwd := strings.TrimSpace(revel.Config.StringDefault("user.password", "cerberus is an idea"))
-	var e error
-	_User.Password, e = utils.SHA512(pwd)
-	if e != nil {
-		panic(e)
-	}
+	_User.Name = cnf.Root.Name
+	_User.Nickname = cnf.Root.Nickname
+	_User.Password = cnf.Root.Password
 }
 
 // BookDefinition 返回 書 定義路徑

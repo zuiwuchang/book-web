@@ -1,7 +1,9 @@
 package angular
 
 import (
+	"book-web/app/module/configure"
 	"gitlab.com/king011/king-go/angular"
+	"log"
 )
 
 var routers *angular.Routers
@@ -12,8 +14,16 @@ func Init(basePath string) {
 		"/angular",
 		basePath+"/angular",
 	)
-	// 組件語言
-	routers.Add("zh-Hant")
+	// 增加語言
+	cnf := configure.Get()
+	for i := 0; i < len(cnf.Locale); i++ {
+		id := cnf.Locale[i].ID
+		if id != "" {
+			log.Println("add locale", id)
+			routers.Add(id)
+		}
+	}
+	//	routers.Add("zh-Hant")
 }
 
 // Filepath .
