@@ -51,7 +51,7 @@ import { ValidatorsIdDirective } from './validators/validators-id.directive';
 
     ShowDirective, HideDirective,
 
-    ValidatorsFileNameDirective,
+    ValidatorsFileNameDirective,ValidatorsIdDirective,
 
     DialogErrorComponent, DialogFilesComponent, FilesViewComponent, DialogSureComponent,
     FileRenameComponent,FilesUploadComponent,
@@ -61,7 +61,7 @@ import { ValidatorsIdDirective } from './validators/validators-id.directive';
   exports: [
     NavigationBarComponent, ShowDirective, HideDirective,
 
-    ValidatorsFileNameDirective,
+    ValidatorsFileNameDirective,ValidatorsIdDirective,
     DialogErrorComponent, DialogFilesComponent, DialogSureComponent,
     DialogChapterComponent
   ],

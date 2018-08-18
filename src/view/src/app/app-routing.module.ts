@@ -4,6 +4,7 @@ import { LicenseComponent } from './app/license/license.component';
 import { AboutComponent } from './app/about/about.component';
 import { ViewComponent } from './app/view/view.component';
 import { EditComponent } from './app/edit/edit.component';
+import { BooksComponent } from './app/books/books.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'edit/:book/:chapter', 
     component: EditComponent
+  },
+  {
+    path: 'books', 
+    component: BooksComponent
   },
 ];
 

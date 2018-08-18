@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"book-web/app/module/db/data"
 	"book-web/app/module/db/manipulator"
 	"book-web/app/module/utils"
 	"fmt"
@@ -328,6 +329,126 @@ func (c Book) SortChapter() revel.Result {
 
 	var mBook manipulator.Book
 	e = mBook.SortChapter(params.ID, params.Chapter)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(nil)
+}
+
+// Find 返回 書籍清單
+func (c Book) Find() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID   string
+		Name string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	var mBook manipulator.Book
+	var books []data.Book
+	books, e = mBook.Find(params.ID, params.Name)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(books)
+}
+
+// New 新建書籍
+func (c Book) New() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID   string
+		Name string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	var mBook manipulator.Book
+	e = mBook.New(params.ID, params.Name)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(nil)
+}
+
+// Remove 刪除書籍
+func (c Book) Remove() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	var mBook manipulator.Book
+	e = mBook.Remove(params.ID)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(nil)
+}
+
+// Rename 書籍改名
+func (c Book) Rename() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID   string
+		Name string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	var mBook manipulator.Book
+	e = mBook.Rename(params.ID, params.Name)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	return c.RenderJSON(nil)
+}
+
+// Reid 書籍修改ID
+func (c Book) Reid() revel.Result {
+	// 驗證權限
+	session := c.UnmarshalSession()
+	if session == nil {
+		return c.RenderPermissionDenied()
+	}
+	// 解析 參數
+	var params struct {
+		ID    string
+		NewID string
+	}
+	e := c.Params.BindJSON(&params)
+	if e != nil {
+		return c.RenderError(e)
+	}
+	var mBook manipulator.Book
+	e = mBook.Reid(params.ID, params.NewID)
 	if e != nil {
 		return c.RenderError(e)
 	}

@@ -9,9 +9,12 @@ import (
 	"gitlab.com/king011/king-go/os/fileperm"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 var errSortExpired = errors.New("sort expired")
+var errRemoveHome = errors.New("can't remove home")
+var errReidHome = errors.New("can't reid home")
 
 // Book .
 type Book struct {
@@ -62,6 +65,81 @@ func (m Book) Get(id string) (book *data.Book, e error) {
 		})
 		keys[key] = true
 	}
+	return
+}
+
+// Find 返回 書籍清單
+func (m Book) Find(id, name string) (books []data.Book, e error) {
+	id = strings.TrimSpace(id)
+	if id != "" {
+		id, e = data.CheckBookID(id)
+		if e != nil {
+			return
+		}
+	}
+	name = strings.TrimSpace(name)
+	var f *os.File
+	f, e = os.Open(_FileRoot)
+	if e != nil {
+		return
+	}
+	var names []string
+	names, e = f.Readdirnames(0)
+	f.Close()
+	if e != nil {
+		return
+	}
+	books = make([]data.Book, 1, len(names))
+	for i := 0; i < len(names); i++ {
+		book := m.getName(names[i])
+		if book != nil {
+			if id != "" && strings.Index(book.ID, id) == -1 {
+				continue
+			}
+			if name != "" && strings.Index(book.Name, name) == -1 {
+				continue
+			}
+			if book.ID == "home" {
+				books[0] = *book
+			} else {
+				books = append(books, *book)
+			}
+		}
+	}
+	if books[0].ID == "" {
+		books = books[1:]
+	}
+	return
+}
+
+func (Book) getName(id string) (book *data.Book) {
+	var e error
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+
+	filepath := BookDefinition(id)
+	var b []byte
+	b, e = ioutil.ReadFile(filepath)
+	if e != nil {
+		book = &data.Book{
+			ID:   id,
+			Name: "_" + id,
+		}
+		return
+	}
+	book = &data.Book{}
+	e = json.Unmarshal(b, book)
+	if e != nil {
+		book = &data.Book{
+			ID:   id,
+			Name: "_" + id,
+		}
+		return
+	}
+	book.ID = id
+	book.Chapter = nil
 	return
 }
 
@@ -483,6 +561,132 @@ func (m Book) SortChapter(id string, chapters []string) (e error) {
 	// 儲存定義
 	book.Chapter = arrs
 	e = m.save(book)
+	if e != nil {
+		return
+	}
+	return
+}
+
+// New 新建書籍
+func (m Book) New(id, name string) (e error) {
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	dir := BookDirectory(id)
+
+	var f *os.File
+	f, e = os.Open(dir)
+	if e == nil {
+		f.Close()
+		e = fmt.Errorf("%s already exists", id)
+		return
+	} else if !os.IsNotExist(e) {
+		return
+	}
+
+	e = os.MkdirAll(dir, fileperm.Directory)
+	if e != nil {
+		return
+	}
+	defer func() {
+		if e != nil {
+			os.RemoveAll(dir)
+		}
+	}()
+	// 創建定義
+	book := &data.Book{
+		ID:   id,
+		Name: name,
+	}
+	e = m.save(book)
+	if e != nil {
+		return
+	}
+	// 創建 初始檔案
+	e = ioutil.WriteFile(
+		BookChapter(id, "0"),
+		[]byte(fmt.Sprintf(`# %v`, name)),
+		fileperm.File,
+	)
+	if e != nil {
+		return
+	}
+	return
+}
+
+// Remove 刪除書籍
+func (m Book) Remove(id string) (e error) {
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	} else if id == "home" {
+		e = errRemoveHome
+		return
+	}
+	dir := BookDirectory(id)
+
+	e = os.RemoveAll(dir)
+	if e != nil {
+		return
+	}
+	return
+}
+
+// Rename 書籍改名
+func (m Book) Rename(id, name string) (e error) {
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	var book *data.Book
+	book, e = m.Get(id)
+	if e != nil {
+		return
+	}
+	if book.Name == name {
+		return
+	}
+	book.Name = name
+	e = m.save(book)
+	if e != nil {
+		return
+	}
+	return
+}
+
+// Reid 書籍修改ID
+func (m Book) Reid(id, newID string) (e error) {
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	} else if id == "home" {
+		e = errReidHome
+		return
+	}
+	newID, e = data.CheckBookID(newID)
+	if e != nil {
+		return
+	} else if newID == "home" {
+		e = fmt.Errorf("home already exists")
+		return
+	}
+
+	dist := BookDirectory(newID)
+	//
+	var f *os.File
+	f, e = os.Open(dist)
+	if e == nil {
+		f.Close()
+		e = fmt.Errorf("%s already exists", newID)
+		return
+	} else if !os.IsNotExist(e) {
+		return
+	}
+
+	src := BookDirectory(id)
+
+	e = os.Rename(src, dist)
 	if e != nil {
 		return
 	}

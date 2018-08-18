@@ -1,0 +1,7 @@
+.view{
+    display:flex;
+}
+.field{
+    flex: 1 1 auto;
+    padding-right: 16px;
+}

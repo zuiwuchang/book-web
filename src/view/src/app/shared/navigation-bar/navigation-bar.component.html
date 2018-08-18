@@ -33,6 +33,10 @@
           <mat-icon>no_meeting_room</mat-icon>
           <ng-container i18n>Logout</ng-container>
         </button>
+        <button class="menu-btn" mat-menu-item (click)="onRouter(['/books'])">
+          <mat-icon>book</mat-icon>
+          <ng-container i18n>Books Management</ng-container>
+        </button>
       </mat-menu>
     </div>
     <div [appHide]="session">

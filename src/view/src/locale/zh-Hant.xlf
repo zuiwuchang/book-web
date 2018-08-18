@@ -103,7 +103,19 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-new/book-dialog-new.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-rename/book-dialog-rename.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-reid/book-dialog-reid.component.html</context>
+          <context context-type="linenumber">11</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
@@ -170,12 +182,24 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1e74b1c427daeefbf14f866f1a8c5389c412b5ed" datatype="html">
+        <source>Books Management</source>
+        <target>書籍管理</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cd5d318e16c3fdc48a3b4a4a2ca40982439f3ed0" datatype="html">
         <source>Login Tooltip</source>
         <target>登入</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
@@ -183,7 +207,7 @@
         <target>更多功能</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
@@ -191,7 +215,7 @@
         <target>章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
@@ -199,7 +223,7 @@
         <target>段落</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
@@ -267,7 +291,19 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-new/book-dialog-new.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-rename/book-dialog-rename.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-reid/book-dialog-reid.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/file-rename/file-rename.component.html</context>
@@ -356,6 +392,134 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/license/license.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1c5b6b7e552bd99594013269dd815d3d224cb599" datatype="html">
+        <source>Book New Title</source>
+        <target>新建書籍</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-new/book-dialog-new.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7a8f81ed66fbf71ae4726d7fe0981c97018788c7" datatype="html">
+        <source>Book Name Search Placeholder</source>
+        <target>請輸入書名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-new/book-dialog-new.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-rename/book-dialog-rename.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3109a720edd8f4f2e8b4f9e906981a5c6e7b8b47" datatype="html">
+        <source>Book Search Placeholder</source>
+        <target>請輸入書籍ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-new/book-dialog-new.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-reid/book-dialog-reid.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="54d5afb066efac25fc5229f3d903e27eeb0d5bf2" datatype="html">
+        <source>ID Invalid</source>
+        <target>ID只能是英文字母或數字以及-的組合，且必須以英文字母開始。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-new/book-dialog-new.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-reid/book-dialog-reid.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="534a40b1fd1bb41f6228fa8ba4950924b6dedc88" datatype="html">
+        <source>Book Rename Title</source>
+        <target>書籍改名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-rename/book-dialog-rename.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7c84daf3bfbe3c2d350f05163cdd71da21bf41bd" datatype="html">
+        <source>Book Reid Title</source>
+        <target>書籍修改ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/book-dialog-reid/book-dialog-reid.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="950278a2e887ba412f3c665c155fe1e32358940a" datatype="html">
+        <source>Book Remove Sure Title</source>
+        <target>刪除書籍</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b870be4ba2ece523a42f0283a84834ef1bd567ea" datatype="html">
+        <source>Book Remove Sure Text</source>
+        <target>書籍刪除將無法恢復，請確認?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+        <target>查找</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d81f00c85d3b507f3e3d78bfc617a2c66e028391" datatype="html">
+        <source>New</source>
+        <target>新建</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="197f14fcd685bc34fdc7a91518cc33b3d8707f1c" datatype="html">
+        <source>Rename Tooltip</source>
+        <target>重命名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6a47b8188e650abd8744aa12f6a36025f0a75cb0" datatype="html">
+        <source>RenameID Tooltip</source>
+        <target>修改ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="60265a6a51f9f4122c27ae1329e75b498d954c47" datatype="html">
+        <source>Remove Tooltip</source>
+        <target>刪除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/books/books.component.html</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0d438fadfdcaab681912629a26e1e011374f9971" datatype="html">

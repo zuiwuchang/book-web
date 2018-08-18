@@ -12,7 +12,7 @@
 <mat-drawer-container>
   <mat-drawer class="sidenav-left" mode="side" [opened]="isChapter()">
     <mat-nav-list>
-      <mat-list-item (click)="onRouter(bookID(book),'0',$event)">
+      <mat-list-item (click)="onRouter(bookID(book),'0')">
         <p matLine>{{book?.Name}}</p>
       </mat-list-item>
       <mat-divider></mat-divider>
