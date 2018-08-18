@@ -50,11 +50,11 @@ export class Markdown {
                 type: 'lang',
                 regex: /!?\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)/g,
                 replace: function (wholematch, linkText, url, a, b, title, c, target) {
-                    if (!matchABS.test(url)) {
-                        url = "/book/assets/" + book + "/" + chapter + "/" + url;
-                    }
                     let result;
                     if (wholematch[0] == "!") {
+                        if (!matchABS.test(url) && url[0]!="/") {
+                            url = "/book/assets/" + book + "/" + chapter + "/" + url;
+                        }
                         if (typeof linkText != 'undefined' && linkText !== '' && linkText !== null) {
                             linkText = linkText.replace(/"/g, '&quot;');
                             result = '<img src="' + url + '" alt="' + linkText + '" style="max-width:100%;">';                            
@@ -62,6 +62,10 @@ export class Markdown {
                             result = '<img src="' + url + '" style="max-width:100%;">';
                         }
                     } else {
+                        if (!matchABS.test(url) && url[0]!="/") {
+                            url = "view/" + url;
+                        }
+
                         result = '<a href="' + url + '"';
 
                         if (typeof title != 'undefined' && title !== '' && title !== null) {
@@ -75,6 +79,7 @@ export class Markdown {
                         }
 
                         result += '>' + linkText + '</a>';
+                       // console.log(result)
                     }
                     return result;
                 }
