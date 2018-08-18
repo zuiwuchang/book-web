@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../core/utils';
 import { Book } from '../../core/protocol/book';
@@ -21,7 +21,7 @@ export class MarkdownEditComponent implements OnInit {
   private _book: string = '';
   private _chapter: string = '';
   markdown = '';
-  bookInfo:Book = null;
+  bookInfo: Book = null;
   constructor(private title: Title,
     private http: HttpClient,
   ) { }
@@ -41,8 +41,8 @@ export class MarkdownEditComponent implements OnInit {
   }
   @ViewChild('title')
   private titleRef: ElementRef;
-  private getTitle(){
-    if(!this.titleRef){
+  private getTitle() {
+    if (!this.titleRef) {
       return "Edit";
     }
     return this.titleRef.nativeElement.innerText;
@@ -57,7 +57,7 @@ export class MarkdownEditComponent implements OnInit {
           this.status = this.ErrorBook;
         }
         this.bookInfo = book;
-        this.title.setTitle(this.getTitle()+" - "+book.Name);
+        this.title.setTitle(this.getTitle() + " - " + book.Name);
         this.status = this.InitChapter;
         this.initChapter();
       },
@@ -73,6 +73,14 @@ export class MarkdownEditComponent implements OnInit {
       Chapter: this._chapter
     }).subscribe(
       (text: string) => {
+        if (this._chapter != "0" && this.bookInfo.Chapter) {
+          for (let i = 0; i < this.bookInfo.Chapter.length; i++) {
+            const element = this.bookInfo.Chapter[i];
+            if (element.ID == this._chapter) {
+              this.title.setTitle(this.getTitle() + " - " + this.bookInfo.Name + " - " + element.Name);
+            }
+          }
+        }
         this.markdown = text;
         this.status = this.Success;
       },

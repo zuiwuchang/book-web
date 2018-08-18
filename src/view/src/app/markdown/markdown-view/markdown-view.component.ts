@@ -21,7 +21,7 @@ export class MarkdownViewComponent implements OnInit {
   private _book: string = '';
   private _chapter: string = '';
   markdown = '';
-  bookInfo:Book = null;
+  bookInfo: Book = null;
   constructor(private title: Title,
     private http: HttpClient,
   ) { }
@@ -65,6 +65,14 @@ export class MarkdownViewComponent implements OnInit {
       Chapter: this._chapter
     }).subscribe(
       (text: string) => {
+        if (this._chapter != "0" && this.bookInfo.Chapter) {
+          for (let i = 0; i < this.bookInfo.Chapter.length; i++) {
+            const element = this.bookInfo.Chapter[i];
+            if (element.ID == this._chapter) {
+              this.title.setTitle(this.bookInfo.Name + " - " + element.Name);
+            }
+          }
+        }
         this.markdown = text;
         this.status = this.Success;
       },
