@@ -45,7 +45,8 @@ export class Markdown {
             }];
         });
         showdown.extension('targetlink', function () {
-            const matchABS = /^(http\:\/\/)|(https\:\/\/)(\/)/i;
+            //const matchABS = /^(http\:\/\/)|(https\:\/\/)(\/)/i;
+            const matchABS = /^([a-zA-Z]+)\:\/\//i;
             return [{
                 type: 'lang',
                 regex: /!?\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)/g,
@@ -62,6 +63,7 @@ export class Markdown {
                             result = '<img src="' + url + '" style="max-width:100%;">';
                         }
                     } else {
+                        console.log(url,!matchABS.test(url))
                         if (!matchABS.test(url) && url[0]!="/") {
                             url = "view/" + url;
                         }

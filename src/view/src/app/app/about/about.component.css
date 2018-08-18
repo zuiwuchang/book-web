@@ -1,4 +1,4 @@
 .label{
     display:inline-block;
-    width: 70px;
+    min-width: 140px;
 }
