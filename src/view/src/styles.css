@@ -28,3 +28,17 @@
 .full-width {
     width: 100%;
 }
+.hljs {
+    color: #a9b7c6;
+    background: #282b2e;
+    display: inline;
+    overflow-x: auto;
+    padding: 0.5em;
+}
+pre .hljs {
+    color: #a9b7c6;
+    background: #282b2e;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+}

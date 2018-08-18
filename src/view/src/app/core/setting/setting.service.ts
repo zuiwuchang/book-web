@@ -23,6 +23,8 @@ export class SettingService {
     this.setting.ChapterID = chapter;
   }
   updateFull(yes: boolean) {
-    this.setting.Full = yes;
+    if(this.setting.Full != yes){
+      this.setting.Full = yes;
+    }
   }
 }

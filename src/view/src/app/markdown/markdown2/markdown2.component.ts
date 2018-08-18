@@ -120,7 +120,8 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     });
     this.textarea.value(this.oldText);
     // 監控 全屏 狀態 通知 angular 服務 以便 隱藏阿一些 頂層元素
-    this.textarea.codemirror.on("viewportChange", (instance, from, to) => {
+    this.textarea.codemirror.on("refresh", (instance, from, to) => {
+      console.log(this.textarea.isFullscreenActive())
       this.settingService.updateFull(this.textarea.isFullscreenActive());
     });
     // console.log(this.textarea)
