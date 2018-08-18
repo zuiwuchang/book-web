@@ -45,7 +45,7 @@ export class Markdown {
             }];
         });
         showdown.extension('targetlink', function () {
-            const matchABS = /^([a-zA-Z]+)\:\/\//i;
+            const matchABS = /^([a-zA-Z0-9]+)\:\/\//i;
             return [{
                 type: 'lang',
                 regex: /!?\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)/g,
