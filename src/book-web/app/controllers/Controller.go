@@ -42,12 +42,10 @@ func (c Controller) UnmarshalSession() (session *protocol.Session) {
 	// other
 	s.Nickname, ok = keys[protocol.SessionColNickname]
 	if !ok {
-		revel.ERROR.Printf("no Session.Nickname %v\n", keys)
 		return
 	}
 	s.Name, ok = keys[protocol.SessionColName]
 	if !ok {
-		revel.ERROR.Printf("no Session.Name %v\n", keys)
 		return
 	}
 	session = s

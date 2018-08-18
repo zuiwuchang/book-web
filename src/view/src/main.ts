@@ -10,21 +10,21 @@ import 'hammerjs';
 declare const require;
 if (environment.production) {
   enableProdMode();
-
-  platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.log(err));
-
-} else {
-  // we use the webpack raw-loader to return the content as a string
-  const translations = require(`raw-loader!./locale/zh-Hant.xlf`);
-
-  platformBrowserDynamic().bootstrapModule(AppModule, {
-    providers: [
-      { provide: TRANSLATIONS, useValue: translations },
-      { provide: TRANSLATIONS_FORMAT, useValue: 'xlf' }
-    ]
-  });
 }
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));
+
+// // we use the webpack raw-loader to return the content as a string
+// const translations = require(`raw-loader!./locale/zh-Hant.xlf`);
+
+// platformBrowserDynamic().bootstrapModule(AppModule, {
+//   providers: [
+//     { provide: TRANSLATIONS, useValue: translations },
+//     { provide: TRANSLATIONS_FORMAT, useValue: 'xlf' }
+//   ]
+// });
+
 
 
 

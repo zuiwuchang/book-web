@@ -9,7 +9,7 @@
 # $locale 傳入 參數 設置要 發佈的 區域
 
 # 發佈目錄
-root=./dist
+root=../book-web/angular
 
 # 判斷 語言參數 是否正確
 case $locale in

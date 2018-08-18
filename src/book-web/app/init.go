@@ -1,6 +1,8 @@
 package app
 
 import (
+	"book-web/app/module/angular"
+	"book-web/app/module/configure"
 	"book-web/app/module/db/manipulator"
 	"github.com/revel/revel"
 )
@@ -37,7 +39,12 @@ func init() {
 	// revel.OnAppStart(InitDB)
 	// revel.OnAppStart(FillCache)
 	revel.OnAppStart(func() {
+		_, e := configure.Load(revel.BasePath)
+		if e != nil {
+			panic(e)
+		}
 		manipulator.Init()
+		angular.Init(revel.BasePath)
 	})
 }
 
