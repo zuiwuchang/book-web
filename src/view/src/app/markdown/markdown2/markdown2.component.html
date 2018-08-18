@@ -44,8 +44,32 @@
     <app-markdown-bar [items]="markdown?.Header" (valChange)="onChange($event)"></app-markdown-bar>
   </mat-drawer>
   <mat-drawer-content>
+      <div class="navigate-view">
+          <button (click)="onRouter(previous.Book,previous.Chapter)" mat-button class="previous no-outline" *ngIf="previous">
+              <mat-icon>navigate_before</mat-icon>
+              {{previous?.Name}}
+          </button>
+          <div class="navigate-fill"></div>
+          <button (click)="onRouter(next.Book,next.Chapter)" mat-button class="next no-outline" *ngIf="next">
+              {{next?.Name}}
+              <mat-icon>navigate_next</mat-icon>
+          </button>
+      </div>
+
     <section #view highlight-js-content="code">
       <textarea #textarea></textarea>
     </section>
+
+    <div class="navigate-view">
+        <button (click)="onRouter(previous.Book,previous.Chapter)" mat-button class="previous no-outline" *ngIf="previous">
+            <mat-icon>navigate_before</mat-icon>
+            {{previous?.Name}}
+        </button>
+        <div class="navigate-fill"></div>
+        <button (click)="onRouter(next.Book,next.Chapter)" mat-button class="next no-outline" *ngIf="next">
+            {{next?.Name}}
+            <mat-icon>navigate_next</mat-icon>
+        </button>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

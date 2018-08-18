@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef,AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Book } from '../../core/protocol/book';
 import { HighlightJsService } from 'angular2-highlight-js';
@@ -7,21 +7,43 @@ import { SettingService } from '../../core/setting/setting.service';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 import { ToasterService } from 'angular2-toaster';
 import { Xi18n } from '../../core/xi18n';
+import { Router } from '@angular/router';
+class Navigate {
+  Name: string
+  Book: string
+  Chapter: string
+  constructor(book: string, chapter: string, name: string) {
+    this.Book = book;
+    this.Chapter = chapter;
+    this.Name = name;
+  }
+}
 @Component({
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
   styleUrls: ['./markdown.component.css']
 })
-export class MarkdownComponent implements OnInit,AfterViewInit {
+export class MarkdownComponent implements OnInit, AfterViewInit {
+  previous: Navigate = null;
+  next: Navigate = null;
   private xi18n: Xi18n = new Xi18n();
   private update: boolean = false;
   markdown: Markdown = null;
+  private _book: Book = null;
   @Input()
-  book: Book = null;
+  set book(book: Book) {
+    this.initNavigate(book, this.settingService.getSetting().ChapterID);
+    this._book = book;
+  }
+  get book(): Book {
+    return this._book;
+  }
+
   constructor(private domSanitizer: DomSanitizer,
     private highlightJsService: HighlightJsService,
     private settingService: SettingService,
     private toasterService: ToasterService,
+    private router: Router,
   ) { }
   @Input()
   set val(markdown: string) {
@@ -29,6 +51,7 @@ export class MarkdownComponent implements OnInit,AfterViewInit {
       this.settingService.getSetting().BookID,
       this.settingService.getSetting().ChapterID,
       markdown);
+    this.initNavigate(this.book, this.settingService.getSetting().ChapterID);
     this.update = true;
   }
   ngOnInit() {
@@ -36,7 +59,7 @@ export class MarkdownComponent implements OnInit,AfterViewInit {
   }
   @ViewChild("xi18n")
   private xi18nRef: ElementRef
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.xi18n.init(this.xi18nRef.nativeElement);
   }
   @ViewChild("view")
@@ -101,5 +124,35 @@ export class MarkdownComponent implements OnInit,AfterViewInit {
   }
   isHeader() {
     return this.settingService.getSetting().Header;
+  }
+  private initNavigate(book: Book, chapter: string) {
+    if (!book || !book.Chapter || book.Chapter.length == 0) {
+      return;
+    }
+    this.previous = null;
+    this.next = null;
+    if (chapter == "0") {
+      this.next = new Navigate(book.ID, book.Chapter[0].ID, book.Chapter[0].Name);
+      return;
+    }
+    //pre
+    for (let i = 0; i < book.Chapter.length; i++) {
+      if (book.Chapter[i].ID == chapter) {
+        // previous
+        if (i == 0) {
+          this.previous = new Navigate(book.ID, "0", book.Name);
+        } else {
+          this.previous = new Navigate(book.ID, book.Chapter[i - 1].ID, book.Chapter[i - 1].Name);
+        }
+        if (i + 1 < book.Chapter.length) {
+          this.next = new Navigate(book.ID, book.Chapter[i + 1].ID, book.Chapter[i + 1].Name);
+        }
+        break;
+      }
+    }
+
+  }
+  onRouter(book: string, chapter: string) {
+    this.router.navigate(["/view", book, chapter]);
   }
 }

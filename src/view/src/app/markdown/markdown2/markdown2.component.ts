@@ -15,20 +15,39 @@ import { DialogSureComponent } from '../../shared/dialog-sure/dialog-sure.compon
 import { DialogChapterComponent } from '../../shared/dialog-chapter/dialog-chapter.component';
 import { Xi18n } from '../../core/xi18n';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
+class Navigate {
+  Name: string
+  Book: string
+  Chapter: string
+  constructor(book: string, chapter: string, name: string) {
+    this.Book = book;
+    this.Chapter = chapter;
+    this.Name = name;
+  }
+}
 @Component({
   selector: 'app-markdown2',
   templateUrl: './markdown2.component.html',
   styleUrls: ['./markdown2.component.css']
 })
 export class Markdown2Component implements OnInit, AfterViewInit {
+  previous: Navigate = null;
+  next: Navigate = null;
   private xi18n: Xi18n = new Xi18n();
   private update: boolean = false;
   markdown: Markdown = null;
   private oldText = "";
   isVisibility: boolean = true;
   isRequest = false;
+  private _book: Book = null;
   @Input()
-  book: Book = null;
+  set book(book: Book) {
+    this.initNavigate(book, this.settingService.getSetting().ChapterID);
+    this._book = book;
+  }
+  get book(): Book {
+    return this._book;
+  }
   constructor(private domSanitizer: DomSanitizer,
     private highlightJsService: HighlightJsService,
     private settingService: SettingService,
@@ -46,6 +65,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     if (this.textarea) {
       this.textarea.value(this.oldText);
     }
+    this.initNavigate(this.book, this.settingService.getSetting().ChapterID);
   }
   ngOnInit() {
     new ClipboardJS(".btn-clipboard")
@@ -435,5 +455,32 @@ export class Markdown2Component implements OnInit, AfterViewInit {
         this.toasterService.pop('error', '', Utils.ResolveError(e));
       }
     );
+  }
+  private initNavigate(book: Book, chapter: string) {
+    if (!book || !book.Chapter || book.Chapter.length == 0) {
+      return;
+    }
+    this.previous = null;
+    this.next = null;
+    if (chapter == "0") {
+      this.next = new Navigate(book.ID, book.Chapter[0].ID, book.Chapter[0].Name);
+      return;
+    }
+    //pre
+    for (let i = 0; i < book.Chapter.length; i++) {
+      if (book.Chapter[i].ID == chapter) {
+        // previous
+        if (i == 0) {
+          this.previous = new Navigate(book.ID, "0", book.Name);
+        } else {
+          this.previous = new Navigate(book.ID, book.Chapter[i - 1].ID, book.Chapter[i - 1].Name);
+        }
+        if (i + 1 < book.Chapter.length) {
+          this.next = new Navigate(book.ID, book.Chapter[i + 1].ID, book.Chapter[i + 1].Name);
+        }
+        break;
+      }
+    }
+
   }
 }

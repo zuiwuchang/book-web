@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -38,7 +37,7 @@ import { Markdown2Component } from './markdown2/markdown2.component';
 
     SharedModule,
 
-    HighlightJsModule,SortablejsModule
+    HighlightJsModule, SortablejsModule
   ],
   providers: [HighlightJsService],
   declarations: [

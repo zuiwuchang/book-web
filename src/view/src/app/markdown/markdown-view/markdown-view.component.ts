@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../core/utils';
 import { Book } from '../../core/protocol/book';
 import { Title } from "@angular/platform-browser";
+
 @Component({
   selector: 'app-markdown-view',
   templateUrl: './markdown-view.component.html',

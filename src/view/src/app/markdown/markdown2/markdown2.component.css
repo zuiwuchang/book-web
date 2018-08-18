@@ -30,3 +30,9 @@ textarea{
     position: fixed;
     top: -100px;
 }
+.navigate-view{
+    display: flex;
+}
+.navigate-fill{
+    flex: 1 1 auto;
+}

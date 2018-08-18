@@ -1,7 +1,7 @@
 # google
 [p g](google/0)
 ## 123 # 456
-google [www.google.com](https://www.google.com)
+google [www.google.com](https2://www.google.com)
 url test [url](123/456)
 
 ![tux](assets/tux.jpg)
