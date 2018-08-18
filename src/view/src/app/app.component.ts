@@ -1,12 +1,18 @@
-import { Component  } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
+import { ToasterConfig } from 'angular2-toaster';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  {
+export class AppComponent {
   title = 'app';
+  public config: ToasterConfig =
+    new ToasterConfig({
+      positionClass:"toast-bottom-right"
+    });
   constructor(private matIconRegistry: MatIconRegistry) {
     this.matIconRegistry.registerFontClassAlias(
       'fontawesome-fa', // 為此 Icon Font 定義一個 別名

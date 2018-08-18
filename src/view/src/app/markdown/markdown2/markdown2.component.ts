@@ -14,6 +14,7 @@ import { ToasterService } from 'angular2-toaster';
 import { DialogSureComponent } from '../../shared/dialog-sure/dialog-sure.component';
 import { DialogChapterComponent } from '../../shared/dialog-chapter/dialog-chapter.component';
 import { Xi18n } from '../../core/xi18n';
+import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 @Component({
   selector: 'app-markdown2',
   templateUrl: './markdown2.component.html',
@@ -47,6 +48,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     }
   }
   ngOnInit() {
+    new ClipboardJS(".btn-clipboard")
   }
   @ViewChild("xi18n")
   private xi18nRef: ElementRef
@@ -128,6 +130,10 @@ export class Markdown2Component implements OnInit, AfterViewInit {
   }
   @ViewChild("view")
   private elementRef: ElementRef
+  @ViewChild("btnClipboard")
+  private btnClipboard: ElementRef
+  @ViewChild("inputClipboard")
+  private inputClipboard: ElementRef
   ngAfterViewChecked() {
     if (!this.update) {
       return;
@@ -137,8 +143,27 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     if (arrs && arrs.length != 0) {
       for (let i = 0; i < arrs.length; i++) {
         this.highlightJsService.highlight(arrs[i]);
+
+        // 創建 剪貼板
+        if (arrs[i].parentElement && (arrs[i].parentElement.tagName == "pre" || arrs[i].parentElement.tagName == "PRE")) {
+          this.createClipboard(arrs[i])
+        }
       }
     }
+  }
+  private createClipboard(ele) {
+    const newEle = document.createElement("i")
+    newEle.classList.add("fas");
+    newEle.classList.add("fa-copy");
+    newEle.classList.add("clipboard");
+    newEle.onclick = () => {
+      //console.log("copy")
+      this.inputClipboard.nativeElement.value = ele.innerText;
+      // console.log(this.inputClipboard.nativeElement)
+      this.btnClipboard.nativeElement.click();
+      this.toasterService.pop('info', '',this.xi18n.get("copyied"));
+    }
+    ele.appendChild(newEle);
   }
   onChange(id) {
     if (!this.elementRef || !this.elementRef.nativeElement) {

@@ -12,3 +12,11 @@ func main(){
 	fmt.Prinlt(`yes`)
 }
 ```
+
+```c++
+#include <iostream>
+void main()
+{
+	std::cout<<"hellow word\n";
+}
+```

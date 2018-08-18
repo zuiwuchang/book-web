@@ -503,21 +503,21 @@
         <source>Rename Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/books/books.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6a47b8188e650abd8744aa12f6a36025f0a75cb0" datatype="html">
         <source>RenameID Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/books/books.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="60265a6a51f9f4122c27ae1329e75b498d954c47" datatype="html">
         <source>Remove Tooltip</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/books/books.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0d438fadfdcaab681912629a26e1e011374f9971" datatype="html">
@@ -604,6 +604,17 @@
           <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="ca6d4a7421ffa7d08d7d374c108c0bda30957ba4" datatype="html">
+        <source>Code Ccopyied</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown/markdown.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="b4f9f403fc2030f27bff7c0b90abf14ed18949b5" datatype="html">
         <source>Error Router not save</source>
         <context-group purpose="location">
@@ -671,28 +682,28 @@
         <source>Edit Chapter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="523792b38b726c926ac3a8f544d23f47917ea033" datatype="html">
         <source>Delete Chapter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="158b1fb046945af0852d6a01bbb336aa21adc43b" datatype="html">
         <source>New Chapter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5d586c4ce3eb8d1fae9832be5d89295001e40646" datatype="html">
         <source>Sort Chapter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
     </body>

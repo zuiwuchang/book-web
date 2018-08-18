@@ -8,6 +8,12 @@
   <div data-key="sure.text" i18n>Text Sure Remove Chapter</div>
   <div data-key="new.title" i18n>Chapter New Title</div>
   <div data-key="modify.title" i18n>Chapter Modify Title</div>
+  <div data-key="copyied" i18n>Code Ccopyied</div>
+</div>
+<div class='clipboard-view'>
+  <textarea #inputClipboard id="btn-clipboard-input"></textarea>
+  <button #btnClipboard class="btn-clipboard" data-clipboard-target="#btn-clipboard-input">copy
+  </button>
 </div>
 <mat-drawer-container>
   <mat-drawer class="sidenav-left" mode="side" [opened]="isChapter()">

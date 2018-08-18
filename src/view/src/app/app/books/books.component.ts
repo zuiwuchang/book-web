@@ -28,7 +28,7 @@ export class BooksComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.onSubmit()
+    //this.onSubmit()
   }
   @ViewChild("xi18n")
   private xi18nRef: ElementRef

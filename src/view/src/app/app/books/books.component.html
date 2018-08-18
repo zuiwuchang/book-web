@@ -22,7 +22,8 @@
   <mat-list-item *ngFor="let item of items">
     <mat-icon matListAvatar color="primary">book</mat-icon>
     <p matLine>{{item.Name}}</p>
-    <a matLine routerLink="/view/{{item.ID}}/0">{{item.ID}}</a>
+    <a matLine routerLink="/view/{{item.ID}}/0">view/{{item.ID}}</a>
+    <a matLine routerLink="/edit/{{item.ID}}/0">edit/{{item.ID}}</a>
     <button (click)="onRename(item)" [disabled]="request" class="no-outline" mat-icon-button i18n-matTooltip matTooltip="Rename Tooltip">
       <mat-icon>create</mat-icon>
     </button>

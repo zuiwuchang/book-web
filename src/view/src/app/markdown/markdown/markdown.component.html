@@ -1,3 +1,11 @@
+<div class='clipboard-view'>
+    <textarea #inputClipboard id="btn-clipboard-input"></textarea>
+    <button #btnClipboard class="btn-clipboard" data-clipboard-target="#btn-clipboard-input">copy
+    </button>
+</div>
+<div #xi18n class="hide">
+    <div data-key="copyied" i18n>Code Ccopyied</div>
+</div>
 <mat-drawer-container>
     <mat-drawer class="sidenav-left" mode="side" [opened]="isChapter()">
         <mat-nav-list>

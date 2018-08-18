@@ -41,4 +41,17 @@ pre .hljs {
     display: block;
     overflow-x: auto;
     padding: 0.5em;
+    position: relative;
+}
+.clipboard {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+}
+.clipboard:active{
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    cursor: pointer;
 }
