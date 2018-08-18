@@ -1,4 +1,29 @@
-<div class="hide" #title i18n>Title About</div>
-<p>
-  about works!
-</p>
+<div [appHide]="true" #title i18n>Title About</div>
+<app-navigation-bar>
+</app-navigation-bar>
+
+<div class="alert alert-light" role="alert">
+  <h4 class="alert-heading" i18n="About Title|">About Title</h4>
+  <p i18n="About content|">About content</p>
+  <p i18n="About content2|">About content2</p>
+  <p i18n="About content3|">About content3</p>
+</div>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="label" i18n="code source|">Source</span>
+    <a href="https://gitlab.com/king011/book-web" target="_blank">https://gitlab.com/king011/book-web</a>
+  </li>
+  <li class="list-group-item">
+    <span class="label" i18n>Blog</span>
+    <a href="https://blog.king011.com/" target="_blank">https://blog.king011.com/</a>
+  </li>
+  <li class="list-group-item">
+    <span class="label">google+</span>
+    <a href="https://plus.google.com/u/0/+%E5%AE%8F%E6%9D%B0%E9%99%B3" target="_blank">https://plus.google.com/u/0/+宏杰陳</a>
+  </li>
+  <li class="list-group-item">
+    <span class="label">facebook</span>
+    <a href="https://www.facebook.com/zuiwuchang" target="_blank">https://www.facebook.com/zuiwuchang</a>
+  </li>
+</ul>

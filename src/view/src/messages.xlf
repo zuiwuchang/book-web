@@ -351,6 +351,53 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="ae8f5278d87862db42388d5fbac10312c101b088" datatype="html">
+        <source>About Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="meaning">About Title</note>
+      </trans-unit>
+      <trans-unit id="3bd93d10cd934a8e0615378d09b08b7a69654467" datatype="html">
+        <source>About content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="meaning">About content</note>
+      </trans-unit>
+      <trans-unit id="bb049568680c14958f9b5604d30e3d4cfe5ed770" datatype="html">
+        <source>About content2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="meaning">About content2</note>
+      </trans-unit>
+      <trans-unit id="967c1f0f4605f9630445d7a766e087197d3e6463" datatype="html">
+        <source>About content3</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="meaning">About content3</note>
+      </trans-unit>
+      <trans-unit id="5acd061399ee8eee507ce8992a81593e0c341089" datatype="html">
+        <source>Source</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="meaning">code source</note>
+      </trans-unit>
+      <trans-unit id="013acfd8797bf5ade4a15c71fa24178f913c4cae" datatype="html">
+        <source>Blog</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="910bfc6db7c7b348f38b72335fca86e959f75da4" datatype="html">
         <source>Title License</source>
         <context-group purpose="location">

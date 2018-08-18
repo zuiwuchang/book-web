@@ -386,6 +386,59 @@
           <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="ae8f5278d87862db42388d5fbac10312c101b088" datatype="html">
+        <source>About Title</source>
+        <target>book-web</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="meaning">About Title</note>
+      </trans-unit>
+      <trans-unit id="3bd93d10cd934a8e0615378d09b08b7a69654467" datatype="html">
+        <source>About content</source>
+        <target>book-web 是我開發的一個個人web，主要是爲了能夠在線整理文檔並隨時可以方便查看，此網站便是以此部署的。管理員以markdown形式書寫文檔，任何人都可以以html查看。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="meaning">About content</note>
+      </trans-unit>
+      <trans-unit id="bb049568680c14958f9b5604d30e3d4cfe5ed770" datatype="html">
+        <source>About content2</source>
+        <target>book-web 類似gitbook，是我在使用gitboot後得到靈感自行開發的，gitbook每本書使用一個git，而boot-web所有書使用同一個git項目。其次gitboot或許功能太多所以在線頁面打開很慢，相比book-web要小很多打開會快速很多。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="meaning">About content2</note>
+      </trans-unit>
+      <trans-unit id="967c1f0f4605f9630445d7a766e087197d3e6463" datatype="html">
+        <source>About content3</source>
+        <target>book-web 是GPL3的開源軟體，如果你有興趣將自己的才學共享到網路上，很歡迎你使用book-web,點擊源碼URL你會看到詳解的部署方式。注意更新到 book-web 上的內容任何人都能查看，而管理員還可以編輯，不要把任何你不想共享的文字更新到book-web中。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="meaning">About content3</note>
+      </trans-unit>
+      <trans-unit id="5acd061399ee8eee507ce8992a81593e0c341089" datatype="html">
+        <source>Source</source>
+        <target>源碼</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="meaning">code source</note>
+      </trans-unit>
+      <trans-unit id="013acfd8797bf5ade4a15c71fa24178f913c4cae" datatype="html">
+        <source>Blog</source>
+        <target>博客</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/about/about.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="910bfc6db7c7b348f38b72335fca86e959f75da4" datatype="html">
         <source>Title License</source>
         <target>許可協議</target>
