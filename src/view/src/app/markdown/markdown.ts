@@ -1,5 +1,6 @@
 import * as showdown from 'showdown';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import * as $ from 'jquery';
 export class MarkdownHeader {
     ID: string = '';
     Text: string = '';
@@ -52,17 +53,17 @@ export class Markdown {
                 replace: function (wholematch, linkText, url, a, b, title, c, target) {
                     let result;
                     if (wholematch[0] == "!") {
-                        if (!matchABS.test(url) && url[0]!="/") {
+                        if (!matchABS.test(url) && url[0] != "/") {
                             url = "/book/assets/" + book + "/" + chapter + "/" + url;
                         }
                         if (typeof linkText != 'undefined' && linkText !== '' && linkText !== null) {
                             linkText = linkText.replace(/"/g, '&quot;');
-                            result = '<img src="' + url + '" alt="' + linkText + '" style="max-width:100%;">';                            
+                            result = '<img src="' + url + '" alt="' + linkText + '" style="max-width:100%;">';
                         } else {
                             result = '<img src="' + url + '" style="max-width:100%;">';
                         }
                     } else {
-                        if (!matchABS.test(url) && url[0]!="/") {
+                        if (!matchABS.test(url) && url[0] != "/") {
                             url = "view/" + url;
                         }
 
@@ -79,21 +80,38 @@ export class Markdown {
                         }
 
                         result += '>' + linkText + '</a>';
-                       // console.log(result)
+                        // console.log(result)
                     }
                     return result;
                 }
             }];
         });
+        showdown.extension('bootstrap-tables', function () {
+            return [{
+                type: "output",
+                filter: function (html, converter, options) {
+                    // parse the html string
+                    var liveHtml = $('<div></div>').html(html);
+                    $('table', liveHtml).each(function () {
+                        var table = $(this);
+                        // table bootstrap classes
+                        table.addClass('table table-striped table-bordered')
+                            // make table responsive
+                            .wrap('<div class="class table-responsive"></div>');
+                    });
+                    return liveHtml.html();
+                }
+            }];
+        });
         const converter = new showdown.Converter({
-            extensions: ['custom-header-id', 'targetlink'],
+            extensions: ['custom-header-id', 'targetlink', 'bootstrap-tables'],
             parseImgDimensions: true,
-            tables:true,
+            tables: true,
         });
         const html = converter.makeHtml(markdown);
-        if(domSanitizer){
+        if (domSanitizer) {
             this.HTML = domSanitizer.bypassSecurityTrustHtml(html);
-        }else{
+        } else {
             this.HTML = html;
         }
         if (headers.length > 0) {
