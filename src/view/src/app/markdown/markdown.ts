@@ -88,6 +88,7 @@ export class Markdown {
         const converter = new showdown.Converter({
             extensions: ['custom-header-id', 'targetlink'],
             parseImgDimensions: true,
+            tables:true,
         });
         const html = converter.makeHtml(markdown);
         if(domSanitizer){
