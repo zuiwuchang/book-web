@@ -8,6 +8,7 @@ import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 import { ToasterService } from 'angular2-toaster';
 import { Xi18n } from '../../core/xi18n';
 import { Router } from '@angular/router';
+declare var MathJax;
 class Navigate {
   Name: string
   Book: string
@@ -84,6 +85,7 @@ export class MarkdownComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"MathJax"]);
   }
   private createClipboard(ele) {
     const newEle = document.createElement("i")

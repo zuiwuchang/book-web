@@ -67,7 +67,7 @@ message Foo {
 | uint64 | 使用變長編碼 | uint64 | int/long | uint64 |
 | sint32 | 類似int32 但對於負數編碼 效率更好 | int32 | int | int32 |
 | sint64 | 類似int64 但對於負數編碼 效率更好 | int64 | int/long | int64 |
-| fixed32 | 始終使用4字節編碼 通常值 $$> 2 ^ {28}$$ uint32更高效 | uint32 | int | uint32 |
+| fixed32 | 始終使用4字節編碼 通常值 $> 2 ^ {28}$ uint32更高效 | uint32 | int | uint32 |
 | fixed64 | 始終使用8字節編碼 通常值  $$> 2 ^ {56}$$ uint64更高效 | uint64 | int/long | uint64 |
 | sfixed32 | 始終使用4字節編碼 | int32 | int | int32 |
 | sfixed64 | 始終使用8字節編碼 | int64 | int/long | int64 |

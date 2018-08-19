@@ -1,22 +1,6 @@
-# game12
+始終使用4字節編碼 通常值\\(2 ^ {28}\\) uint32更高效
 
-this is test ``fmt.println(`yes`)``ok  
-123`ye`456
-
-```go
-package main
-import(
-	"fmt"
-)
-func main(){
-	fmt.Prinlt(`yes`)
-}
+始終使用8字節編碼 通常值  $$> 2 ^ {56}$$ uint64更高效
 ```
-
-```c++
-#include <iostream>
-void main()
-{
-	std::cout<<"hellow word\n";
-}
+\\(2 ^ {28}\\)
 ```

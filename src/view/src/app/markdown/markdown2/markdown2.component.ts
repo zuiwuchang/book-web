@@ -15,6 +15,7 @@ import { DialogSureComponent } from '../../shared/dialog-sure/dialog-sure.compon
 import { DialogChapterComponent } from '../../shared/dialog-chapter/dialog-chapter.component';
 import { Xi18n } from '../../core/xi18n';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
+declare var MathJax;
 class Navigate {
   Name: string
   Book: string
@@ -143,7 +144,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     this.textarea.value(this.oldText);
     // 監控 全屏 狀態 通知 angular 服務 以便 隱藏阿一些 頂層元素
     this.textarea.codemirror.on("refresh", (instance, from, to) => {
-      console.log(this.textarea.isFullscreenActive())
+      // console.log(this.textarea.isFullscreenActive())
       this.settingService.updateFull(this.textarea.isFullscreenActive());
     });
     // console.log(this.textarea)
@@ -170,6 +171,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
         }
       }
     }
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, "MathJax"]);
   }
   private createClipboard(ele) {
     const newEle = document.createElement("i")
@@ -181,7 +183,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
       this.inputClipboard.nativeElement.value = ele.innerText;
       // console.log(this.inputClipboard.nativeElement)
       this.btnClipboard.nativeElement.click();
-      this.toasterService.pop('info', '',this.xi18n.get("copyied"));
+      this.toasterService.pop('info', '', this.xi18n.get("copyied"));
     }
     ele.appendChild(newEle);
   }
@@ -264,7 +266,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     }
     const chapters = [];
     for (let i = 0; i < book.Chapter.length; i++) {
-      chapters.push(book.Chapter[i].ID);      
+      chapters.push(book.Chapter[i].ID);
     }
     this.isRequest = true;
     this.httpClient.post("/Book/SortChapter", {
