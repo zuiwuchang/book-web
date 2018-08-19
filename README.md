@@ -18,7 +18,7 @@ book-web 是一個在線的 個人資料整理 web 以書爲單位 每種類型�
 下文以 linux-amd64 進行說明
 1. 下載最新的 最新的 Releases 版本 得到 book-web.tar.gz
 2. 解壓 mkdir book-web && tar -zxvf book-web.tar.gz -C book-web
-4. 最新 book-web/run.sh 運行項目 *(windows 需要運行 book-web/run.sh)*
+4. 執行 book-web/run.sh 運行項目 *(windows 需要運行 book-web/run.sh)*
 
 # Build
 
@@ -32,13 +32,13 @@ book-web 是一個在線的 個人資料整理 web 以書爲單位 每種類型�
 ## 編譯 後端服務器
 1. 自行配置好 golang環境 和 revel 框架
 2. 下載 源碼 git clone git@gitlab.com:king011/book-web.git
-3. 配置 環境 變量 export GOPATH=$GOPATH:`pwd`/book-web
+3. 配置 環境 變量 export GOPATH=$GOPATH:\`pwd\`/book-web
 4. 編譯 revel package book-web prod 得到 book-web.tar.gz
 
 
 # Configure
 ## app.conf
-book-web/src/book-web/conf/app.conf 是revel 的框架 配置 檔案 用來指定 http 如果工作 請自行參考 [revel 官網說明](https://revel.github.io/manual/appconf.html)
+book-web/src/book-web/conf/app.conf 是revel 的框架 配置 檔案 用來指定 http 如何工作 請自行參考 [revel 官網說明](https://revel.github.io/manual/appconf.html)
 
 ## app.jsonnet
 book-web/src/book-web/conf/app.jsonnet 是 book-web 項目一些定義 如下
@@ -75,5 +75,26 @@ book-web/src/book-web/conf/app.jsonnet 是 book-web 項目一些定義 如下
 }
 ```
 
-通常你只需要 需要 FileRoot 指定 編輯文檔的 儲存位置 以及 Root.Name Root.Password 指定 管理員 用戶名 密碼 即可正常工作
-FileRoot 如果不在全路徑 則 檔案會被 保存到 book-web/src/book-web/ + FileRoot
+通常你只需要 需要 設置 FileRoot 指定 編輯文檔的 儲存位置 以及 Root.Name Root.Password 指定 管理員 用戶名 密碼 即可正常工作
+FileRoot 如果不是全路徑 則 檔案會被 保存到 book-web/src/book-web/ + FileRoot
+
+# 檔案儲存
+所有的數據 都以 markdown 形式儲存爲檔案  
+下文 假設 FileRoot 指定爲 /data/book/ 來說明
+
+/data/book/ 下的每個檔案夾 作爲爲一本書 爲單位 來維護 每本書 以相同的方式 處理 （檔案夾名稱 作爲書的識別ID）
+
+/data/book/home 爲 網站 首頁 打開的書 不能刪除 和 修改 路徑 其它書可以任意修改 刪除
+
+
+每本書下
+* 有一個 definition.json 檔案 比如 home/definition.json 其中記錄了書的 名稱 章節
+* 有一個 README.md 檔案 是 markdown 形式的 章節正文 取這個名稱 是爲了 讓 保存在 gitlab或github 上的項目 能夠在 gitlab等網頁上直接瀏覽
+* 以章節ID爲名稱的 檔案夾 
+
+ 
+章節檔案夾下會有
+* README.md 檔案 儲存了 章節正文
+* assets 檔案夾 裏面儲存了 上傳到此章節的 附件 和圖片等資源
+
+
