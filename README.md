@@ -2,7 +2,8 @@
 
 book-web 是一個在線的 個人資料整理 web 以書爲單位 每種類型的 資料 作爲一本書 使用 markdown 進行編寫 以html 呈現內容
 
-[book.king011.com](https://book.king011.com) 是我使用此項目 部署的一個 在線web 你可以在此查看 book-web 的 一些效果
+[book.king011.com](https://book.king011.com) 是我使用此項目 部署的一個 在線web 你可以在此查看 book-web 的 一些效果  
+[https://gitlab.com/king011/book](https://gitlab.com/king011/book) 是book.king011.com上數據 的開源 git項目地址
 
 # Why
 
