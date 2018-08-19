@@ -83,15 +83,18 @@ func (m Book) Find(id, name string) (books []data.Book, e error) {
 	if e != nil {
 		return
 	}
-	var names []string
-	names, e = f.Readdirnames(0)
+	var infos []os.FileInfo
+	infos, e = f.Readdir(0)
 	f.Close()
 	if e != nil {
 		return
 	}
-	books = make([]data.Book, 1, len(names))
-	for i := 0; i < len(names); i++ {
-		book := m.getName(names[i])
+	books = make([]data.Book, 1, len(infos))
+	for i := 0; i < len(infos); i++ {
+		if !infos[i].IsDir() {
+			continue
+		}
+		book := m.getName(infos[i].Name())
 		if book != nil {
 			if id != "" && strings.Index(book.ID, id) == -1 {
 				continue
