@@ -70,7 +70,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     return this.session && (this.settingService.getSetting().Page == 1);
   }
   isPageEdit(){
-    return this.session && (this.settingService.getSetting().Page == 2);
+    return (this.settingService.getSetting().Page == 2);
   }
   isFull(){
     return this.settingService.getSetting().Full;

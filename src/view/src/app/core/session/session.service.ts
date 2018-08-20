@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Subscription, PartialObserver } from 'rxjs';
 import { Session } from './session';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import sha512 from 'crypto-js/sha512';
 // 請求 返回 session
 const URLRefresh = "/App/GetSession";
@@ -14,11 +15,33 @@ const URLLogout = "/App/Logout";
 })
 export class SessionService {
   private session: Session = null;
-  private initSession: boolean = false; // 是否已經初始化夠 session
+  private initSession: boolean = false; // 是否已經初始化過 session
   private isRequestSession: boolean = false; // 是否正在修改 session狀態
   private subjectSession = new Subject<Session>();
   constructor(private httpClient: HttpClient) { }
-
+  isLogin(): boolean | Observable<boolean> {
+    if (this.session) {
+      return true;
+    }
+    if (!this.initSession) {
+      const observable = new Subject<boolean>();
+      
+      this.subjectSession.subscribe(
+        (session: Session) => {
+          if(session){
+            observable.next(true);
+          }else{
+            observable.next(false);
+          }
+        },
+        (e) => {
+          observable.next(false);
+        }
+      )
+      return observable;
+    }
+    return false;
+  }
   // 訂閱 用戶 狀態改變
   SubscribeSession(nextOrobserver?: (PartialObserver<Session>) | ((value: Session) => void), error?: (error: any) => void, complete?: () => void): Subscription {
     let subscription: Subscription;
@@ -173,7 +196,7 @@ export class SessionService {
         }
         this.session = null;
         this.subjectSession.next(null);
-        console.log("ok")
+        //console.log("ok")
       },
       (e) => {
         if (error) {

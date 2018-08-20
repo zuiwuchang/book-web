@@ -35,6 +35,8 @@ import { ValidatorsBookFindDirective } from './shared/validators/validators-book
 import { BookDialogNewComponent } from './app/books/book-dialog-new/book-dialog-new.component';
 import { BookDialogRenameComponent } from './app/books/book-dialog-rename/book-dialog-rename.component';
 import { BookDialogReidComponent } from './app/books/book-dialog-reid/book-dialog-reid.component';
+import { NotFoundComponent } from './app/not-found/not-found.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,8 @@ import { BookDialogReidComponent } from './app/books/book-dialog-reid/book-dialo
     BooksComponent,
     ValidatorsBookFindDirective,
 
-    BookDialogNewComponent, BookDialogRenameComponent, BookDialogReidComponent
+    BookDialogNewComponent, BookDialogRenameComponent, 
+    BookDialogReidComponent, NotFoundComponent
   ],
   imports: [
     BrowserModule, RouterModule, BrowserAnimationsModule,

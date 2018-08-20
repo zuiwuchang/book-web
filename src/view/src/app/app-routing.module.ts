@@ -6,6 +6,8 @@ import { ViewComponent } from './app/view/view.component';
 import { EditComponent } from './app/edit/edit.component';
 import { EditSavedGuard } from './app/edit/edit-saved.guard';
 import { BooksComponent } from './app/books/books.component';
+import { NotFoundComponent } from './app/not-found/not-found.component';
+import { LoginGuard } from './core/guard/login.guard';
 const routes: Routes = [
   {
     path: '',
@@ -27,11 +29,17 @@ const routes: Routes = [
   {
     path: 'edit/:book/:chapter',
     component: EditComponent,
+    canActivate: [LoginGuard],
     canDeactivate: [EditSavedGuard]
   },
   {
     path: 'books',
-    component: BooksComponent
+    component: BooksComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   },
 ];
 
