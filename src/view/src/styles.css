@@ -41,7 +41,6 @@ pre .hljs {
     display: block;
     overflow-x: auto;
     padding: 0.5em;
-    position: relative;
 }
 pre .text{
     color: #a9b7c6;
@@ -49,6 +48,8 @@ pre .text{
     display: block;
     overflow-x: auto;
     padding: 0.5em;
+}
+.code-view{
     position: relative;
 }
 .clipboard {

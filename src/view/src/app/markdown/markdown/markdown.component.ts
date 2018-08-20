@@ -77,17 +77,19 @@ export class MarkdownComponent implements OnInit, AfterViewInit {
     const arrs = this.elementRef.nativeElement.querySelectorAll('code');
     if (arrs && arrs.length != 0) {
       for (let i = 0; i < arrs.length; i++) {
-        this.highlightJsService.highlight(arrs[i]);
+        const item = arrs[i];
+        this.highlightJsService.highlight(item);
 
         // 創建 剪貼板
-        if (arrs[i].parentElement && (arrs[i].parentElement.tagName == "pre" || arrs[i].parentElement.tagName == "PRE")) {
-          this.createClipboard(arrs[i])
+        if (item.parentElement && (item.parentElement.tagName == "pre" || item.parentElement.tagName == "PRE")) {
+          this.createClipboard(item.parentElement,item)
         }
       }
     }
     MathJax.Hub.Queue(["Typeset",MathJax.Hub,"MathJax"]);
   }
-  private createClipboard(ele) {
+  private createClipboard(parent,ele) {
+    parent.classList.add("code-view");
     const newEle = document.createElement("i")
     newEle.classList.add("fas");
     newEle.classList.add("fa-copy");
