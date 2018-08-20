@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Book } from '../../core/protocol/book';
 import { HighlightJsService } from 'angular2-highlight-js';
 import { Markdown } from '../markdown';
@@ -17,6 +17,10 @@ import { Xi18n } from '../../core/xi18n';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 import { DialogUploadComponent } from '../../shared/dialog-upload/dialog-upload.component';
 declare var MathJax;
+class PreviewCache {
+  val: string;
+  preview: SafeHtml;
+}
 class Navigate {
   Name: string
   Book: string
@@ -33,6 +37,7 @@ class Navigate {
   styleUrls: ['./markdown2.component.css']
 })
 export class Markdown2Component implements OnInit, AfterViewInit {
+  private previewCache: PreviewCache = new PreviewCache();
   previous: Navigate = null;
   next: Navigate = null;
   private xi18n: Xi18n = new Xi18n();
@@ -89,11 +94,18 @@ export class Markdown2Component implements OnInit, AfterViewInit {
       element: this.textareaRef.nativeElement,
       // 自定義 預覽 產生 html
       previewRender: (plainText, preview) => {
+        // 和緩存匹配 直接返回
+        if (this.previewCache.val == plainText) {
+          this.update = true;
+          return this.previewCache.preview;
+        }
         this.markdown = new Markdown(null,
           this.settingService.getSetting().BookID,
           this.settingService.getSetting().ChapterID,
           plainText);
+        this.previewCache.preview = this.markdown.HTML;
         this.update = true;
+        
         return this.markdown.HTML;
       },
       // 關閉 拼寫 
