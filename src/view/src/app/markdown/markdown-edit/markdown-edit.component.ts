@@ -75,6 +75,7 @@ export class MarkdownEditComponent implements OnInit {
       Chapter: this._chapter
     }).subscribe(
       (text: string) => {
+        this.chapterTitle = '';
         if (this._chapter != "0" && this.bookInfo.Chapter) {
           for (let i = 0; i < this.bookInfo.Chapter.length; i++) {
             const element = this.bookInfo.Chapter[i];

@@ -15,6 +15,7 @@ import { DialogSureComponent } from '../../shared/dialog-sure/dialog-sure.compon
 import { DialogChapterComponent } from '../../shared/dialog-chapter/dialog-chapter.component';
 import { Xi18n } from '../../core/xi18n';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
+import { DialogUploadComponent } from '../../shared/dialog-upload/dialog-upload.component';
 declare var MathJax;
 class Navigate {
   Name: string
@@ -42,7 +43,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
   isRequest = false;
   private _book: Book = null;
   @Input()
-  title:string = '';
+  title: string = '';
   @Input()
   set book(book: Book) {
     this.initNavigate(book, this.settingService.getSetting().ChapterID);
@@ -71,7 +72,6 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     this.initNavigate(this.book, this.settingService.getSetting().ChapterID);
   }
   ngOnInit() {
-    new ClipboardJS(".btn-clipboard")
   }
   @ViewChild("xi18n")
   private xi18nRef: ElementRef
@@ -79,6 +79,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
   private textareaRef: ElementRef
   private textarea: any = null;
   ngAfterViewInit() {
+    new ClipboardJS(".btn-clipboard")
     this.xi18n.init(this.xi18nRef.nativeElement);
 
     this.textarea = new SimpleMDE({
@@ -111,6 +112,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
             this.saveDocument(editor.value());
           },
         },
+        "|",
         {
           name: "file-management",
           className: "fas fa-upload",
@@ -119,6 +121,25 @@ export class Markdown2Component implements OnInit, AfterViewInit {
             const settting = this.settingService.getSetting();
             this.dialog.open(
               DialogFilesComponent,
+              {
+                width: '80%',
+                maxWidth: 800,
+                data: {
+                  book: settting.BookID,
+                  chapter: settting.ChapterID,
+                },
+              },
+            )
+          },
+        },
+        {
+          name: "file-upload",
+          className: "fas fa-file-upload",
+          title: "File upload",
+          action: (editor) => {
+            const settting = this.settingService.getSetting();
+            this.dialog.open(
+              DialogUploadComponent,
               {
                 width: '80%',
                 maxWidth: 800,
@@ -170,13 +191,13 @@ export class Markdown2Component implements OnInit, AfterViewInit {
 
         // 創建 剪貼板
         if (item.parentElement && (item.parentElement.tagName == "pre" || item.parentElement.tagName == "PRE")) {
-          this.createClipboard(item.parentElement,item)
+          this.createClipboard(item.parentElement, item)
         }
       }
     }
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, "MathJax"]);
   }
-  private createClipboard(parent,ele) {
+  private createClipboard(parent, ele) {
     parent.classList.add("code-view");
     const newEle = document.createElement("i")
     newEle.classList.add("fas");
@@ -340,7 +361,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
       }
     )
   }
-  onChapterEdit(evt, book: Book, chapterID: string, chapterName: string):boolean {
+  onChapterEdit(evt, book: Book, chapterID: string, chapterName: string): boolean {
     evt.stopPropagation();
     if (!book || !book.Chapter || book.Chapter.length == 0) {
       return false;
@@ -492,7 +513,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     }
 
   }
-  saved():boolean{
+  saved(): boolean {
     if (this.textarea && this.textarea.value() != this.oldText) {
       this.toasterService.pop('error', '', this.xi18n.get("router"));
       return false;

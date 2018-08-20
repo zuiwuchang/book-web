@@ -19,7 +19,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1442dfa12ebc2953b7cff782acf40848b4102939" datatype="html">
@@ -95,7 +95,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">6</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-sure/dialog-sure.component.html</context>
@@ -104,6 +104,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
           <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-upload/dialog-upload.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/books/book-dialog-new/book-dialog-new.component.html</context>
@@ -122,7 +126,7 @@
           <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="sourcefile">app/shared/dialog-upload/files-upload/files-upload.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
@@ -255,7 +259,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a818ee587e89f110cd0063aa5d5eb0115302495b" datatype="html">
@@ -264,22 +268,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
           <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="06b37792b48c29813a10ebc2396a59c67a1263bb" datatype="html">
-        <source>Files Info</source>
-        <target>檔案詳情</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a6ebbafda6e27bae7bd59174751598f4ab01d217" datatype="html">
-        <source>Files Upload</source>
-        <target>檔案上傳</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/dialog-files.component.html</context>
-          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f0dc0497ad16adbd386a3b2f2c55d81c51a1f029" datatype="html">
@@ -342,6 +330,14 @@
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="18c85b57c80e4f5d986ff3ab19ff52790aaa0037" datatype="html">
+        <source>Dialog Upload Files</source>
+        <target>檔案上傳</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-upload/dialog-upload.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="38e0956efb7c78e758d638c8f1e5c99859b82836" datatype="html">
         <source>Retry</source>
         <target>重試</target>
@@ -367,7 +363,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b4f9f403fc2030f27bff7c0b90abf14ed18949b5" datatype="html">
@@ -444,7 +440,7 @@
       </trans-unit>
       <trans-unit id="ca6d4a7421ffa7d08d7d374c108c0bda30957ba4" datatype="html">
         <source>Code Ccopyied</source>
-        <target>代碼已複製</target>
+        <target>代碼已複製到剪貼板</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
           <context context-type="linenumber">11</context>
@@ -728,7 +724,7 @@
         <target>檔案刪去將無法恢復！請確認？</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4553a1ccb75b16e397e286de811b262e8ccda3d2" datatype="html">
@@ -736,7 +732,23 @@
         <target>刪除檔案</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ef90545bc832876c0d7f9a10363c75137472bbb5" datatype="html">
+        <source>Copied</source>
+        <target>已複製到剪貼板</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1979da7460819153e11d2078244645d94291b69c" datatype="html">
+        <source>Copy</source>
+        <target>複製</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
@@ -744,7 +756,7 @@
         <target>編輯</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
@@ -752,14 +764,14 @@
         <target>刪除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d2225b3e00af653ad30e16f0f5ede3a42ffc206b" datatype="html">
         <source>Queue length</source>
         <target>隊列大小</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="sourcefile">app/shared/dialog-upload/files-upload/files-upload.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
@@ -767,7 +779,7 @@
         <source>Upload</source>
         <target>上傳</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="sourcefile">app/shared/dialog-upload/files-upload/files-upload.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
@@ -775,7 +787,7 @@
         <source>Remove</source>
         <target>移除</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="sourcefile">app/shared/dialog-upload/files-upload/files-upload.component.html</context>
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
@@ -783,7 +795,7 @@
         <source>Select Files</source>
         <target>選擇檔案</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="sourcefile">app/shared/dialog-upload/files-upload/files-upload.component.html</context>
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
@@ -791,7 +803,7 @@
         <source>Upload all file</source>
         <target>全部上傳</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="sourcefile">app/shared/dialog-upload/files-upload/files-upload.component.html</context>
           <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
@@ -799,7 +811,7 @@
         <source>Upload cancel all file</source>
         <target>全部取消</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="sourcefile">app/shared/dialog-upload/files-upload/files-upload.component.html</context>
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
@@ -807,7 +819,7 @@
         <source>Upload remove all file</source>
         <target>全部移除</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-upload/files-upload.component.html</context>
+          <context context-type="sourcefile">app/shared/dialog-upload/files-upload/files-upload.component.html</context>
           <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>

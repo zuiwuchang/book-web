@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../../core/utils';
@@ -6,12 +6,15 @@ import { ToasterService } from 'angular2-toaster';
 import { MatDialog } from '@angular/material';
 import { DialogSureComponent } from '../../dialog-sure/dialog-sure.component';
 import { FileRenameComponent } from '../file-rename/file-rename.component';
+import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
+import { Xi18n } from '../../../core/xi18n';
 @Component({
   selector: 'app-files-view',
   templateUrl: './files-view.component.html',
   styleUrls: ['./files-view.component.css']
 })
-export class FilesViewComponent implements OnInit {
+export class FilesViewComponent implements OnInit, AfterViewInit {
+  private xi18n: Xi18n = new Xi18n();
   isInit: boolean = false;
   request: boolean = false;
   error: any = null;
@@ -24,6 +27,12 @@ export class FilesViewComponent implements OnInit {
 
   ngOnInit() {
     this.Refresh();
+  }
+  @ViewChild("xi18n")
+  private xi18nRef: ElementRef
+  ngAfterViewInit() {
+    new ClipboardJS(".btn-clipboard-files-view");
+    this.xi18n.init(this.xi18nRef.nativeElement);
   }
   Refresh() {
     if (this.isInit || this.request) {
@@ -48,12 +57,8 @@ export class FilesViewComponent implements OnInit {
     );
   }
   isDisabled() {
-    return this.request || this.shared.disabled;
+    return this.request ;
   }
-  @ViewChild('msgSure')
-  private msgSure: ElementRef;
-  @ViewChild('msgTitle')
-  private msgTitle: ElementRef;
   onRemove(name: string) {
     if (this.isDisabled()) {
       console.log("disabled,ignore remove");
@@ -65,8 +70,8 @@ export class FilesViewComponent implements OnInit {
         width: '80%',
         maxWidth: 800,
         data: {
-          title: this.msgTitle.nativeElement.innerText,
-          text: this.msgSure.nativeElement.innerText,
+          title: this.xi18n.get("title"),
+          text: this.xi18n.get("sure"),
         }
       },
     )
@@ -105,6 +110,15 @@ export class FilesViewComponent implements OnInit {
         this.toasterService.pop('error', '', Utils.ResolveError(e));
       });
   }
+  @ViewChild("btnClipboard")
+  private btnClipboard: ElementRef
+  @ViewChild("inputClipboard")
+  private inputClipboard: ElementRef
+  onCopy(name: string) {
+    this.inputClipboard.nativeElement.value = "assets/" + name;
+    this.btnClipboard.nativeElement.click();
+    this.toasterService.pop('success', '', this.xi18n.get("copied"));
+  }
   onRename(name: string) {
     if (this.isDisabled()) {
       console.log("disabled,ignore rename");
@@ -116,7 +130,7 @@ export class FilesViewComponent implements OnInit {
         width: '80%',
         maxWidth: 800,
         data: {
-          val:name,
+          val: name,
         }
       },
     )
@@ -130,7 +144,7 @@ export class FilesViewComponent implements OnInit {
     if (this.isDisabled()) {
       console.log("disabled,ignore rename");
       return;
-    }else if (name == newname){
+    } else if (name == newname) {
       return;
     }
 
@@ -140,7 +154,7 @@ export class FilesViewComponent implements OnInit {
         ID: this.shared.book,
         Chapter: this.shared.chapter,
         Name: name,
-        Newname:newname
+        Newname: newname
       }
     ).subscribe(
       () => {
@@ -148,8 +162,8 @@ export class FilesViewComponent implements OnInit {
         for (let i = 0; i < this.items.length; i++) {
           if (name == this.items[i]) {
             this.items[i] = newname;
-          }else if(newname == this.items[i]){
-            this.items.splice(i,1);
+          } else if (newname == this.items[i]) {
+            this.items.splice(i, 1);
           }
         }
         this.toasterService.pop('success', '', 'Success');

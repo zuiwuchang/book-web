@@ -17,13 +17,13 @@
           <mat-progress-bar mode="determinate" value="{{item.progress}}"></mat-progress-bar>
         </p>
 
-        <button mat-icon-button (click)="item.upload()" i18n-matTooltip matTooltip="Upload" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+        <button mat-icon-button class="no-outline" (click)="item.upload()" i18n-matTooltip matTooltip="Upload" [disabled]="item.isReady || item.isUploading || item.isSuccess">
           <mat-icon>cloud_upload</mat-icon>
         </button>
-        <button mat-icon-button (click)="item.cancel()" i18n-matTooltip matTooltip="Cancel" [disabled]="!item.isUploading">
+        <button mat-icon-button class="no-outline" (click)="item.cancel()" i18n-matTooltip matTooltip="Cancel" [disabled]="!item.isUploading">
           <mat-icon>cancel</mat-icon>
         </button>
-        <button mat-icon-button (click)="item.remove()" i18n-matTooltip matTooltip="Remove">
+        <button mat-icon-button class="no-outline" (click)="item.remove()" i18n-matTooltip matTooltip="Remove">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-list-item>
@@ -33,14 +33,14 @@
         <mat-progress-bar mode="determinate" value="{{uploader.progress}}"></mat-progress-bar>
       </p>
       <p>
-        <button mat-button (click)="file.click()" i18n>Select Files</button>
-        <button mat-button (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+        <button mat-button class="no-outline" (click)="file.click()" i18n>Select Files</button>
+        <button mat-button class="no-outline" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
           <ng-container i18n>Upload all file</ng-container>
         </button>
-        <button mat-button (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+        <button mat-button class="no-outline" (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
           <ng-container i18n>Upload cancel all file</ng-container>
         </button>
-        <button mat-button (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+        <button mat-button class="no-outline" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
           <ng-container i18n>Upload remove all file</ng-container>
         </button>
       </p>

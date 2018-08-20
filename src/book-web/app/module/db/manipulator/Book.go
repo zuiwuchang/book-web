@@ -234,6 +234,9 @@ func (Book) ListAssets(id, chapter string) (names []string, e error) {
 	var f *os.File
 	f, e = os.Open(dir)
 	if e != nil {
+		if os.IsNotExist(e) {
+			e = nil
+		}
 		return
 	}
 	defer f.Close()
