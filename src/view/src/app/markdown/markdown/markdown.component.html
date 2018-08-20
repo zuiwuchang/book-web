@@ -19,34 +19,42 @@
     </mat-drawer>
     <mat-drawer-content>
         <div class="navigate-view">
-            <button (click)="onRouter(previous.Book,previous.Chapter)" mat-button class="previous no-outline" *ngIf="previous">
-                <mat-icon>navigate_before</mat-icon>
-                {{previous?.Name}}
-            </button>
+            <a [routerLink]="['/view', previous.Book,previous.Chapter]" *ngIf="previous">
+                <button mat-button class="previous no-outline">
+                    <mat-icon>navigate_before</mat-icon>
+                    {{previous.Name}}
+                </button>
+            </a>
             <div class="navigate-fill">
                 <div class="title">{{title}}</div>
             </div>
-            <button (click)="onRouter(next.Book,next.Chapter)" mat-button class="next no-outline" *ngIf="next">
-                {{next?.Name}}
-                <mat-icon>navigate_next</mat-icon>
-            </button>
+            <a [routerLink]="['/view', next.Book,next.Chapter]" *ngIf="next">
+                <button mat-button class="next no-outline">
+                    {{next.Name}}
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </a>
         </div>
 
         <section #view [innerHtml]="markdown?.HTML" highlight-js-content="code">
         </section>
 
         <div class="navigate-view">
-            <button (click)="onRouter(previous.Book,previous.Chapter)" mat-button class="previous no-outline" *ngIf="previous">
-                <mat-icon>navigate_before</mat-icon>
-                {{previous?.Name}}
-            </button>
+            <a [routerLink]="['/view', previous.Book,previous.Chapter]" *ngIf="previous">
+                <button mat-button class="previous no-outline">
+                    <mat-icon>navigate_before</mat-icon>
+                    {{previous.Name}}
+                </button>
+            </a>
             <div class="navigate-fill">
                 <div class="title">{{title}}</div>
             </div>
-            <button (click)="onRouter(next.Book,next.Chapter)" mat-button class="next no-outline" *ngIf="next">
-                {{next?.Name}}
-                <mat-icon>navigate_next</mat-icon>
-            </button>
+            <a [routerLink]="['/view', next.Book,next.Chapter]" *ngIf="next">
+                <button mat-button class="next no-outline">
+                    {{next.Name}}
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </a>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

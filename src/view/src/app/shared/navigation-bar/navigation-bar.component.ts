@@ -3,7 +3,6 @@ import { SettingService } from '../../core/setting/setting.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
-import { Router,NavigationExtras } from '@angular/router';
 import { SessionService } from '../../core/session/session.service';
 import { Session } from '../../core/session/session';
 @Component({
@@ -18,7 +17,6 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   constructor(private settingService: SettingService,
     private sessionService: SessionService,
     private dialog: MatDialog,
-    private router:Router,
   ) {
   }
   ngOnInit() {
@@ -56,9 +54,6 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
       },
     });
   }
-  openSource() {
-    window.open("https://gitlab.com/king011/book-web", "_blank");
-  }
   toggleChapter() {
     this.settingService.toggleChapter();
   }
@@ -85,8 +80,5 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   }
   getChapterID(){
     return this.settingService.getSetting().ChapterID;
-  }
-  onRouter(commands: any[], extras?: NavigationExtras){
-    this.router.navigate(commands,extras);
   }
 }

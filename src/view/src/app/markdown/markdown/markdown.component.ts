@@ -7,7 +7,6 @@ import { SettingService } from '../../core/setting/setting.service';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 import { ToasterService } from 'angular2-toaster';
 import { Xi18n } from '../../core/xi18n';
-import { Router } from '@angular/router';
 declare var MathJax;
 class Navigate {
   Name: string
@@ -26,7 +25,7 @@ class Navigate {
 })
 export class MarkdownComponent implements OnInit, AfterViewInit {
   @Input()
-  title:string = '';
+  title: string = '';
   previous: Navigate = null;
   next: Navigate = null;
   private xi18n: Xi18n = new Xi18n();
@@ -46,7 +45,6 @@ export class MarkdownComponent implements OnInit, AfterViewInit {
     private highlightJsService: HighlightJsService,
     private settingService: SettingService,
     private toasterService: ToasterService,
-    private router: Router,
   ) { }
   @Input()
   set val(markdown: string) {
@@ -84,13 +82,13 @@ export class MarkdownComponent implements OnInit, AfterViewInit {
 
         // 創建 剪貼板
         if (item.parentElement && (item.parentElement.tagName == "pre" || item.parentElement.tagName == "PRE")) {
-          this.createClipboard(item.parentElement,item)
+          this.createClipboard(item.parentElement, item)
         }
       }
     }
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub,"MathJax"]);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, "MathJax"]);
   }
-  private createClipboard(parent,ele) {
+  private createClipboard(parent, ele) {
     parent.classList.add("code-view");
     const newEle = document.createElement("i")
     newEle.classList.add("fas");
@@ -156,9 +154,5 @@ export class MarkdownComponent implements OnInit, AfterViewInit {
         break;
       }
     }
-
-  }
-  onRouter(book: string, chapter: string) {
-    this.router.navigate(["/view", book, chapter]);
   }
 }

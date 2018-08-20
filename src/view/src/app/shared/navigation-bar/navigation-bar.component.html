@@ -1,28 +1,43 @@
 <!-- 導航欄 -->
 <div [appHide]="isFull()">
   <mat-toolbar class="header" color="primary">
-    <button routerLink="/view/home/0" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Home Tooltip">
-      <mat-icon>home</mat-icon>
-    </button>
-    <button (click)="openSource()" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Source Tooltip">
-      <mat-icon>code</mat-icon>
-    </button>
-    <button routerLink="/license" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="License Tooltip">
-      <mat-icon>import_contacts</mat-icon>
-    </button>
-    <button routerLink="/about" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
-      <mat-icon>info</mat-icon>
-    </button>
+    <a routerLink="/view/home/0">
+      <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Home Tooltip">
+        <mat-icon>home</mat-icon>
+      </button>
+    </a>
+    <a href="https://gitlab.com/king011/book-web" target="_blank">
+      <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Source Tooltip">
+        <mat-icon>code</mat-icon>
+      </button>
+    </a>
+
+    <a routerLink="/license">
+      <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="License Tooltip">
+        <mat-icon>import_contacts</mat-icon>
+      </button>
+    </a>
+
+    <a routerLink="/about">
+      <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
+        <mat-icon>info</mat-icon>
+      </button>
+    </a>
+
     <span style="flex: 1 1 auto;"></span>
     <div [appShow]="isPageView()">
-      <button [routerLink]="['/edit',getBookID(),getChapterID()]" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Edit Tooltip">
-        <mat-icon>create</mat-icon>
-      </button>
+      <a [routerLink]="['/edit',getBookID(),getChapterID()]">
+        <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Edit Tooltip">
+          <mat-icon>create</mat-icon>
+        </button>
+      </a>
     </div>
     <div [appShow]="isPageEdit()">
-      <button [routerLink]="['/view',getBookID(),getChapterID()]" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="View Tooltip">
-        <mat-icon>book</mat-icon>
-      </button>
+      <a [routerLink]="['/view',getBookID(),getChapterID()]">
+        <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="View Tooltip">
+          <mat-icon>book</mat-icon>
+        </button>
+      </a>
     </div>
     <div [appShow]="session">
       <button class="menu-btn" mat-icon-button matTooltip="{{session?.Nickname}}" [matMenuTriggerFor]="menuPerson">
@@ -33,10 +48,12 @@
           <mat-icon>no_meeting_room</mat-icon>
           <ng-container i18n>Logout</ng-container>
         </button>
-        <button class="menu-btn" mat-menu-item (click)="onRouter(['/books'])">
-          <mat-icon>book</mat-icon>
-          <ng-container i18n>Books Management</ng-container>
-        </button>
+        <a routerLink="/books">
+          <button class="menu-btn" mat-menu-item>
+            <mat-icon>book</mat-icon>
+            <ng-container i18n>Books Management</ng-container>
+          </button>
+        </a>
       </mat-menu>
     </div>
     <div [appHide]="session">
