@@ -25,6 +25,8 @@ class Navigate {
   styleUrls: ['./markdown.component.css']
 })
 export class MarkdownComponent implements OnInit, AfterViewInit {
+  @Input()
+  title:string = '';
   previous: Navigate = null;
   next: Navigate = null;
   private xi18n: Xi18n = new Xi18n();

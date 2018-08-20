@@ -23,7 +23,9 @@
                 <mat-icon>navigate_before</mat-icon>
                 {{previous?.Name}}
             </button>
-            <div class="navigate-fill"></div>
+            <div class="navigate-fill">
+                <div class="title">{{title}}</div>
+            </div>
             <button (click)="onRouter(next.Book,next.Chapter)" mat-button class="next no-outline" *ngIf="next">
                 {{next?.Name}}
                 <mat-icon>navigate_next</mat-icon>
@@ -38,7 +40,9 @@
                 <mat-icon>navigate_before</mat-icon>
                 {{previous?.Name}}
             </button>
-            <div class="navigate-fill"></div>
+            <div class="navigate-fill">
+                <div class="title">{{title}}</div>
+            </div>
             <button (click)="onRouter(next.Book,next.Chapter)" mat-button class="next no-outline" *ngIf="next">
                 {{next?.Name}}
                 <mat-icon>navigate_next</mat-icon>

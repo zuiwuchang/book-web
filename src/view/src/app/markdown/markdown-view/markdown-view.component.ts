@@ -19,6 +19,7 @@ export class MarkdownViewComponent implements OnInit {
   error = null;
   private timer = null;
 
+  chapterTitle:string = '';
   private _book: string = '';
   private _chapter: string = '';
   markdown = '';
@@ -71,6 +72,8 @@ export class MarkdownViewComponent implements OnInit {
             const element = this.bookInfo.Chapter[i];
             if (element.ID == this._chapter) {
               this.title.setTitle(this.bookInfo.Name + " - " + element.Name);
+              this.chapterTitle = element.Name;
+              break;
             }
           }
         }

@@ -42,6 +42,8 @@ export class Markdown2Component implements OnInit, AfterViewInit {
   isRequest = false;
   private _book: Book = null;
   @Input()
+  title:string = '';
+  @Input()
   set book(book: Book) {
     this.initNavigate(book, this.settingService.getSetting().ChapterID);
     this._book = book;
@@ -337,18 +339,18 @@ export class Markdown2Component implements OnInit, AfterViewInit {
       }
     )
   }
-  onChapterEdit(evt, book: Book, chapterID: string, chapterName: string) {
+  onChapterEdit(evt, book: Book, chapterID: string, chapterName: string):boolean {
     evt.stopPropagation();
     if (!book || !book.Chapter || book.Chapter.length == 0) {
-      return;
+      return false;
     }
 
     if (!book) {
-      return;
+      return false;
     }
     if (this.isRequest) {
       this.toasterService.pop('warning', '', this.xi18n.get("request.wait"));
-      return;
+      return false;
     }
 
     const dialogRef = this.dialog.open(
@@ -368,6 +370,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
         this.doModifyChapter(book, chapterID, result.id, result.name);
       }
     });
+    return false;
   }
   doModifyChapter(book: Book, oldID: string, id: string, name: string) {
     if (this.isRequest) {
@@ -407,11 +410,11 @@ export class Markdown2Component implements OnInit, AfterViewInit {
   onChapterRemove(evt, book: Book, chapterID: string, chapterName: string) {
     evt.stopPropagation();
     if (!book || !book.Chapter || book.Chapter.length == 0) {
-      return;
+      return false;
     }
     if (this.isRequest) {
       this.toasterService.pop('warning', '', this.xi18n.get("request.wait"));
-      return;
+      return false;
     }
 
     const dialogRef = this.dialog.open(
@@ -430,6 +433,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
         this.doRemove(book, chapterID);
       }
     });
+    return false;
   }
   private doRemove(book: Book, chapterID: string) {
     if (!book || !book.Chapter || book.Chapter.length == 0) {
@@ -486,5 +490,12 @@ export class Markdown2Component implements OnInit, AfterViewInit {
       }
     }
 
+  }
+  saved():boolean{
+    if (this.textarea && this.textarea.value() != this.oldText) {
+      this.toasterService.pop('error', '', this.xi18n.get("router"));
+      return false;
+    }
+    return true;
   }
 }

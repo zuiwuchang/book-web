@@ -35,4 +35,11 @@ textarea{
 }
 .navigate-fill{
     flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.title{
+    text-align: center;
+    width: 100%;
 }

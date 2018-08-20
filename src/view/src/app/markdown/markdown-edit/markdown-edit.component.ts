@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../core/utils';
 import { Book } from '../../core/protocol/book';
 import { Title } from "@angular/platform-browser";
+import { Markdown2Component } from '../markdown2/markdown2.component';
 @Component({
   selector: 'app-markdown-edit',
   templateUrl: './markdown-edit.component.html',
@@ -18,6 +19,7 @@ export class MarkdownEditComponent implements OnInit {
   error = null;
   private timer = null;
 
+  chapterTitle:string = '';
   private _book: string = '';
   private _chapter: string = '';
   markdown = '';
@@ -78,6 +80,8 @@ export class MarkdownEditComponent implements OnInit {
             const element = this.bookInfo.Chapter[i];
             if (element.ID == this._chapter) {
               this.title.setTitle(this.getTitle() + " - " + this.bookInfo.Name + " - " + element.Name);
+              this.chapterTitle = element.Name;
+              break;
             }
           }
         }
@@ -109,5 +113,13 @@ export class MarkdownEditComponent implements OnInit {
       this.initChapter();
       this.closeTimer();
     }, 500);
+  }
+  @ViewChild(Markdown2Component)
+  private child: Markdown2Component
+  saved(): boolean {
+    if(!this.child){
+      return true;
+    }
+    return this.child.saved();
   }
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs';
 import { SettingService } from '../../core/setting/setting.service';
+import { MarkdownEditComponent } from '../../markdown/markdown-edit/markdown-edit.component';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -29,6 +30,8 @@ export class EditComponent implements OnInit {
       }
     )
   }
+  @ViewChild(MarkdownEditComponent)
+  private child: MarkdownEditComponent
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
@@ -36,5 +39,10 @@ export class EditComponent implements OnInit {
     }
     this.settingService.updatePage(0);
   }
-
+  saved(): boolean {
+    if(!this.child){
+      return true;
+    }
+    return this.child.saved();
+  }
 }
