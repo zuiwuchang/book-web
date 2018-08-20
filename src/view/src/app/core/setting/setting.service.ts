@@ -7,16 +7,31 @@ import { Setting } from './setting';
 export class SettingService {
   private setting: Setting = new Setting()
   constructor() {
-    if (this.getKey("isChapter") == "false") {
+    const isChapter = this.getKey("isChapter");
+    if (isChapter == undefined) {
+      if (window.screen.width < 800) {
+        this.setting.Chapter = false;
+      } else {
+        this.setting.Chapter = true;
+      }
+    } else if (isChapter == "false") {
       this.setting.Chapter = false;
     } else {
       this.setting.Chapter = true;
     }
-    if (this.getKey("isHeader") == "false") {
+    const isHeader = this.getKey("isHeader");
+    if (isHeader == undefined) {
+      if (window.screen.width < 600) {
+        this.setting.Header = false;
+      } else {
+        this.setting.Header = true;
+      }
+    } else if (isHeader == "false") {
       this.setting.Header = false;
     } else {
       this.setting.Header = true;
     }
+    console.log(window.screen.width,this.setting.Header)
   }
   private getKey(key: string): string {
     if (typeof (Storage) == "undefined") {
