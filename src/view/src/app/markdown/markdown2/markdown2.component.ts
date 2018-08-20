@@ -260,7 +260,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
       this.toasterService.pop('error', '', this.xi18n.get("save.wait"));
       return;
     }
-    this.waitSave = false;
+    this.waitSave = true;
     const setting = this.settingService.getSetting();
 
     this.httpClient.post("/book/save", {
