@@ -31,7 +31,6 @@ export class SettingService {
     } else {
       this.setting.Header = true;
     }
-    console.log(window.screen.width,this.setting.Header)
   }
   private getKey(key: string): string {
     if (typeof (Storage) == "undefined") {
