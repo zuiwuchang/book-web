@@ -76,9 +76,8 @@ export class Markdown2Component implements OnInit, AfterViewInit {
       this.textarea.value(this.oldText);
       //console.log(this.textarea.render)
       if (this.textarea.isPreviewActive()) {
-        for (const key in this.textarea) {
-          console.log(key)
-        }
+        this.textarea.togglePreview();
+        this.textarea.togglePreview();
       }
     }
     this.initNavigate(this.book, this.settingService.getSetting().ChapterID);
