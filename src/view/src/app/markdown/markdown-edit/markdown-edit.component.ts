@@ -19,7 +19,7 @@ export class MarkdownEditComponent implements OnInit {
   error = null;
   private timer = null;
 
-  chapterTitle:string = '';
+  chapterTitle: string = '';
   private _book: string = '';
   private _chapter: string = '';
   markdown = '';
@@ -76,11 +76,14 @@ export class MarkdownEditComponent implements OnInit {
     }).subscribe(
       (text: string) => {
         this.chapterTitle = '';
-        if (this._chapter != "0" && this.bookInfo.Chapter) {
+        if (this._chapter == "0") {
+          this.title.setTitle(this.getTitle() + " -> " + this.bookInfo.Name);
+          this.chapterTitle = this.bookInfo.Name;
+        } else if (this.bookInfo.Chapter) {
           for (let i = 0; i < this.bookInfo.Chapter.length; i++) {
             const element = this.bookInfo.Chapter[i];
             if (element.ID == this._chapter) {
-              this.title.setTitle(this.getTitle() + " - " + this.bookInfo.Name + " - " + element.Name);
+              this.title.setTitle(this.getTitle() + " -> " + this.bookInfo.Name + " -> " + element.Name);
               this.chapterTitle = element.Name;
               break;
             }
@@ -118,7 +121,7 @@ export class MarkdownEditComponent implements OnInit {
   @ViewChild(Markdown2Component)
   private child: Markdown2Component
   saved(): boolean {
-    if(!this.child){
+    if (!this.child) {
       return true;
     }
     return this.child.saved();

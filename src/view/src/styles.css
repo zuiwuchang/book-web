@@ -28,46 +28,49 @@
 .full-width {
     width: 100%;
 }
-.hljs {
+.markdown .hljs {
     color: #a9b7c6;
     background: #282b2e;
     display: inline;
     overflow-x: auto;
     padding: 0.5em;
 }
-pre .hljs {
+.markdown pre .hljs {
     color: #a9b7c6;
     background: #282b2e;
     display: block;
     overflow-x: auto;
     padding: 0.5em;
 }
-pre .text{
+.markdown pre .text{
     color: #a9b7c6;
     background: #282b2e;
     display: block;
     overflow-x: auto;
     padding: 0.5em;
 }
-.code-view{
+.markdown .code-view{
     position: relative;
 }
-.clipboard {
+.markdown .clipboard {
     position: absolute;
     top: 12px;
     right: 12px;
     cursor: pointer;
 }
-.clipboard:active{
+.markdown .clipboard:active{
     position: absolute;
     top: 14px;
     right: 10px;
     cursor: pointer;
 }
-blockquote{
+.markdown blockquote{
     color: rgb(116, 129, 141);
     margin: 0px 16px 24px;
     padding: 19px 16px 1px 12px;
     background: #E0EBF5;
     border-radius: 8px;
+}
+.markdown{
+    padding-left: 2px;
 }

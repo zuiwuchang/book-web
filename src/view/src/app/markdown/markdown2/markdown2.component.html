@@ -62,9 +62,11 @@
       </a>
     </div>
 
-    <section #view highlight-js-content="code">
-      <textarea #textarea></textarea>
-    </section>
+    <div class="markdown">
+      <section #view highlight-js-content="code">
+        <textarea #textarea></textarea>
+      </section>
+    </div>
 
     <div class="navigate-view">
       <a [routerLink]="['/view', previous.Book,previous.Chapter]" *ngIf="previous">

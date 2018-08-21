@@ -36,8 +36,10 @@
             </a>
         </div>
 
-        <section #view [innerHtml]="markdown?.HTML" highlight-js-content="code">
-        </section>
+        <div class="markdown">
+            <section #view [innerHtml]="markdown?.HTML" highlight-js-content="code">
+            </section>
+        </div>
 
         <div class="navigate-view">
             <a [routerLink]="['/view', previous.Book,previous.Chapter]" *ngIf="previous">

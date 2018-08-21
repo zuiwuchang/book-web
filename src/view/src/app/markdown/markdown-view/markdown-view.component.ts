@@ -19,7 +19,7 @@ export class MarkdownViewComponent implements OnInit {
   error = null;
   private timer = null;
 
-  chapterTitle:string = '';
+  chapterTitle: string = '';
   private _book: string = '';
   private _chapter: string = '';
   markdown = '';
@@ -68,11 +68,14 @@ export class MarkdownViewComponent implements OnInit {
     }).subscribe(
       (text: string) => {
         this.chapterTitle = '';
-        if (this._chapter != "0" && this.bookInfo.Chapter) {
+        if (this._chapter == "0") {
+          this.title.setTitle(this.bookInfo.Name);
+          this.chapterTitle = this.bookInfo.Name;
+        } else if (this.bookInfo.Chapter) {
           for (let i = 0; i < this.bookInfo.Chapter.length; i++) {
             const element = this.bookInfo.Chapter[i];
             if (element.ID == this._chapter) {
-              this.title.setTitle(this.bookInfo.Name + " - " + element.Name);
+              this.title.setTitle(this.bookInfo.Name + " -> " + element.Name);
               this.chapterTitle = element.Name;
               break;
             }
