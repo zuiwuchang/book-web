@@ -16,6 +16,7 @@ import { DialogChapterComponent } from '../../shared/dialog-chapter/dialog-chapt
 import { Xi18n } from '../../core/xi18n';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 import { DialogUploadComponent } from '../../shared/dialog-upload/dialog-upload.component';
+import { Strings } from '../strings';
 declare var MathJax;
 class PreviewCache {
   val: string;
@@ -73,6 +74,12 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     this.oldText = markdown;
     if (this.textarea) {
       this.textarea.value(this.oldText);
+      //console.log(this.textarea.render)
+      if (this.textarea.isPreviewActive()) {
+        for (const key in this.textarea) {
+          console.log(key)
+        }
+      }
     }
     this.initNavigate(this.book, this.settingService.getSetting().ChapterID);
   }
@@ -105,7 +112,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
           plainText);
         this.previewCache.preview = this.markdown.HTML;
         this.update = true;
-        
+
         return this.markdown.HTML;
       },
       // 關閉 拼寫 
@@ -119,7 +126,7 @@ export class Markdown2Component implements OnInit, AfterViewInit {
         {
           name: "save",
           className: "fas fa-save",
-          title: "Save",
+          title: "Save (Ctrl-S)",
           action: (editor) => {
             this.saveDocument(editor.value());
           },
@@ -166,6 +173,29 @@ export class Markdown2Component implements OnInit, AfterViewInit {
         },
         "|", "bold", "italic",
         "|", "code", "quote",
+        "|",
+        {
+          name: "markdown escape",
+          className: "fas fa-angle-double-right",
+          title: "Markdown Escape (Ctrl-M)",
+          action: (editor) => {
+            const cm = editor.codemirror;
+            let text = cm.getSelection();
+            text = Strings.escape(text);
+            cm.replaceSelection(text, "around");
+          },
+        },
+        {
+          name: "markdown unescape",
+          className: "fas fa-angle-double-left",
+          title: "Markdown Unescape (Ctrl-Alt-M)",
+          action: (editor) => {
+            const cm = editor.codemirror;
+            let text = cm.getSelection();
+            text = Strings.unescape(text);
+            cm.replaceSelection(text, "around");
+          },
+        },
         "|", "unordered-list", "ordered-list",
         "|", "link", {
           name: "image",
@@ -174,8 +204,41 @@ export class Markdown2Component implements OnInit, AfterViewInit {
           action: SimpleMDE.drawImage,
         }, "table",
         "|", "preview", "side-by-side", "fullscreen"
-      ]
+      ],
     });
+    // 爲 編輯器 增加快捷鍵
+    const codemirror = this.textarea.codemirror;
+    const keys = codemirror.getOption("extraKeys");
+    // 保存
+    keys["Ctrl-S"] = () => {
+      this.saveDocument(this.textarea.value());
+    };
+    keys["Ctrl-Enter"] = (cm) => {
+      const doc = cm.getDoc();
+      const cursor = doc.getCursor(); // gets the line number in the cursor position
+      const line = doc.getLine(cursor.line); // get the line contents
+      const pos = { // create a new object to avoid mutation of the original selection
+        line: cursor.line,
+        ch: line.length // set the character position to the end of the line
+      }
+      doc.replaceRange('\n', pos);
+      doc.setCursor({
+        line: cursor.line + 1,
+        ch: 0,
+      });
+    };
+    keys["Ctrl-M"] = (cm) => {
+      let text = cm.getSelection();
+      text = Strings.escape(text);
+      cm.replaceSelection(text, "around");
+    };
+    keys["Ctrl-Alt-M"] = (cm) => {
+      let text = cm.getSelection();
+      text = Strings.unescape(text);
+      cm.replaceSelection(text, "around");
+    };
+    codemirror.setOption("extraKeys", keys);
+
     this.textarea.value(this.oldText);
     // 監控 全屏 狀態 通知 angular 服務 以便 隱藏阿一些 頂層元素
     this.textarea.codemirror.on("refresh", (instance, from, to) => {
