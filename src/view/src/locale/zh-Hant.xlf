@@ -19,7 +19,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1442dfa12ebc2953b7cff782acf40848b4102939" datatype="html">
@@ -84,6 +84,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/login/login.component.html</context>
           <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/git/git.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
@@ -198,12 +202,20 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8fba9c75561048837b9a563b9493f6fe5072ddcd" datatype="html">
+        <source>Git Command</source>
+        <target>Git 指令</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cd5d318e16c3fdc48a3b4a4a2ca40982439f3ed0" datatype="html">
         <source>Login Tooltip</source>
         <target>登入</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
@@ -211,7 +223,7 @@
         <target>更多功能</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
@@ -219,7 +231,7 @@
         <target>章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
@@ -227,7 +239,7 @@
         <target>段落</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
@@ -259,7 +271,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a818ee587e89f110cd0063aa5d5eb0115302495b" datatype="html">
@@ -363,7 +375,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b4f9f403fc2030f27bff7c0b90abf14ed18949b5" datatype="html">
@@ -371,7 +383,7 @@
         <target>在檔案保存前，無法離開當前頁面。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="01163af000e2dab2fff2c3ef426377f6f3f9856a" datatype="html">
@@ -379,7 +391,7 @@
         <target>正在等待服務器響應，忽略本次保存操縱。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5ccf570204983860c7c54eaa8d69c6472451303d" datatype="html">
@@ -387,7 +399,7 @@
         <target>數據未變化，無需保存。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1aba1ddddaea6316b27da281445bc78209f142e7" datatype="html">
@@ -395,7 +407,7 @@
         <target>保存成功</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="51ebf4d96aa0c34a4055cf8037db03c40eb3194d" datatype="html">
@@ -403,7 +415,7 @@
         <target>正在等待服務器響應，忽略本次請求，請稍後重試。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dcec7a6477837d3deae305b560cfaeb7964d4b94" datatype="html">
@@ -411,7 +423,7 @@
         <target>刪除章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6cd043838e6d6f8c0228b56322f87d61506c62df" datatype="html">
@@ -419,7 +431,7 @@
         <target>章節刪除後將無法恢復，請確認操縱？</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c9c272a446c543409cffd2bccc45a32d09933f13" datatype="html">
@@ -427,7 +439,7 @@
         <target>新章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2b419e4dca3fa5a1710caca76c1add7d0e20da7a" datatype="html">
@@ -435,7 +447,7 @@
         <target>編輯章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ca6d4a7421ffa7d08d7d374c108c0bda30957ba4" datatype="html">
@@ -443,11 +455,11 @@
         <target>代碼已複製到剪貼板</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown/markdown.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f7a6b0b92036ebf19280ee5c92773ee2c4ba1e63" datatype="html">
@@ -455,7 +467,7 @@
         <target>修改</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="523792b38b726c926ac3a8f544d23f47917ea033" datatype="html">
@@ -463,7 +475,7 @@
         <target>刪除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="158b1fb046945af0852d6a01bbb336aa21adc43b" datatype="html">
@@ -471,7 +483,7 @@
         <target>新增</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5d586c4ce3eb8d1fae9832be5d89295001e40646" datatype="html">
@@ -479,7 +491,7 @@
         <target>保存序列</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/markdown/markdown2/markdown2.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b6452c26d4b1f0e249309132f4826342a6756d1e" datatype="html">
@@ -695,6 +707,54 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="d51650854982b16279e55acd1865ee16c258eda2" datatype="html">
+        <source>Label Git Commit</source>
+        <target>提交</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/git/git.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0932a55b67a42dcea3e4ba67bf21851366ba2b48" datatype="html">
+        <source>Label Git Sync</source>
+        <target>同步</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/git/git.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7dfb05d02b32dd7f2b6389c589d495aba429a45c" datatype="html">
+        <source>Label Git Log</source>
+        <target>日誌</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/git/git.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c51ef150aa1efac51d64858278f32fdd8859de26" datatype="html">
+        <source>Select Git Command</source>
+        <target>請選擇要執行的指令</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/git/git.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bc837474641d109e19088df74e2c167990fb9ee4" datatype="html">
+        <source>Commint Message</source>
+        <target>請輸入提交信息</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/git/git.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e798e9e6942c3d54ca6d28ae1537ad7d95c0e632" datatype="html">
+        <source>Commint Message Invalid</source>
+        <target>無效的提交信息</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/git/git.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="0d438fadfdcaab681912629a26e1e011374f9971" datatype="html">
         <source>File Rename</source>
         <target>檔案重命名</target>
@@ -748,7 +808,7 @@
         <target>複製</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
@@ -756,7 +816,7 @@
         <target>編輯</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
@@ -764,7 +824,7 @@
         <target>刪除</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d2225b3e00af653ad30e16f0f5ede3a42ffc206b" datatype="html">

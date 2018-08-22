@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 import { SharedModule } from './shared/shared.module';
 import { MarkdownModule } from './markdown/markdown.module';
@@ -36,6 +37,8 @@ import { BookDialogNewComponent } from './app/books/book-dialog-new/book-dialog-
 import { BookDialogRenameComponent } from './app/books/book-dialog-rename/book-dialog-rename.component';
 import { BookDialogReidComponent } from './app/books/book-dialog-reid/book-dialog-reid.component';
 import { NotFoundComponent } from './app/not-found/not-found.component';
+import { GitComponent } from './app/git/git.component';
+import { ValidatorGitMessageDirective } from './app/git/validator-git-message.directive';
 
 @NgModule({
   declarations: [
@@ -47,8 +50,8 @@ import { NotFoundComponent } from './app/not-found/not-found.component';
     BooksComponent,
     ValidatorsBookFindDirective,
 
-    BookDialogNewComponent, BookDialogRenameComponent, 
-    BookDialogReidComponent, NotFoundComponent
+    BookDialogNewComponent, BookDialogRenameComponent,
+    BookDialogReidComponent, NotFoundComponent, GitComponent, ValidatorGitMessageDirective
   ],
   imports: [
     BrowserModule, RouterModule, BrowserAnimationsModule,
@@ -56,7 +59,7 @@ import { NotFoundComponent } from './app/not-found/not-found.component';
 
     MatListModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatButtonModule,
     MatTooltipModule, MatProgressSpinnerModule, MatMenuModule, MatFormFieldModule,
-    MatInputModule, MatProgressBarModule,
+    MatInputModule, MatProgressBarModule, MatSelectModule,
 
     ToasterModule.forRoot(),
     SortablejsModule.forRoot({ animation: 150 }),

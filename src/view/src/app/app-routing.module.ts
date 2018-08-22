@@ -8,6 +8,7 @@ import { EditSavedGuard } from './app/edit/edit-saved.guard';
 import { BooksComponent } from './app/books/books.component';
 import { NotFoundComponent } from './app/not-found/not-found.component';
 import { LoginGuard } from './core/guard/login.guard';
+import { GitComponent } from './app/git/git.component';
 const routes: Routes = [
   {
     path: '',
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'books',
     component: BooksComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'git',
+    component: GitComponent,
     canActivate: [LoginGuard],
   },
   {
