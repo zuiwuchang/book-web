@@ -1,3 +1,4 @@
+<button #btnClipboard class="btn-clipboard hide" data-clipboard-text="">copy</button>
 <div #xi18n class="hide">
   <div data-key="router" i18n>Error Router not save</div>
   <div data-key="save.wait" i18n>wait request,ignore save request.</div>
@@ -10,11 +11,7 @@
   <div data-key="modify.title" i18n>Chapter Modify Title</div>
   <div data-key="copyied" i18n>Code Ccopyied</div>
 </div>
-<div class='clipboard-view'>
-  <textarea #inputClipboard id="btn-clipboard-input"></textarea>
-  <button #btnClipboard class="btn-clipboard" data-clipboard-target="#btn-clipboard-input">copy
-  </button>
-</div>
+
 <mat-drawer-container>
   <mat-drawer class="sidenav-left" mode="side" [opened]="isChapter()">
     <mat-nav-list>

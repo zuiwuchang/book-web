@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Book } from '../../core/protocol/book';
 import { HighlightJsService } from 'angular2-highlight-js';
@@ -37,7 +37,7 @@ class Navigate {
   templateUrl: './markdown2.component.html',
   styleUrls: ['./markdown2.component.css']
 })
-export class Markdown2Component implements OnInit, AfterViewInit {
+export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
   private previewCache: PreviewCache = new PreviewCache();
   previous: Navigate = null;
   next: Navigate = null;
@@ -84,13 +84,24 @@ export class Markdown2Component implements OnInit, AfterViewInit {
   }
   ngOnInit() {
   }
+  ngOnDestroy() {
+    if (this.clipboard) {
+      this.clipboard.destroy();
+    }
+  }
+  private clipboard: any = null;
   @ViewChild("xi18n")
   private xi18nRef: ElementRef
   @ViewChild("textarea")
   private textareaRef: ElementRef
   private textarea: any = null;
   ngAfterViewInit() {
-    new ClipboardJS(".btn-clipboard")
+    this.clipboard = new ClipboardJS(".btn-clipboard").on('success', () => {
+      this.toasterService.pop('info', '', this.xi18n.get("copyied"));
+    }).on('error', (evt) => {
+      console.error('Action:', evt.action);
+      console.error('Trigger:', evt.trigger);
+    });
     this.xi18n.init(this.xi18nRef.nativeElement);
 
     this.textarea = new SimpleMDE({
@@ -250,8 +261,6 @@ export class Markdown2Component implements OnInit, AfterViewInit {
   private elementRef: ElementRef
   @ViewChild("btnClipboard")
   private btnClipboard: ElementRef
-  @ViewChild("inputClipboard")
-  private inputClipboard: ElementRef
   ngAfterViewChecked() {
     if (!this.update) {
       return;
@@ -278,11 +287,8 @@ export class Markdown2Component implements OnInit, AfterViewInit {
     newEle.classList.add("fa-copy");
     newEle.classList.add("clipboard");
     newEle.onclick = () => {
-      //console.log("copy")
-      this.inputClipboard.nativeElement.value = ele.innerText;
-      // console.log(this.inputClipboard.nativeElement)
+      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text",ele.innerText)
       this.btnClipboard.nativeElement.click();
-      this.toasterService.pop('info', '', this.xi18n.get("copyied"));
     }
     ele.appendChild(newEle);
   }

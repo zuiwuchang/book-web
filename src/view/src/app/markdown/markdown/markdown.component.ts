@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Book } from '../../core/protocol/book';
 import { HighlightJsService } from 'angular2-highlight-js';
@@ -23,7 +23,7 @@ class Navigate {
   templateUrl: './markdown.component.html',
   styleUrls: ['./markdown.component.css']
 })
-export class MarkdownComponent implements OnInit, AfterViewInit {
+export class MarkdownComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()
   title: string = '';
   previous: Navigate = null;
@@ -56,19 +56,28 @@ export class MarkdownComponent implements OnInit, AfterViewInit {
     this.update = true;
   }
   ngOnInit() {
-    new ClipboardJS(".btn-clipboard")
   }
+  ngOnDestroy() {
+    if (this.clipboard) {
+      this.clipboard.destroy();
+    }
+  }
+  private clipboard: any = null;
   @ViewChild("xi18n")
   private xi18nRef: ElementRef
   ngAfterViewInit() {
     this.xi18n.init(this.xi18nRef.nativeElement);
+    this.clipboard = new ClipboardJS(".btn-clipboard").on('success', () => {
+      this.toasterService.pop('info', '', this.xi18n.get("copyied"));
+    }).on('error', (evt) => {
+      console.error('Action:', evt.action);
+      console.error('Trigger:', evt.trigger);
+    });
   }
   @ViewChild("view")
   private elementRef: ElementRef
   @ViewChild("btnClipboard")
   private btnClipboard: ElementRef
-  @ViewChild("inputClipboard")
-  private inputClipboard: ElementRef
   ngAfterViewChecked() {
     if (!this.update) {
       return;
@@ -95,11 +104,8 @@ export class MarkdownComponent implements OnInit, AfterViewInit {
     newEle.classList.add("fa-copy");
     newEle.classList.add("clipboard");
     newEle.onclick = () => {
-      //console.log("copy")
-      this.inputClipboard.nativeElement.value = ele.innerText;
-      // console.log(this.inputClipboard.nativeElement)
+      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text",ele.innerText)
       this.btnClipboard.nativeElement.click();
-      this.toasterService.pop('info', '', this.xi18n.get("copyied"));
     }
     ele.appendChild(newEle);
   }

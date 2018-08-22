@@ -26,10 +26,6 @@ textarea{
 .editor-toolbar{
     z-index: 1024;
 }
-.clipboard-view{
-    position: fixed;
-    top: -100px;
-}
 .navigate-view{
     display: flex;
 }
