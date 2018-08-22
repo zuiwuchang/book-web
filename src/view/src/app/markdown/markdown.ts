@@ -1,6 +1,7 @@
 import * as showdown from 'showdown';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import * as $ from 'jquery';
+import { defer } from 'rxjs';
 export class MarkdownHeader {
     ID: string = '';
     Text: string = '';
@@ -63,8 +64,15 @@ export class Markdown {
                             result = '<img src="' + url + '" style="max-width:100%;">';
                         }
                     } else {
+                        let router = 0;
                         if (!matchABS.test(url) && url[0] != "/") {
-                            url = "view/" + url;
+                            if (url.startsWith("assets/")) {
+                                url = "/book/assets/" + book + "/" + chapter + "/" + url;
+                                router = 1;
+                            } else {
+                                url = "view/" + url;
+                                router = 2;
+                            }
                         }
 
                         result = '<a href="' + url + '"';
@@ -76,11 +84,19 @@ export class Markdown {
                         }
 
                         if (typeof target != 'undefined' && target !== '' && target !== null) {
-                            result += ' target="_blank"';
+                            switch (router) {
+                                case 1:
+                                    break;
+                                case 2:
+                                    result += ' class="ng-router-a"';
+                                    break;
+                                default:
+                                    result += ' target="_blank"';
+                                    break;
+                            }
                         }
 
                         result += '>' + linkText + '</a>';
-                        // console.log(result)
                     }
                     return result;
                 }

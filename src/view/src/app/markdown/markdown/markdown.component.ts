@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Book } from '../../core/protocol/book';
 import { HighlightJsService } from 'angular2-highlight-js';
 import { Markdown } from '../markdown';
@@ -7,6 +8,7 @@ import { SettingService } from '../../core/setting/setting.service';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 import { ToasterService } from 'angular2-toaster';
 import { Xi18n } from '../../core/xi18n';
+import * as $ from 'jquery';
 declare var MathJax;
 class Navigate {
   Name: string
@@ -24,6 +26,12 @@ class Navigate {
   styleUrls: ['./markdown.component.css']
 })
 export class MarkdownComponent implements OnInit, AfterViewInit, OnDestroy {
+  constructor(private domSanitizer: DomSanitizer,
+    private highlightJsService: HighlightJsService,
+    private settingService: SettingService,
+    private toasterService: ToasterService,
+    private router: Router,
+  ) { }
   @Input()
   title: string = '';
   previous: Navigate = null;
@@ -40,12 +48,6 @@ export class MarkdownComponent implements OnInit, AfterViewInit, OnDestroy {
   get book(): Book {
     return this._book;
   }
-
-  constructor(private domSanitizer: DomSanitizer,
-    private highlightJsService: HighlightJsService,
-    private settingService: SettingService,
-    private toasterService: ToasterService,
-  ) { }
   @Input()
   set val(markdown: string) {
     this.markdown = new Markdown(this.domSanitizer,
@@ -61,6 +63,9 @@ export class MarkdownComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.clipboard) {
       this.clipboard.destroy();
     }
+    if (this.elementRef.nativeElement) {
+      $(this.elementRef.nativeElement).undelegate(".ng-router-a", "click");
+    }
   }
   private clipboard: any = null;
   @ViewChild("xi18n")
@@ -72,6 +77,11 @@ export class MarkdownComponent implements OnInit, AfterViewInit, OnDestroy {
     }).on('error', (evt) => {
       console.error('Action:', evt.action);
       console.error('Trigger:', evt.trigger);
+    });
+    $(this.elementRef.nativeElement).delegate(".ng-router-a", "click", (evt) => {
+      const url = $(evt.target).attr("href");
+      this.router.navigate([url]);
+      return false;
     });
   }
   @ViewChild("view")
@@ -104,7 +114,7 @@ export class MarkdownComponent implements OnInit, AfterViewInit, OnDestroy {
     newEle.classList.add("fa-copy");
     newEle.classList.add("clipboard");
     newEle.onclick = () => {
-      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text",ele.innerText)
+      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text", ele.innerText)
       this.btnClipboard.nativeElement.click();
     }
     ele.appendChild(newEle);

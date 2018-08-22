@@ -1,7 +1,7 @@
 #   begin *yes*
 
 ![](assets/tux.jpg)
-[tux.tar.gz](tux.tar.gz)
+[main.go](assets/main.go)
 
 [音樂](music/0)
 

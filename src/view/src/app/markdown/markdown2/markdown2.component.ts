@@ -17,6 +17,7 @@ import { Xi18n } from '../../core/xi18n';
 import * as ClipboardJS from 'clipboard/dist/clipboard.min.js'
 import { DialogUploadComponent } from '../../shared/dialog-upload/dialog-upload.component';
 import { Strings } from '../strings';
+import * as $ from 'jquery';
 declare var MathJax;
 class PreviewCache {
   val: string;
@@ -87,6 +88,9 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     if (this.clipboard) {
       this.clipboard.destroy();
+    }
+    if (this.elementRef.nativeElement) {
+      $(this.elementRef.nativeElement).undelegate(".ng-router-a", "click");
     }
   }
   private clipboard: any = null;
@@ -255,7 +259,12 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
       // console.log(this.textarea.isFullscreenActive())
       this.settingService.updateFull(this.textarea.isFullscreenActive());
     });
-    // console.log(this.textarea)
+
+    $(this.elementRef.nativeElement).delegate(".ng-router-a", "click", (evt) => {
+      const url = $(evt.target).attr("href");
+      this.router.navigate([url]);
+      return false;
+    });
   }
   @ViewChild("view")
   private elementRef: ElementRef
@@ -287,7 +296,7 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
     newEle.classList.add("fa-copy");
     newEle.classList.add("clipboard");
     newEle.onclick = () => {
-      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text",ele.innerText)
+      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text", ele.innerText)
       this.btnClipboard.nativeElement.click();
     }
     ele.appendChild(newEle);
