@@ -100,7 +100,7 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
   private textareaRef: ElementRef
   private textarea: any = null;
   ngAfterViewInit() {
-    this.clipboard = new ClipboardJS(".btn-clipboard").on('success', () => {
+    this.clipboard = new ClipboardJS(this.btnClipboard.nativeElement).on('success', () => {
       this.toasterService.pop('info', '', this.xi18n.get("copyied"));
     }).on('error', (evt) => {
       console.error('Action:', evt.action);

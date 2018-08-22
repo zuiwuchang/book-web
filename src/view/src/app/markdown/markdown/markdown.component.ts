@@ -72,7 +72,7 @@ export class MarkdownComponent implements OnInit, AfterViewInit, OnDestroy {
   private xi18nRef: ElementRef
   ngAfterViewInit() {
     this.xi18n.init(this.xi18nRef.nativeElement);
-    this.clipboard = new ClipboardJS(".btn-clipboard").on('success', () => {
+    this.clipboard = new ClipboardJS(this.btnClipboard.nativeElement).on('success', () => {
       this.toasterService.pop('info', '', this.xi18n.get("copyied"));
     }).on('error', (evt) => {
       console.error('Action:', evt.action);

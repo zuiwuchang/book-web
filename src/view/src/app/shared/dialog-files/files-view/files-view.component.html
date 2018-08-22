@@ -5,13 +5,7 @@
   <div data-key="title" i18n>Title Sure Remove File</div>
   <div data-key="copied" i18n>Copied</div>
 </div>
-
-<div class='clipboard-view'>
-  <textarea #inputClipboard id="btn-clipboard-input-files-view"></textarea>
-  <button #btnClipboard class="btn-clipboard-files-view" data-clipboard-target="#btn-clipboard-input-files-view">
-    copy
-  </button>
-</div>
+<button #btnClipboard class="hide" data-clipboard-text="">copy</button>
 
 <div [appShow]="!isInit && request">
   <p>

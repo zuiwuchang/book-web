@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit,OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../../core/utils';
@@ -13,7 +13,7 @@ import { Xi18n } from '../../../core/xi18n';
   templateUrl: './files-view.component.html',
   styleUrls: ['./files-view.component.css']
 })
-export class FilesViewComponent implements OnInit, AfterViewInit {
+export class FilesViewComponent implements OnInit,OnDestroy, AfterViewInit {
   private xi18n: Xi18n = new Xi18n();
   isInit: boolean = false;
   request: boolean = false;
@@ -28,11 +28,23 @@ export class FilesViewComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.Refresh();
   }
+  ngOnDestroy(){
+    if (this.clipboard) {
+      this.clipboard.destroy();
+    }
+  }
+  private clipboard: any = null;
   @ViewChild("xi18n")
   private xi18nRef: ElementRef
   ngAfterViewInit() {
-    new ClipboardJS(".btn-clipboard-files-view");
     this.xi18n.init(this.xi18nRef.nativeElement);
+
+    this.clipboard = new ClipboardJS(this.btnClipboard.nativeElement).on('success', () => {
+      this.toasterService.pop('success', '', this.xi18n.get("copied"));
+    }).on('error', (evt) => {
+      console.error('Action:', evt.action);
+      console.error('Trigger:', evt.trigger);
+    });
   }
   Refresh() {
     if (this.isInit || this.request) {
@@ -57,7 +69,7 @@ export class FilesViewComponent implements OnInit, AfterViewInit {
     );
   }
   isDisabled() {
-    return this.request ;
+    return this.request;
   }
   onRemove(name: string) {
     if (this.isDisabled()) {
@@ -112,12 +124,9 @@ export class FilesViewComponent implements OnInit, AfterViewInit {
   }
   @ViewChild("btnClipboard")
   private btnClipboard: ElementRef
-  @ViewChild("inputClipboard")
-  private inputClipboard: ElementRef
   onCopy(name: string) {
-    this.inputClipboard.nativeElement.value = "assets/" + name;
+    this.btnClipboard.nativeElement.setAttribute("data-clipboard-text","assets/" + name);
     this.btnClipboard.nativeElement.click();
-    this.toasterService.pop('success', '', this.xi18n.get("copied"));
   }
   onRename(name: string) {
     if (this.isDisabled()) {
