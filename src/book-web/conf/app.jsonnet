@@ -1,7 +1,6 @@
 {
     // 檔案夾定義
-    //FileRoot:"fileroot",
-    FileRoot:"/home/king/project/book-web-data",
+    FileRoot:"fileroot",
     // 管理員定義
     Root:{
         // 登入 用戶名
