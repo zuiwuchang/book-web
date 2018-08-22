@@ -33,7 +33,7 @@ func (m Git) Execute(command, extend string) (result string, e error) {
 	case "pull":
 		result, e = m.execute("git", "pull", "origin", "master")
 	case "log":
-		result, e = m.execute("git", "log")
+		result, e = m.execute("git", "log", "-10")
 	default:
 		e = fmt.Errorf("not support %v", command)
 	}
