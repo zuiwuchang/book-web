@@ -39,6 +39,8 @@ import { BookDialogReidComponent } from './app/books/book-dialog-reid/book-dialo
 import { NotFoundComponent } from './app/not-found/not-found.component';
 import { GitComponent } from './app/git/git.component';
 import { ValidatorGitMessageDirective } from './app/git/validator-git-message.directive';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { ValidatorGitMessageDirective } from './app/git/validator-git-message.di
 
     SharedModule, MarkdownModule,
 
-    AppRoutingModule
+    AppRoutingModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
     BookDialogNewComponent, BookDialogRenameComponent, BookDialogReidComponent
