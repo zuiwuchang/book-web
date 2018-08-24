@@ -3,6 +3,7 @@ package controllers
 import (
 	"book-web/app/module/db/data"
 	"book-web/app/module/db/manipulator"
+	"book-web/app/module/protocol"
 	"book-web/app/module/utils"
 	"fmt"
 	"github.com/revel/revel"
@@ -38,17 +39,29 @@ func (c Book) Chapter() revel.Result {
 	var params struct {
 		ID      string
 		Chapter string
+		MD5     string
 	}
 	e := c.Params.BindJSON(&params)
 	if e != nil {
 		return c.RenderError(e)
 	}
 	var mBook manipulator.Book
-	str, e := mBook.Chapter(params.ID, params.Chapter)
+
+	// 返回 章節
+	var hit bool
+	var md5, str string
+	hit, md5, str, e = mBook.Chapter(params.ID, params.Chapter, params.MD5)
 	if e != nil {
 		return c.RenderError(e)
+	} else if hit {
+		return c.RenderJSON(&protocol.Item{
+			Hit: true,
+		})
 	}
-	return c.RenderJSON(str)
+	return c.RenderJSON(&protocol.Item{
+		Val: str,
+		MD5: md5,
+	})
 }
 
 // Assets 返回 靜態內容

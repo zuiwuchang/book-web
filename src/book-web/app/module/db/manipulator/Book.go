@@ -178,7 +178,44 @@ func (Book) save(book *data.Book) (e error) {
 }
 
 // Chapter 返回章節 內容
-func (Book) Chapter(id, chapter string) (str string, e error) {
+func (Book) Chapter(id, chapter, md5 string) (hit bool, cacheMD5, str string, e error) {
+	// 驗證 參數
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	chapter, e = data.CheckBookChapterID(chapter)
+	if e != nil {
+		return
+	}
+	md5 = strings.TrimSpace(md5)
+	// 讀取 cache md5
+	filepath := BookChapterMD5(id, chapter)
+	var b []byte
+	b, _ = ioutil.ReadFile(filepath)
+	cacheMD5 = utils.BytesToString(b)
+	if utils.IsMD5Lower(md5) && utils.IsMD5Lower(cacheMD5) && md5 == cacheMD5 {
+		// 命中 緩存 直接 返回
+		hit = true
+		return
+	}
+
+	// 未命中 緩存 讀取 數據
+	filepath = BookChapter(id, chapter)
+	b, e = ioutil.ReadFile(filepath)
+	if e != nil {
+		return
+	}
+	str = utils.BytesToString(b)
+	return
+}
+
+// ChapterHit 返回章節 內容 是否命中緩存
+func (Book) ChapterHit(id, chapter, md5 string) (yes bool, cacheMD5 string, e error) {
+	md5 = strings.TrimSpace(md5)
+	if md5 == "" {
+		return
+	}
 	// 驗證 參數
 	id, e = data.CheckBookID(id)
 	if e != nil {
@@ -189,12 +226,15 @@ func (Book) Chapter(id, chapter string) (str string, e error) {
 		return
 	}
 
-	filepath := BookChapter(id, chapter)
-	b, e := ioutil.ReadFile(filepath)
-	if e != nil {
+	filepath := BookChapterMD5(id, chapter)
+	var er error
+	var b []byte
+	b, er = ioutil.ReadFile(filepath)
+	if er != nil {
 		return
 	}
-	str = string(b)
+	hitMD5 := utils.BytesToString(b)
+	yes = hitMD5 == md5
 	return
 }
 
@@ -309,10 +349,22 @@ func (Book) UpdateChapter(id, chapter, val string) (e error) {
 	}
 
 	filepath := BookChapter(id, chapter)
-	e = ioutil.WriteFile(filepath, []byte(val), fileperm.File)
+	e = ioutil.WriteFile(filepath, utils.StringToBytes(val), fileperm.File)
 	if e != nil {
 		return
 	}
+
+	// 更新 緩存
+	filepath = BookChapterMD5(id, chapter)
+	var md5 string
+	var en error
+	md5, en = utils.MD5(val)
+	if en != nil {
+		ioutil.WriteFile(filepath, utils.StringToBytes(""), fileperm.File)
+	} else {
+		ioutil.WriteFile(filepath, utils.StringToBytes(md5), fileperm.File)
+	}
+
 	return
 }
 

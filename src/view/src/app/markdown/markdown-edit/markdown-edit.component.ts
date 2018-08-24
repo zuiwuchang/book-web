@@ -4,6 +4,7 @@ import { Utils } from '../../core/utils';
 import { Book } from '../../core/protocol/book';
 import { Title } from "@angular/platform-browser";
 import { Markdown2Component } from '../markdown2/markdown2.component';
+import { CacheService } from '../../core/cache/cache.service';
 @Component({
   selector: 'app-markdown-edit',
   templateUrl: './markdown-edit.component.html',
@@ -25,7 +26,8 @@ export class MarkdownEditComponent implements OnInit {
   markdown = '';
   bookInfo: Book = null;
   constructor(private title: Title,
-    private http: HttpClient,
+    private httpClient: HttpClient,
+    private cacheService:CacheService,
   ) { }
   ngOnInit() {
   }
@@ -50,7 +52,7 @@ export class MarkdownEditComponent implements OnInit {
     return this.titleRef.nativeElement.innerText;
   }
   private initBook() {
-    this.http.post("/book/view", {
+    this.httpClient.post("/book/view", {
       ID: this._book,
     }).subscribe(
       (book: Book) => {
@@ -70,10 +72,7 @@ export class MarkdownEditComponent implements OnInit {
     )
   }
   private initChapter() {
-    this.http.post("/book/chapter", {
-      ID: this._book,
-      Chapter: this._chapter
-    }).subscribe(
+    this.cacheService.request(this._book, this._chapter).then(
       (text: string) => {
         this.chapterTitle = '';
         if (this._chapter == "0") {
