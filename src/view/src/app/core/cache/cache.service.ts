@@ -1,13 +1,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Item } from './item';
+const DBName = "cache";
+const StoreName = "chapters";
 @Injectable({
   providedIn: 'root'
 })
 export class CacheService {
   private match = /^[0-9a-f]{32}$/
+  private db: any = null;
   constructor(private httpClient: HttpClient,
-  ) { }
+  ) {
+    try {
+      const result = window.indexedDB.open(DBName);
+      result.onupgradeneeded = (evt) => {
+        const db = result.result;
+        // 檢索 倉庫是否存在
+        if (db.objectStoreNames.contains(StoreName)) {
+          // 已經 存在 不用 創建
+          return;
+        }
+
+        // 創建倉庫
+        const objectStore = db.createObjectStore(
+          StoreName,
+          {
+            keyPath: 'id',
+          }
+        );
+      };
+      result.onsuccess = (evt) => {
+        this.db = result.result;
+      };
+      result.onerror = (evt) => {
+        console.warn("indexedDB.open error")
+      };
+    } catch (e) {
+      console.warn(e);
+    }
+
+  }
 
   request(book: string, chapter: string): Promise<string> {
     return new Promise<string>((resolve, reject) => {
