@@ -87,7 +87,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/git/git.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
@@ -210,12 +210,20 @@
           <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="d842e9c804cadff22e33f164069f5f34d91f7998" datatype="html">
+        <source>Cached Tooltip</source>
+        <target>緩存管理</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cd5d318e16c3fdc48a3b4a4a2ca40982439f3ed0" datatype="html">
         <source>Login Tooltip</source>
         <target>登入</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
@@ -223,7 +231,7 @@
         <target>更多功能</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
@@ -231,7 +239,7 @@
         <target>章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
@@ -239,7 +247,7 @@
         <target>段落</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
@@ -666,6 +674,10 @@
           <context context-type="sourcefile">app/app/books/books.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d81f00c85d3b507f3e3d78bfc617a2c66e028391" datatype="html">
         <source>New</source>
@@ -752,7 +764,79 @@
         <target>無效的提交信息</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/git/git.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="186c97dbf47eac684b1d2734b54e16c83fd04d56" datatype="html">
+        <source>Cache Management</source>
+        <target>緩存管理</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5a4413e2fd1fd4408bddcea82ec02310941e453c" datatype="html">
+        <source>Save Success,Effective after refresh page</source>
+        <target>設置已保存，刷新頁面後生效。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d2ee9c5555b5911861cf4546fdcfc7bf27014ca8" datatype="html">
+        <source>not supported indexedDB,unable to enable cache.</source>
+        <target>瀏覽器不支持 indexedDB ，無法啓用緩存。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c3231353c412e4e87096ed5e06cb6e313bf2d9f6" datatype="html">
+        <source>Cache Setting</source>
+        <target>緩存設置</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e9ffc87026c5603e8f15892f3d72dc9e682af012" datatype="html">
+        <source>Enable cache</source>
+        <target>啓用緩存</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="35313b7e26d0f7d11624b64c248927fee750fae5" datatype="html">
+        <source>Disable cache</source>
+        <target>禁用緩存</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="85e70bd9d8542cb9aa628c3800a3dc09d461138b" datatype="html">
+        <source>please input cache capacity</source>
+        <target>請輸入緩存容量</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
+        <source>Save</source>
+        <target>保存</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7edc2bd8abea4df4c5025e5f4832e7e03ecad592" datatype="html">
+        <source>please input search key</source>
+        <target>請輸入key匹配正則</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0d438fadfdcaab681912629a26e1e011374f9971" datatype="html">

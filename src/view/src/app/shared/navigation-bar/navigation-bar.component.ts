@@ -11,6 +11,7 @@ import { Session } from '../../core/session/session';
   styleUrls: ['./navigation-bar.component.css']
 })
 export class NavigationBarComponent implements OnInit, OnDestroy {
+  isSupported:boolean = true;
   // 登入 用戶
   session: Session = null;
   private subscription: Subscription = null;
@@ -18,6 +19,9 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     private sessionService: SessionService,
     private dialog: MatDialog,
   ) {
+    if(!window.indexedDB){
+      this.isSupported = false;
+    }
   }
   ngOnInit() {
     // 訂閱 用戶 狀態

@@ -9,6 +9,7 @@ import { BooksComponent } from './app/books/books.component';
 import { NotFoundComponent } from './app/not-found/not-found.component';
 import { LoginGuard } from './core/guard/login.guard';
 import { GitComponent } from './app/git/git.component';
+import { CachedComponent } from './app/cached/cached.component';
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'cached',
+    component: CachedComponent
   },
   {
     path: 'view/:book/:chapter',

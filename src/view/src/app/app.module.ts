@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { SharedModule } from './shared/shared.module';
 import { MarkdownModule } from './markdown/markdown.module';
@@ -41,6 +43,7 @@ import { GitComponent } from './app/git/git.component';
 import { ValidatorGitMessageDirective } from './app/git/validator-git-message.directive';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CachedComponent } from './app/cached/cached.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,8 @@ import { environment } from '../environments/environment';
     ValidatorsBookFindDirective,
 
     BookDialogNewComponent, BookDialogRenameComponent,
-    BookDialogReidComponent, NotFoundComponent, GitComponent, ValidatorGitMessageDirective
+    BookDialogReidComponent, NotFoundComponent, GitComponent,
+    ValidatorGitMessageDirective, CachedComponent
   ],
   imports: [
     BrowserModule, RouterModule, BrowserAnimationsModule,
@@ -61,7 +65,8 @@ import { environment } from '../environments/environment';
 
     MatListModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatButtonModule,
     MatTooltipModule, MatProgressSpinnerModule, MatMenuModule, MatFormFieldModule,
-    MatInputModule, MatProgressBarModule, MatSelectModule,
+    MatInputModule, MatProgressBarModule, MatSelectModule, MatExpansionModule,
+    MatSlideToggleModule,
 
     ToasterModule.forRoot(),
     SortablejsModule.forRoot({ animation: 150 }),

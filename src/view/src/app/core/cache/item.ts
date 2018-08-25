@@ -5,4 +5,6 @@ export class Item {
     Val: string
     // 當 緩存 失效時 返回的 新增的 md5
     MD5: string
+
+    ID?:string
 }

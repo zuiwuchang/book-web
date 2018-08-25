@@ -24,7 +24,7 @@
       </button>
     </a>
 
-    <span style="flex: 1 1 auto;"></span>
+    <span class="fill-flex"></span>
     <div [appShow]="isPageView()">
       <a [routerLink]="['/edit',getBookID(),getChapterID()]">
         <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Edit Tooltip">
@@ -62,6 +62,12 @@
         </a>
       </mat-menu>
     </div>
+
+    <a routerLink="/cached" *ngIf="isSupported">
+      <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Cached Tooltip">
+        <mat-icon>cached</mat-icon>
+      </button>
+    </a>
     <div [appHide]="session">
       <button (click)="onLogin()" class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Login Tooltip">
         <mat-icon>input</mat-icon>
