@@ -676,7 +676,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/cached/cached.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d81f00c85d3b507f3e3d78bfc617a2c66e028391" datatype="html">
@@ -831,12 +831,32 @@
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="99ee4faa69cd2ea8e3678c1f557c0ff1f05aae46" datatype="html">
+        <source>Clear</source>
+        <target>清空緩存</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7edc2bd8abea4df4c5025e5f4832e7e03ecad592" datatype="html">
         <source>please input search key</source>
         <target>請輸入key匹配正則</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/cached/cached.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target>刪除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app/cached/cached.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0d438fadfdcaab681912629a26e1e011374f9971" datatype="html">
@@ -901,14 +921,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
           <context context-type="linenumber">29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
-        <source>Delete</source>
-        <target>刪除</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/shared/dialog-files/files-view/files-view.component.html</context>
-          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d2225b3e00af653ad30e16f0f5ede3a42ffc206b" datatype="html">

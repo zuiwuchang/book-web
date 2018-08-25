@@ -16,7 +16,7 @@ export class CachedComponent implements OnInit {
   cache: Cache = new Cache();
   xi18n: Xi18n = new Xi18n();
   key: string = "";
-  search: boolean = false;
+  request: boolean = false;
   items: Array<CacheItem> = null;
   constructor(private cacheService: CacheService,
     private toasterService: ToasterService,
@@ -46,7 +46,7 @@ export class CachedComponent implements OnInit {
     this.toasterService.pop('success', '', this.xi18n.get("save.success"));
   }
   onSearch() {
-    if (this.search) {
+    if (this.request) {
       console.log("wait result,ignore search");
       return;
     }
@@ -59,14 +59,19 @@ export class CachedComponent implements OnInit {
       match = new RegExp(key);
     }
 
-    this.search = true;
+    this.request = true;
     this.cacheService.getCaches(match).then(
       (arrs: Array<CacheItem>) => {
-        this.search = false;
+        this.request = false;
+        if(arrs && arrs.length!=0){
+          arrs = arrs.sort(function(l:CacheItem,r:CacheItem):number{
+            return r.Size - l.Size;
+          });
+        }
         this.items = arrs;
       },
       (e) => {
-        this.search = false;
+        this.request = false;
         this.toasterService.pop('error', "", e);
       }
     )
@@ -81,4 +86,31 @@ export class CachedComponent implements OnInit {
     }
     return n + " b";
   }
+  onDelete(id: string) {
+    this.cacheService.deleteByID(id);
+    for (let i = 0; i < this.items.length; i++) {
+      if (id == this.items[i].ID) {
+        this.items.splice(i, 1);
+        break;
+      }
+    }
+  }
+  onClearDB(){
+    if (this.request) {
+      console.log("wait result,ignore search");
+      return;
+    }
+    this.request = true;
+    this.cacheService.clearStore().then(
+      ()=>{
+        this.items = null;
+        this.request = false;
+      },
+      (e)=>{
+        this.request = false;
+        this.toasterService.pop('error', "", e);
+      },
+    )
+  }
+  
 }

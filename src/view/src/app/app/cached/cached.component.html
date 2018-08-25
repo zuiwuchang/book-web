@@ -34,17 +34,19 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
 
+    <button class="no-outline item" [disabled]="request" mat-button (click)="onClearDB()" i18n>Clear</button>
     <div class="search">
       <mat-form-field class="fill-flex item">
-        <input matInput [disabled]="search" i18n-placeholder placeholder="please input search key" [(ngModel)]="key">
+        <input matInput [disabled]="request" i18n-placeholder placeholder="please input search key" [(ngModel)]="key">
       </mat-form-field>
-      <button class="no-outline item" [disabled]="search" mat-button (click)="onSearch()" i18n>Search</button>
+      <button class="no-outline item" [disabled]="request" mat-button (click)="onSearch()" i18n>Search</button>
     </div>
     <mat-list>
       <mat-list-item *ngFor="let item of items;">
         <p matLine>{{item.ID}}</p>
         <p matLine>{{item.MD5}}</p>
         <p matLine>{{getSize(item.Size)}}</p>
+        <button type="button" class="no-outline item" [disabled]="request" mat-button (click)="onDelete(item.ID)" i18n>Delete</button>
       </mat-list-item>
     </mat-list>
   </mat-expansion-panel>

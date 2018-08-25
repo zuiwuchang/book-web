@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Item } from './item';
 import { Subject, Subscription } from 'rxjs';
 import { Cache } from './cache';
-export class CacheItem{
-  ID:string
-  MD5:string
-  Size:number
+import { resource } from 'selenium-webdriver/http';
+export class CacheItem {
+  ID: string
+  MD5: string
+  Size: number
 }
 class Element {
   Next: Element = null;
@@ -72,10 +73,32 @@ export class CacheService {
         );
       };
       result.onsuccess = (evt) => {
-        this.db = result.result;
-        this.isInit = true;
-        console.log("cache.capacity :", this.cache.capacity);
-        this.subject.next(true);
+        const db = result.result;
+        // this.isInit = true;
+        // console.log("cache.capacity :", this.cache.capacity);
+        // this.subject.next(true);
+        try {
+          const objectStore = db.transaction(StoreName).objectStore(StoreName);
+          let rs = new Array<CacheItem>();
+          objectStore.openCursor().onsuccess = (evt) => {
+            const cursor = evt.target.result;
+            if (cursor) {
+              const id = cursor.value.ID;
+              this.unsafeSet(id);
+              cursor.continue();
+            } else {
+              console.log("cache.capacity :", this.cap);
+              console.log("cache.len :", this.len);
+              this.db = db;
+              this.isInit = true;
+              this.subject.next(true);
+            }
+          }
+        } catch (e) {
+          console.error(e);
+          this.isInit = true;
+          this.subject.next(true);
+        }
       };
       result.onerror = (evt) => {
         console.warn("indexedDB.open error");
@@ -422,5 +445,39 @@ export class CacheService {
         reject(e);
       }
     });
+  }
+  deleteByID(id: string) {
+    const find = this.keys[id];
+    if (find) {
+      this.unsafeDelete(find);
+    }
+  }
+  // 清空 緩存
+  clearStore(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      if (!this.db) {
+        resolve();
+        return
+      }
+      try {
+        const request = this.db.transaction([StoreName], 'readwrite').objectStore(StoreName).clear();
+        request.onsuccess = (evt) => {
+          this.unsafeReset();
+          resolve();
+        };
+        request.onerror = (evt) => {
+          reject(request.error);
+        };
+      } catch (e) {
+        console.error(e);
+        reject(e);
+      }
+    });
+  }
+  private unsafeReset() {
+    this.keys = {};
+    this.len = 0;
+    this.front = null;
+    this.back = null;
   }
 }
