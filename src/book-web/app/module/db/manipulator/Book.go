@@ -190,23 +190,33 @@ func (Book) Chapter(id, chapter, md5 string) (hit bool, cacheMD5, str string, e 
 	}
 	md5 = strings.TrimSpace(md5)
 	// 讀取 cache md5
-	filepath := BookChapterMD5(id, chapter)
+	md5Filepath := BookChapterMD5(id, chapter)
 	var b []byte
-	b, _ = ioutil.ReadFile(filepath)
+	var md5Err error
+	b, md5Err = ioutil.ReadFile(md5Filepath)
 	cacheMD5 = utils.BytesToString(b)
-	if utils.IsMD5Lower(md5) && utils.IsMD5Lower(cacheMD5) && md5 == cacheMD5 {
+	if md5Err == nil && utils.IsMD5Lower(md5) && utils.IsMD5Lower(cacheMD5) && md5 == cacheMD5 {
 		// 命中 緩存 直接 返回
 		hit = true
 		return
 	}
 
 	// 未命中 緩存 讀取 數據
-	filepath = BookChapter(id, chapter)
+	filepath := BookChapter(id, chapter)
 	b, e = ioutil.ReadFile(filepath)
 	if e != nil {
 		return
 	}
 	str = utils.BytesToString(b)
+
+	// 不 存在 md5 緩存 建立
+	if os.IsNotExist(md5Err) ||
+		(md5Err == nil && !utils.IsMD5Lower(cacheMD5)) {
+		cacheMD5, md5Err = utils.MD5Byte(b)
+		if md5Err == nil {
+			ioutil.WriteFile(md5Filepath, utils.StringToBytes(cacheMD5), fileperm.File)
+		}
+	}
 	return
 }
 
