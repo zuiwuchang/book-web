@@ -289,11 +289,12 @@ func (c Book) NewChapter() revel.Result {
 	}
 
 	var mBook manipulator.Book
-	e = mBook.NewChapter(params.ID, params.Chapter, params.Name)
+	var chapterID string
+	chapterID, e = mBook.NewChapter(params.ID, params.Chapter, params.Name)
 	if e != nil {
 		return c.RenderError(e)
 	}
-	return c.RenderJSON(nil)
+	return c.RenderJSON(chapterID)
 }
 
 // ModifyChapter 修改章節

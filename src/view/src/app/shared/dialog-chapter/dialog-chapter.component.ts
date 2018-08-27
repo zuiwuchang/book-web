@@ -4,6 +4,7 @@ export interface DialogData {
   id: string;
   name: string;
   title: string;
+  isNew:boolean;
 }
 
 @Component({

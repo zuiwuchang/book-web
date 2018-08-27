@@ -415,6 +415,7 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
           title: this.xi18n.get("new.title"),
           id: "",
           name: "",
+          isNew: true,
         },
       },
     )
@@ -436,11 +437,11 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
       Chapter: id,
       Name: name,
     }).subscribe(
-      () => {
+      (chapterID: string) => {
         this.isRequest = false;
         this.toasterService.pop('success', '', 'Success');
         this.book.Chapter.push({
-          ID: id,
+          ID: chapterID,
           Name: name,
         })
       },

@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { NG_VALIDATORS, AbstractControl } from '@angular/forms'
 @Directive({
   selector: '[appValidatorsId]',
@@ -7,10 +7,16 @@ import { NG_VALIDATORS, AbstractControl } from '@angular/forms'
 export class ValidatorsIdDirective {
   match = new RegExp("^[a-zA-Z][a-zA-Z0-9\-]*$")
   constructor() { }
+  @Input("appValidatorsId")
+  allowEmpty: boolean = false; // 是否允許爲空
   validate(control: AbstractControl): { [key: string]: any } {
     let val = control.value as string;
     if (val == null || val == "" || val == undefined) {
-      return { 'errID': { value: control.value } }
+      if(this.allowEmpty){
+        return null;
+      }else{
+        return { 'errID': { value: control.value } }
+      }
     } else if (!this.match.test(val)) {
       return { 'errID': { value: control.value } }
     }

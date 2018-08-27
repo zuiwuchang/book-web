@@ -469,7 +469,7 @@ func (m Book) RemoveChapter(id, chapter string) (e error) {
 }
 
 // NewChapter 新建 章節
-func (m Book) NewChapter(id, chapter, name string) (e error) {
+func (m Book) NewChapter(id, chapter, name string) (chapterID string, e error) {
 	// 驗證 參數
 	id, e = data.CheckBookID(id)
 	if e != nil {
@@ -479,9 +479,15 @@ func (m Book) NewChapter(id, chapter, name string) (e error) {
 		e = fmt.Errorf("can't remove root chapter")
 		return
 	}
-	chapter, e = data.CheckBookChapterID(chapter)
-	if e != nil {
-		return
+	name = strings.TrimSpace(name)
+	chapter = strings.TrimSpace(chapter)
+	if chapter == "" {
+		chapterID = utils.NewIDByName(name)
+	} else {
+		chapterID, e = data.CheckBookChapterID(chapter)
+		if e != nil {
+			return
+		}
 	}
 
 	// 讀取 定義
@@ -490,15 +496,28 @@ func (m Book) NewChapter(id, chapter, name string) (e error) {
 	if book.Chapter == nil {
 		book.Chapter = make([]data.BookChapter, 0, 1)
 	} else {
-		for i := 0; i < len(book.Chapter); i++ {
-			if book.Chapter[i].ID == chapter {
-				e = fmt.Errorf("chapter[%s] already exists", chapter)
-				return
+		if chapter == "" {
+			keys := make(map[string]bool)
+			for i := 0; i < len(book.Chapter); i++ {
+				keys[book.Chapter[i].ID] = true
+			}
+			id := chapterID
+			num := 0
+			for keys[chapterID] {
+				num++
+				chapterID = fmt.Sprintf("%s-%v", id, num)
+			}
+		} else {
+			for i := 0; i < len(book.Chapter); i++ {
+				if book.Chapter[i].ID == chapterID {
+					e = fmt.Errorf("chapter[%s] already exists", chapterID)
+					return
+				}
 			}
 		}
 	}
 	book.Chapter = append(book.Chapter, data.BookChapter{
-		ID:   chapter,
+		ID:   chapterID,
 		Name: name,
 	})
 	// 儲存定義
@@ -507,7 +526,7 @@ func (m Book) NewChapter(id, chapter, name string) (e error) {
 		return
 	}
 	// 創建 初始檔案
-	filename := BookChapterDirectory(id, chapter)
+	filename := BookChapterDirectory(id, chapterID)
 	os.MkdirAll(filename, fileperm.Directory)
 	os.MkdirAll(filename+"/assets", fileperm.Directory)
 	ioutil.WriteFile(filename+"/README.md", []byte(fmt.Sprintf(`# %v`, name)), fileperm.File)
