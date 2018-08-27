@@ -1,6 +1,6 @@
-const version = 'v0.1.0-3-gb595056 '
-const commit = 'b59505633fe0e0167163ff2760d5fc9a6cf50d6c'
-const date = '2018-08-27 20:02:57'
+const version = 'v0.1.1'
+const commit = 'e1801368198783853fa3b9e4fabd500dfcecaf29'
+const date = '2018-08-27 20:48:30'
 export function Version() {
     return {
         Version: version,

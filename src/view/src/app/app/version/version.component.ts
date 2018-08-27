@@ -1,5 +1,5 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-import { Version as viewVersion } from '../version';
+import { Version as viewVersion } from './version';
 import { Version as SrvVersion } from '../../core/protocol/version';
 import { HttpClient } from '@angular/common/http';
 @Component({

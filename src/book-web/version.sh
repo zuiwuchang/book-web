@@ -43,9 +43,7 @@ CreateGoVersion(){
 	# 返回 git 信息 時間
 	tag=`git describe`
 	if [ "$tag" == '' ];then
-		tag="[unknown tag] "
-	else
-		tag="$tag "
+		tag="[unknown tag]"
 	fi
 
 	commit=`git rev-parse HEAD`

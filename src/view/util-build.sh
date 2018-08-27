@@ -41,7 +41,7 @@ if [ ! -d "$root" ];then
 fi
 
 # 更新 版本信息
-version.sh
+./version.sh
 ok=$?
 if [ "$ok" != 0 ] ;then
 	exit $ok

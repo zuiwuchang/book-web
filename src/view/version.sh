@@ -41,9 +41,7 @@ CreateNGVersion(){
 	# 返回 git 信息 時間
 	tag=`git describe`
 	if [ "$tag" == '' ];then
-		tag="[unknown tag] "
-	else
-		tag="$tag "
+		tag="[unknown tag]"
 	fi
 
 	commit=`git rev-parse HEAD`
@@ -72,4 +70,4 @@ CreateNGVersion(){
 }
 
 # 自動 創建 version.ts 代碼
-CreateNGVersion src/app/app/version.ts
+CreateNGVersion src/app/app/version/version.ts
