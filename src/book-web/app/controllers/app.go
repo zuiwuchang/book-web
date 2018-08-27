@@ -4,8 +4,10 @@ import (
 	"book-web/app/module/configure"
 	"book-web/app/module/db/manipulator"
 	"book-web/app/module/protocol"
+	"fmt"
 	"github.com/revel/revel"
 	"net/http"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -17,10 +19,11 @@ type App struct {
 
 // Version .
 func (c App) Version() revel.Result {
-	return c.RenderJSON(protocol.Version{
-		Version: Version,
-		Commit:  Commit,
-		Date:    Date,
+	return c.RenderJSON(&protocol.Version{
+		Platform: fmt.Sprintf("%s %s %s", runtime.GOOS, runtime.GOARCH, runtime.Version()),
+		Version:  Version,
+		Commit:   Commit,
+		Date:     Date,
 	})
 }
 

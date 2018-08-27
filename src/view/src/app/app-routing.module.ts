@@ -23,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'version',
-    component: VersionComponent
+    component: VersionComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: 'about',

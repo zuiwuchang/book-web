@@ -18,18 +18,12 @@
       </button>
     </a>
 
-    <a routerLink="/version">
-      <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Version Tooltip">
-        <mat-icon>bug_report</mat-icon>
-      </button>
-    </a>
-
     <a routerLink="/about">
       <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
         <mat-icon>info</mat-icon>
       </button>
     </a>
-    
+
     <span class="fill-flex"></span>
     <div [appShow]="isPageView()">
       <a [routerLink]="['/edit',getBookID(),getChapterID()]">
@@ -64,6 +58,12 @@
           <button class="menu-btn" mat-menu-item>
             <mat-icon fontSet="fontawesome-fab" fontIcon="fa-git-square"></mat-icon>
             <ng-container i18n>Git Command</ng-container>
+          </button>
+        </a>
+        <a routerLink="/version">
+          <button class="menu-btn" mat-menu-item>
+            <mat-icon>bug_report</mat-icon>
+            <ng-container i18n>Version</ng-container>
           </button>
         </a>
       </mat-menu>

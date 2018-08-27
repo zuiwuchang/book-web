@@ -107,7 +107,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-upload/dialog-upload.component.html</context>
@@ -210,12 +210,20 @@
           <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8fe73a4787b8068b2ba61f54ab7e0f9af2ea1fc9" datatype="html">
+        <source>Version</source>
+        <target>版本</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="d842e9c804cadff22e33f164069f5f34d91f7998" datatype="html">
         <source>Cached Tooltip</source>
         <target>緩存管理</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cd5d318e16c3fdc48a3b4a4a2ca40982439f3ed0" datatype="html">
@@ -223,7 +231,7 @@
         <target>登入</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
@@ -231,7 +239,7 @@
         <target>更多功能</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
@@ -239,7 +247,7 @@
         <target>章節</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
@@ -247,7 +255,7 @@
         <target>段落</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
@@ -299,7 +307,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">15</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app/books/book-dialog-new/book-dialog-new.component.html</context>
@@ -331,7 +339,7 @@
         <target>無效的名稱</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7315b67493eecb05f4c0b291a71cca9b1bc46248" datatype="html">
@@ -339,7 +347,7 @@
         <target>請輸入章節ID</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ce8cb999c1da39cf2c02be0204b94d2aa63d9d7e" datatype="html">
@@ -347,7 +355,7 @@
         <target>ID只能是英文字母或數字以及-的組合，且必須以英文字母開始。</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/shared/dialog-chapter/dialog-chapter.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="18c85b57c80e4f5d986ff3ab19ff52790aaa0037" datatype="html">

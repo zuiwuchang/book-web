@@ -19,6 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatCardModule} from '@angular/material/card';
 
 import { SharedModule } from './shared/shared.module';
 import { MarkdownModule } from './markdown/markdown.module';
@@ -67,7 +68,7 @@ import { VersionComponent } from './app/version/version.component';
     MatListModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatButtonModule,
     MatTooltipModule, MatProgressSpinnerModule, MatMenuModule, MatFormFieldModule,
     MatInputModule, MatProgressBarModule, MatSelectModule, MatExpansionModule,
-    MatSlideToggleModule,
+    MatSlideToggleModule,MatCardModule,
 
     ToasterModule.forRoot(),
     SortablejsModule.forRoot({ animation: 150 }),
