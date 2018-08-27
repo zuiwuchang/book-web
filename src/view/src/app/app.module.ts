@@ -44,6 +44,7 @@ import { ValidatorGitMessageDirective } from './app/git/validator-git-message.di
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CachedComponent } from './app/cached/cached.component';
+import { VersionComponent } from './app/version/version.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { CachedComponent } from './app/cached/cached.component';
 
     BookDialogNewComponent, BookDialogRenameComponent,
     BookDialogReidComponent, NotFoundComponent, GitComponent,
-    ValidatorGitMessageDirective, CachedComponent
+    ValidatorGitMessageDirective, CachedComponent, VersionComponent
   ],
   imports: [
     BrowserModule, RouterModule, BrowserAnimationsModule,

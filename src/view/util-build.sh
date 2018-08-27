@@ -40,6 +40,13 @@ if [ ! -d "$root" ];then
 	fi
 fi
 
+# 更新 版本信息
+version.sh
+ok=$?
+if [ "$ok" != 0 ] ;then
+	exit $ok
+fi
+
 # 發佈 項目
 ng build --output-path $root/$locale --prod --base-href /angular/$locale/ --aot --i18n-locale $locale --i18nFile src/locale/$locale.xlf --i18nFormat xlf
 ok=$?

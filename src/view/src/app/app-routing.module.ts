@@ -10,6 +10,7 @@ import { NotFoundComponent } from './app/not-found/not-found.component';
 import { LoginGuard } from './core/guard/login.guard';
 import { GitComponent } from './app/git/git.component';
 import { CachedComponent } from './app/cached/cached.component';
+import { VersionComponent } from './app/version/version.component';
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'license',
     component: LicenseComponent
+  },
+  {
+    path: 'version',
+    component: VersionComponent
   },
   {
     path: 'about',

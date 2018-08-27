@@ -18,12 +18,18 @@
       </button>
     </a>
 
+    <a routerLink="/version">
+      <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Version Tooltip">
+        <mat-icon>bug_report</mat-icon>
+      </button>
+    </a>
+
     <a routerLink="/about">
       <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
         <mat-icon>info</mat-icon>
       </button>
     </a>
-
+    
     <span class="fill-flex"></span>
     <div [appShow]="isPageView()">
       <a [routerLink]="['/edit',getBookID(),getChapterID()]">

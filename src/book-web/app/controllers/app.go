@@ -3,6 +3,7 @@ package controllers
 import (
 	"book-web/app/module/configure"
 	"book-web/app/module/db/manipulator"
+	"book-web/app/module/protocol"
 	"github.com/revel/revel"
 	"net/http"
 	"strings"
@@ -12,6 +13,15 @@ import (
 // App .
 type App struct {
 	Controller
+}
+
+// Version .
+func (c App) Version() revel.Result {
+	return c.RenderJSON(protocol.Version{
+		Version: Version,
+		Commit:  Commit,
+		Date:    Date,
+	})
 }
 
 // Index .
