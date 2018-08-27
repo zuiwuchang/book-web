@@ -197,8 +197,6 @@ func (c Book) Upload(book, chapter string) revel.Result {
 		return c.RenderError(e)
 	}
 
-	fmt.Println(dir)
-
 	for _, file := range c.Params.Files["file"] {
 		e = c.createFile(dir, file)
 		if e != nil {
