@@ -12,12 +12,19 @@ book-web 是一個在線的 個人資料整理 web 以書爲單位 每種類型�
 最近使用了下 gitbook 感覺 使用 markdown編寫文檔 比較方便 同時便於 git 保存
 然 gitbook 官網 打開實在太慢 而且 遇到了問題 提問也沒人解答 於是 自己決定開發一個 替代工具 故有此項目 
 
+# 特性
+
+* 以 markdown 編寫 文檔 支持 上傳圖片和附件
+* 所有數據都以 文檔 保存到根目錄下 方便使用git
+* 支持在網頁操作 簡單的 git 指令 commit push ...
+* 對於支持 IndexedDB 的瀏覽器 所有 文檔數據都建立了lru 緩存(可在頁面關閉) 向服務器請求數據時傳入 緩存md5 如果服務器數據未變化則 返回緩存命中 瀏覽器直接以緩存顯示 從而減少數據流量 
+
 # Install
 
 對於 linux-amd64 和 windows-amd64 的用戶 你可以直接下載 編譯好的項目 或者參照Build的說明自行編譯 對於 其它平臺 只能參照 Build 自行編譯
 
 下文以 linux-amd64 進行說明
-1. 下載最新的 最新的 Releases 版本 得到 book-web.tar.gz
+1. 下載 最新的 Releases 版本 得到 book-web.tar.gz
 2. 解壓 mkdir book-web && tar -zxvf book-web.tar.gz -C book-web
 4. 執行 book-web/run.sh 運行項目 *(windows 需要運行 book-web/run.sh)*
 
@@ -76,7 +83,7 @@ book-web/src/book-web/conf/app.jsonnet 是 book-web 項目一些定義 如下
 }
 ```
 
-通常你只需要 需要 設置 FileRoot 指定 編輯文檔的 儲存位置 以及 Root.Name Root.Password 指定 管理員 用戶名 密碼 即可正常工作
+通常你 只需要 設置 FileRoot 指定 編輯文檔的 儲存位置 以及 Root.Name Root.Password 指定 管理員 用戶名 密碼 即可正常工作
 FileRoot 如果不是全路徑 則 檔案會被 保存到 book-web/src/book-web/ + FileRoot
 
 # 檔案儲存
