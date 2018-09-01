@@ -288,6 +288,7 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
       }
     }
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, "MathJax"]);
+    
   }
   private createClipboard(parent, ele) {
     parent.classList.add("code-view");

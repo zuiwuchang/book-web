@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 import { SharedModule } from './shared/shared.module';
 import { MarkdownModule } from './markdown/markdown.module';
@@ -47,6 +47,7 @@ import { environment } from '../environments/environment';
 import { CachedComponent } from './app/cached/cached.component';
 import { VersionComponent } from './app/version/version.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +69,7 @@ import { VersionComponent } from './app/version/version.component';
     MatListModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatButtonModule,
     MatTooltipModule, MatProgressSpinnerModule, MatMenuModule, MatFormFieldModule,
     MatInputModule, MatProgressBarModule, MatSelectModule, MatExpansionModule,
-    MatSlideToggleModule,MatCardModule,
+    MatSlideToggleModule, MatCardModule,
 
     ToasterModule.forRoot(),
     SortablejsModule.forRoot({ animation: 150 }),
@@ -85,4 +86,5 @@ import { VersionComponent } from './app/version/version.component';
   providers: [ToasterService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
