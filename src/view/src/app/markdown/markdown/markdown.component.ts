@@ -115,7 +115,7 @@ export class MarkdownComponent implements OnInit, AfterViewInit, OnDestroy {
     newEle.classList.add("fa-copy");
     newEle.classList.add("clipboard");
     newEle.onclick = () => {
-      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text", ele.innerText)
+      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text", ele.innerText.replace(/ /g," "))
       this.btnClipboard.nativeElement.click();
     }
     ele.appendChild(newEle);
