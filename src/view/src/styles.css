@@ -51,6 +51,9 @@
 }
 .markdown .code-view{
     position: relative;
+    background: #eee;
+    margin-bottom: 10px;
+    padding: 0.5em;
 }
 .markdown .clipboard {
     position: absolute;
