@@ -82,6 +82,32 @@ export class Markdown {
                         }
                         element.attr("src", "/book/assets/" + book + "/" + chapter + "/" + url);
                     });
+                    // 遍歷 code-view 爲 代碼增加 行號
+                    $('pre', liveHtml).each(function () {
+                        const element = $(this).find("code");
+                        element.each(function () {
+                            const code = $(this);
+                            const strs = code.html().trim().split("\n");
+                            let n = strs.length;
+                            for (let i = n - 1; n > -1; n--) {
+                                if (strs[i].trim() == "") {
+                                    n--;
+                                } else {
+                                    break;
+                                }
+                            }
+                            if (n < 1) {
+                                return;
+                            }
+                            const arrs = new Array(n + 2);
+                            arrs[0] = "<ol>";
+                            for (let i = 0; i < n; i++) {
+                                arrs[i + 1] = "<li>" + strs[i] + "</li>";
+                            }
+                            arrs[n + 1] = "</ol>";
+                            code.html(arrs.join(""));
+                        });
+                    });
                     return liveHtml.html();
                 }
             }];

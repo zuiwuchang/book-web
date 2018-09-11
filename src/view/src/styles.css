@@ -52,11 +52,15 @@
     overflow-x: auto;
     padding: 0.5em;
 }
+.markdown pre .txt{
+    color: #a9b7c6;
+    background: #282b2e;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+}
 .markdown .code-view{
     position: relative;
-    background: #eee;
-    margin-bottom: 10px;
-    padding: 0.5em;
 }
 .markdown .clipboard {
     position: absolute;
@@ -83,6 +87,10 @@
 .fill-flex{
     flex: 1 1 auto;
 }
+.code-view ol {
+	margin-bottom: 0px;
+}
+
 
 /* SimpleMDE 高度 */
 @media screen and (max-height: 600px){ 
