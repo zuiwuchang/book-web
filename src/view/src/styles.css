@@ -83,3 +83,61 @@
 .fill-flex{
     flex: 1 1 auto;
 }
+
+/* SimpleMDE 高度 */
+@media screen and (max-height: 600px){ 
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 300px;
+    }
+}
+@media screen and (min-height: 600px) and (max-height: 650px){ 
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 350px;
+    }
+}
+@media screen and (min-height: 650px) and (max-height: 700px){ 
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 400px;
+    }
+}
+@media screen and (min-height: 700px) and (max-height: 750px){ 
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 450px;
+    }
+}
+@media screen and (min-height: 750px) and (max-height: 800px){ 
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 500px;
+    }
+}
+@media screen and (min-height: 800px) and (max-height: 850px){ 
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 550px;
+    }
+}
+@media screen and (min-height: 850px) and (max-height: 900px){ 
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 600px;
+    }
+}
+@media screen and (min-height: 900px){ 
+    .CodeMirror,
+    .CodeMirror-scroll {
+        max-height: 650px;
+    }
+}
+
+.CodeMirror-fullscreen.CodeMirror {
+    max-height: none;
+}
+
+.CodeMirror-fullscreen .CodeMirror-scroll {
+    max-height: none;
+}
