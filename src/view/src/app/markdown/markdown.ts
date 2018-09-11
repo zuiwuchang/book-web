@@ -46,81 +46,51 @@ export class Markdown {
                 },
             }];
         });
-        showdown.extension('targetlink', function () {
+        // 加工 輸出
+        showdown.extension('handle-output', function () {
             const matchABS = /^([a-zA-Z0-9]+)\:\/\//i;
-            return [{
-                type: 'lang',
-                regex: /!?\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)/g,
-                replace: function (wholematch, linkText, url, a, b, title, c, target) {
-                    let result;
-                    if (wholematch[0] == "!") {
-                        if (!matchABS.test(url) && url[0] != "/") {
-                            url = "/book/assets/" + book + "/" + chapter + "/" + url;
-                        }
-                        if (typeof linkText != 'undefined' && linkText !== '' && linkText !== null) {
-                            linkText = linkText.replace(/"/g, '&quot;');
-                            result = '<img src="' + url + '" alt="' + linkText + '" style="max-width:100%;">';
-                        } else {
-                            result = '<img src="' + url + '" style="max-width:100%;">';
-                        }
-                    } else {
-                        let router = 0;
-                        if (!matchABS.test(url) && url[0] != "/") {
-                            if (url.startsWith("assets/")) {
-                                url = "/book/assets/" + book + "/" + chapter + "/" + url;
-                                router = 1;
-                            } else {
-                                url = "view/" + url;
-                                router = 2;
-                            }
-                        }
-
-                        result = '<a href="' + url + '"';
-
-                        if (typeof title != 'undefined' && title !== '' && title !== null) {
-                            title = title.replace(/"/g, '&quot;');
-                            title = showdown.helper.escapeCharacters(title, '*_', false);
-                            result += ' title="' + title + '"';
-                        }
-
-                        if (typeof target != 'undefined' && target !== '' && target !== null) {
-                            switch (router) {
-                                case 1:
-                                    break;
-                                case 2:
-                                    result += ' class="ng-router-a"';
-                                    break;
-                                default:
-                                    result += ' target="_blank"';
-                                    break;
-                            }
-                        }
-
-                        result += '>' + linkText + '</a>';
-                    }
-                    return result;
-                }
-            }];
-        });
-        showdown.extension('bootstrap-tables', function () {
             return [{
                 type: "output",
                 filter: function (html, converter, options) {
-                    // parse the html string
-                    var liveHtml = $('<div></div>').html(html);
+                    // 創建爲 document 元素
+                    const liveHtml = $('<div></div>').html(html);
+                    // 遍歷 table 增加 bootstrap 樣式
                     $('table', liveHtml).each(function () {
-                        var table = $(this);
+                        const table = $(this);
                         // table bootstrap classes
                         table.addClass('table table-striped table-bordered')
                             // make table responsive
                             .wrap('<div class="class table-responsive"></div>');
+                    });
+                    // 遍歷 a 標籤 修改 url 地址
+                    $('a', liveHtml).each(function () {
+                        const element = $(this);
+                        const url = element.attr("href");
+                        if (matchABS.test(url) || url[0] == "/") {
+                            element.attr("target", "_blank");
+                            return;
+                        }
+                        element.addClass("ng-router-a").attr("href", "view/" + url);
+                    });
+                    // 遍歷 img 標籤 修改 url 地址
+                    $('img', liveHtml).each(function () {
+                        const element = $(this);
+                        element.addClass("max-fill-width");
+                        const url = element.attr("src");
+                        if (matchABS.test(url) || url[0] == "/") {
+                            return;
+                        }
+                        element.attr("src", "/book/assets/" + book + "/" + chapter + "/" + url);
                     });
                     return liveHtml.html();
                 }
             }];
         });
         const converter = new showdown.Converter({
-            extensions: ['custom-header-id', 'targetlink', 'bootstrap-tables'],
+            extensions: [
+                'custom-header-id',
+                'handle-output',
+            ],
             parseImgDimensions: true,
             tables: true,
         });
