@@ -33,9 +33,11 @@ func main(){
 #info=5
 
 
-func main(){
-	fmt.Println("yes")
-}
+<app-navigation-bar></app-navigation-bar>
+<div class="router">
+  <router-outlet></router-outlet>
+    </div>
+<toaster-container [toasterconfig]="config"></toaster-container>
 
 
 ```

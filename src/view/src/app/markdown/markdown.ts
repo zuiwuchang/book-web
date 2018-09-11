@@ -1,6 +1,5 @@
 import * as showdown from 'showdown';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { HtmlEncode } from './strings';
 import * as $ from 'jquery';
 export class MarkdownHeader {
     ID: string = '';
@@ -35,12 +34,21 @@ function trimCodeItem(strs: Array<string>): Array<string> {
     }
     return strs
 }
+function spaceEncode(str: string): string {
+	if (!str || str.length == 0) {
+		return "";
+	}
+    str = str.replace(/ /g, "&nbsp;");
+    str = str.replace(/\t/g, "&nbsp;&nbsp;&nbsp;");
+	return str;
+};
 function codeEncode(strs: Array<string>): string {
     for (let i = 0; i < strs.length; i++) {
-        strs[i] = HtmlEncode(strs[i]);
+        strs[i] = spaceEncode(strs[i]);
     }
     return strs.join("\n<br>");
 }
+
 export class Markdown {
     HTML: SafeHtml = ''
     Header: Array<MarkdownHeader> = null;
@@ -180,7 +188,7 @@ export class Markdown {
                                 arrs[0] = "<ol start='" + codeStart + "'>";
                             }
                             for (let i = 0; i < strs.length; i++) {
-                                arrs[i + 1] = "<li>" + HtmlEncode(strs[i]) + "</li>";
+                                arrs[i + 1] = "<li>" + spaceEncode(strs[i]) + "</li>";
                             }
                             arrs[strs.length + 1] = "</ol>";
                             code.html(arrs.join("\n"));
