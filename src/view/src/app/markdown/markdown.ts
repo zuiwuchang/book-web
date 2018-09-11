@@ -1,7 +1,7 @@
 import * as showdown from 'showdown';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { HtmlEncode } from './strings';
 import * as $ from 'jquery';
-import { defer } from 'rxjs';
 export class MarkdownHeader {
     ID: string = '';
     Text: string = '';
@@ -10,6 +10,36 @@ export class MarkdownHeader {
         this.ID = id;
         this.LV = lv;
     }
+}
+const matchEmpty = /^\s$/
+function trimCodeItem(strs: Array<string>): Array<string> {
+    // left
+    for (let i = 0; i < strs.length; i++) {
+        const str = strs[i];
+        if (str != "" && !matchEmpty.test(str)) {
+            if (i != 0) {
+                strs = strs.splice(i);
+            }
+            break;
+        }
+    }
+    // right
+    for (let i = strs.length - 1; i > -1; i--) {
+        const str = strs[i];
+        if (str != "" && !matchEmpty.test(str)) {
+            if (i != 0) {
+                strs = strs.splice(0, i + 1);
+            }
+            break;
+        }
+    }
+    return strs
+}
+function codeEncode(strs: Array<string>): string {
+    for (let i = 0; i < strs.length; i++) {
+        strs[i] = HtmlEncode(strs[i]);
+    }
+    return strs.join("\n<br>");
 }
 export class Markdown {
     HTML: SafeHtml = ''
@@ -84,29 +114,80 @@ export class Markdown {
                     });
                     // 遍歷 code-view 爲 代碼增加 行號
                     $('pre', liveHtml).each(function () {
+                        let codeName = null;
                         const element = $(this).find("code");
                         element.each(function () {
                             const code = $(this);
-                            const strs = code.html().trim().split("\n");
-                            let n = strs.length;
-                            for (let i = n - 1; n > -1; n--) {
-                                if (strs[i].trim() == "") {
-                                    n--;
+                            let codeStart = 1;
+                            let strs = code.html().trim().split("\n");
+                            strs = trimCodeItem(strs);
+                            if (strs[0].startsWith("#info=") || strs[0].startsWith("//info=")) {
+                                let str = strs[0];
+                                if (str[0] == "#") {
+                                    str = str.substring(6);
                                 } else {
-                                    break;
+                                    str = str.substring(7);
                                 }
+                                strs = strs.splice(1);
+                                try {
+                                    const obj = JSON.parse(str);
+                                    if (typeof obj == "string") {
+                                        str = obj.trim();
+                                        if (str != "") {
+                                            codeName = str;
+                                        }
+                                    } else if (typeof obj == "number") {
+                                        if (!isNaN(obj)) {
+                                            let n = Math.floor(obj);
+                                            if (n != 1) {
+                                                codeStart = n;
+                                            }
+                                        }
+                                    } else if (typeof obj == "object") {
+                                        if (typeof obj.name == "string") {
+                                            str = obj.name.trim();
+                                            if (str != "") {
+                                                codeName = str;
+                                            }
+                                        }
+                                        if (typeof obj.noline == "boolean" && obj.noline) {
+                                            strs = trimCodeItem(strs);
+                                            code.html(codeEncode(strs));
+                                            return;
+                                        }
+                                        if (typeof obj.line == "number" && !isNaN(obj.line)) {
+                                            let n = Math.floor(obj.line);
+                                            if (n != 1) {
+                                                codeStart = n;
+                                            }
+                                        }
+
+                                    } else if (typeof obj == "boolean" && !obj) {
+                                        strs = trimCodeItem(strs);
+                                        code.html(codeEncode(strs));
+                                        return;
+                                    }
+                                } catch (e) {
+                                    console.warn(str);
+                                    console.warn(e);
+                                }
+                                strs = trimCodeItem(strs);
                             }
-                            if (n < 1) {
-                                return;
+                            const arrs = new Array(strs.length + 2);
+                            if (codeStart == 1) {
+                                arrs[0] = "<ol>";
+                            } else {
+                                arrs[0] = "<ol start='" + codeStart + "'>";
                             }
-                            const arrs = new Array(n + 2);
-                            arrs[0] = "<ol>";
-                            for (let i = 0; i < n; i++) {
-                                arrs[i + 1] = "<li>" + strs[i] + "</li>";
+                            for (let i = 0; i < strs.length; i++) {
+                                arrs[i + 1] = "<li>" + HtmlEncode(strs[i]) + "</li>";
                             }
-                            arrs[n + 1] = "</ol>";
-                            code.html(arrs.join(""));
+                            arrs[strs.length + 1] = "</ol>";
+                            code.html(arrs.join("\n"));
                         });
+                        if (codeName != null) {
+                            $(this).prepend($("<div class='hljs'></div>").text(codeName))
+                        }
                     });
                     return liveHtml.html();
                 }

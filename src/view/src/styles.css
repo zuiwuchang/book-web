@@ -61,6 +61,7 @@
 }
 .markdown .code-view{
     position: relative;
+    white-space: nowrap;
 }
 .markdown .clipboard {
     position: absolute;
@@ -87,7 +88,7 @@
 .fill-flex{
     flex: 1 1 auto;
 }
-.code-view ol {
+.markdown .code-view ol {
 	margin-bottom: 0px;
 }
 

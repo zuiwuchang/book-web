@@ -13,7 +13,7 @@ for (let i = 0; i < keys.length; i++) {
         unescapeVal: element,
     });
 }
-function HtmlEncode(str: string): string {
+export function HtmlEncode(str: string): string {
 	if (!str || str.length == 0) {
 		return "";
 	}
@@ -25,7 +25,7 @@ function HtmlEncode(str: string): string {
 	str = str.replace(/\"/g, "&quot;");
 	return str;
 };
-function HtmlDecode(str: string): string {
+export function HtmlDecode(str: string): string {
 	if (!str || str.length == 0) {
 		return "";
 	}
