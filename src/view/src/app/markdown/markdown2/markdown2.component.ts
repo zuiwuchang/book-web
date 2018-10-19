@@ -288,7 +288,7 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
       }
     }
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, "MathJax"]);
-    
+
   }
   private createClipboard(parent, ele) {
     parent.classList.add("code-view");
@@ -297,7 +297,7 @@ export class Markdown2Component implements OnInit, AfterViewInit, OnDestroy {
     newEle.classList.add("fa-copy");
     newEle.classList.add("clipboard");
     newEle.onclick = () => {
-      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text", ele.innerText.replace(/ /g," "))
+      this.btnClipboard.nativeElement.setAttribute("data-clipboard-text", $(ele).text().replace(/ /g, " ").trim())
       this.btnClipboard.nativeElement.click();
     }
     ele.appendChild(newEle);
