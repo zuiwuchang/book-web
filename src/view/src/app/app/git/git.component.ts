@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Title } from "@angular/platform-browser";
 import { HttpClient } from '@angular/common/http';
 import { ToasterService } from 'angular2-toaster';
 import { Utils } from '../../core/utils';
@@ -14,9 +15,17 @@ export class GitComponent implements OnInit {
   val: string = null;
   constructor(private httpClient: HttpClient,
     private toasterService: ToasterService,
+    private title: Title,
   ) { }
 
   ngOnInit() {
+  }
+  @ViewChild('title')
+  private titleRef: ElementRef;
+  ngAfterViewInit() {
+    if (this.titleRef && this.titleRef.nativeElement && this.titleRef.nativeElement.innerText) {
+      this.title.setTitle(this.titleRef.nativeElement.innerText)
+    }
   }
   onSubmit() {
     if (this.request) {
@@ -55,7 +64,7 @@ export class GitComponent implements OnInit {
     }).subscribe(
       (result: string) => {
         this.request = false;
-        if(result != ""){
+        if (result != "") {
           this.val = result;
         }
       },

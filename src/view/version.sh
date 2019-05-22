@@ -60,7 +60,7 @@ CreateNGVersion(){
 	NewFile $1	"const version = '$tag'"
 	WriteFile $1	"const commit = '$commit'"
 	WriteFile $1	"const date = '$date'"
-	WriteFile $1	'export function Version() {'
+	WriteFile $1	'export function ViewVersion() {'
 	WriteFile $1	'    return {'
 	WriteFile $1	'        Version: version,'
 	WriteFile $1	'        Commit: commit,'

@@ -1,3 +1,5 @@
+<div [appHide]="true" #title i18n>Git Command</div>
+
 <form (submit)="onSubmit()" #form="ngForm">
   <mat-form-field class="full-width">
     <mat-select i18n-placeholder [disabled]="request" placeholder="Select Git Command" name="cmd" [(ngModel)]="cmd">
@@ -19,8 +21,8 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="full-width" *ngIf="cmd=='commit'">
-    <input matInput i18n-placeholder appValidatorGitMessage [disabled]="request" placeholder="Commint Message" name="extend"
-      [(ngModel)]="extend">
+    <input matInput i18n-placeholder appValidatorGitMessage [disabled]="request" placeholder="Commint Message"
+      name="extend" [(ngModel)]="extend">
     <mat-error i18n>Commint Message Invalid</mat-error>
   </mat-form-field>
   <button mat-button i18n class="no-outline" [disabled]="request || form.invalid">Submit</button>
