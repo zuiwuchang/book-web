@@ -124,4 +124,32 @@ FileRoot 如果不是全路徑 則 檔案會被 保存到 book-web/src/book-web/
 * README.md 檔案 儲存了 章節正文
 * assets 檔案夾 裏面儲存了 上傳到此章節的 附件 和圖片等資源
 
+# 啓用 google analytics
 
+要啓用 google analytics 需要 自行編譯 view 項目 並在其中填入 你自己的 analytics id
+
+1. 編輯 **src/view/src/index.html** 加入 gtag.js
+
+    ```html
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=XXX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    </script>
+    ```
+
+   > XXX 改成你的 analytics id
+
+1. 編輯 **src/view/src/environments/environment.prod.ts** 
+
+    ```typescript
+    export const environment = {
+      production: true,
+      gtag: "XXX"
+    };
+    ```
+
+   > XXX 改成你的 analytics id
+   
