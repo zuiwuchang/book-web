@@ -128,7 +128,7 @@ case $1 in
 		gopath=`cd $dir/../../ && pwd`
 		export GOPATH=$dir/tmps/source:$gopath
 
-		revel package $project prod
+		revel -X='-ldflags=-s -w' package $project prod
 	;;
 
 	help)

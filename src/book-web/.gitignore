@@ -3,6 +3,7 @@ tmp/
 routes/
 /angular/
 .md5.cache
+/log/
 
 /app/version.go
 /tmps/
