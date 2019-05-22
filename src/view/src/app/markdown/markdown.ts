@@ -35,12 +35,12 @@ function trimCodeItem(strs: Array<string>): Array<string> {
     return strs
 }
 function spaceEncode(str: string): string {
-	if (!str || str.length == 0) {
-		return "";
-	}
+    if (!str || str.length == 0) {
+        return "";
+    }
     str = str.replace(/ /g, "&nbsp;");
     str = str.replace(/\t/g, "&nbsp;&nbsp;&nbsp;");
-	return str;
+    return str;
 };
 function codeEncode(strs: Array<string>): string {
     for (let i = 0; i < strs.length; i++) {
@@ -129,6 +129,10 @@ export class Markdown {
                             let codeStart = 1;
                             let strs = code.html().trim().split("\n");
                             strs = trimCodeItem(strs);
+                            let line = true
+                            if (strs.length == 1) {
+                                line = false
+                            }
                             if (strs[0].startsWith("#info=") || strs[0].startsWith("//info=")) {
                                 let str = strs[0];
                                 if (str[0] == "#") {
@@ -180,6 +184,10 @@ export class Markdown {
                                     console.warn(e);
                                 }
                                 strs = trimCodeItem(strs);
+                            }
+                            if (!line) {
+                                code.html(codeEncode(strs));
+                                return
                             }
                             const arrs = new Array(strs.length + 2);
                             if (codeStart == 1) {

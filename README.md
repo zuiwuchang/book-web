@@ -69,6 +69,8 @@ book-web/src/book-web/conf/app.jsonnet 是 book-web 項目一些定義 如下
         // 密碼是否爲hash值
         PasswordSha512:true,
     },
+    // 默認語言
+    DefaultLocale:"zh-Hant",
     // 定義支持的語言
     Locale:[
         {
@@ -80,6 +82,23 @@ book-web/src/book-web/conf/app.jsonnet 是 book-web 項目一些定義 如下
             ],
         },
     ],
+    // 日誌 配置
+    Logger:{
+		// 日誌 http 如果爲空 則不啓動 http
+		//HTTP:"localhost:20800",
+		// 日誌 檔案名 如果爲空 則輸出到控制檯
+		//Filename:"logs/kc-cims.log",
+		// 單個日誌檔案 大小上限 MB
+		//MaxSize:    100, 
+		// 保存 多少個 日誌 檔案
+		//MaxBackups: 3,
+		// 保存 多少天內的 日誌
+		//MaxAge:     28,
+		// 要 保存的 日誌 等級 debug info warn error dpanic panic fatal
+		Level :"debug",
+        // 是否要 輸出 代碼位置
+    	//Caller:true,
+	},
 }
 ```
 
