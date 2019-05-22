@@ -19,28 +19,10 @@ export class AppComponent implements OnInit {
     });
   constructor(
     private cacheService: CacheService,
-    private matIconRegistry: MatIconRegistry,
     private router: Router,
   ) {
   }
   ngOnInit() {
-    // 註冊圖標
-    this.matIconRegistry.registerFontClassAlias(
-      'fontawesome-fa', // 為此 Icon Font 定義一個 別名
-      'fa' // 此 Icon Font 使用的 class 名稱
-    ).registerFontClassAlias(
-      'fontawesome-fab',
-      'fab'
-    ).registerFontClassAlias(
-      'fontawesome-fal',
-      'fal'
-    ).registerFontClassAlias(
-      'fontawesome-far',
-      'far'
-    ).registerFontClassAlias(
-      'fontawesome-fas',
-      'fas'
-    );
     // 註冊 google analytics
     if (environment.gtag && gtag) {
       console.log("run google analytics", environment.gtag)
