@@ -3,13 +3,18 @@ package controllers
 import (
 	"book-web/app/module/configure"
 	"book-web/app/module/db/manipulator"
+	"book-web/app/module/logger"
 	"book-web/app/module/protocol"
+	"book-web/app/version"
 	"fmt"
-	"github.com/revel/revel"
 	"net/http"
 	"runtime"
 	"strings"
 	"time"
+
+	"go.uber.org/zap"
+
+	"github.com/revel/revel"
 )
 
 // App .
@@ -21,21 +26,32 @@ type App struct {
 func (c App) Version() revel.Result {
 	return c.RenderJSON(&protocol.Version{
 		Platform: fmt.Sprintf("%s %s %s", runtime.GOOS, runtime.GOARCH, runtime.Version()),
-		Version:  Version,
-		Commit:   Commit,
-		Date:     Date,
+		Revel:    revel.Version,
+		Version:  version.Tag,
+		Commit:   version.Commit,
+		Date:     version.Date,
 	})
 }
 
 // Index .
 func (c App) Index() revel.Result {
+	if revel.DevMode {
+		return c.Render()
+	}
+
 	// 識別語言
 	locale := strings.ToLower(strings.TrimSpace(c.Request.Locale))
 
 	locale = configure.Get().MatchLocale(locale)
 	if locale == "" {
-		revel.WARN.Println("unknow locale use default")
-		locale = "zh-Hant"
+		cnf := configure.Get()
+		if ce := logger.Logger.Check(zap.WarnLevel, "unknow locale use default"); ce != nil {
+			ce.Write(
+				zap.String("locale", locale),
+				zap.String("default", cnf.DefaultLocale),
+			)
+		}
+		locale = cnf.DefaultLocale
 	}
 
 	return c.Redirect("/angular/" + locale)
@@ -51,30 +67,44 @@ func (c App) GetSession() revel.Result {
 	}
 
 	if disabled, _ := c.Session[SessionAutoLogin]; disabled == Disabled {
-		revel.TRACE.Println("auto login disabled")
+		if ce := logger.Logger.Check(zap.DebugLevel, "auto login disabled"); ce != nil {
+			ce.Write()
+		}
 		return c.RenderJSON(nil)
 	}
 
 	// 自動 登入
 	cookie, e := c.Request.Cookie(CookieKeyName)
 	if e != nil {
-		revel.WARN.Println(e)
+		if ce := logger.Logger.Check(zap.WarnLevel, "cookie[name]"); ce != nil {
+			ce.Write(
+				zap.Error(e),
+			)
+		}
 		return c.RenderJSON(nil)
 	}
 	name := cookie.GetValue()
 	if name == "" {
-		revel.TRACE.Println("cookie[name] empty")
+		if ce := logger.Logger.Check(zap.DebugLevel, "cookie[name] empty"); ce != nil {
+			ce.Write()
+		}
 		return c.RenderJSON(nil)
 	}
 
 	cookie, e = c.Request.Cookie(CookieKeyPassword)
 	if e != nil {
-		revel.WARN.Println(e)
+		if ce := logger.Logger.Check(zap.WarnLevel, "cookie[pwd]"); ce != nil {
+			ce.Write(
+				zap.Error(e),
+			)
+		}
 		return c.RenderJSON(nil)
 	}
 	pwd := cookie.GetValue()
 	if pwd == "" {
-		revel.TRACE.Println("cookie[pwd] empty")
+		if ce := logger.Logger.Check(zap.DebugLevel, "cookie[pwd] empty"); ce != nil {
+			ce.Write()
+		}
 		return c.RenderJSON(nil)
 	}
 
@@ -82,14 +112,23 @@ func (c App) GetSession() revel.Result {
 	var mUser manipulator.User
 	u, e := mUser.Login(name, pwd)
 	if e != nil {
-		revel.TRACE.Println(e)
+		if ce := logger.Logger.Check(zap.DebugLevel, "Login Error"); ce != nil {
+			ce.Write(
+				zap.Error(e),
+			)
+		}
 		return c.RenderJSON(nil)
 	}
 
 	// 寫入 登入 信息
 	session = c.NewSession(u)
 	c.MarshalSession(session)
-	revel.TRACE.Println("auto login", session)
+	if ce := logger.Logger.Check(zap.DebugLevel, "auto login"); ce != nil {
+		ce.Write(
+			zap.String("name", session.Name),
+			zap.String("nick", session.Nickname),
+		)
+	}
 	// 返回 nil
 	return c.RenderJSON(session)
 }

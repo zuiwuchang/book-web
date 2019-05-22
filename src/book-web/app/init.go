@@ -1,10 +1,11 @@
 package app
 
 import (
-	"book-web/app/controllers"
 	"book-web/app/module/angular"
 	"book-web/app/module/configure"
 	"book-web/app/module/db/manipulator"
+	"book-web/app/module/logger"
+
 	"github.com/revel/revel"
 )
 
@@ -40,13 +41,11 @@ func init() {
 	// revel.OnAppStart(InitDB)
 	// revel.OnAppStart(FillCache)
 	revel.OnAppStart(func() {
-		controllers.Version = Version
-		controllers.Commit = Commit
-		controllers.Date = Date
-		_, e := configure.Load(revel.BasePath)
+		cnf, e := configure.Load(revel.BasePath)
 		if e != nil {
 			panic(e)
 		}
+		logger.Init(revel.BasePath, &cnf.Logger)
 		manipulator.Init()
 		angular.Init(revel.BasePath)
 	})

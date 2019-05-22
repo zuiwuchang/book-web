@@ -2,10 +2,12 @@ package configure
 
 import (
 	"encoding/json"
-	"github.com/google/go-jsonnet"
 	"io/ioutil"
 	"path/filepath"
 	"strings"
+
+	"github.com/google/go-jsonnet"
+	"gitlab.com/king011/king-go/log/logger.zap"
 )
 
 const confileName = "/conf/app.jsonnet"
@@ -14,10 +16,13 @@ var _Configure Configure
 
 // Configure .
 type Configure struct {
-	basePath string
-	FileRoot string
-	Root     Root
-	Locale   []Locale
+	basePath      string
+	FileRoot      string
+	Root          Root
+	Locale        []Locale
+	DefaultLocale string
+	// 日誌 配置
+	Logger logger.Options
 }
 
 // MatchLocale .
@@ -45,11 +50,14 @@ func (c *Configure) format() {
 	for i := 0; i < len(c.Locale); i++ {
 		c.Locale[i].format()
 	}
+	c.DefaultLocale = strings.TrimSpace(c.DefaultLocale)
+	if c.DefaultLocale == "" {
+		c.DefaultLocale = "zh-Hant"
+	}
 }
 
 // Load .
 func Load(filename string) (cnf *Configure, e error) {
-
 	var b []byte
 	b, e = ioutil.ReadFile(filename + "/" + confileName)
 	if e != nil {
@@ -68,6 +76,8 @@ func Load(filename string) (cnf *Configure, e error) {
 
 	_Configure.basePath = filename
 	_Configure.format()
+
+	cnf = &_Configure
 	return
 }
 
