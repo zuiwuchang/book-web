@@ -80,7 +80,7 @@ export class CacheService {
         try {
           const objectStore = db.transaction(StoreName).objectStore(StoreName);
           let rs = new Array<CacheItem>();
-          objectStore.openCursor().onsuccess = (evt) => {
+          objectStore.openCursor().onsuccess = (evt: any) => {
             const cursor = evt.target.result;
             if (cursor) {
               const id = cursor.value.ID;
