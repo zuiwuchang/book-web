@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "assets/js/highlight/9.12.0/styles/androidstudio.css";
+@import "assets/css/androidstudio.css";
 @import "~angular2-toaster/toaster.min.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~simplemde/dist/simplemde.min.css";
