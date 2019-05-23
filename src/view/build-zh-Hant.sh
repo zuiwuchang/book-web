@@ -7,4 +7,6 @@
 #       zuiwuchang@gmail.com
 
 export locale=zh-Hant
-./util-build.sh
+dir=`cd $(dirname $BASH_SOURCE) && pwd`
+
+"$dir/util-build.sh"

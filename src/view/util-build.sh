@@ -7,9 +7,10 @@
 #       zuiwuchang@gmail.com
 
 # $locale 傳入 參數 設置要 發佈的 區域
+dir=`cd $(dirname $BASH_SOURCE) && pwd`
 
 # 發佈目錄
-root=../book-web/angular
+root=`cd "$dir/../book-web/angular" && pwd`
 
 # 判斷 語言參數 是否正確
 case $locale in
@@ -41,7 +42,7 @@ if [ ! -d "$root" ];then
 fi
 
 # 更新 版本信息
-./version.sh
+"$dir/version.sh"
 ok=$?
 if [ "$ok" != 0 ] ;then
 	exit $ok

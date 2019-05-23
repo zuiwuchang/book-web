@@ -68,6 +68,6 @@ CreateNGVersion(){
 	WriteFile $1	'    }'
 	WriteFile $1	'}'
 }
-
+dir=`cd $(dirname $BASH_SOURCE) && pwd`
 # 自動 創建 version.ts 代碼
-CreateNGVersion src/app/app/version/version.ts
+CreateNGVersion "$dir/src/app/app/version/version.ts"
