@@ -48,7 +48,17 @@ function codeEncode(strs: Array<string>): string {
     }
     return strs.join("\n<br>");
 }
-
+function getController(str: string): string | null {
+    str = str.trim()
+    if (str.startsWith("#info=")) {
+        str = str.substring(6).trim()
+    } else if (str.startsWith("//info=")) {
+        str = str.substring(7).trim()
+    } else {
+        return null
+    }
+    return str
+}
 export class Markdown {
     HTML: SafeHtml = ''
     Header: Array<MarkdownHeader> = null;
@@ -133,57 +143,55 @@ export class Markdown {
                             if (strs.length == 1) {
                                 line = false
                             }
-                            if (strs[0].startsWith("#info=") || strs[0].startsWith("//info=")) {
-                                let str = strs[0];
-                                if (str[0] == "#") {
-                                    str = str.substring(6);
-                                } else {
-                                    str = str.substring(7);
-                                }
+                            const ctrl = getController(strs[0])
+                            if (ctrl != null) {
                                 strs = strs.splice(1);
-                                try {
-                                    const obj = JSON.parse(str);
-                                    if (typeof obj == "string") {
-                                        str = obj.trim();
-                                        if (str != "") {
-                                            codeName = str;
-                                        }
-                                    } else if (typeof obj == "number") {
-                                        if (!isNaN(obj)) {
-                                            let n = Math.floor(obj);
-                                            if (n != 1) {
-                                                codeStart = n;
-                                            }
-                                        }
-                                    } else if (typeof obj == "object") {
-                                        if (typeof obj.name == "string") {
-                                            str = obj.name.trim();
+                                if (ctrl != "") {
+                                    let str = ctrl
+                                    try {
+                                        const obj = JSON.parse(str);
+                                        if (typeof obj == "string") {
+                                            str = obj.trim();
                                             if (str != "") {
                                                 codeName = str;
                                             }
-                                        }
-                                        if (typeof obj.noline == "boolean" && obj.noline) {
+                                        } else if (typeof obj == "number") {
+                                            if (!isNaN(obj)) {
+                                                let n = Math.floor(obj);
+                                                if (n != 1) {
+                                                    codeStart = n;
+                                                }
+                                            }
+                                        } else if (typeof obj == "object") {
+                                            if (typeof obj.name == "string") {
+                                                str = obj.name.trim();
+                                                if (str != "") {
+                                                    codeName = str;
+                                                }
+                                            }
+                                            if (typeof obj.noline == "boolean" && obj.noline) {
+                                                strs = trimCodeItem(strs);
+                                                code.html(codeEncode(strs));
+                                                return;
+                                            }
+                                            if (typeof obj.line == "number" && !isNaN(obj.line)) {
+                                                let n = Math.floor(obj.line);
+                                                if (n != 1) {
+                                                    codeStart = n;
+                                                }
+                                            }
+
+                                        } else if (typeof obj == "boolean" && !obj) {
                                             strs = trimCodeItem(strs);
                                             code.html(codeEncode(strs));
                                             return;
                                         }
-                                        if (typeof obj.line == "number" && !isNaN(obj.line)) {
-                                            let n = Math.floor(obj.line);
-                                            if (n != 1) {
-                                                codeStart = n;
-                                            }
-                                        }
-
-                                    } else if (typeof obj == "boolean" && !obj) {
-                                        strs = trimCodeItem(strs);
-                                        code.html(codeEncode(strs));
-                                        return;
+                                    } catch (e) {
+                                        console.warn(str);
+                                        console.warn(e);
                                     }
-                                } catch (e) {
-                                    console.warn(str);
-                                    console.warn(e);
+                                    strs = trimCodeItem(strs);
                                 }
-                                strs = trimCodeItem(strs);
                             }
                             if (!line) {
                                 code.html(codeEncode(strs));
