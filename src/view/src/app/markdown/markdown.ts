@@ -116,9 +116,11 @@ export class Markdown {
                         const url = element.attr("href");
                         if (matchABS.test(url) || url[0] == "/") {
                             element.attr("target", "_blank");
-                            return;
+                        } else if (url.startsWith("assets/")) {
+                            element.addClass("ng-router-a").attr("href", "/book/assets/" + book + "/" + chapter + "/" + url);
+                        } else {
+                            element.addClass("ng-router-a").attr("href", "view/" + url);
                         }
-                        element.addClass("ng-router-a").attr("href", "view/" + url);
                     });
                     // 遍歷 img 標籤 修改 url 地址
                     $('img', liveHtml).each(function () {
