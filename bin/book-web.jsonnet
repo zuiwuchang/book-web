@@ -8,7 +8,7 @@ local Day = 24 * Hour;
 	HTTP: {
 		// 服務器監聽地址
 		Addr: ":9000",
-		// 是否使用 h2 協議 只有使用 https協議 時才有效
+		// 是否使用 http2 協議
 		H2: true,
 		// http 證書 如果配置了證書 將使用 https協議
 		CertFile: "test.pem",

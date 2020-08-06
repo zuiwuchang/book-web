@@ -1,8 +1,8 @@
 package main
 
 import (
-	"log"
 	"book-web/cmd"
+	"log"
 )
 
 func main() {

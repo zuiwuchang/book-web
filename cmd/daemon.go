@@ -13,6 +13,7 @@ import (
 func init() {
 	var filename string
 	basePath := utils.BasePath()
+	var debug bool
 	cmd := &cobra.Command{
 		Use:   "daemon",
 		Short: "run as daemon",
@@ -35,7 +36,7 @@ func init() {
 			}
 
 			// run
-			daemon.Run()
+			daemon.Run(debug)
 		},
 	}
 	flags := cmd.Flags()
@@ -43,6 +44,11 @@ func init() {
 		"c",
 		utils.Abs(basePath, "book-web.jsonnet"),
 		"configure file",
+	)
+	flags.BoolVarP(&debug, "debug",
+		"d",
+		false,
+		"run as debug",
 	)
 	rootCmd.AddCommand(cmd)
 }
