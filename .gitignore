@@ -1,3 +1,21 @@
-/pkg
-/bin
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+/vendor/
+/version/version.go
 *.tar.gz
+
+/book-web
+/book-webd
+/bin/book-web
+/bin/book-webd

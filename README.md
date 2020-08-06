@@ -5,6 +5,12 @@ book-web 是一個在線的 個人資料整理 web 以書爲單位 每種類型�
 [book.king011.com](https://book.king011.com) 是我使用此項目 部署的一個 在線web 你可以在此查看 book-web 的 一些效果  
 [https://gitlab.com/king011/book](https://gitlab.com/king011/book) 是book.king011.com上數據 的開源 git項目地址
 
+# v1
+
+v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會保持數據和配置的兼容 離線情況下 你只需要更新 可執行的 和 前端view即可完成升級 不會破壞任何 已有數據和配置檔案
+
+v1 目前處理開發的 不穩定狀態 請不要使用
+
 # Why
 
 人類的記憶既弱又不可靠 我很早就發現了 在網路時代 最好的記憶神器就是 web 於是早前開發了一個網站用於 編輯查看資料 你現在依然可以訪問她 [doc.king011.com](https://doc.king011.com) 其[源碼](https://gitlab.com/king011/king-document-build)同樣是以GPL3開源 不過其文檔是以純html編寫 現在看來 比較愚笨
