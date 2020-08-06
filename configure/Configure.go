@@ -1,6 +1,7 @@
 package configure
 
 import (
+	"book-web/utils"
 	"encoding/json"
 	"io/ioutil"
 	"path/filepath"
@@ -11,12 +12,25 @@ import (
 
 // Configure global configure
 type Configure struct {
+	HTTP     HTTP
+	FileRoot string
+	Root     Root
+
 	Logger logger.Options
 }
 
 // Format format global configure
 func (c *Configure) Format(basePath string) (e error) {
-
+	if c.FileRoot == "" {
+		c.FileRoot = "fileroot"
+	}
+	c.FileRoot = utils.Abs(basePath, c.FileRoot)
+	if e = c.HTTP.Format(basePath); e != nil {
+		return
+	}
+	if e = c.Root.Format(basePath); e != nil {
+		return
+	}
 	return
 }
 func (c *Configure) String() string {
