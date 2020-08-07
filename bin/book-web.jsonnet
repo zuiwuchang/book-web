@@ -3,16 +3,23 @@ local Second = 1000 * Millisecond;
 local Minute = 60 * Second;
 local Hour = 60 * Minute;
 local Day = 24 * Hour;
+local KB=1024;
+local MB=KB * 1024;
+local GB=MB * 1024;
 {
 	// HTTP 服務器訂閱
 	HTTP: {
 		// 服務器監聽地址
 		Addr: ":9000",
 		// 是否使用 http2 協議
-		H2: true,
-		// http 證書 如果配置了證書 將使用 https協議
-		CertFile: "test.pem",
-		KeyFile: "test.key",
+		// H2: true,
+		// // http 證書 如果配置了證書 將使用 https協議
+		// CertFile: "test.pem",
+		// KeyFile: "test.key",
+		// 設定 http 請求 body 最大尺寸
+		// 如果 == 0 使用默認值 32 KB
+		// 如果 < 0 不限制
+		MaxBytesReader: 5 * MB,
 	},
 	// 檔案夾定義
 	FileRoot: "fileroot",

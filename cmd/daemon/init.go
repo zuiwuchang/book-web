@@ -1,7 +1,6 @@
 package daemon
 
 import (
-	"crypto/tls"
 	"log"
 	"net"
 	"net/http"
@@ -98,28 +97,16 @@ func Run(debug bool) {
 	os.Exit(1)
 }
 func runH2(l net.Listener, router http.Handler, certFile, keyFile string) (e error) {
-	cert, e := tls.LoadX509KeyPair(certFile, keyFile)
-	if e != nil {
-		return
-	}
-	l = tls.NewListener(l, &tls.Config{
-		Certificates: []tls.Certificate{cert},
-	})
-
-	e = runH2C(l, router)
-	return
-}
-func runH2C(l net.Listener, router http.Handler) (e error) {
-	srv := &http2.Server{}
-	opts := &http2.ServeConnOpts{
+	srv := &http.Server{
 		Handler: router,
 	}
-	var c net.Conn
-	for {
-		c, e = l.Accept()
-		if e != nil {
-			continue
-		}
-		go srv.ServeConn(c, opts)
+	http2.ConfigureServer(srv, &http2.Server{})
+	return srv.ServeTLS(l, certFile, keyFile)
+}
+func runH2C(l net.Listener, router http.Handler) (e error) {
+	srv := &http.Server{
+		Handler: router,
 	}
+	http2.ConfigureServer(srv, &http2.Server{})
+	return srv.Serve(l)
 }

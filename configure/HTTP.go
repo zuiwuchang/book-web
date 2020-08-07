@@ -7,10 +7,11 @@ import (
 
 // HTTP configure grpc
 type HTTP struct {
-	Addr     string
-	H2       bool
-	CertFile string
-	KeyFile  string
+	Addr           string
+	H2             bool
+	CertFile       string
+	KeyFile        string
+	MaxBytesReader int64
 }
 
 // TLS if tls return true
@@ -36,6 +37,10 @@ func (c *HTTP) Format(basePath string) (e error) {
 		} else {
 			c.KeyFile = filepath.Clean(basePath + "/" + c.KeyFile)
 		}
+	}
+
+	if c.MaxBytesReader == 0 {
+		c.MaxBytesReader = 1024 * 32
 	}
 	return
 }
