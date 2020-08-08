@@ -27,14 +27,7 @@ func (h Debug) get(c *gin.Context) {
 	cgos := runtime.NumCgoCall()
 	cpus := runtime.NumCPU()
 	goroutines := runtime.NumGoroutine()
-	c.JSON(http.StatusOK, gin.H{
-		`platform`:   fmt.Sprintf(`%s %s %s`, runtime.GOOS, runtime.GOARCH, runtime.Version()),
-		`maxprocs`:   maxprocs,
-		`cgos`:       cgos,
-		`cpus`:       cpus,
-		`goroutines`: goroutines,
-	})
-	return
+
 	h.NegotiateData(c, http.StatusOK, gin.H{
 		`platform`:   fmt.Sprintf(`%s %s %s`, runtime.GOOS, runtime.GOARCH, runtime.Version()),
 		`maxprocs`:   maxprocs,

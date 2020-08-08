@@ -1,8 +1,6 @@
 package web
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 )
@@ -21,9 +19,13 @@ type Helper struct {
 
 // NegotiateData .
 func (h Helper) NegotiateData(c *gin.Context, code int, data interface{}) {
-	fmt.Println("-----------------", c, code, data)
-	c.Negotiate(code, gin.Negotiate{
-		Offered: Offered,
-		Data:    data,
-	})
+	switch c.NegotiateFormat(Offered...) {
+	case binding.MIMEXML:
+		c.XML(code, data)
+	case binding.MIMEYAML:
+		c.YAML(code, data)
+	default:
+		// 默認以 json
+		c.JSON(code, data)
+	}
 }
