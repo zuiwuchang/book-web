@@ -51,7 +51,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="16f3641d5a828d75981cfc5e1ae33ac14efd28ab" datatype="html">
-        <source>book-web is GPL3 open source software. If you are interested in sharing your knowledge on the Internet, you are welcome to use book-web.The README.md file in the source code will tell you how to deploy book-web.Note that the content updated to book-web can be viewed by any creature, and the administrator can also edit it. Do not update any text images that you don’t want to share to book-web.</source>
+        <source>About content3</source>
+        <target>book-web is GPL3 open source software. If you are interested in sharing your knowledge on the Internet, you are welcome to use book-web.The README.md file in the source code will tell you how to deploy book-web.Note that the content updated to book-web can be viewed by any creature, and the administrator can also edit it. Do not update any text images that you don’t want to share to book-web.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/content/about/about.component.html</context>
           <context context-type="linenumber">8</context>

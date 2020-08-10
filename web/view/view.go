@@ -3,7 +3,6 @@ package view
 import (
 	"net/http"
 	"os"
-	"path/filepath"
 	"strings"
 
 	"book-web/logger"
@@ -117,54 +116,12 @@ func (h Helper) view(c *gin.Context) {
 		return
 	}
 	if obj.Locale == "zh-Hant" {
-		h.viewFilesystem(c, zhHant, obj.Path)
+		h.NegotiateFilesystem(c, zhHant, obj.Path)
 	} else if obj.Locale == "zh-Hans" {
-		h.viewFilesystem(c, zhHans, obj.Path)
+		h.NegotiateFilesystem(c, zhHans, obj.Path)
 	} else if obj.Locale == "en-US" {
-		h.viewFilesystem(c, enUS, obj.Path)
+		h.NegotiateFilesystem(c, enUS, obj.Path)
 	} else {
 		h.NegotiateErrorString(c, http.StatusNotFound, `not support locale`)
 	}
-}
-func (h Helper) toHTTPError(c *gin.Context, e error) {
-	if os.IsNotExist(e) {
-		h.NegotiateError(c, http.StatusNotFound, e)
-		return
-	}
-	if os.IsPermission(e) {
-		h.NegotiateError(c, http.StatusForbidden, e)
-		return
-	}
-	h.NegotiateError(c, http.StatusInternalServerError, e)
-}
-func (h Helper) viewFilesystem(c *gin.Context, fs http.FileSystem, path string) {
-	if path == `/` || path == `` {
-		path = `/index.html`
-	}
-	f, e := fs.Open(path)
-	if e != nil {
-		if os.IsNotExist(e) {
-			path = `/index.html`
-			f, e = fs.Open(path)
-		}
-	}
-	if e != nil {
-		h.toHTTPError(c, e)
-		return
-	}
-	stat, e := f.Stat()
-	if e != nil {
-		f.Close()
-		h.toHTTPError(c, e)
-		return
-	}
-	if stat.IsDir() {
-		f.Close()
-		h.NegotiateErrorString(c, http.StatusForbidden, `not a file`)
-		return
-	}
-
-	_, name := filepath.Split(path)
-	http.ServeContent(c.Writer, c.Request, name, stat.ModTime(), f)
-	f.Close()
 }
