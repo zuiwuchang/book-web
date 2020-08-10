@@ -56,12 +56,18 @@ function createGoVersion(){
 	writeFile $filename	'// Date build datetime'
 	writeFile $filename	"const Date = \`$date\`"
 }
-
+function buildSource(){
+	echo statik -src="$DirRoot/view/dist/view/$1" -dest "$DirRoot/assets/$1"  -ns "$1" -f
+	rm "$DirRoot/assets/$1" -rf
+	mkdir "$DirRoot/assets/$1" -p
+	statik -src="$DirRoot/view/dist/view/$1" -dest "$DirRoot/assets/$1"  -ns "$1" -f
+}
 function DisplayHelp(){
 	echo "help                       : display help"
 	echo "l/linux   [r/d] [t/tar]    : build for linux"
 	echo "d/darwin  [r/d] [t/tar]    : build for darwin"
 	echo "w/windows [r/d] [t/tar]    : build for windows"
+	echo "s/source                   : build assets"
 	echo "t/test                     : run go test"
 }
 case $1 in
@@ -141,6 +147,16 @@ case $1 in
 		done
 	;;
 
+	s|source)
+		echo statik -src="$DirRoot/static" -dest "$DirRoot/assets/static"  -ns static -f
+		rm "$DirRoot/assets/static" -rf
+		mkdir "$DirRoot/assets/static" -p
+		statik -src="$DirRoot/static" -dest "$DirRoot/assets/static"  -ns static -f
+		buildSource zh-Hant
+		buildSource zh-Hans
+		buildSource en-US
+	;;
+	
 	*)
 		DisplayHelp
 	;;
