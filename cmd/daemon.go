@@ -4,6 +4,7 @@ import (
 	"book-web/cmd/daemon"
 	"book-web/configure"
 	"book-web/cookie"
+	"book-web/db/manipulator"
 	"book-web/logger"
 	"book-web/utils"
 	"log"
@@ -35,6 +36,9 @@ func init() {
 			if e != nil {
 				log.Fatalln(e)
 			}
+			// init db
+			manipulator.Init()
+
 			// init cookie
 			e = cookie.Init(cnf.Cookie.Filename, cnf.Cookie.MaxAge)
 			if e != nil {

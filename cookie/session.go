@@ -16,14 +16,15 @@ func init() {
 
 // Session user session info
 type Session struct {
-	Name string `json:"name,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Nickname string `json:"nickname,omitempty"`
 	// 是否是 root
 	Root bool `json:"root,omitempty"`
 }
 
 // Cookie encode to cookie
 func (s *Session) String() string {
-	return fmt.Sprintf(`%s root=%v`, s.Name, s.Root)
+	return fmt.Sprintf(`%s nickname=%s root=%v`, s.Name, s.Nickname, s.Root)
 }
 
 // Cookie encode to cookie

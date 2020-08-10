@@ -67,6 +67,7 @@ function buildSource(){
 	mkdir "$DirRoot/assets/$1" -p
 	statik -src="$DirRoot/view/dist/view/$1" -dest "$DirRoot/assets/$1"  -ns "$1" -f
 }
+
 function DisplayHelp(){
 	echo "help                       : display help"
 	echo "l/linux   [r/d] [t/tar]    : build for linux"
@@ -82,11 +83,11 @@ case $1 in
 		createGoVersion
 		if [[ $2 == d ]]; then
 			Target="$Target"d
-			echo go build -o "$DirRoot/bin/$Target"
-			cd "$DirRoot" && go build -o "$DirRoot/bin/$Target"
+			echo go build -tags=jsoniter -o "$DirRoot/bin/$Target"
+			cd "$DirRoot" && go build -tags=jsoniter -o "$DirRoot/bin/$Target"
 		else
-			echo go build -ldflags "-s -w" -o "$DirRoot/bin/$Target"
-			cd "$DirRoot" && go build -ldflags "-s -w" -o "$DirRoot/bin/$Target"
+			echo go build -tags=jsoniter -ldflags "-s -w" -o "$DirRoot/bin/$Target"
+			cd "$DirRoot" && go build -tags=jsoniter -ldflags "-s -w" -o "$DirRoot/bin/$Target"
 		fi
 		check $?
 
@@ -105,11 +106,11 @@ case $1 in
 		createGoVersion
 		if [[ $2 == d ]]; then
 			Target="$Target"d
-			echo go build -o "$DirRoot/bin/$Target"
-			cd "$DirRoot" && go build -o "$DirRoot/bin/$Target"
+			echo go build -tags=jsoniter -o "$DirRoot/bin/$Target"
+			cd "$DirRoot" && go build -tags=jsoniter -o "$DirRoot/bin/$Target"
 		else
-			echo go build -ldflags "-s -w" -o "$DirRoot/bin/$Target"
-			cd "$DirRoot" && go build -ldflags "-s -w" -o "$DirRoot/bin/$Target"
+			echo go build -tags=jsoniter -ldflags "-s -w" -o "$DirRoot/bin/$Target"
+			cd "$DirRoot" && go build -tags=jsoniter -ldflags "-s -w" -o "$DirRoot/bin/$Target"
 		fi
 		check $?
 
@@ -128,11 +129,11 @@ case $1 in
 		createGoVersion
 		if [[ $2 == d ]]; then
 			Target="$Target"d
-			echo go build -o "$DirRoot/bin/$Target.exe"
-			cd "$DirRoot" && go build -o "$DirRoot/bin/$Target.exe"
+			echo go build -tags=jsoniter -o "$DirRoot/bin/$Target.exe"
+			cd "$DirRoot" && go build -tags=jsoniter -o "$DirRoot/bin/$Target.exe"
 		else
-			echo go build -ldflags "-s -w" -o "$DirRoot/bin/$Target.exe"
-			cd "$DirRoot" && go build -ldflags "-s -w" -o "$DirRoot/bin/$Target.exe"
+			echo go build -tags=jsoniter -ldflags "-s -w" -o "$DirRoot/bin/$Target.exe"
+			cd "$DirRoot" && go build -tags=jsoniter -ldflags "-s -w" -o "$DirRoot/bin/$Target.exe"
 		fi
 		check $?
 
