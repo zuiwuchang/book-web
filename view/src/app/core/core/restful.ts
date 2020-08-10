@@ -1,19 +1,5 @@
 import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http'
-function isString(v: any) {
-    return typeof v === 'string'
-}
-function isNumber(v: any) {
-    return typeof v === 'number'
-}
-function isArray(v: any) {
-    return Array.isArray(v)
-}
-function isNullOrUndefined(v: any) {
-    return v === null || v == undefined
-}
-function isObject(v: any) {
-    return v !== null && typeof v === 'object'
-}
+import { isString, isObject, isNumber, isArray, isUndefinedOrNull } from 'king-node';
 export function resolveError(e: any): string {
     if (!e) {
         return "nil"
@@ -92,7 +78,7 @@ export class RESTful {
             }
         }
         let val: string | undefined
-        if (!isNullOrUndefined(id)) {
+        if (!isUndefinedOrNull(id)) {
             if (isArray(id)) {
                 val = (id as Array<any>).map<string>((val) => encodeURIComponent(encodeURIComponent(val))).join('/')
             } else {
@@ -100,7 +86,7 @@ export class RESTful {
             }
         }
         let url = `${addr}${this.baseURL}`
-        if (!isNullOrUndefined(val)) {
+        if (!isUndefinedOrNull(val)) {
             url += '/' + val
         }
         return `${url}/websocket`

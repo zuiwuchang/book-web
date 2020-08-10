@@ -4,6 +4,7 @@ const root = '/api'
 export const ServerAPI = {
     v1: {
         version: new RESTful(root, 'v1', 'version'),
+        session: new RESTful(root, 'v1', 'session'),
     },
     static: {
         license: '/static/LICENSE.txt',

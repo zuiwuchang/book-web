@@ -12,9 +12,11 @@ import (
 
 // Configure global configure
 type Configure struct {
-	HTTP     HTTP
 	FileRoot string
-	Root     Root
+
+	HTTP   HTTP
+	Cookie Cookie
+	Root   Root
 
 	Logger logger.Options
 }
@@ -25,7 +27,11 @@ func (c *Configure) Format(basePath string) (e error) {
 		c.FileRoot = "fileroot"
 	}
 	c.FileRoot = utils.Abs(basePath, c.FileRoot)
+
 	if e = c.HTTP.Format(basePath); e != nil {
+		return
+	}
+	if e = c.Cookie.Format(basePath); e != nil {
 		return
 	}
 	if e = c.Root.Format(basePath); e != nil {

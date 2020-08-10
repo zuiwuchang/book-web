@@ -2,12 +2,60 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="zh-Hans" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
-        <source>Error</source>
-        <target>错误</target>
+      <trans-unit id="438fdc617a22c8dd029e74b64ab66355e36eeb9d" datatype="html">
+        <source>Home Tooltip</source>
+        <target>首页</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">1</context>
+          <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="558cf284a586969d529d302380efe98f7bfb218f" datatype="html">
+        <source>Source Tooltip</source>
+        <target>源码</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bc1f34fbcd508eeefebcc2033e6509cb9d3c0d1e" datatype="html">
+        <source>License Tooltip</source>
+        <target>协议</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e203fbda1a68c2ee0b206d0959f9323d3deac894" datatype="html">
+        <source>About Tooltip</source>
+        <target>关于</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e5fb254607ba2b0bdee5c290f639153bb78141b9" datatype="html">
+        <source>About content</source>
+        <target>book-web 是我为个人用户开发的一个web资料管理系统，主要是为了能够在线整理文档并随时可以方便查看，此网站便是以此部署的。管理员以 markdown 形式书写文档，任何人都可以通过 html 查看。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e63c00f5b69dafe4e1aa0bd8922bf1ed673baec0" datatype="html">
+        <source>About content2</source>
+        <target>book-web 类似 gitbook，是我在使用 gitboot 后得到灵感自行研发的。gitbook 每本书使用一个 git 项目，而 boot-web 为所有书使用同一个 git 项目。gitboot 或许功能太多所以在线页面打开很慢，相比之下 book-web 要小很多打开会快速很多。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16f3641d5a828d75981cfc5e1ae33ac14efd28ab" datatype="html">
+        <source>About content3</source>
+        <target>book-web 是 GPL3 的开源软体，如果你有兴趣将自己的才学共享到网路上，很欢迎你使用 book-web。源码中的 README.md 档案会告诉你如何部署 book-web。注意更新到 book-web 上的内容任何生物都能查看，而管理员还可以编辑，不要把任何你不想共享的文字图像更新到 book-web 中。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
     </body>

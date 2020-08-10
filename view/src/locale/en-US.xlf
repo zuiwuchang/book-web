@@ -34,6 +34,29 @@
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="e5fb254607ba2b0bdee5c290f639153bb78141b9" datatype="html">
+        <source>About content</source>
+        <target>book-web is a web information management system I developed for individual users, mainly to organize documents online and easily view them at any time. This website is deployed based on this.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e63c00f5b69dafe4e1aa0bd8922bf1ed673baec0" datatype="html">
+        <source>About content2</source>
+        <target>book-web is similar to gitbook, which I developed by myself after using gitboot.gitbook uses one git project for each book, and boot-web uses the same git project for all books.gitbook may have too many functions, so the online page is slow to open. In contrast, book-web is much smaller and opens much faster.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16f3641d5a828d75981cfc5e1ae33ac14efd28ab" datatype="html">
+        <source>book-web is GPL3 open source software. If you are interested in sharing your knowledge on the Internet, you are welcome to use book-web.The README.md file in the source code will tell you how to deploy book-web.Note that the content updated to book-web can be viewed by any creature, and the administrator can also edit it. Do not update any text images that you don’t want to share to book-web.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

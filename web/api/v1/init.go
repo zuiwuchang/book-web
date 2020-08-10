@@ -19,7 +19,7 @@ func (h Helper) Register(router *gin.RouterGroup) {
 	r := router.Group(BaseURL)
 
 	ms := []web.IHelper{
-		Debug{},
+		Other{},
 	}
 	for _, m := range ms {
 		m.Register(r)

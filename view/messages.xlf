@@ -30,6 +30,27 @@
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="e5fb254607ba2b0bdee5c290f639153bb78141b9" datatype="html">
+        <source>About content</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e63c00f5b69dafe4e1aa0bd8922bf1ed673baec0" datatype="html">
+        <source>About content2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16f3641d5a828d75981cfc5e1ae33ac14efd28ab" datatype="html">
+        <source>About content3</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

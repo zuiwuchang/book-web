@@ -34,6 +34,30 @@
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="e5fb254607ba2b0bdee5c290f639153bb78141b9" datatype="html">
+        <source>About content</source>
+        <target>book-web 是我爲個人用戶開發的一個web資料管理系統，主要是爲了能夠在線整理文檔並隨時可以方便查看，此網站便是以此部署的。管理員以 markdown 形式書寫文檔，任何人都可以通過 html 查看。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e63c00f5b69dafe4e1aa0bd8922bf1ed673baec0" datatype="html">
+        <source>About content2</source>
+        <target>book-web 類似 gitbook，是我在使用 gitboot 後得到靈感自行研發的。gitbook 每本書使用一個 git 項目，而 boot-web 爲所有書使用同一個 git 項目。gitboot 或許功能太多所以在線頁面打開很慢，相比之下 book-web 要小很多打開會快速很多。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16f3641d5a828d75981cfc5e1ae33ac14efd28ab" datatype="html">
+        <source>About content3</source>
+        <target>book-web 是 GPL3 的開源軟體，如果你有興趣將自己的才學共享到網路上，很歡迎你使用 book-web。源碼中的 README.md 檔案會告訴你如何部署 book-web。注意更新到 book-web 上的內容任何生物都能查看，而管理員還可以編輯，不要把任何你不想共享的文字圖像更新到 book-web 中。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/content/about/about.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
