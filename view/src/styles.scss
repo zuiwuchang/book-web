@@ -24,3 +24,19 @@
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
+
+.fill-flex{
+    flex: 1 1 auto;
+}
+.hide{
+    display: none;
+}
+.max-fill-width{
+    max-width: 100%;
+}
+.pointer{
+    cursor: pointer;
+}
+.full-width {
+    width: 100%;
+}

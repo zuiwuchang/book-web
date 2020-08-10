@@ -1,27 +1,44 @@
-<div class="fill"></div>
-<mat-toolbar class="header" color="primary">
-    <a routerLink="/">
-        <button mat-icon-button i18n-matTooltip matTooltip="Home Tooltip">
-            <mat-icon>home</mat-icon>
-        </button>
-    </a>
-    <a href="https://gitlab.com/king011/book-web" target="_blank">
-        <button mat-icon-button i18n-matTooltip matTooltip="Source Tooltip">
-            <mat-icon>code</mat-icon>
-        </button>
-    </a>
+<ng-container *ngIf="!fullscreen;then view"></ng-container>
+<ng-template #view>
+    <div class="fill"></div>
+    <mat-toolbar class="header" color="primary">
+        <a routerLink="/">
+            <button mat-icon-button i18n-matTooltip matTooltip="Home Tooltip">
+                <mat-icon>home</mat-icon>
+            </button>
+        </a>
+        <a href="https://gitlab.com/king011/book-web" target="_blank">
+            <button mat-icon-button i18n-matTooltip matTooltip="Source Tooltip">
+                <mat-icon>code</mat-icon>
+            </button>
+        </a>
 
-    <a routerLink="/content/license">
-        <button mat-icon-button i18n-matTooltip matTooltip="License Tooltip">
-            <mat-icon>import_contacts</mat-icon>
-        </button>
-    </a>
+        <a routerLink="/content/license">
+            <button mat-icon-button i18n-matTooltip matTooltip="License Tooltip">
+                <mat-icon>import_contacts</mat-icon>
+            </button>
+        </a>
 
-    <a routerLink="/content/about">
-        <button mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
-            <mat-icon>info</mat-icon>
-        </button>
-    </a>
+        <a routerLink="/content/about">
+            <button mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
+                <mat-icon>info</mat-icon>
+            </button>
+        </a>
 
-    <span class="fill-flex"></span>
-</mat-toolbar>
+        <span class="fill-flex"></span>
+
+        <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Apps Tooltip" [matMenuTriggerFor]="menu">
+            <mat-icon>apps</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button class="menu-btn" mat-menu-item (click)="toggleChapter()">
+                <mat-icon>{{isChapter()?'close':'menu'}}</mat-icon>
+                <ng-container i18n>Book Chapter</ng-container>
+            </button>
+            <button class="menu-btn" mat-menu-item (click)="toggleHeader()">
+                <mat-icon>{{isHeader()?'close':'menu'}}</mat-icon>
+                <ng-container i18n>Book Chapter Header</ng-container>
+            </button>
+        </mat-menu>
+    </mat-toolbar>
+</ng-template>
