@@ -1,5 +1,11 @@
-<toaster-container [toasterconfig]="config"></toaster-container>
-
 <shared-navigation-bar></shared-navigation-bar>
 
 <router-outlet></router-outlet>
+
+<toaster-container [toasterconfig]="config"></toaster-container>
+<div #xi18n style="display: none;">
+    <div data-key="About" i18n>About Tooltip</div>
+    <div data-key="License" i18n>License Tooltip</div>
+    <div data-key="Version" i18n>Version</div>
+    <div data-key="Git Command" i18n>Git Command</div>
+</div>

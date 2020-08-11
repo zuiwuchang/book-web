@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ServerAPI } from '../core/api';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Completer, isString, Mutex, Exception } from 'king-node';
+import { Completer } from 'king-node/dist/async/completer';
+import { Mutex } from 'king-node/dist/async/sync';
+import { isString, Exception } from 'king-node/dist/core';
 export class Session {
   name: string
   nickname: string

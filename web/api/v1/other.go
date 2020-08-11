@@ -19,7 +19,7 @@ type Other struct {
 
 // Register impl IHelper
 func (h Other) Register(router *gin.RouterGroup) {
-	router.GET(`/version`, h.version)
+	router.GET(`/version`, h.CheckSession, h.version)
 }
 func (h Other) version(c *gin.Context) {
 	gv := gin.Version

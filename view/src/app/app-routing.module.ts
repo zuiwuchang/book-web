@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ViewComponent } from './app/view/view.component';
 import { EditComponent } from './app/edit/edit.component';
+import { SessionGuard } from './core/guard/session.guard';
 const routes: Routes = [
   {
     path: '',
@@ -16,12 +17,16 @@ const routes: Routes = [
   {
     path: 'edit/:book/:chapter',
     component: EditComponent,
-    // canActivate: [LoginGuard],
+    canActivate: [SessionGuard],
     // canDeactivate: [EditSavedGuard]
   },
   {
     path: 'content',
     loadChildren: () => import('./content/content.module').then(m => m.ContentModule),
+  },
+  {
+    path: 'git',
+    loadChildren: () => import('./git/git.module').then(m => m.GitModule),
   },
 ];
 

@@ -125,3 +125,12 @@ func (h Helper) BindSession(c *gin.Context) (result *cookie.Session) {
 	result = session
 	return
 }
+
+// CheckSession 檢查是否具有 session
+func (h Helper) CheckSession(c *gin.Context) {
+	session := h.BindSession(c)
+	if session == nil {
+		c.Abort()
+		return
+	}
+}
