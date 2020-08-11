@@ -1,0 +1,13 @@
+<mat-card>
+    <mat-card-title>
+        Version
+    </mat-card-title>
+    <mat-card-content>
+        <p>angular {{VERSION.full}}</p>
+        <div *ngIf="version">
+            <p>{{version.platform}}</p>
+            <p>{{version.tag}} {{version.date}}</p>
+            <p>{{version.commit}}</p>
+        </div>
+    </mat-card-content>
+</mat-card>

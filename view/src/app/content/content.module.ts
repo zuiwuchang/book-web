@@ -10,10 +10,11 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { LicenseComponent } from './license/license.component';
 import { AboutComponent } from './about/about.component';
+import { VersionComponent } from './version/version.component';
 
 
 @NgModule({
-  declarations: [LicenseComponent, AboutComponent],
+  declarations: [LicenseComponent, AboutComponent, VersionComponent],
   imports: [
     CommonModule,
     MatButtonModule, MatCardModule, MatListModule,

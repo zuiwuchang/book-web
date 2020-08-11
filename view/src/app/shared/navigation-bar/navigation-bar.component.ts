@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SettingsService } from '../../core/settings/settings.service';
 import { SessionService, Session } from '../../core/session/session.service';
-import { BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { Closed } from 'src/app/core/core/utils';
+
 @Component({
   selector: 'shared-navigation-bar',
   templateUrl: './navigation-bar.component.html',
@@ -11,33 +14,44 @@ import { takeUntil } from 'rxjs/operators';
 export class NavigationBarComponent implements OnInit, OnDestroy {
 
   constructor(
-    private readonly settingsService: SettingsService,
-    private readonly sessionService: SessionService,
+    public readonly settingsService: SettingsService,
+    public readonly sessionService: SessionService,
+    public readonly matDialog: MatDialog,
   ) { }
-  private closed_ = new BehaviorSubject<boolean>(false)
+  private closed_ = new Closed()
   fullscreen = false
   ready = false
   session: Session
+  chapter = false
+  header = false
 
   ngOnInit(): void {
-    this.fullscreen = this.settingsService.fullscreen
-    this.settingsService.fullscreenObservable.pipe(
-      takeUntil(this.closed_),
-    ).subscribe((ok) => {
-      this.fullscreen = ok
-    })
     this.sessionService.ready.then((data) => {
       this.ready = data
-
       this.sessionService.observable.pipe(
-        takeUntil(this.closed_),
+        takeUntil(this.closed_.observable),
       ).subscribe((data) => {
         this.session = data
       })
     })
+    this.settingsService.fullscreenObservable.pipe(
+      takeUntil(this.closed_.observable),
+    ).subscribe((ok) => {
+      this.fullscreen = ok
+    })
+    this.settingsService.chapterObservable.pipe(
+      takeUntil(this.closed_.observable),
+    ).subscribe((ok) => {
+      this.chapter = ok
+    })
+    this.settingsService.headerObservable.pipe(
+      takeUntil(this.closed_.observable),
+    ).subscribe((ok) => {
+      this.header = ok
+    })
   }
   ngOnDestroy() {
-    this.closed_.next(true)
+    this.closed_.close()
   }
   toggleChapter() {
     this.settingsService.toggleChapter()
@@ -45,10 +59,12 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   toggleHeader() {
     this.settingsService.toggleHeader()
   }
-  isChapter() {
-    return this.settingsService.chapter
+  onClickLogin() {
+    this.matDialog.open(LoginComponent)
   }
-  isHeader() {
-    return this.settingsService.header
+  onLogout() {
+    this.sessionService.logout().catch((e) => {
+      console.log(e)
+    })
   }
 }

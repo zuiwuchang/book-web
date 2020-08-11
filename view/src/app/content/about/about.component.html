@@ -12,15 +12,10 @@
 <p>
     <mat-card>
         <mat-card-title>
-            Version
+            3rdpartylicenses.txt
         </mat-card-title>
         <mat-card-content>
-            <p>angular {{VERSION.full}}</p>
-            <div *ngIf="version">
-                <p>{{version.platform}}</p>
-                <p>{{version.tag}} {{version.date}}</p>
-                <p>{{version.commit}}</p>
-            </div>
+            <pre>{{content}}</pre>
         </mat-card-content>
     </mat-card>
 </p>

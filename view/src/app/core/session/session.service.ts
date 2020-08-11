@@ -4,7 +4,8 @@ import { ServerAPI } from '../core/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Completer, isString, Mutex, Exception } from 'king-node';
 export class Session {
-  name = ''
+  name: string
+  nickname: string
   root = false
 }
 @Injectable({
@@ -15,29 +16,30 @@ export class SessionService {
     // 恢復 session
     this._restore();
   }
-  private readonly _mutex = new Mutex()
-  private readonly _subject = new BehaviorSubject<Session>(null)
-  private readonly _ready = new Completer<boolean>()
+  private readonly mutex_ = new Mutex()
+  private readonly subject_ = new BehaviorSubject<Session>(null)
+  private readonly ready_ = new Completer<boolean>()
   get observable(): Observable<Session> {
-    return this._subject
+    console.log(this.subject_)
+    return this.subject_
   }
   get ready(): Promise<boolean> {
-    return this._ready.promise
+    return this.ready_.promise
   }
   private async _restore() {
     console.log('start session restore')
-    await this._mutex.lock()
+    await this.mutex_.lock()
     try {
       const response = await ServerAPI.v1.session.get<Session>(this.httpClient)
       if (response && isString(response.name)) {
         console.info(`session restore`, response)
-        this._subject.next(response)
+        this.subject_.next(response)
       }
     } catch (e) {
       console.error(`restore error : `, e)
     } finally {
-      this._mutex.unlock()
-      this._ready.resolve(true)
+      this.mutex_.unlock()
+      this.ready_.resolve(true)
     }
   }
   /**
@@ -47,7 +49,7 @@ export class SessionService {
   * @param keep 
   */
   async login(name: string, password: string, remember: boolean): Promise<Session> {
-    await this._mutex.lock()
+    await this.mutex_.lock()
     let result: Session
     try {
       const response = await ServerAPI.v1.session.post<Session>(this.httpClient, {
@@ -57,13 +59,13 @@ export class SessionService {
       })
       if (response) {
         console.info(`login success`, response)
-        this._subject.next(response)
+        this.subject_.next(response)
       } else {
         console.warn(`login unknow result`, response)
         throw new Exception("login unknow result")
       }
     } finally {
-      this._mutex.unlock()
+      this.mutex_.unlock()
     }
     return result
   }
@@ -72,15 +74,15 @@ export class SessionService {
    * 登出
    */
   async logout() {
-    await this._mutex.lock()
+    await this.mutex_.lock()
     try {
-      if (this._subject.value == null) {
+      if (this.subject_.value == null) {
         return
       }
       await ServerAPI.v1.session.delete(this.httpClient)
-      this._subject.next(null)
+      this.subject_.next(null)
     } finally {
-      this._mutex.unlock()
+      this.mutex_.unlock()
     }
   }
 }

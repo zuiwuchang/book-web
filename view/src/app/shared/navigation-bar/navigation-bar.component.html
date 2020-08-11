@@ -9,7 +9,7 @@
         </a>
         <a href="https://gitlab.com/king011/book-web" target="_blank">
             <button mat-icon-button i18n-matTooltip matTooltip="Source Tooltip">
-                <mat-icon>code</mat-icon>
+                <mat-icon class="myfont" fontSet="fontawesome-fab" fontIcon="fa-gitlab"></mat-icon>
             </button>
         </a>
 
@@ -26,17 +26,61 @@
         </a>
 
         <span class="fill-flex"></span>
+        <ng-container *ngIf="ready; then readyView; else loadingView">
+        </ng-container>
+        <ng-template #readyView>
+            <ng-container *ngIf="session; then sessionView; else loginView">
+            </ng-container>
+        </ng-template>
+        <ng-template #loadingView>
+            <mat-spinner color="accent" diameter='32'></mat-spinner>
+        </ng-template>
+        <ng-template #sessionView>
+            <button class="menu-btn" mat-icon-button matTooltip="{{session?.nickname}}"
+                [matMenuTriggerFor]="menuPerson">
+                <mat-icon>person_pin</mat-icon>
+            </button>
+            <mat-menu #menuPerson="matMenu">
+                <button class="menu-btn" mat-menu-item (click)="onLogout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <ng-container i18n>sign out</ng-container>
+                </button>
+                <a routerLink="/books">
+                    <button class="menu-btn" mat-menu-item>
+                        <mat-icon>book</mat-icon>
+                        <ng-container i18n>Books Management</ng-container>
+                    </button>
+                </a>
+                <a routerLink="/git">
+                    <button class="menu-btn" mat-menu-item>
+                        <mat-icon>extension</mat-icon>
+                        <ng-container i18n>Git Command</ng-container>
+                    </button>
+                </a>
+                <a routerLink="/content/version">
+                    <button class="menu-btn" mat-menu-item>
+                        <mat-icon>bug_report</mat-icon>
+                        <ng-container i18n>Version</ng-container>
+                    </button>
+                </a>
+            </mat-menu>
+        </ng-template>
+        <ng-template #loginView>
+            <button mat-icon-button i18n-matTooltip matTooltip="sign in" (click)="onClickLogin()">
+                <mat-icon class="myfont" fontSet="fontawesome-fas" fontIcon="fa-sign-in-alt"></mat-icon>
+            </button>
+        </ng-template>
 
         <button class="menu-btn" mat-icon-button i18n-matTooltip matTooltip="Apps Tooltip" [matMenuTriggerFor]="menu">
             <mat-icon>apps</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
             <button class="menu-btn" mat-menu-item (click)="toggleChapter()">
-                <mat-icon>{{isChapter()?'close':'menu'}}</mat-icon>
+                <mat-icon>{{chapter?'close':'menu'}}</mat-icon>
                 <ng-container i18n>Book Chapter</ng-container>
             </button>
             <button class="menu-btn" mat-menu-item (click)="toggleHeader()">
-                <mat-icon>{{isHeader()?'close':'menu'}}</mat-icon>
+                <mat-icon>{{header?'close':'menu'}}</mat-icon>
                 <ng-container i18n>Book Chapter Header</ng-container>
             </button>
         </mat-menu>
