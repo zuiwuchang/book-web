@@ -77,6 +77,10 @@
           <context context-type="sourcefile">src/app/shared/login/login.component.html</context>
           <context context-type="linenumber">48</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/git/git/git.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
         <source>Close</source>
@@ -109,6 +113,10 @@
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="e203fbda1a68c2ee0b206d0959f9323d3deac894" datatype="html">
         <source>About Tooltip</source>
@@ -116,6 +124,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="be394178ed48540a1665330866853faecea24c55" datatype="html">
@@ -141,6 +153,10 @@
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">57</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="8fe73a4787b8068b2ba61f54ab7e0f9af2ea1fc9" datatype="html">
         <source>Version</source>
@@ -148,6 +164,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5f479d04968cd9f3d517ecfb3fff4e9adc173ed4" datatype="html">
@@ -196,6 +216,54 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/content/about/about.component.html</context>
           <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d51650854982b16279e55acd1865ee16c258eda2" datatype="html">
+        <source>Label Git Commit</source>
+        <target>Submit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/git/git/git.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0932a55b67a42dcea3e4ba67bf21851366ba2b48" datatype="html">
+        <source>Label Git Sync</source>
+        <target>Sync</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/git/git/git.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7dfb05d02b32dd7f2b6389c589d495aba429a45c" datatype="html">
+        <source>Label Git Log</source>
+        <target>Log</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/git/git/git.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c51ef150aa1efac51d64858278f32fdd8859de26" datatype="html">
+        <source>Select Git Command</source>
+        <target>choose git command</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/git/git/git.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bc837474641d109e19088df74e2c167990fb9ee4" datatype="html">
+        <source>Commint Message</source>
+        <target>commint message</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/git/git/git.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e798e9e6942c3d54ca6d28ae1537ad7d95c0e632" datatype="html">
+        <source>Commint Message Invalid</source>
+        <target>commint message invalid</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/git/git/git.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
     </body>

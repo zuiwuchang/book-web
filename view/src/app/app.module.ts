@@ -5,7 +5,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 import { ToasterModule, ToasterService } from 'angular2-toaster';
+import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -23,12 +26,13 @@ import { EditComponent } from './app/edit/edit.component';
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     ToasterModule.forRoot(),
+    HighlightJsModule,
     MatIconModule, MatTooltipModule,
     SharedModule,
 
     AppRoutingModule
   ],
-  providers: [ToasterService],
+  providers: [ToasterService, HighlightJsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

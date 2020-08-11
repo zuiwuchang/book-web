@@ -12,9 +12,9 @@ import { Closed } from '../../core/core/utils';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  constructor(public readonly sessionService: SessionService,
-    public readonly matDialogRef: MatDialogRef<LoginComponent>,
-    public readonly toasterService: ToasterService,
+  constructor(private readonly sessionService: SessionService,
+    private readonly matDialogRef: MatDialogRef<LoginComponent>,
+    private readonly toasterService: ToasterService,
   ) { }
   ready = false
   session: Session

@@ -1,1 +1,39 @@
-<p>git works!</p>
+<form (submit)="onSubmit()" #form="ngForm">
+    <mat-form-field class="full-width">
+        <mat-select i18n-placeholder [disabled]="disabled" placeholder="Select Git Command" name="cmd"
+            [(ngModel)]="cmd">
+            <mat-optgroup i18n-label label="Label Git Commit">
+                <mat-option [value]="'add'">git add</mat-option>
+                <mat-option [value]="'status'">git status</mat-option>
+                <mat-option [value]="'commit'">git commit</mat-option>
+            </mat-optgroup>
+
+            <mat-optgroup i18n-label label="Label Git Sync">
+                <mat-option [value]="'push'">git push</mat-option>
+                <mat-option [value]="'pull'">git pull</mat-option>
+            </mat-optgroup>
+
+            <mat-optgroup i18n-label label="Label Git Log">
+                <mat-option [value]="'log'">git log</mat-option>
+            </mat-optgroup>
+
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" *ngIf="cmd=='commit'">
+        <input matInput i18n-placeholder appValidatorGitMessage [disabled]="disabled" placeholder="Commint Message"
+            name="extend" [(ngModel)]="extend">
+        <mat-error i18n>Commint Message Invalid</mat-error>
+    </mat-form-field>
+    <button mat-stroked-button i18n class="no-outline" [disabled]="disabled || form.invalid">Submit</button>
+</form>
+
+<div class="result">
+    <div *ngIf="disabled">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <div *ngIf="val">
+        <section #view highlight-js-content="code">
+            <pre><code class="language-sh hljs bash">{{val}}</code></pre>
+        </section>
+    </div>
+</div>

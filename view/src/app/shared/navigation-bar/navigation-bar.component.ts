@@ -14,9 +14,9 @@ import { Closed } from 'src/app/core/core/utils';
 export class NavigationBarComponent implements OnInit, OnDestroy {
 
   constructor(
-    public readonly settingsService: SettingsService,
-    public readonly sessionService: SessionService,
-    public readonly matDialog: MatDialog,
+    private readonly settingsService: SettingsService,
+    private readonly sessionService: SessionService,
+    private readonly matDialog: MatDialog,
   ) { }
   private closed_ = new Closed()
   fullscreen = false
