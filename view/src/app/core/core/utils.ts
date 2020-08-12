@@ -19,3 +19,9 @@ export class Closed {
         return !this.closed_.value
     }
 }
+declare const requireLoad: any
+export function requireDynamic(name: string): Promise<any> {
+    return new Promise<any>(function (resolve, reject) {
+        requireLoad([name], resolve, reject)
+    })
+}

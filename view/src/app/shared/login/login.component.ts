@@ -2,9 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Session, SessionService } from 'src/app/core/session/session.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ToasterService } from 'angular2-toaster';
-import { sha512 } from 'js-sha512';
+
 import { takeUntil, } from 'rxjs/operators';
-import { Closed } from '../../core/core/utils';
+import { Closed, requireDynamic } from '../../core/core/utils';
+declare const requireLoad: any
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,8 +46,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   async onSubmit() {
     try {
-      const password = sha512(this.password).toString()
       this.disabled = true
+
+      const sha512 = await requireDynamic('sha512')
+      const password = sha512(this.password).toString()
       await this.sessionService.login(this.name, password, this.remember)
     } catch (e) {
       this.toasterService.pop('error',

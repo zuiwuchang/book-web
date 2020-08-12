@@ -27,6 +27,12 @@ const routes: Routes = [
   {
     path: 'git',
     loadChildren: () => import('./git/git.module').then(m => m.GitModule),
+    canActivate: [SessionGuard],
+  },
+  {
+    path: 'books',
+    loadChildren: () => import('./books/books.module').then(m => m.BooksModule),
+    canActivate: [SessionGuard],
   },
 ];
 

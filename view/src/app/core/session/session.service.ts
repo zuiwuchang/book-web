@@ -22,7 +22,6 @@ export class SessionService {
   private readonly subject_ = new BehaviorSubject<Session>(null)
   private readonly ready_ = new Completer<boolean>()
   get observable(): Observable<Session> {
-    console.log(this.subject_)
     return this.subject_
   }
   get ready(): Promise<boolean> {

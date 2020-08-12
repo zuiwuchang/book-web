@@ -16,6 +16,18 @@
 
 <body>
   <app-root></app-root>
+  <script src="/static/js/require.min.js"></script>
+  <script>
+    var requireLoad = require
+    // 配置動態加載腳本
+    requirejs.config({
+      // js 加載 根目錄
+      baseUrl: '/static/js',
+      paths: {
+        'sha512': 'sha512.min',
+      },
+    })
+  </script>
 </body>
 
 </html>

@@ -8,6 +8,10 @@
             <p>{{version.platform}}</p>
             <p>{{version.tag}} {{version.date}}</p>
             <p>{{version.commit}}</p>
+            <p>GOMAXPROCS : {{version.goMaxprocs}}</p>
+            <p>NumCgoCall : {{version.numCgoCall}}</p>
+            <p>NumGoroutine : {{version.numGoroutine}}</p>
+            <p *ngIf="startAt">start at {{startAt.format('YYYY-MM-DD hh:mm:ss')}} , started {{started}} .</p>
         </div>
     </mat-card-content>
 </mat-card>
