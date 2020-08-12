@@ -1,0 +1,10 @@
+<form #form="ngForm" (submit)="onSure()">
+    <h1 mat-dialog-title i18n>Book Remove Title</h1>
+    <p mat-dialog-content>
+        <ng-container i18n>Book Remove {{data.name}}?</ng-container>
+    </p>
+    <div mat-dialog-actions>
+        <button type="submit" mat-button [disabled]="form.invalid" i18n>Sure</button>
+        <button type="button" cdkFocusInitial mat-button (click)="onCancel()" i18n>Cancel</button>
+    </div>
+</form>

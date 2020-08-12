@@ -134,3 +134,8 @@ func (h Helper) CheckSession(c *gin.Context) {
 		return
 	}
 }
+
+// BindQuery .
+func (h Helper) BindQuery(c *gin.Context, obj interface{}) error {
+	return h.BindWith(c, obj, binding.Query)
+}

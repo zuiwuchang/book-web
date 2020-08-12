@@ -40,18 +40,18 @@ func IsBookChapterID(id string) (yes bool) {
 // BookChapter 書 章節定義
 type BookChapter struct {
 	// 章節名稱
-	Name string
+	Name string `json:"name,omitempty"`
 	// 章節地址
-	ID string
+	ID string `json:"id,omitempty"`
 }
 
 // Book 定義了一本書
 type Book struct {
-	ID string
+	ID string `json:"id,omitempty"`
 	// 書名
-	Name string
+	Name string `json:"name,omitempty"`
 	// 書章節
-	Chapter []BookChapter
+	Chapter []BookChapter `json:"chapter,omitempty"`
 }
 
 // Format 標準化數據 主要 修復錯誤的章節 數據

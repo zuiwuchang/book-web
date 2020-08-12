@@ -145,6 +145,10 @@
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
           <context context-type="linenumber">51</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="8fba9c75561048837b9a563b9493f6fe5072ddcd" datatype="html">
         <source>Git Command</source>
@@ -264,6 +268,166 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/git/git/git.component.html</context>
           <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1c5b6b7e552bd99594013269dd815d3d224cb599" datatype="html">
+        <source>Book New Title</source>
+        <target>New book</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7a8f81ed66fbf71ae4726d7fe0981c97018788c7" datatype="html">
+        <source>Book Name Search Placeholder</source>
+        <target>Please enter the book name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/rename/rename.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/change-id/change-id.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/books/books.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3109a720edd8f4f2e8b4f9e906981a5c6e7b8b47" datatype="html">
+        <source>Book Search Placeholder</source>
+        <target>Please enter the book id</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/books/books.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="54d5afb066efac25fc5229f3d903e27eeb0d5bf2" datatype="html">
+        <source>ID Invalid</source>
+        <target>invalid id</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/books/books.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f0dc0497ad16adbd386a3b2f2c55d81c51a1f029" datatype="html">
+        <source>Sure</source>
+        <target>Sure</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/rename/rename.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/change-id/change-id.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/remove/remove.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/rename/rename.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/change-id/change-id.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/remove/remove.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="534a40b1fd1bb41f6228fa8ba4950924b6dedc88" datatype="html">
+        <source>Book Rename Title</source>
+        <target>Rename</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/rename/rename.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/change-id/change-id.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="38b0e2d55798d296bf7b36e0f7b45eb03df415f2" datatype="html">
+        <source>Book Remove Title</source>
+        <target>Delete book</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/remove/remove.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9246e1e180ed1c09140f84552ff06152ce644ce" datatype="html">
+        <source>Book Remove <x id="INTERPOLATION" equiv-text="{{data.name}}"/>?</source>
+        <target>The book deletion cannot be recovered. Are you sure you want to delete "<x id="INTERPOLATION" equiv-text="{{data.name}}"/>"?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/remove/remove.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source>
+        <target>Search</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/books/books.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d81f00c85d3b507f3e3d78bfc617a2c66e028391" datatype="html">
+        <source>New</source>
+        <target>New</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/books/books.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="197f14fcd685bc34fdc7a91518cc33b3d8707f1c" datatype="html">
+        <source>Rename Tooltip</source>
+        <target>Rename</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/books/books.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="111f6ae9119f6e6202bb5ba800b81012b6356390" datatype="html">
+        <source>ChangeID Tooltip</source>
+        <target>Change ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/books/books.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="60265a6a51f9f4122c27ae1329e75b498d954c47" datatype="html">
+        <source>Remove Tooltip</source>
+        <target>Remove</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/books/books.component.html</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
     </body>

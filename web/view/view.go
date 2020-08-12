@@ -15,7 +15,7 @@ import (
 )
 
 // BaseURL request base url
-const BaseURL = `/view`
+const BaseURL = `/angular`
 
 // Helper path of /app
 type Helper struct {

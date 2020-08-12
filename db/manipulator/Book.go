@@ -15,7 +15,7 @@ import (
 
 var errSortExpired = errors.New("sort expired")
 var errRemoveHome = errors.New("can't remove home")
-var errReidHome = errors.New("can't reid home")
+var errChangeIDHome = errors.New("can't change id for home")
 
 // Book .
 type Book struct {
@@ -88,6 +88,9 @@ func (m Book) Find(id, name string) (books []data.Book, e error) {
 	infos, e = f.Readdir(0)
 	f.Close()
 	if e != nil {
+		return
+	}
+	if len(infos) == 0 {
 		return
 	}
 	books = make([]data.Book, 1, len(infos))
@@ -743,13 +746,13 @@ func (m Book) Rename(id, name string) (e error) {
 	return
 }
 
-// Reid 書籍修改ID
-func (m Book) Reid(id, newID string) (e error) {
+// ChangeID 書籍修改ID
+func (m Book) ChangeID(id, newID string) (e error) {
 	id, e = data.CheckBookID(id)
 	if e != nil {
 		return
 	} else if id == "home" {
-		e = errReidHome
+		e = errChangeIDHome
 		return
 	}
 	newID, e = data.CheckBookID(newID)

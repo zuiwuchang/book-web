@@ -3,6 +3,7 @@ package manipulator
 import (
 	"book-web/configure"
 	"fmt"
+	"path/filepath"
 )
 
 var _FileRoot string
@@ -41,6 +42,7 @@ func BookChapterMD5(id, chapter string) string {
 
 // BookAssets 返回靜態 資源 檔案
 func BookAssets(id, chapter, name string) string {
+	name = filepath.Base(name)
 	return fmt.Sprintf("%s/%s/%s/assets/%s", _FileRoot, id, chapter, name)
 }
 
