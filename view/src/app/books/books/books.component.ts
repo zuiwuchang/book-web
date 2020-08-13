@@ -159,18 +159,25 @@ export class BooksComponent implements OnInit {
       data: book,
     }).afterClosed().subscribe((result: boolean) => {
       if (!this.disabled && result) {
-        this._remove(book.id)
+        this._remove(book)
       }
     })
   }
-  private _remove(id: string) {
+  private _remove(book: Book) {
     this.disabled = true
-    // ServerAPI.v1.books.delete(this.httpClient).then(() => {
-
-    // }, (e) => {
-    //   this.toasterService.pop('error', undefined, e)
-    // }).finally(() => {
-    //   this.disabled = false
-    // })
+    ServerAPI.v1.books.delete(this.httpClient, {
+      params: {
+        id: book.id,
+      },
+    }).then(() => {
+      const index = this.items.indexOf(book)
+      if (index != -1) {
+        this.items.splice(index, 1)
+      }
+    }, (e) => {
+      this.toasterService.pop('error', undefined, e)
+    }).finally(() => {
+      this.disabled = false
+    })
   }
 }
