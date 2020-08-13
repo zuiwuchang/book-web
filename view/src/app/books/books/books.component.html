@@ -4,7 +4,7 @@
             [(ngModel)]="bookName">
     </mat-form-field>
     <mat-form-field class="field">
-        <input matInput i18n-placeholder appValidatorsBookFind [disabled]="disabled"
+        <input matInput i18n-placeholder sharedValidatorBookFind [disabled]="disabled"
             placeholder="Book Search Placeholder" name="name" [(ngModel)]="bookID">
         <mat-error i18n>ID Invalid</mat-error>
     </mat-form-field>

@@ -19,9 +19,10 @@ import { MatInputModule } from '@angular/material/input';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { LoginComponent } from './login/login.component';
 import { ValidatorIdDirective } from './validators/validator-id.directive';
+import { ValidatorBookFindDirective } from './validators/validator-book-find.directive';
 
 @NgModule({
-  declarations: [NavigationBarComponent, LoginComponent, ValidatorIdDirective],
+  declarations: [NavigationBarComponent, LoginComponent, ValidatorIdDirective, ValidatorBookFindDirective],
   imports: [
     CommonModule, RouterModule, FormsModule,
     MatToolbarModule, MatTooltipModule, MatIconModule,
@@ -29,7 +30,8 @@ import { ValidatorIdDirective } from './validators/validator-id.directive';
     MatDialogModule, MatProgressBarModule, MatFormFieldModule,
     MatSlideToggleModule, MatInputModule,
   ],
-  exports: [NavigationBarComponent, ValidatorIdDirective],
+  exports: [NavigationBarComponent, ValidatorIdDirective, ValidatorBookFindDirective,
+  ],
   entryComponents: [LoginComponent],
 })
 export class SharedModule { }
