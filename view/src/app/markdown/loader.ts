@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Book } from '../core/protocol'
 import { OpenedBook } from '../core/settings/settings.service';
 import { isString, isArray } from 'king-node/dist/core';
-import { requireDynamics } from '../core/core/utils';
+import { requireDynamics, requireDynamic } from '../core/core/utils';
 import { ServerAPI } from '../core/core/api';
 export class Loader {
     book: Book
@@ -30,12 +30,13 @@ export class Loader {
                     resolve(title)
                 }
             }
+            requireDynamic('MathJax')
             // 加載依賴
             requireDynamics('jquery', 'showdown', 'clipboard',
 
                 'highlight',
                 'shell', 'bash',
-                'ini', 'json', 'yaml', 'protobuf',
+                'plaintext', 'ini', 'json', 'yaml', 'protobuf',
                 'xml', 'css', 'scss', 'less',
                 'cpp', 'go', 'dart', 'java', 'javascript', 'typescript', 'python', 'lua', 'sql', 'kotlin',
                 'cmake', 'makefile', 'dockerfile', 'gradle', 'http', 'markdown', 'nginx', 'vim',

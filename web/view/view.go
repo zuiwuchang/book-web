@@ -16,7 +16,7 @@ import (
 // BaseURL request base url
 const BaseURL = `/angular`
 
-// Helper path of /app
+// Helper path of /angular
 type Helper struct {
 	web.Helper
 }

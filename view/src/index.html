@@ -19,36 +19,36 @@
   <script>
     var requireLoad = require
     // 配置動態加載腳本
-    var paths= {
-        'sha512': 'sha512.min',
-        'jquery':'jquery.min',
-       'showdown':'showdown.min',
-       'clipboard':'clipboard.min',
-       'MathJax':'https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
-       'highlight':'https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min',
+    var paths = {
+      'sha512': 'sha512.min',
+      'jquery': 'jquery.min',
+      'showdown': 'showdown.min',
+      'clipboard': 'clipboard.min',
+      'MathJax': ['https://cdn.bootcdn.net/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML'],
+      'highlight': ['https://cdn.bootcdn.net/ajax/libs/highlight.js/9.18.3/highlight.min', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min'],
     }
-    var highlight = ['shell','bash',
-      'ini','json','yaml','protobuf',
-      'xml','css','scss','less',
-      'cpp','go','dart','java','javascript','typescript','python','lua','sql','kotlin',
-      'cmake','makefile','dockerfile','gradle','http','markdown','nginx','vim',
+    var highlight = ['shell', 'bash',
+      'plaintext', 'ini', 'json', 'yaml', 'protobuf',
+      'xml', 'css', 'scss', 'less',
+      'cpp', 'go', 'dart', 'java', 'javascript', 'typescript', 'python', 'lua', 'sql', 'kotlin',
+      'cmake', 'makefile', 'dockerfile', 'gradle', 'http', 'markdown', 'nginx', 'vim',
     ]
-    var shim={}
-    var deps= ['highlight']
+    var shim = {}
+    var deps = ['highlight']
     for (var i = 0; i < highlight.length; i++) {
-      paths[highlight[i]]="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/languages/"+highlight[i]+".min"
-      shim[highlight[i]]={
-        deps:deps
+      paths[highlight[i]] = ["https://cdn.bootcdn.net/ajax/libs/highlight.js/9.18.3/languages/" + highlight[i] + ".min", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/languages/" + highlight[i] + ".min"]
+      shim[highlight[i]] = {
+        deps: deps
       }
     }
     requirejs.config({
       // js 加載 根目錄
       baseUrl: '/static/js',
-      paths:paths,
-      shim:shim,
+      paths: paths,
+      shim: shim,
     })
   </script>
-  
+
 </body>
 
 </html>

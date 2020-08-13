@@ -3,6 +3,7 @@ package daemon
 import (
 	"book-web/web"
 	"book-web/web/api"
+	"book-web/web/book"
 	"book-web/web/static"
 	"book-web/web/view"
 
@@ -15,6 +16,7 @@ func newGIN() (router *gin.Engine) {
 		api.Helper{},
 		view.Helper{},
 		static.Helper{},
+		book.Helper{},
 	}
 	for _, r := range rs {
 		r.Register(&router.RouterGroup)

@@ -13,7 +13,7 @@ import (
 // BaseURL request base url
 const BaseURL = `/api`
 
-// Helper path of /app
+// Helper path of /api
 type Helper struct {
 	web.Helper
 }

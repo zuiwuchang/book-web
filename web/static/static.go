@@ -16,7 +16,7 @@ import (
 // BaseURL request base url
 const BaseURL = `/static`
 
-// Helper path of /app
+// Helper path of /static
 type Helper struct {
 	web.Helper
 }

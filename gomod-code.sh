@@ -15,7 +15,7 @@
 #Email:
 #       zuiwuchang@gmail.com
 
-
+export GO111MODULE=off
 function ShowHelp(){
 	echo "h/help     : show help"
 	echo "o/open     : open vscode"
