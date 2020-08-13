@@ -25,3 +25,8 @@ export function requireDynamic(name: string): Promise<any> {
         requireLoad([name], resolve, reject)
     })
 }
+export function requireDynamics(...names: Array<string>): Promise<any> {
+    return new Promise<any>(function (resolve, reject) {
+        requireLoad(names, resolve, reject)
+    })
+}

@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let item of items" class="pointer li{{item.LV}}" (click)="onClick(item.ID)">
+      {{item?.Text}}
+    </li>
+  </ul>

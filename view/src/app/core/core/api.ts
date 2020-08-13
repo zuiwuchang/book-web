@@ -7,6 +7,8 @@ export const ServerAPI = {
         session: new RESTful(root, 'v1', 'session'),
         git: new RESTful(root, 'v1', 'git'),
         books: new RESTful(root, 'v1', 'books'),
+        chapters: new RESTful(root, 'v1', 'chapters'),
+        text: new RESTful(root, 'v1', 'chapters/text'),
     },
     static: {
         licenses: '/static/3rdpartylicenses.txt',

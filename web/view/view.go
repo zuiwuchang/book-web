@@ -8,7 +8,6 @@ import (
 	"book-web/logger"
 	"book-web/web"
 
-	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"github.com/rakyll/statik/fs"
 	"go.uber.org/zap"
@@ -67,7 +66,7 @@ func (h Helper) Register(router *gin.RouterGroup) {
 	router.GET(`/view/`, h.redirect)
 
 	r := router.Group(BaseURL)
-	r.Use(gzip.Gzip(gzip.DefaultCompression))
+	r.Use(h.Gzip())
 	r.GET(`/:locale`, h.viewOrRedirect)
 	r.GET(`/:locale/*path`, h.view)
 }

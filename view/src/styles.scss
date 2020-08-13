@@ -53,3 +53,64 @@ a:hover{
     color: #0056b3;
     text-decoration: underline;
 }
+// markdown
+.markdown .hljs {
+    color: #a9b7c6;
+    background: #282b2e;
+    display: inline;
+    overflow-x: auto;
+    padding: 0.5em;
+}
+.markdown pre .hljs {
+    color: #a9b7c6;
+    background: #282b2e;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+}
+.markdown pre .text{
+    color: #a9b7c6;
+    background: #282b2e;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+}
+.markdown pre .txt{
+    color: #a9b7c6;
+    background: #282b2e;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+}
+.markdown .code-view{
+    position: relative;
+    white-space: nowrap;
+}
+.markdown .clipboard {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+}
+.markdown .clipboard:active{
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    cursor: pointer;
+}
+.markdown blockquote{
+    color: rgb(116, 129, 141);
+    margin: 0px 16px 24px;
+    padding: 19px 16px 1px 12px;
+    background: #E0EBF5;
+    border-radius: 8px;
+}
+.markdown{
+    padding-left: 2px;
+}
+.fill-flex{
+    flex: 1 1 auto;
+}
+.markdown .code-view ol {
+	margin-bottom: 0px;
+}

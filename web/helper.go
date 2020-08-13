@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"reflect"
 
+	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"go.uber.org/zap"
@@ -19,6 +20,7 @@ var Offered = []string{
 	binding.MIMEXML,
 	binding.MIMEYAML,
 }
+var compression = gzip.Gzip(gzip.DefaultCompression)
 
 // Helper 輔助類型
 type Helper struct {
@@ -138,4 +140,9 @@ func (h Helper) CheckSession(c *gin.Context) {
 // BindQuery .
 func (h Helper) BindQuery(c *gin.Context, obj interface{}) error {
 	return h.BindWith(c, obj, binding.Query)
+}
+
+// Gzip .
+func (h Helper) Gzip() gin.HandlerFunc {
+	return compression
 }

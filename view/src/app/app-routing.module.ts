@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ViewComponent } from './app/view/view.component';
 import { EditComponent } from './app/edit/edit.component';
 import { SessionGuard } from './core/guard/session.guard';
 const routes: Routes = [
@@ -11,8 +10,8 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'view/:book/:chapter',
-    component: ViewComponent,
+    path: 'view',
+    loadChildren: () => import('./view/view.module').then(m => m.ViewModule),
   },
   {
     path: 'edit/:book/:chapter',

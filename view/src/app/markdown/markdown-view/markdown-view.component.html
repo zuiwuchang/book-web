@@ -1,0 +1,55 @@
+<button #btnClipboard class="hide" data-clipboard-text="">copy</button>
+<mat-drawer-container>
+    <mat-drawer class="sidenav-left" mode="side" [opened]="chapter">
+        <mat-nav-list>
+            <a [routerLink]="['/view', book?.id,'0']" mat-list-item>{{book?.name}}</a>
+            <mat-divider></mat-divider>
+            <a *ngFor="let item of book?.chapter;" [routerLink]="['/view', book?.id, item.id]" mat-list-item>{{item.name}}</a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer class="sidenav-right" mode="side" [opened]="header" position="end">
+        <markdown-bar [items]="markdown?.Header" (valChange)="onChange($event)"></markdown-bar>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="navigate-view">
+            <a [routerLink]="['/view', previous.book,previous.chapter]" *ngIf="previous">
+                <button mat-button class="previous no-outline">
+                    <mat-icon>navigate_before</mat-icon>
+                    {{previous.name}}
+                </button>
+            </a>
+            <div class="navigate-fill">
+                <div class="title">{{title}}</div>
+            </div>
+            <a [routerLink]="['/view', next.book,next.chapter]" *ngIf="next">
+                <button mat-button class="next no-outline">
+                    {{next.name}}
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </a>
+        </div>
+
+        <div class="markdown">
+            <section #view [innerHtml]="markdown?.HTML" highlight-js-content="code">
+            </section>
+        </div>
+
+        <div class="navigate-view">
+            <a [routerLink]="['/view', previous.book,previous.chapter]" *ngIf="previous">
+                <button mat-button class="previous no-outline">
+                    <mat-icon>navigate_before</mat-icon>
+                    {{previous.name}}
+                </button>
+            </a>
+            <div class="navigate-fill">
+                <div class="title">{{title}}</div>
+            </div>
+            <a [routerLink]="['/view', next.book,next.chapter]" *ngIf="next">
+                <button mat-button class="next no-outline">
+                    {{next.name}}
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </a>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

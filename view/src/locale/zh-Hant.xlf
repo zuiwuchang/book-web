@@ -198,6 +198,22 @@
           <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="def755457793d5ad40597886d2d317bc5f415a2f" datatype="html">
+        <source>Loading</source>
+        <target>正在載入</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
+        <source>Error</source>
+        <target>錯誤</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="e5fb254607ba2b0bdee5c290f639153bb78141b9" datatype="html">
         <source>About content</source>
         <target>book-web 是我爲個人用戶開發的一個web資料管理系統，主要是爲了能夠在線整理文檔並隨時可以方便查看，此網站便是以此部署的。管理員以 markdown 形式書寫文檔，任何人都可以通過 html 查看。</target>

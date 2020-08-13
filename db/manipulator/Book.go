@@ -9,6 +9,8 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"sync"
+	"time"
 
 	"gitlab.com/king011/king-go/os/fileperm"
 )
@@ -16,13 +18,14 @@ import (
 var errSortExpired = errors.New("sort expired")
 var errRemoveHome = errors.New("can't remove home")
 var errChangeIDHome = errors.New("can't change id for home")
+var bookRW sync.RWMutex
 
 // Book .
 type Book struct {
 }
 
 // Get 返回指定的 書
-func (m Book) Get(id string) (book *data.Book, e error) {
+func (m Book) Get(id string) (book *data.Book, modTime time.Time, e error) {
 	// 驗證 參數
 	id, e = data.CheckBookID(id)
 	if e != nil {
@@ -30,7 +33,7 @@ func (m Book) Get(id string) (book *data.Book, e error) {
 	}
 
 	// 讀取 定義
-	book, e = m.get(id)
+	book, modTime, e = m.get(id)
 	if e != nil {
 		return
 	}
@@ -53,6 +56,7 @@ func (m Book) Get(id string) (book *data.Book, e error) {
 			keys[book.Chapter[i].ID] = true
 		}
 	}
+	add := false
 	for _, info := range infos {
 		key := info.Name()
 		if key == "0" ||
@@ -64,7 +68,11 @@ func (m Book) Get(id string) (book *data.Book, e error) {
 			ID:   key,
 			Name: "_" + key,
 		})
+		add = true
 		keys[key] = true
+	}
+	if add {
+		modTime, e = m.save(book)
 	}
 	return
 }
@@ -151,10 +159,12 @@ func (Book) getName(id string) (book *data.Book) {
 }
 
 // Get 返回指定的 書
-func (Book) get(id string) (book *data.Book, e error) {
+func (Book) get(id string) (book *data.Book, modTime time.Time, e error) {
 	// 讀取 定義
 	filepath := BookDefinition(id)
-	b, e := ioutil.ReadFile(filepath)
+	bookRW.RLock()
+	b, modTime, e := utils.ReadFile(filepath)
+	bookRW.RUnlock()
 	if e != nil {
 		return
 	}
@@ -169,7 +179,7 @@ func (Book) get(id string) (book *data.Book, e error) {
 	book.ID = id
 	return
 }
-func (Book) save(book *data.Book) (e error) {
+func (Book) save(book *data.Book) (modTime time.Time, e error) {
 	filepath := BookDefinition(book.ID)
 
 	var b []byte
@@ -177,59 +187,19 @@ func (Book) save(book *data.Book) (e error) {
 	if e != nil {
 		return
 	}
+	bookRW.Lock()
 	e = ioutil.WriteFile(filepath, b, fileperm.File)
-	return
-}
-
-// Chapter 返回章節 內容
-func (Book) Chapter(id, chapter, md5 string) (hit bool, cacheMD5, str string, e error) {
-	// 驗證 參數
-	id, e = data.CheckBookID(id)
-	if e != nil {
-		return
-	}
-	chapter, e = data.CheckBookChapterID(chapter)
-	if e != nil {
-		return
-	}
-	md5 = strings.TrimSpace(md5)
-	// 讀取 cache md5
-	md5Filepath := BookChapterMD5(id, chapter)
-	var b []byte
-	var md5Err error
-	b, md5Err = ioutil.ReadFile(md5Filepath)
-	cacheMD5 = utils.BytesToString(b)
-	if md5Err == nil && utils.IsMD5Lower(md5) && utils.IsMD5Lower(cacheMD5) && md5 == cacheMD5 {
-		// 命中 緩存 直接 返回
-		hit = true
-		return
-	}
-
-	// 未命中 緩存 讀取 數據
-	filepath := BookChapter(id, chapter)
-	b, e = ioutil.ReadFile(filepath)
-	if e != nil {
-		return
-	}
-	str = utils.BytesToString(b)
-
-	// 不 存在 md5 緩存 建立
-	if os.IsNotExist(md5Err) ||
-		(md5Err == nil && !utils.IsMD5Lower(cacheMD5)) {
-		cacheMD5, md5Err = utils.MD5Byte(b)
-		if md5Err == nil {
-			ioutil.WriteFile(md5Filepath, utils.StringToBytes(cacheMD5), fileperm.File)
+	if e == nil {
+		if info, e0 := os.Stat(filepath); e0 != nil {
+			modTime = info.ModTime()
 		}
 	}
+	bookRW.Lock()
 	return
 }
 
-// ChapterHit 返回章節 內容 是否命中緩存
-func (Book) ChapterHit(id, chapter, md5 string) (yes bool, cacheMD5 string, e error) {
-	md5 = strings.TrimSpace(md5)
-	if md5 == "" {
-		return
-	}
+// Chapter 返回章節 檔案
+func (Book) Chapter(id, chapter string) (filename string, e error) {
 	// 驗證 參數
 	id, e = data.CheckBookID(id)
 	if e != nil {
@@ -239,16 +209,7 @@ func (Book) ChapterHit(id, chapter, md5 string) (yes bool, cacheMD5 string, e er
 	if e != nil {
 		return
 	}
-
-	filepath := BookChapterMD5(id, chapter)
-	var er error
-	var b []byte
-	b, er = ioutil.ReadFile(filepath)
-	if er != nil {
-		return
-	}
-	hitMD5 := utils.BytesToString(b)
-	yes = hitMD5 == md5
+	filename = BookChapter(id, chapter)
 	return
 }
 
@@ -352,32 +313,32 @@ func (Book) DirectoryAssets(id, chapter string) (dir string, e error) {
 
 // UpdateChapter 更新章節內容
 func (Book) UpdateChapter(id, chapter, val string) (e error) {
-	// 驗證 參數
-	id, e = data.CheckBookID(id)
-	if e != nil {
-		return
-	}
-	chapter, e = data.CheckBookChapterID(chapter)
-	if e != nil {
-		return
-	}
+	// // 驗證 參數
+	// id, e = data.CheckBookID(id)
+	// if e != nil {
+	// 	return
+	// }
+	// chapter, e = data.CheckBookChapterID(chapter)
+	// if e != nil {
+	// 	return
+	// }
 
-	filepath := BookChapter(id, chapter)
-	e = ioutil.WriteFile(filepath, utils.StringToBytes(val), fileperm.File)
-	if e != nil {
-		return
-	}
+	// filepath := BookChapter(id, chapter)
+	// e = ioutil.WriteFile(filepath, utils.StringToBytes(val), fileperm.File)
+	// if e != nil {
+	// 	return
+	// }
 
-	// 更新 緩存
-	filepath = BookChapterMD5(id, chapter)
-	var md5 string
-	var en error
-	md5, en = utils.MD5(val)
-	if en != nil {
-		ioutil.WriteFile(filepath, utils.StringToBytes(""), fileperm.File)
-	} else {
-		ioutil.WriteFile(filepath, utils.StringToBytes(md5), fileperm.File)
-	}
+	// // 更新 緩存
+	// filepath = BookChapterMD5(id, chapter)
+	// var md5 string
+	// var en error
+	// md5, en = utils.MD5(val)
+	// if en != nil {
+	// 	ioutil.WriteFile(filepath, utils.StringToBytes(""), fileperm.File)
+	// } else {
+	// 	ioutil.WriteFile(filepath, utils.StringToBytes(md5), fileperm.File)
+	// }
 
 	return
 }
@@ -455,12 +416,12 @@ func (m Book) RemoveChapter(id, chapter string) (e error) {
 
 	// 讀取 定義
 	var book *data.Book
-	book, e = m.get(id)
+	book, _, e = m.get(id)
 	for i := 0; i < len(book.Chapter); i++ {
 		if book.Chapter[i].ID == chapter {
 			book.Chapter = append(book.Chapter[:i], book.Chapter[i+1:]...)
 			// 存儲 新定義
-			e = m.save(book)
+			_, e = m.save(book)
 			if e != nil {
 				return
 			}
@@ -496,7 +457,7 @@ func (m Book) NewChapter(id, chapter, name string) (chapterID string, e error) {
 
 	// 讀取 定義
 	var book *data.Book
-	book, e = m.get(id)
+	book, _, e = m.get(id)
 	if book.Chapter == nil {
 		book.Chapter = make([]data.BookChapter, 0, 1)
 	} else {
@@ -525,7 +486,7 @@ func (m Book) NewChapter(id, chapter, name string) (chapterID string, e error) {
 		Name: name,
 	})
 	// 儲存定義
-	e = m.save(book)
+	_, e = m.save(book)
 	if e != nil {
 		return
 	}
@@ -563,7 +524,7 @@ func (m Book) ModifyChapter(id, oldChapter, chapter, name string) (e error) {
 
 	// 讀取 定義
 	var book *data.Book
-	book, e = m.Get(id)
+	book, _, e = m.Get(id)
 	find := false
 	for i := 0; i < len(book.Chapter); i++ {
 		if chapter != oldChapter {
@@ -601,7 +562,7 @@ func (m Book) ModifyChapter(id, oldChapter, chapter, name string) (e error) {
 	}
 
 	// 儲存定義
-	e = m.save(book)
+	_, e = m.save(book)
 	if e != nil {
 		return
 	}
@@ -627,7 +588,7 @@ func (m Book) SortChapter(id string, chapters []string) (e error) {
 	}
 	// 讀取定義
 	var book *data.Book
-	book, e = m.Get(id)
+	book, _, e = m.Get(id)
 	num := len(book.Chapter)
 	if num != len(chapters) {
 		e = errSortExpired
@@ -651,7 +612,7 @@ func (m Book) SortChapter(id string, chapters []string) (e error) {
 
 	// 儲存定義
 	book.Chapter = arrs
-	e = m.save(book)
+	_, e = m.save(book)
 	if e != nil {
 		return
 	}
@@ -690,7 +651,7 @@ func (m Book) New(id, name string) (e error) {
 		ID:   id,
 		Name: name,
 	}
-	e = m.save(book)
+	_, e = m.save(book)
 	if e != nil {
 		return
 	}
@@ -731,7 +692,7 @@ func (m Book) Rename(id, name string) (e error) {
 		return
 	}
 	var book *data.Book
-	book, e = m.Get(id)
+	book, _, e = m.Get(id)
 	if e != nil {
 		return
 	}
@@ -739,7 +700,7 @@ func (m Book) Rename(id, name string) (e error) {
 		return
 	}
 	book.Name = name
-	e = m.save(book)
+	_, e = m.save(book)
 	if e != nil {
 		return
 	}

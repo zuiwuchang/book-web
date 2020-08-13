@@ -24,7 +24,7 @@
             name="extend" [(ngModel)]="extend">
         <mat-error i18n>Commint Message Invalid</mat-error>
     </mat-form-field>
-    <button mat-stroked-button i18n class="no-outline" [disabled]="disabled || form.invalid">Submit</button>
+    <button mat-stroked-button i18n [disabled]="disabled || form.invalid">Submit</button>
 </form>
 
 <div class="result">

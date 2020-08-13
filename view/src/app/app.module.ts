@@ -14,13 +14,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 import { SharedModule } from './shared/shared.module';
-import { ViewComponent } from './app/view/view.component';
 import { EditComponent } from './app/edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewComponent,
     EditComponent,
   ],
   imports: [

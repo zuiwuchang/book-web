@@ -32,14 +32,6 @@ func BookChapter(id, chapter string) string {
 	return fmt.Sprintf("%s/%s/%s/README.md", _FileRoot, id, chapter)
 }
 
-// BookChapterMD5 返回 章節 md5 檔案
-func BookChapterMD5(id, chapter string) string {
-	if chapter == "0" {
-		return fmt.Sprintf("%s/%s/.md5.cache", _FileRoot, id)
-	}
-	return fmt.Sprintf("%s/%s/%s/.md5.cache", _FileRoot, id, chapter)
-}
-
 // BookAssets 返回靜態 資源 檔案
 func BookAssets(id, chapter, name string) string {
 	name = filepath.Base(name)

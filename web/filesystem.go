@@ -1,9 +1,11 @@
 package web
 
 import (
+	"bytes"
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -51,4 +53,15 @@ func (h Helper) NegotiateFilesystem(c *gin.Context, fs http.FileSystem, path str
 	_, name := filepath.Split(path)
 	http.ServeContent(c.Writer, c.Request, name, stat.ModTime(), f)
 	f.Close()
+}
+
+// NegotiateJSONFile .
+func (h Helper) NegotiateJSONFile(c *gin.Context, name string, modtime time.Time, obj interface{}) {
+	b, e := json.Marshal(obj)
+	if e != nil {
+		h.NegotiateError(c, http.StatusInternalServerError, e)
+		return
+	}
+
+	http.ServeContent(c.Writer, c.Request, name, modtime, bytes.NewReader(b))
 }

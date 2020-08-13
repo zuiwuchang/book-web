@@ -22,6 +22,7 @@ func (h Helper) Register(router *gin.RouterGroup) {
 		Session{},
 		Git{},
 		Books{},
+		Chapters{},
 		Other{},
 	}
 	for _, m := range ms {

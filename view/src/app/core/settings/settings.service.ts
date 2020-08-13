@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+export class OpenedBook {
+  constructor(public readonly book: string, public readonly chapter: string) {
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +13,7 @@ export class SettingsService {
   private chapter_ = new BehaviorSubject<boolean>(false)
   private header_ = new BehaviorSubject<boolean>(false)
   private fullscreen_ = new BehaviorSubject<boolean>(false)
+  private opened_ = new BehaviorSubject<OpenedBook>(null)
   constructor() {
     const isChapter = this._getKey("isChapter")
     if (isChapter == undefined) {
@@ -113,5 +118,27 @@ export class SettingsService {
   }
   get headerObservable(): Observable<boolean> {
     return this.header_
+  }
+
+  /**
+   * 返回 已打開的書
+   */
+  get opened(): OpenedBook {
+    return this.opened_.value
+  }
+  get openedObservable(): Observable<OpenedBook> {
+    return this.opened_
+  }
+  open(book: string, chapter: string) {
+    const opened = this.opened_.value
+    if (opened && opened.book == book && opened.chapter == chapter) {
+      return
+    }
+    this.opened_.next(new OpenedBook(book, chapter))
+  }
+  close() {
+    if (this.opened_.value) {
+      this.opened_.next(null)
+    }
   }
 }

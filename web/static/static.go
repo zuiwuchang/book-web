@@ -1,7 +1,6 @@
 package static
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 
@@ -41,7 +40,7 @@ func (h Helper) Register(router *gin.RouterGroup) {
 	router.GET("favicon.ico", gzip.Gzip(gzip.DefaultCompression), h.favicon)
 
 	r := router.Group(BaseURL)
-	r.Use(gzip.Gzip(gzip.DefaultCompression))
+	r.Use(h.Gzip())
 	r.GET(`/*path`, h.view)
 }
 func (h Helper) view(c *gin.Context) {
@@ -52,7 +51,6 @@ func (h Helper) view(c *gin.Context) {
 	if e != nil {
 		return
 	}
-	fmt.Println(obj.Path)
 	h.NegotiateFilesystem(c, filesystem, obj.Path)
 }
 func (h Helper) licenses(c *gin.Context) {
