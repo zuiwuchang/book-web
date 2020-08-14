@@ -302,6 +302,22 @@
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4db52c0cfb1ae9b7cacb238b8dfd39e55bda2b93" datatype="html">
+        <source>data copied</source>
+        <target>Copied to clipboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d8bcc9c4ee939429759fcf9c9633703096ad4d4a" datatype="html">
+        <source>File deleted</source>
+        <target>File deleted</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="158b1fb046945af0852d6a01bbb336aa21adc43b" datatype="html">
         <source>New Chapter</source>
         <target>New</target>
@@ -378,6 +394,10 @@
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
@@ -416,6 +436,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
           <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
@@ -524,6 +552,54 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
           <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6f19b93953b1bdf3e8923bb24c286fb46909355d" datatype="html">
+        <source>File Remove Title</source>
+        <target>Delete file</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f7d8a0ba2922afbc86a21cd053b1068b538c2450" datatype="html">
+        <source>File Remove <x id="INTERPOLATION" equiv-text="{{data}}"/>?</source>
+        <target>File deletion cannot be recovered. Are you sure you want to delete "<x id="INTERPOLATION" equiv-text="{{data}}"/>"?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="480a3c694962b42b90834a1595e353a0f12916f4" datatype="html">
+        <source>File management</source>
+        <target>File management</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1979da7460819153e11d2078244645d94291b69c" datatype="html">
+        <source>Copy</source>
+        <target>Copy</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target>Edit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target>Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="523792b38b726c926ac3a8f544d23f47917ea033" datatype="html">

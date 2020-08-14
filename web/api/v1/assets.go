@@ -22,6 +22,8 @@ func (h Assets) Register(router *gin.RouterGroup) {
 	r.Use(h.CheckSession)
 
 	r.POST(`upload/:book/:chapter`, h.upload)
+	r.GET(``, h.get)
+	r.DELETE(``, h.remove)
 }
 func (h Assets) upload(c *gin.Context) {
 	var obj struct {
@@ -63,4 +65,44 @@ func (h Assets) upload(c *gin.Context) {
 		h.NegotiateError(c, http.StatusInternalServerError, e)
 		os.Remove(filename)
 	}
+}
+func (h Assets) get(c *gin.Context) {
+	var obj struct {
+		Book    string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
+		Chapter string `form:"chapter" json:"chapter" xml:"chapter" yaml:"chapter" binding:"required"`
+	}
+	e := h.Bind(c, &obj)
+	if e != nil {
+		return
+	}
+	var mBook manipulator.Book
+	names, e := mBook.ListAssets(obj.Book, obj.Chapter)
+	if e != nil {
+		h.NegotiateError(c, http.StatusBadRequest, e)
+		return
+	}
+	if len(names) == 0 {
+		c.Status(http.StatusNoContent)
+	} else {
+		h.NegotiateData(c, http.StatusOK, names)
+	}
+
+}
+func (h Assets) remove(c *gin.Context) {
+	var obj struct {
+		Book     string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
+		Chapter  string `form:"chapter" json:"chapter" xml:"chapter" yaml:"chapter" binding:"required"`
+		Filename string `form:"filename" json:"filename" xml:"filename" yaml:"filename" binding:"required"`
+	}
+	e := h.Bind(c, &obj)
+	if e != nil {
+		return
+	}
+	var mBook manipulator.Book
+	e = mBook.RemoveAssets(obj.Book, obj.Chapter, obj.Filename)
+	if e != nil {
+		h.NegotiateError(c, http.StatusBadRequest, e)
+		return
+	}
+	c.Status(http.StatusNoContent)
 }

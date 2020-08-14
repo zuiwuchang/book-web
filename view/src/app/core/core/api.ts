@@ -9,6 +9,7 @@ export const ServerAPI = {
         books: new RESTful(root, 'v1', 'books'),
         chapters: new RESTful(root, 'v1', 'chapters'),
         text: new RESTful(root, 'v1', 'chapters/text'),
+        assets: new RESTful(root, 'v1', 'assets'),
     },
     static: {
         licenses: '/static/3rdpartylicenses.txt',

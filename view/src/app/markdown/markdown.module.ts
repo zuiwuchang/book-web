@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ViewComponent } from './view/view.component';
 import { MarkdownViewComponent } from './markdown-view/markdown-view.component';
@@ -27,10 +28,12 @@ import { NewChapterComponent } from './dialog/new-chapter/new-chapter.component'
 import { EditChapterComponent } from './dialog/edit-chapter/edit-chapter.component';
 import { RemoveChapterComponent } from './dialog/remove-chapter/remove-chapter.component';
 import { FileUploadComponent } from './dialog/file-upload/file-upload.component';
+import { FileManagementComponent } from './dialog/file-management/file-management.component';
+import { RemoveFileComponent } from './dialog/remove-file/remove-file.component';
 
 
 @NgModule({
-  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent, FileUploadComponent],
+  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent, FileUploadComponent, FileManagementComponent, RemoveFileComponent],
   imports: [
     CommonModule, FormsModule, RouterModule,
     SortablejsModule, FileUploadModule,
@@ -38,13 +41,14 @@ import { FileUploadComponent } from './dialog/file-upload/file-upload.component'
     MatProgressBarModule, MatSidenavModule, MatListModule,
     MatIconModule, MatButtonModule, MatTooltipModule,
     MatDialogModule, MatFormFieldModule, MatInputModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     ViewComponent, EditComponent,
   ],
   entryComponents: [
     NewChapterComponent, EditChapterComponent, RemoveChapterComponent,
-    FileUploadComponent,
+    FileUploadComponent, FileManagementComponent, RemoveFileComponent,
   ]
 })
 export class MarkdownModule { }
