@@ -27,6 +27,7 @@
     "js-sha512": "^0.8.0",
     "king-node": "^1.0.14",
     "moment": "^2.27.0",
+    "ng2-file-upload": "^1.4.0",
     "ngx-sortablejs": "^3.1.4",
     "rxjs": "~6.5.5",
     "simplemde": "^1.11.2",

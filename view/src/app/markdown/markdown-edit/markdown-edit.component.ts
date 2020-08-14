@@ -19,6 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewChapterComponent } from '../dialog/new-chapter/new-chapter.component';
 import { EditChapterComponent } from '../dialog/edit-chapter/edit-chapter.component';
 import { RemoveChapterComponent } from '../dialog/remove-chapter/remove-chapter.component';
+import { FileUploadComponent } from '../dialog/file-upload/file-upload.component';
 declare const $: any
 class Navigate {
   constructor(public book: string, public chapter: string, public name: string) {
@@ -233,19 +234,15 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
           title: "File upload",
           action: (editor: any) => {
             console.log('file-upload')
-            // const settting = this.settingService.getSetting();
-            // this.dialog.open(
-            //   DialogUploadComponent,
-            //   {
-            //     width: '80%',
-            //     maxWidth: 800,
-            //     data: {
-            //       book: settting.BookID,
-            //       chapter: settting.ChapterID,
-            //     },
-            //     disableClose: true,
-            //   },
-            // )
+            this.matDialog.open(
+              FileUploadComponent,
+              {
+                width: '80%',
+                maxWidth: 800,
+                data: this.opened,
+                disableClose: true,
+              },
+            )
           },
         },
         "|", "bold", "italic",

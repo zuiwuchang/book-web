@@ -410,6 +410,14 @@
           <context context-type="linenumber">8</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
@@ -452,6 +460,70 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="18c85b57c80e4f5d986ff3ab19ff52790aaa0037" datatype="html">
+        <source>Dialog Upload Files</source>
+        <target>檔案上傳</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d2225b3e00af653ad30e16f0f5ede3a42ffc206b" datatype="html">
+        <source>Queue length</source>
+        <target>隊列長度</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4b3972c3e9485218508a95f7a4ce7758e3f09ced" datatype="html">
+        <source>Upload</source>
+        <target>上傳</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="019d4bd6a5690f0cfa0ecf346a4e6bf7f0d8debb" datatype="html">
+        <source>Remove</source>
+        <target>移除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68635380a12e90f80223c01dba0c572c2b19dc05" datatype="html">
+        <source>Select Files</source>
+        <target>選取檔案</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c328d95876c4d432be175ac4bf14d9b698416768" datatype="html">
+        <source>Upload all file</source>
+        <target>全部上傳</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6276360f457a8f0a657f6b0993d19867491636e8" datatype="html">
+        <source>Upload cancel all file</source>
+        <target>全部取消</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="05ad0f6357f934ff17f8d123bc2584811c4c6107" datatype="html">
+        <source>Upload remove all file</source>
+        <target>全部移除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="523792b38b726c926ac3a8f544d23f47917ea033" datatype="html">

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { SortablejsModule } from 'ngx-sortablejs';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -25,13 +26,14 @@ import { MarkdownEditComponent } from './markdown-edit/markdown-edit.component';
 import { NewChapterComponent } from './dialog/new-chapter/new-chapter.component';
 import { EditChapterComponent } from './dialog/edit-chapter/edit-chapter.component';
 import { RemoveChapterComponent } from './dialog/remove-chapter/remove-chapter.component';
+import { FileUploadComponent } from './dialog/file-upload/file-upload.component';
 
 
 @NgModule({
-  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent],
+  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent, FileUploadComponent],
   imports: [
     CommonModule, FormsModule, RouterModule,
-    SortablejsModule,
+    SortablejsModule, FileUploadModule,
     SharedModule,
     MatProgressBarModule, MatSidenavModule, MatListModule,
     MatIconModule, MatButtonModule, MatTooltipModule,
@@ -42,6 +44,7 @@ import { RemoveChapterComponent } from './dialog/remove-chapter/remove-chapter.c
   ],
   entryComponents: [
     NewChapterComponent, EditChapterComponent, RemoveChapterComponent,
+    FileUploadComponent,
   ]
 })
 export class MarkdownModule { }
