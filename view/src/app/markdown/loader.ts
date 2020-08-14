@@ -33,13 +33,7 @@ export class Loader {
             requireDynamic('MathJax')
             // 加載依賴
             requireDynamics('jquery', 'showdown', 'clipboard',
-
                 'highlight',
-                // 'shell', 'bash',
-                // 'plaintext', 'ini', 'json', 'yaml', 'protobuf',
-                // 'xml', 'css', 'scss', 'less',
-                // 'cpp', 'go', 'dart', 'java', 'javascript', 'typescript', 'python', 'lua', 'sql', 'kotlin',
-                // 'cmake', 'makefile', 'dockerfile', 'gradle', 'http', 'markdown', 'nginx', 'vim',
             ).then(() => {
                 callback()
             }, (e) => {

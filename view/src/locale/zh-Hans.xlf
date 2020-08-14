@@ -198,6 +198,30 @@
           <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="def755457793d5ad40597886d2d317bc5f415a2f" datatype="html">
+        <source>Loading</source>
+        <target>正在载入</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
+        <source>Error</source>
+        <target>错误</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dcf574dc54586fa7da64c9b2c1e3aae1d6c1c402" datatype="html">
+        <source>copyied</source>
+        <target>Code copied to clipboard</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="e5fb254607ba2b0bdee5c290f639153bb78141b9" datatype="html">
         <source>About content</source>
         <target>book-web 是我为个人用户开发的一个web资料管理系统，主要是为了能够在线整理文档并随时可以方便查看，此网站便是以此部署的。管理员以 markdown 形式书写文档，任何人都可以通过 html 查看。</target>

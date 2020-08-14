@@ -214,6 +214,14 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="dcf574dc54586fa7da64c9b2c1e3aae1d6c1c402" datatype="html">
+        <source>copyied</source>
+        <target>Error</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="e5fb254607ba2b0bdee5c290f639153bb78141b9" datatype="html">
         <source>About content</source>
         <target>book-web is a web information management system I developed for individual users, mainly to organize documents online and easily view them at any time. This website is deployed based on this.</target>

@@ -1,6 +1,7 @@
 package view
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"strings"
@@ -14,7 +15,7 @@ import (
 )
 
 // BaseURL request base url
-const BaseURL = `/angular`
+const BaseURL = `/view`
 
 // Helper path of /angular
 type Helper struct {
@@ -64,11 +65,38 @@ func (h Helper) Register(router *gin.RouterGroup) {
 	router.GET(`/index.html`, h.redirect)
 	router.GET(`/view`, h.redirect)
 	router.GET(`/view/`, h.redirect)
-
+	// 重寫定向舊版系統到新路由
+	router.GET(`/angular/zh-Hant/*path`, h.redirectAngular)
 	r := router.Group(BaseURL)
 	r.Use(h.Gzip())
 	r.GET(`/:locale`, h.viewOrRedirect)
 	r.GET(`/:locale/*path`, h.view)
+}
+
+func (h Helper) redirectAngular(c *gin.Context) {
+	var obj struct {
+		Path string `uri:"path"`
+	}
+	e := h.BindURI(c, &obj)
+	if e != nil {
+		return
+	}
+	fmt.Println(obj.Path)
+	request := c.Request
+	str := strings.ToLower(strings.TrimSpace(request.Header.Get(`Accept-Language`)))
+	strs := strings.Split(str, `;`)
+	str = strings.TrimSpace(strs[0])
+	strs = strings.Split(str, `,`)
+	str = strings.TrimSpace(strs[0])
+	if strings.HasPrefix(str, `zh-`) {
+		if strings.Index(str, `cn`) != -1 || strings.Index(str, `hans`) != -1 {
+			c.Redirect(http.StatusFound, `/view/zh-Hans/`+obj.Path)
+			return
+		}
+		c.Redirect(http.StatusFound, `/view/zh-Hant/`+obj.Path)
+		return
+	}
+	c.Redirect(http.StatusFound, `/view/en-US/`+obj.Path)
 }
 func (h Helper) redirect(c *gin.Context) {
 	request := c.Request
