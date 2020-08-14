@@ -14,6 +14,7 @@ import { SafeHtml } from '@angular/platform-browser';
 import { Strings } from '../strings';
 import { ServerAPI } from 'src/app/core/core/api';
 import { HttpClient } from '@angular/common/http';
+import { timer } from 'rxjs';
 declare const $: any
 class Navigate {
   constructor(public book: string, public chapter: string, public name: string) {
@@ -76,6 +77,14 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
       takeUntil(this.closed_.observable),
     ).subscribe((ok) => {
       this.fullscreen = ok
+    })
+    timer(1000, 1000).pipe(
+      takeUntil(this.closed_.observable),
+    ).subscribe(() => {
+      if (!this.textarea) {
+        return
+      }
+      this.settingsService.isPreviewActive = this.textarea.isPreviewActive()
     })
   }
   ngOnDestroy() {
@@ -174,7 +183,6 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
           plainText)
         this.previewCache_.preview = this.markdown.HTML
         this.update_ = true
-
         return this.markdown.HTML
       },
       // 關閉 拼寫 
@@ -243,11 +251,10 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
           className: "fas fa-angle-double-right",
           title: "Markdown Escape (Ctrl-M)",
           action: (editor: any) => {
-            console.log('markdown escape')
-            // const cm = editor.codemirror;
-            // let text = cm.getSelection();
-            // text = Strings.escape(text);
-            // cm.replaceSelection(text, "around");
+            const cm = editor.codemirror;
+            let text = cm.getSelection();
+            text = Strings.escape(text);
+            cm.replaceSelection(text, "around");
           },
         },
         {
@@ -255,11 +262,10 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
           className: "fas fa-angle-double-left",
           title: "Markdown Unescape (Ctrl-Alt-M)",
           action: (editor: any) => {
-            console.log('markdown unescape')
-            // const cm = editor.codemirror;
-            // let text = cm.getSelection();
-            // text = Strings.unescape(text);
-            // cm.replaceSelection(text, "around");
+            const cm = editor.codemirror;
+            let text = cm.getSelection();
+            text = Strings.unescape(text);
+            cm.replaceSelection(text, "around");
           },
         },
         "|", "unordered-list", "ordered-list",
@@ -308,11 +314,15 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
     this.textarea.value(this.oldText);
     // 監控 全屏 狀態 通知 angular 服務 以便 隱藏阿一些 頂層元素
     this.textarea.codemirror.on("refresh", (instance: any, from: any, to: any) => {
-      // console.log(this.textarea.isFullscreenActive())
       this.settingsService.fullscreen = this.textarea.isFullscreenActive()
-    });
+    })
 
+    if (this.settingsService.isPreviewActive) {
+      this.textarea.togglePreview()
+    }
+    this.readyEdit = true
   }
+  readyEdit = false
   ngAfterViewChecked() {
     if (!this.update_) {
       return

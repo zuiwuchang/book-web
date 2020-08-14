@@ -18,6 +18,7 @@ export class SettingsService {
   private chapter_ = new BehaviorSubject<boolean>(false)
   private header_ = new BehaviorSubject<boolean>(false)
   private fullscreen_ = new BehaviorSubject<boolean>(false)
+  isPreviewActive = false
   private opened_ = new BehaviorSubject<OpenedBook>(null)
   private page_ = new BehaviorSubject<PageView>(PageView.Nil)
   constructor() {

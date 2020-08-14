@@ -30,7 +30,7 @@
             </a>
         </div>
 
-        <div class="markdown">
+        <div class="markdown" [style]="readyEdit?'':'display: none;'">
             <section #view highlight-js-content="code">
                 <textarea #textarea></textarea>
             </section>
