@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, AfterViewChecked } from '@angular/core';
-import { Book } from 'src/app/core/protocol';
+import { Book, Chapter } from 'src/app/core/protocol';
 import { SettingsService, OpenedBook } from 'src/app/core/settings/settings.service';
 import { Closed, requireDynamic } from 'src/app/core/core/utils';
 import { takeUntil } from 'rxjs/operators';
@@ -15,6 +15,9 @@ import { Strings } from '../strings';
 import { ServerAPI } from 'src/app/core/core/api';
 import { HttpClient } from '@angular/common/http';
 import { timer } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { NewChapterComponent } from '../dialog/new-chapter/new-chapter.component';
+import { EditChapterComponent } from '../dialog/edit-chapter/edit-chapter.component';
 declare const $: any
 class Navigate {
   constructor(public book: string, public chapter: string, public name: string) {
@@ -37,6 +40,7 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
     private readonly toasterService: ToasterService,
     private readonly router: Router,
     private readonly httpClient: HttpClient,
+    private readonly matDialog: MatDialog,
   ) { }
   opened: OpenedBook
   @Input()
@@ -385,6 +389,116 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
     }).finally(() => {
       this.waitSave = false
     })
+  }
+  disabled = false
+  onChapterSort(book: Book) {
+    if (this.disabled) {
+      return
+    }
+    if (!book || !book.chapter || book.chapter.length < 2) {
+      return
+    }
+    console.log(book.chapter)
+    const chapters = []
+    for (let i = 0; i < book.chapter.length; i++) {
+      chapters.push(book.chapter[i].id)
+    }
+    this.disabled = true
+    ServerAPI.v1.chapters.putOne(this.httpClient, 'sort', {
+      book: book.id,
+      chapters: chapters,
+    }).then(() => {
+      this.toasterService.pop('warning', undefined, this.i18nService.get("save success"))
+    }, (e) => {
+      this.toasterService.pop('error', undefined, e)
+    }).finally(() => {
+      this.disabled = false
+    })
+  }
+  async onChapterNew() {
+    if (this.disabled) {
+      return
+    }
+    const chapter = await this.matDialog.open(NewChapterComponent,
+      {
+        width: '80%',
+        maxWidth: 800,
+      },
+    ).afterClosed().toPromise<Chapter>()
+    if (!chapter) {
+      return
+    }
+    this.disabled = true
+    try {
+      chapter.id = await ServerAPI.v1.chapters.post(this.httpClient, {
+        book: this.opened.book,
+        id: chapter.id,
+        name: chapter.name
+      })
+      if (!this.book.chapter) {
+        this.book.chapter = new Array<Chapter>()
+      }
+      this.book.chapter.push(chapter)
+    } catch (e) {
+      this.toasterService.pop('success', undefined, this.i18nService.get("save success"))
+    } finally {
+      this.disabled = false
+    }
+  }
+  onChapterEdit(evt: Event, book: Book, chapter: Chapter): boolean {
+    evt.stopPropagation();
+    if (!book || !book.chapter || book.chapter.length == 0) {
+      return false
+    }
+    if (this.disabled) {
+      return false
+    }
+
+    this.matDialog.open(
+      EditChapterComponent,
+      {
+        width: '80%',
+        maxWidth: 800,
+        data: {
+          id: chapter.id,
+          name: chapter.name,
+        },
+      },
+    )
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result && (chapterID != result.id || chapterName != result.name)) {
+    //     this.doModifyChapter(book, chapterID, result.id, result.name);
+    //   }
+    // });
+    return false
+  }
+  onChapterRemove(evt: Event, book: Book, chapterID: string, chapterName: string) {
+    evt.stopPropagation();
+    // if (!book || !book.Chapter || book.Chapter.length == 0) {
+    //   return false;
+    // }
+    // if (this.isRequest) {
+    //   this.toasterService.pop('warning', '', this.xi18n.get("request.wait"));
+    //   return false;
+    // }
+
+    // const dialogRef = this.dialog.open(
+    //   DialogSureComponent,
+    //   {
+    //     width: '80%',
+    //     maxWidth: 800,
+    //     data: {
+    //       title: this.xi18n.get("sure.title"),
+    //       text: this.xi18n.get("sure.text") + " - " + chapterName,
+    //     },
+    //   },
+    // )
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     this.doRemove(book, chapterID);
+    //   }
+    // });
+    return false
   }
 }
 

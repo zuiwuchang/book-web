@@ -194,7 +194,7 @@ func (Book) save(book *data.Book) (modTime time.Time, e error) {
 			modTime = info.ModTime()
 		}
 	}
-	bookRW.Lock()
+	bookRW.Unlock()
 	return
 }
 
@@ -597,7 +597,6 @@ func (m Book) SortChapter(id string, chapters []string) (e error) {
 			return
 		}
 	}
-
 	// 儲存定義
 	book.Chapter = arrs
 	_, e = m.save(book)

@@ -1,0 +1,19 @@
+<form #form="ngForm" (submit)="onSure()">
+    <h1 mat-dialog-title i18n>Edit Chapter</h1>
+    <div mat-dialog-content>
+        <mat-form-field class="full-width">
+            <input matInput required [(ngModel)]="data.name" name="name" i18n-placeholder
+                placeholder="Chapter Name placeholder" #valName="ngModel">
+            <mat-error i18n>Invalid Chapter Name</mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput [sharedValidatorId] [(ngModel)]="data.id" name="id" i18n-placeholder
+                placeholder="Chapter ID placeholder" #valName="ngModel">
+            <mat-error i18n>Invalid Chapter ID</mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button type="submit" mat-button [disabled]="form.invalid" i18n>Sure</button>
+        <button type="button" mat-button (click)="onCancel()" i18n>Cancel</button>
+    </div>
+</form>

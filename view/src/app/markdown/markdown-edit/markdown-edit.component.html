@@ -4,9 +4,31 @@
         <mat-nav-list>
             <a [routerLink]="['/edit', book?.id,'0']" mat-list-item>{{book?.name}}</a>
             <mat-divider></mat-divider>
-            <a *ngFor="let item of book?.chapter;" [routerLink]="['/edit', book?.id, item.id]"
-                mat-list-item>{{item.name}}</a>
+            <div [sortablejs]="book?.chapter">
+                <a *ngFor="let item of book?.chapter;" [routerLink]="['/edit', book?.id, item.id]" mat-list-item>
+                    <p matLine>{{item.name}}</p>
+                    <button class="menu-btn" mat-icon-button [disabled]="disabled" i18n-matTooltip
+                        matTooltip="Edit Chapter" (click)="onChapterEdit($event,book,item)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button class="menu-btn" mat-icon-button [disabled]="disabled" i18n-matTooltip
+                        matTooltip="Delete Chapter" (click)="onChapterRemove($event,book,item.id,item.name)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </a>
+            </div>
         </mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <button class="menu-btn" mat-icon-button [disabled]="disabled" i18n-matTooltip matTooltip="New Chapter"
+                (click)="onChapterNew()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button class="menu-btn" mat-icon-button [disabled]="disabled" i18n-matTooltip matTooltip="Sort Chapter"
+                (click)="onChapterSort(book)">
+                <mat-icon>sort</mat-icon>
+            </button>
+        </mat-list-item>
     </mat-drawer>
     <mat-drawer class="sidenav-right" mode="side" [opened]="!fullscreen && header" position="end">
         <markdown-bar [items]="markdown?.Header" (valChange)="onChange($event)"></markdown-bar>

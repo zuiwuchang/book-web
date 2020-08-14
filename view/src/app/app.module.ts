@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { SortablejsModule } from 'ngx-sortablejs';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -22,6 +23,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule,
     ToasterModule.forRoot(),
+    SortablejsModule.forRoot({ animation: 150 }),
     HighlightJsModule,
     MatIconModule, MatTooltipModule,
     SharedModule,
