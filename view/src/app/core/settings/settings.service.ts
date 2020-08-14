@@ -5,6 +5,11 @@ export class OpenedBook {
   constructor(public readonly book: string, public readonly chapter: string) {
   }
 }
+export enum PageView {
+  Nil,
+  View,
+  Edit,
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +19,7 @@ export class SettingsService {
   private header_ = new BehaviorSubject<boolean>(false)
   private fullscreen_ = new BehaviorSubject<boolean>(false)
   private opened_ = new BehaviorSubject<OpenedBook>(null)
+  private page_ = new BehaviorSubject<PageView>(PageView.Nil)
   constructor() {
     const isChapter = this._getKey("isChapter")
     if (isChapter == undefined) {
@@ -139,6 +145,29 @@ export class SettingsService {
   close() {
     if (this.opened_.value) {
       this.opened_.next(null)
+    }
+  }
+  get pageObservable(): Observable<PageView> {
+    return this.page_
+  }
+  nextViewPage() {
+    if (PageView.View != this.page_.value) {
+      this.page_.next(PageView.View)
+    }
+  }
+  nextEditPage() {
+    if (PageView.Edit != this.page_.value) {
+      this.page_.next(PageView.Edit)
+    }
+  }
+  closeViewPage() {
+    if (PageView.View == this.page_.value) {
+      this.page_.next(PageView.Nil)
+    }
+  }
+  closeEditPage() {
+    if (PageView.Edit == this.page_.value) {
+      this.page_.next(PageView.Nil)
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SettingsService } from '../../core/settings/settings.service';
+import { SettingsService, PageView, OpenedBook } from '../../core/settings/settings.service';
 import { SessionService, Session } from '../../core/session/session.service';
 import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
@@ -24,7 +24,8 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   session: Session
   chapter = false
   header = false
-
+  opened: OpenedBook
+  private page_ = PageView.Nil
   ngOnInit(): void {
     this.sessionService.ready.then((data) => {
       this.ready = data
@@ -49,6 +50,16 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     ).subscribe((ok) => {
       this.header = ok
     })
+    this.settingsService.pageObservable.pipe(
+      takeUntil(this.closed_.observable),
+    ).subscribe((page) => {
+      this.page_ = page
+    })
+    this.settingsService.openedObservable.pipe(
+      takeUntil(this.closed_.observable),
+    ).subscribe((opened) => {
+      this.opened = opened
+    })
   }
   ngOnDestroy() {
     this.closed_.close()
@@ -66,5 +77,11 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     this.sessionService.logout().catch((e) => {
       console.log(e)
     })
+  }
+  isPageView(): boolean {
+    return this.page_ == PageView.View
+  }
+  isPageEdit(): boolean {
+    return this.page_ == PageView.Edit
   }
 }

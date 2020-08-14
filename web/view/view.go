@@ -1,7 +1,6 @@
 package view
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"strings"
@@ -81,7 +80,6 @@ func (h Helper) redirectAngular(c *gin.Context) {
 	if e != nil {
 		return
 	}
-	fmt.Println(obj.Path)
 	request := c.Request
 	str := strings.ToLower(strings.TrimSpace(request.Header.Get(`Accept-Language`)))
 	strs := strings.Split(str, `;`)

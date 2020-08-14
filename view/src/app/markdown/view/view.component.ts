@@ -36,6 +36,7 @@ export class ViewComponent implements OnInit, OnDestroy {
           return
         }
         this.title.setTitle(title)
+        this.settingsService.nextViewPage()
         this.loading = false
       }, (e) => {
         if (this.loader != loader) {
@@ -50,5 +51,6 @@ export class ViewComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.closed_.close()
+    this.settingsService.closeViewPage()
   }
 }
