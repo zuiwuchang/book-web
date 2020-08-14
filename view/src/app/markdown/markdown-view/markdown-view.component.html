@@ -4,7 +4,8 @@
         <mat-nav-list>
             <a [routerLink]="['/view', book?.id,'0']" mat-list-item>{{book?.name}}</a>
             <mat-divider></mat-divider>
-            <a *ngFor="let item of book?.chapter;" [routerLink]="['/view', book?.id, item.id]" mat-list-item>{{item.name}}</a>
+            <a *ngFor="let item of book?.chapter;" [routerLink]="['/view', book?.id, item.id]"
+                mat-list-item>{{item.name}}</a>
         </mat-nav-list>
     </mat-drawer>
     <mat-drawer class="sidenav-right" mode="side" [opened]="header" position="end">
@@ -34,7 +35,7 @@
             </section>
         </div>
 
-        <div class="navigate-view">
+        <div class="navigate-view" *ngIf="markdown && markdown.HTML">
             <a [routerLink]="['/view', previous.book,previous.chapter]" *ngIf="previous">
                 <button mat-button class="previous no-outline">
                     <mat-icon>navigate_before</mat-icon>
