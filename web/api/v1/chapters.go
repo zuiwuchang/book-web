@@ -17,13 +17,15 @@ type Chapters struct {
 // Register impl IHelper
 func (h Chapters) Register(router *gin.RouterGroup) {
 	r := router.Group(`chapters`)
-	r.GET(``, h.list)
+	r.GET(``, h.get)
 	r.POST(``, h.CheckSession, h.post)
-	r.GET(`text`, h.Gzip(), h.get)
-	r.PUT(`text`, h.CheckSession, h.put)
+	r.PUT(``, h.CheckSession, h.put)
+	r.DELETE(``, h.CheckSession, h.remove)
+	r.GET(`text`, h.Gzip(), h.getText)
+	r.PUT(`text`, h.CheckSession, h.putText)
 	r.PUT(`sort`, h.CheckSession, h.sort)
 }
-func (h Chapters) list(c *gin.Context) {
+func (h Chapters) get(c *gin.Context) {
 	var obj struct {
 		ID string `form:"id" json:"id" xml:"id" yaml:"id" binding:"required"`
 	}
@@ -40,7 +42,7 @@ func (h Chapters) list(c *gin.Context) {
 	}
 	h.NegotiateJSONFile(c, obj.ID, modTime, book)
 }
-func (h Chapters) get(c *gin.Context) {
+func (h Chapters) getText(c *gin.Context) {
 	var obj struct {
 		Book    string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
 		Chapter string `form:"chapter" json:"chapter" xml:"chapter" yaml:"chapter" binding:"required"`
@@ -58,7 +60,7 @@ func (h Chapters) get(c *gin.Context) {
 	}
 	c.File(filename)
 }
-func (h Chapters) put(c *gin.Context) {
+func (h Chapters) putText(c *gin.Context) {
 	var obj struct {
 		Book    string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
 		Chapter string `form:"chapter" json:"chapter" xml:"chapter" yaml:"chapter" binding:"required"`
@@ -113,4 +115,43 @@ func (h Chapters) post(c *gin.Context) {
 		return
 	}
 	h.NegotiateData(c, http.StatusCreated, id)
+}
+func (h Chapters) put(c *gin.Context) {
+	var obj struct {
+		Book    string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
+		Chapter string `form:"chapter" json:"chapter" xml:"chapter" yaml:"chapter" binding:"required"`
+		ID      string `form:"id" json:"id" xml:"id" yaml:"id" binding:"required"`
+		Name    string `form:"name" json:"name" xml:"name" yaml:"name" binding:"required"`
+	}
+	e := h.Bind(c, &obj)
+	if e != nil {
+		return
+	}
+
+	var mBook manipulator.Book
+	e = mBook.ModifyChapter(obj.Book, obj.Chapter, obj.ID, obj.Name)
+	if e != nil {
+		h.NegotiateError(c, http.StatusInternalServerError, e)
+		return
+	}
+	c.Status(http.StatusNoContent)
+}
+
+func (h Chapters) remove(c *gin.Context) {
+	var obj struct {
+		Book    string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
+		Chapter string `form:"chapter" json:"chapter" xml:"chapter" yaml:"chapter" binding:"required"`
+	}
+	e := h.BindQuery(c, &obj)
+	if e != nil {
+		return
+	}
+
+	var mBook manipulator.Book
+	e = mBook.RemoveChapter(obj.Book, obj.Chapter)
+	if e != nil {
+		h.NegotiateError(c, http.StatusInternalServerError, e)
+		return
+	}
+	c.Status(http.StatusNoContent)
 }

@@ -24,10 +24,11 @@ import { EditComponent } from './edit/edit.component';
 import { MarkdownEditComponent } from './markdown-edit/markdown-edit.component';
 import { NewChapterComponent } from './dialog/new-chapter/new-chapter.component';
 import { EditChapterComponent } from './dialog/edit-chapter/edit-chapter.component';
+import { RemoveChapterComponent } from './dialog/remove-chapter/remove-chapter.component';
 
 
 @NgModule({
-  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent],
+  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent],
   imports: [
     CommonModule, FormsModule, RouterModule,
     SortablejsModule,
@@ -40,7 +41,7 @@ import { EditChapterComponent } from './dialog/edit-chapter/edit-chapter.compone
     ViewComponent, EditComponent,
   ],
   entryComponents: [
-    NewChapterComponent,EditChapterComponent,
+    NewChapterComponent, EditChapterComponent, RemoveChapterComponent,
   ]
 })
 export class MarkdownModule { }

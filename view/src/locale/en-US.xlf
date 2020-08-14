@@ -270,6 +270,38 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="99920685ab733ce960aa2d39a31be2dc09a6a03b" datatype="html">
+        <source>save sort success</source>
+        <target>Save the sequence successfully</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d5bd2cdbe6a672004d43c10426131bb1ca13c47" datatype="html">
+        <source>new chapter success</source>
+        <target>Chapter created successfully</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8346eb5e440bc6a2f84592baecd9296877191a05" datatype="html">
+        <source>save chapter success</source>
+        <target>Save chapter successfully</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e90c667b3e3a017df04d3f0f0cf0dfcdf5123ee9" datatype="html">
+        <source>remove chapter success</source>
+        <target>Chapter deleted successfully</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="158b1fb046945af0852d6a01bbb336aa21adc43b" datatype="html">
         <source>New Chapter</source>
         <target>New</target>
@@ -342,6 +374,10 @@
           <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
@@ -370,6 +406,10 @@
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
@@ -396,6 +436,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/markdown/markdown-edit/markdown-edit.component.html</context>
           <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="32060d055b203b94b978563f929fd9f4515fc4f6" datatype="html">
+        <source>Chapter Remove Title</source>
+        <target>Delete chapter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3efa47b006a29af2e17cfdf1611510b6c294ed82" datatype="html">
+        <source>Chapter Remove <x id="INTERPOLATION" equiv-text="{{data.name}}"/>?</source>
+        <target>The chapter deletion cannot be recovered. Are you sure you want to delete "<x id="INTERPOLATION" equiv-text="{{data.name}}"/>"?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="523792b38b726c926ac3a8f544d23f47917ea033" datatype="html">

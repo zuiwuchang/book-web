@@ -18,6 +18,7 @@ import { timer } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { NewChapterComponent } from '../dialog/new-chapter/new-chapter.component';
 import { EditChapterComponent } from '../dialog/edit-chapter/edit-chapter.component';
+import { RemoveChapterComponent } from '../dialog/remove-chapter/remove-chapter.component';
 declare const $: any
 class Navigate {
   constructor(public book: string, public chapter: string, public name: string) {
@@ -408,7 +409,7 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
       book: book.id,
       chapters: chapters,
     }).then(() => {
-      this.toasterService.pop('warning', undefined, this.i18nService.get("save success"))
+      this.toasterService.pop('success', undefined, this.i18nService.get("save sort success"))
     }, (e) => {
       this.toasterService.pop('error', undefined, e)
     }).finally(() => {
@@ -439,8 +440,9 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
         this.book.chapter = new Array<Chapter>()
       }
       this.book.chapter.push(chapter)
+      this.toasterService.pop('success', undefined, this.i18nService.get("new chapter success"))
     } catch (e) {
-      this.toasterService.pop('success', undefined, this.i18nService.get("save success"))
+      this.toasterService.pop('error', undefined, e)
     } finally {
       this.disabled = false
     }
@@ -454,50 +456,74 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
       return false
     }
 
-    this.matDialog.open(
-      EditChapterComponent,
-      {
-        width: '80%',
-        maxWidth: 800,
-        data: {
-          id: chapter.id,
-          name: chapter.name,
-        },
+    this.matDialog.open(EditChapterComponent, {
+      width: '80%',
+      maxWidth: 800,
+      data: {
+        id: chapter.id,
+        name: chapter.name,
       },
-    )
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result && (chapterID != result.id || chapterName != result.name)) {
-    //     this.doModifyChapter(book, chapterID, result.id, result.name);
-    //   }
-    // });
+    },
+    ).afterClosed().toPromise<Chapter>().then((val) => {
+      if (!val) {
+        return
+      }
+      if (val.id == chapter.id && val.name == chapter.name) {
+        return
+      }
+      this.disabled = true
+      ServerAPI.v1.chapters.put(this.httpClient, {
+        book: book.id,
+        chapter: chapter.id,
+        id: val.id,
+        name: val.name,
+      }).then(() => {
+        chapter.id = val.id
+        chapter.name = val.name
+        this.toasterService.pop('success', undefined, this.i18nService.get("save chapter success"))
+      }, (e) => {
+        this.toasterService.pop('error', undefined, e)
+      }).finally(() => {
+        this.disabled = false
+      })
+    })
     return false
   }
-  onChapterRemove(evt: Event, book: Book, chapterID: string, chapterName: string) {
+  onChapterRemove(evt: Event, book: Book, chapter: Chapter) {
     evt.stopPropagation();
-    // if (!book || !book.Chapter || book.Chapter.length == 0) {
-    //   return false;
-    // }
-    // if (this.isRequest) {
-    //   this.toasterService.pop('warning', '', this.xi18n.get("request.wait"));
-    //   return false;
-    // }
+    if (!book || !book.chapter || book.chapter.length == 0) {
+      return false
+    }
+    if (this.disabled) {
+      return false
+    }
 
-    // const dialogRef = this.dialog.open(
-    //   DialogSureComponent,
-    //   {
-    //     width: '80%',
-    //     maxWidth: 800,
-    //     data: {
-    //       title: this.xi18n.get("sure.title"),
-    //       text: this.xi18n.get("sure.text") + " - " + chapterName,
-    //     },
-    //   },
-    // )
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.doRemove(book, chapterID);
-    //   }
-    // });
+    this.matDialog.open(RemoveChapterComponent, {
+      width: '80%',
+      maxWidth: 800,
+      data: chapter,
+    }).afterClosed().toPromise<boolean>().then((ok) => {
+      if (!ok) {
+        return
+      }
+      this.disabled = true
+      ServerAPI.v1.chapters.delete(this.httpClient, {
+        params: {
+          book: book.id,
+          chapter: chapter.id,
+        },
+      }).then(() => {
+        this.toasterService.pop('success', undefined, this.i18nService.get("remove chapter success"))
+        const index = book.chapter.indexOf(chapter)
+        if (index != -1) {
+          book.chapter.splice(index, 1)
+        }
+      }, (e) => {
+        this.toasterService.pop('error', undefined, e)
+      }).finally(() => {
+        this.disabled = false
+      })
+    })
     return false
   }
 }
