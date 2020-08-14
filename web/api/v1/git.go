@@ -16,7 +16,9 @@ type Git struct {
 
 // Register impl IHelper
 func (h Git) Register(router *gin.RouterGroup) {
-	router.POST(`/git`, h.CheckSession, h.git)
+	r := router.Group(`git`)
+	r.Use(h.CheckSession)
+	r.POST(``, h.git)
 }
 func (h Git) git(c *gin.Context) {
 	var obj struct {

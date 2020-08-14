@@ -1,0 +1,15 @@
+<ng-container *ngIf="loading; then loadingView; else readyView">
+</ng-container>
+<ng-template #loadingView>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<ng-template #readyView>
+    <ng-container *ngIf="error; then errorView; else okView">
+    </ng-container>
+</ng-template>
+<ng-template #errorView>
+    {{error}}
+</ng-template>
+<ng-template #okView>
+    <markdown-markdown-edit [loader]="loader"></markdown-markdown-edit>
+</ng-template>

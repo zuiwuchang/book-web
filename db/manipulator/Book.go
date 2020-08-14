@@ -313,33 +313,21 @@ func (Book) DirectoryAssets(id, chapter string) (dir string, e error) {
 
 // UpdateChapter 更新章節內容
 func (Book) UpdateChapter(id, chapter, val string) (e error) {
-	// // 驗證 參數
-	// id, e = data.CheckBookID(id)
-	// if e != nil {
-	// 	return
-	// }
-	// chapter, e = data.CheckBookChapterID(chapter)
-	// if e != nil {
-	// 	return
-	// }
+	// 驗證 參數
+	id, e = data.CheckBookID(id)
+	if e != nil {
+		return
+	}
+	chapter, e = data.CheckBookChapterID(chapter)
+	if e != nil {
+		return
+	}
 
-	// filepath := BookChapter(id, chapter)
-	// e = ioutil.WriteFile(filepath, utils.StringToBytes(val), fileperm.File)
-	// if e != nil {
-	// 	return
-	// }
-
-	// // 更新 緩存
-	// filepath = BookChapterMD5(id, chapter)
-	// var md5 string
-	// var en error
-	// md5, en = utils.MD5(val)
-	// if en != nil {
-	// 	ioutil.WriteFile(filepath, utils.StringToBytes(""), fileperm.File)
-	// } else {
-	// 	ioutil.WriteFile(filepath, utils.StringToBytes(md5), fileperm.File)
-	// }
-
+	filepath := BookChapter(id, chapter)
+	e = ioutil.WriteFile(filepath, utils.StringToBytes(val), fileperm.File)
+	if e != nil {
+		return
+	}
 	return
 }
 

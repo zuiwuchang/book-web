@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EditComponent } from './app/edit/edit.component';
 import { SessionGuard } from './core/guard/session.guard';
 const routes: Routes = [
   {
@@ -14,10 +13,9 @@ const routes: Routes = [
     loadChildren: () => import('./view/view.module').then(m => m.ViewModule),
   },
   {
-    path: 'edit/:book/:chapter',
-    component: EditComponent,
+    path: 'edit',
+    loadChildren: () => import('./edit/edit.module').then(m => m.EditModule),
     canActivate: [SessionGuard],
-    // canDeactivate: [EditSavedGuard]
   },
   {
     path: 'content',

@@ -11,10 +11,13 @@ export class Loader {
     constructor(public readonly opened: OpenedBook) {
     }
 
-    load(httpClient: HttpClient): Promise<string> {
+    load(httpClient: HttpClient, simplemde?: boolean): Promise<string> {
         return new Promise((resolve, reject) => {
             const opened = this.opened
             let wait = 3
+            if (simplemde) {
+                wait++
+            }
             let title: string
             const callback = (e?: any) => {
                 if (!wait) {
@@ -31,6 +34,13 @@ export class Loader {
                 }
             }
             requireDynamic('MathJax')
+            if (simplemde) {
+                requireDynamic('simplemde').then(() => {
+                    callback()
+                }, (e) => {
+                    callback(e)
+                })
+            }
             // 加載依賴
             requireDynamics('jquery', 'showdown', 'clipboard',
                 'highlight',
