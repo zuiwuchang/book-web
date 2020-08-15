@@ -52,7 +52,7 @@ v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會
 
 > 若要編譯 windows 程式 執行 ./build.sh w
 >
-> 若要編譯 mac 程式 執行 ./build.sh m
+> 若要編譯 mac 程式 執行 ./build.sh d
 
 
 # Configure
