@@ -17,7 +17,7 @@ type Configure struct {
 	HTTP   HTTP
 	Cookie Cookie
 	Root   Root
-
+	Google Google
 	Logger logger.Options
 }
 
@@ -35,6 +35,9 @@ func (c *Configure) Format(basePath string) (e error) {
 		return
 	}
 	if e = c.Root.Format(basePath); e != nil {
+		return
+	}
+	if e = c.Google.Format(basePath); e != nil {
 		return
 	}
 	return

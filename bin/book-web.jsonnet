@@ -40,6 +40,13 @@ local GB=MB * 1024;
 		// Filename:"securecookie.json"
 		MaxAge:Day*14,
 	},
+	// google服務 配置
+	Google: {
+		// analytics id 如果爲空則不啓用
+		Analytics:"",
+		// AdSense data-ad-client 如果爲空則不啓用
+		AdSense:"",
+	},
 	Logger: {
 		// zap http
 		//HTTP: "localhost:20000",

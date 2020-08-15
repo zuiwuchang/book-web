@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"book-web/configure"
 	"book-web/version"
 	"fmt"
 	"net/http"
@@ -23,6 +24,8 @@ type Other struct {
 // Register impl IHelper
 func (h Other) Register(router *gin.RouterGroup) {
 	router.GET(`/version`, h.CheckSession, h.version)
+
+	router.GET(`/google`, h.google)
 }
 func (h Other) version(c *gin.Context) {
 	gv := gin.Version
@@ -39,5 +42,12 @@ func (h Other) version(c *gin.Context) {
 		`numCgoCall`:   runtime.NumCgoCall(),
 		`numGoroutine`: runtime.NumGoroutine(),
 		`startAt`:      startAt.Unix(),
+	})
+}
+func (h Other) google(c *gin.Context) {
+	cnf := configure.Single().Google
+	h.NegotiateData(c, http.StatusOK, gin.H{
+		`analytics`: cnf.Analytics,
+		`adSense`:   cnf.AdSense,
 	})
 }
