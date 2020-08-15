@@ -8,6 +8,9 @@ import { requireDynamic } from 'src/app/core/core/utils';
 import { I18nService } from 'src/app/core/i18n/i18n.service';
 import { ServerAPI } from 'src/app/core/core/api';
 import { RemoveFileComponent } from '../remove-file/remove-file.component';
+import { FileEditComponent } from '../file-edit/file-edit.component';
+import { R3TargetBinder } from '@angular/compiler';
+import { isString } from 'king-node/dist/core';
 
 @Component({
   selector: 'app-file-management',
@@ -110,57 +113,35 @@ export class FileManagementComponent implements OnInit, OnDestroy, AfterViewInit
     this.btnClipboard.nativeElement.click()
   }
   onRename(name: string) {
-    //   if (this.isDisabled()) {
-    //     console.log("disabled,ignore rename");
-    //     return;
-    //   }
-    //   const dialogRef = this.dialog.open(
-    //     FileRenameComponent,
-    //     {
-    //       width: '80%',
-    //       maxWidth: 800,
-    //       data: {
-    //         val: name,
-    //       }
-    //     },
-    //   )
-    //   dialogRef.afterClosed().subscribe(result => {
-    //     if (result) {
-    //       this.doRename(name, result);
-    //     }
-    //   });
-    // }
-    // doRename(name, newname) {
-    //   if (this.isDisabled()) {
-    //     console.log("disabled,ignore rename");
-    //     return;
-    //   } else if (name == newname) {
-    //     return;
-    //   }
-
-    //   this.request = true;
-    //   this.httpClient.post("/Book/RenameAssets",
-    //     {
-    //       ID: this.shared.book,
-    //       Chapter: this.shared.chapter,
-    //       Name: name,
-    //       Newname: newname
-    //     }
-    //   ).subscribe(
-    //     () => {
-    //       this.request = false;
-    //       for (let i = 0; i < this.items.length; i++) {
-    //         if (name == this.items[i]) {
-    //           this.items[i] = newname;
-    //         } else if (newname == this.items[i]) {
-    //           this.items.splice(i, 1);
-    //         }
-    //       }
-    //       this.toasterService.pop('success', '', 'Success');
-    //     },
-    //     (e) => {
-    //       this.request = false;
-    //       this.toasterService.pop('error', '', Utils.ResolveError(e));
-    //     });
+    if (this.disabled) {
+      console.log("disabled,ignore rename")
+      return
+    }
+    this.matDialog.open(FileEditComponent, {
+      width: '80%',
+      maxWidth: 800,
+      data: name,
+    }).afterClosed().toPromise<string>().then((target) => {
+      if (!isString(target) || target == name) {
+        return
+      }
+      this.disabled = true
+      ServerAPI.v1.assets.putOne(this.httpClient, 'name', {
+        book: this.data.book,
+        chapter: this.data.chapter,
+        source: name,
+        target: target,
+      }).then(() => {
+        this.toasterService.pop('success', undefined, this.i18nService.get('File renamed'))
+        const index = this.items.indexOf(name)
+        if (index != -1) {
+          this.items[index] = target
+        }
+      }, (e) => {
+        this.toasterService.pop('error', undefined, e)
+      }).finally(() => {
+        this.disabled = false
+      })
+    })
   }
 }

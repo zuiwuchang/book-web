@@ -318,6 +318,14 @@
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="a14910389fc940405fb5f8e96a20218e0a32b167" datatype="html">
+        <source>File renamed</source>
+        <target>File renamed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="158b1fb046945af0852d6a01bbb336aa21adc43b" datatype="html">
         <source>New Chapter</source>
         <target>New</target>
@@ -398,6 +406,10 @@
           <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
           <context context-type="linenumber">15</context>
         </context-group>
@@ -440,6 +452,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
           <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
@@ -568,6 +584,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d438fadfdcaab681912629a26e1e011374f9971" datatype="html">
+        <source>File Rename</source>
+        <target>File rename</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ea089321b1598c8eab968be77a48c03f1487b36f" datatype="html">
+        <source>File Rename placeholder</source>
+        <target>Please enter a new file name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="acf84b7e8ebe05a4e2f6846ebc2fefc656105a25" datatype="html">
+        <source>Invalid File Name</source>
+        <target>Invalid file name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="480a3c694962b42b90834a1595e353a0f12916f4" datatype="html">

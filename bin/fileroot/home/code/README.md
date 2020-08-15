@@ -1,5 +1,5 @@
 # code
-
+[assets/1test.key](assets/1test.key)
 ```
  #info=
 	class Animal{

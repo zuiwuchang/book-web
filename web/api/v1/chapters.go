@@ -24,6 +24,7 @@ func (h Chapters) Register(router *gin.RouterGroup) {
 	r.GET(`text`, h.Gzip(), h.getText)
 	r.PUT(`text`, h.CheckSession, h.putText)
 	r.PUT(`sort`, h.CheckSession, h.sort)
+
 }
 func (h Chapters) get(c *gin.Context) {
 	var obj struct {

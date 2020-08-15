@@ -30,10 +30,11 @@ import { RemoveChapterComponent } from './dialog/remove-chapter/remove-chapter.c
 import { FileUploadComponent } from './dialog/file-upload/file-upload.component';
 import { FileManagementComponent } from './dialog/file-management/file-management.component';
 import { RemoveFileComponent } from './dialog/remove-file/remove-file.component';
+import { FileEditComponent } from './dialog/file-edit/file-edit.component';
 
 
 @NgModule({
-  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent, FileUploadComponent, FileManagementComponent, RemoveFileComponent],
+  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent, FileUploadComponent, FileManagementComponent, RemoveFileComponent, FileEditComponent],
   imports: [
     CommonModule, FormsModule, RouterModule,
     SortablejsModule, FileUploadModule,
@@ -49,6 +50,7 @@ import { RemoveFileComponent } from './dialog/remove-file/remove-file.component'
   entryComponents: [
     NewChapterComponent, EditChapterComponent, RemoveChapterComponent,
     FileUploadComponent, FileManagementComponent, RemoveFileComponent,
+    FileEditComponent,
   ]
 })
 export class MarkdownModule { }

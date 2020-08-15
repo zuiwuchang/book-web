@@ -24,6 +24,7 @@ func (h Assets) Register(router *gin.RouterGroup) {
 	r.POST(`upload/:book/:chapter`, h.upload)
 	r.GET(``, h.get)
 	r.DELETE(``, h.remove)
+	r.PUT(`name`, h.CheckSession, h.putName)
 }
 func (h Assets) upload(c *gin.Context) {
 	var obj struct {
@@ -102,6 +103,26 @@ func (h Assets) remove(c *gin.Context) {
 	e = mBook.RemoveAssets(obj.Book, obj.Chapter, obj.Filename)
 	if e != nil {
 		h.NegotiateError(c, http.StatusBadRequest, e)
+		return
+	}
+	c.Status(http.StatusNoContent)
+}
+func (h Assets) putName(c *gin.Context) {
+	var obj struct {
+		Book    string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
+		Chapter string `form:"chapter" json:"chapter" xml:"chapter" yaml:"chapter" binding:"required"`
+		Source  string `form:"source" json:"source" xml:"source" yaml:"source" binding:"required"`
+		Target  string `form:"target" json:"target" xml:"target" yaml:"target" binding:"required"`
+	}
+	e := h.Bind(c, &obj)
+	if e != nil {
+		return
+	}
+
+	var mBook manipulator.Book
+	e = mBook.RenameAssets(obj.Book, obj.Chapter, obj.Source, obj.Target)
+	if e != nil {
+		h.NegotiateError(c, http.StatusInternalServerError, e)
 		return
 	}
 	c.Status(http.StatusNoContent)
