@@ -15,6 +15,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 import { SharedModule } from './shared/shared.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SharedModule } from './shared/shared.module';
     MatIconModule, MatTooltipModule,
     SharedModule,
 
-    AppRoutingModule
+    AppRoutingModule,
+
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [ToasterService, HighlightJsService],
   bootstrap: [AppComponent]
