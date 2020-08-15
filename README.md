@@ -1,5 +1,8 @@
 # book-web
 
+* [gitlab](https://gitlab.com/king011/book-web)
+* [github](https://github.com/zuiwuchang/book-web)
+
 book-web 是一個在線的 個人資料整理 web 以書爲單位 每種類型的 資料 作爲一本書 使用 markdown 進行編寫 以html 呈現內容
 
 [book.king011.com](https://book.king011.com) 是我使用此項目 部署的一個 在線web 你可以在此查看 book-web 的 一些效果  
@@ -7,9 +10,7 @@ book-web 是一個在線的 個人資料整理 web 以書爲單位 每種類型�
 
 # v1
 
-v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會保持數據和配置的兼容 離線情況下 你只需要更新 可執行的 和 前端view即可完成升級 不會破壞任何 已有數據和配置檔案
-
-v1 目前處理開發的 不穩定狀態 請不要使用
+v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會保持數據和配置的兼容 離線情況下 你只需要更新 可執行的 和 前端view即可完成升級 不會破壞任何 已有數據
 
 # Why
 
@@ -23,93 +24,111 @@ v1 目前處理開發的 不穩定狀態 請不要使用
 * 以 markdown 編寫 文檔 支持 上傳圖片和附件
 * 所有數據都以 文檔 保存到根目錄下 方便使用git
 * 支持在網頁操作 簡單的 git 指令 commit push ...
-* 對於支持 IndexedDB 的瀏覽器 所有 文檔數據都建立了lru 緩存(可在頁面關閉) 向服務器請求數據時傳入 緩存md5 如果服務器數據未變化則 返回緩存命中 瀏覽器直接以緩存顯示 從而減少數據流量 
+* 支持 http http2 協議
 
 # Install
 
 對於 linux-amd64 和 windows-amd64 的用戶 你可以直接下載 編譯好的項目 或者參照Build的說明自行編譯 對於 其它平臺 只能參照 Build 自行編譯
 
 下文以 linux-amd64 進行說明
-1. 下載 最新的 Releases 版本 得到 book-web.tar.gz
-2. 解壓 mkdir book-web && tar -zxvf book-web.tar.gz -C book-web
-4. 執行 book-web/run.sh 運行項目 *(windows 需要運行 book-web/run.sh)*
+1. 下載 最新的 Releases 版本 得到 linux.windows.7z
+2. 解壓 linux.windows.7z
+4. 執行 book-web daemon 運行項目
 
 # Build
 
-此項目 網頁 由 angular2 編寫 後端服務 用 golang revel 編寫 故需要分別 編譯
+此項目 網頁 由 angular2 編寫 後端服務 用 golang gin 編寫 需要先編譯前端 再編譯後端
 
 ## 編譯 前端網頁
 1. 自行安裝好 node 環境 和 angular2 框架
 2. 下載 源碼 git clone git@gitlab.com:king011/book-web.git && cd book-web/src/view && npm install
-3. 運行 編譯 腳本 ./build-zh-Hant.sh
+3. 運行 編譯 腳本 ./build.sh
 
 ## 編譯 後端服務器
-1. 自行配置好 golang環境 和 revel 框架
+1. 自行配置好 golang環境 
 2. 下載 源碼 git clone git@gitlab.com:king011/book-web.git
-3. 配置 環境 變量 export GOPATH=$GOPATH:\`pwd\`/book-web
-4. 編譯 revel package book-web prod 得到 book-web.tar.gz
+3. 編譯資源 ./build.sh s
+4. 編譯可執行程序 ./build.sh l
+
+> 若要編譯 windows 程式 執行 ./build.sh w
+>
+> 若要編譯 mac 程式 執行 ./build.sh m
 
 
 # Configure
-## app.conf
-book-web/src/book-web/conf/app.conf 是revel 的框架 配置 檔案 用來指定 http 如何工作 請自行參考 [revel 官網說明](https://revel.github.io/manual/appconf.html)
 
-## app.jsonnet
-book-web/src/book-web/conf/app.jsonnet 是 book-web 項目一些定義 如下
+book-web.jsonnet 是 book-web 項目的配置檔案
 ```jsonnet
+local Millisecond = 1;
+local Second = 1000 * Millisecond;
+local Minute = 60 * Second;
+local Hour = 60 * Minute;
+local Day = 24 * Hour;
+local KB=1024;
+local MB=KB * 1024;
+local GB=MB * 1024;
 {
-    // 檔案夾定義
-    FileRoot:"fileroot",
-    // 管理員定義
-    Root:{
-        // 登入 用戶名
-        Name:"king",
-        // 顯示昵稱
-        Nickname:"king",
-        // 密碼
-        //Password:"cerberus is an idea",
-        // 密碼是否爲hash值
-        //PasswordSha512:false,
-        // 密碼
-        Password:"6ef9fa16dc05ed44ca6f2890c61b9caacbb97f48ee7006d10d5151a5183bf54c08b1c4fe227e36f3cd01512643953d16753f63e92fd5698ef4af51a1651c70cb",
-        // 密碼是否爲hash值
-        PasswordSha512:true,
-    },
-    // 默認語言
-    DefaultLocale:"zh-Hant",
-    // 定義支持的語言
-    Locale:[
-        {
-            // 語言 id 和 angular 檔案夾名 對應
-            ID:"zh-Hant",
-            // 正則規則 匹配成功的 全部作爲 此語言顯示
-            Rules:[
-                ".*"
-            ],
-        },
-    ],
-    // 日誌 配置
-    Logger:{
-		// 日誌 http 如果爲空 則不啓動 http
-		//HTTP:"localhost:20800",
-		// 日誌 檔案名 如果爲空 則輸出到控制檯
-		//Filename:"logs/kc-cims.log",
-		// 單個日誌檔案 大小上限 MB
-		//MaxSize:    100, 
-		// 保存 多少個 日誌 檔案
-		//MaxBackups: 3,
-		// 保存 多少天內的 日誌
-		//MaxAge:     28,
-		// 要 保存的 日誌 等級 debug info warn error dpanic panic fatal
-		Level :"debug",
-        // 是否要 輸出 代碼位置
-    	//Caller:true,
+	// 檔案夾定義
+	FileRoot: "fileroot",
+	// HTTP 服務器訂閱
+	HTTP: {
+		// 服務器監聽地址
+		Addr: ":9000",
+		// 是否使用 http2 協議
+		// H2: true,
+		// // http 證書 如果配置了證書 將使用 https協議
+		// CertFile: "test.pem",
+		// KeyFile: "test.key",
+		// 設定 http 請求 body 最大尺寸
+		// 如果 == 0 使用默認值 32 KB
+		// 如果 < 0 不限制
+		MaxBytesReader: 5 * MB,
+	},
+	// 管理員定義
+	Root: {
+		// 登入 用戶名
+		Name: "king",
+		// 顯示昵稱
+		Nickname: "皇帝",
+		// 密碼
+		//Password: "cerberus is an idea",
+		// 密碼
+		Password: "6ef9fa16dc05ed44ca6f2890c61b9caacbb97f48ee7006d10d5151a5183bf54c08b1c4fe227e36f3cd01512643953d16753f63e92fd5698ef4af51a1651c70cb",
+		// 密碼是否爲hash值
+		PasswordSha512: true,
+	},
+	Cookie: {
+		// Filename:"securecookie.json"
+		MaxAge:Day*14,
+	},
+	// google服務 配置
+	Google: {
+		// analytics id 如果爲空則不啓用
+		Analytics:"",
+		// AdSense data-ad-client 如果爲空則不啓用
+		AdSense:"",
+	},
+	Logger: {
+		// zap http
+		//HTTP: "localhost:20000",
+		// log name
+		//Filename: "logs/book-web.log",
+		// MB
+		MaxSize: 100, 
+		// number of files
+		MaxBackups: 3,
+		// day
+		MaxAge: 28,
+		// level : debug info warn error dpanic panic fatal
+		Level: "debug",
+		// 是否要 輸出 代碼位置
+		Caller: true,
 	},
 }
 ```
 
 通常你 只需要 設置 FileRoot 指定 編輯文檔的 儲存位置 以及 Root.Name Root.Password 指定 管理員 用戶名 密碼 即可正常工作
-FileRoot 如果不是全路徑 則 檔案會被 保存到 book-web/src/book-web/ + FileRoot
+FileRoot 如果不是全路徑 則 檔案會被 保存到 可執行程序路徑 + FileRoot
 
 # 檔案儲存
 所有的數據 都以 markdown 形式儲存爲檔案  
@@ -129,33 +148,3 @@ FileRoot 如果不是全路徑 則 檔案會被 保存到 book-web/src/book-web/
 章節檔案夾下會有
 * README.md 檔案 儲存了 章節正文
 * assets 檔案夾 裏面儲存了 上傳到此章節的 附件 和圖片等資源
-
-# 啓用 google analytics
-
-要啓用 google analytics 需要 自行編譯 view 項目 並在其中填入 你自己的 analytics id
-
-1. 編輯 **src/view/src/index.html** 加入 gtag.js
-
-    ```html
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=XXX"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    </script>
-    ```
-
-   > XXX 改成你的 analytics id
-
-1. 編輯 **src/view/src/environments/environment.prod.ts** 
-
-    ```typescript
-    export const environment = {
-      production: true,
-      gtag: "XXX"
-    };
-    ```
-
-   > XXX 改成你的 analytics id
-   
