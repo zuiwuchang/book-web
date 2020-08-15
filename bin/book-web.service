@@ -1,0 +1,13 @@
+[Unit]
+Description=book-web 服務
+After=network.target
+ 
+[Service]
+#User=king
+Type=simple
+ExecStart=/opt/book-web/book-web daemon
+KillMode=control-group
+Restart=on-failure
+ 
+[Install]
+WantedBy=multi-user.target
