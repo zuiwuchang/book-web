@@ -11,7 +11,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="62029286ca62531f2dbe4708f6d3509c5cde0438" datatype="html">
@@ -130,12 +130,28 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="c0eef28336045cdd322f0890600448c020ef1111" datatype="html">
+        <source>Edit Tooltip</source>
+        <target>编辑</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c305daaf34bfd8d7ffb69b9466fbcfc665b563bd" datatype="html">
+        <source>View Tooltip</source>
+        <target>浏览</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="be394178ed48540a1665330866853faecea24c55" datatype="html">
         <source>sign out</source>
         <target>登出</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1e74b1c427daeefbf14f866f1a8c5389c412b5ed" datatype="html">
@@ -143,7 +159,7 @@
         <target>书籍管理</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
@@ -155,7 +171,7 @@
         <target>Git 指令</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
@@ -167,7 +183,7 @@
         <target>版本</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">73</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
@@ -179,7 +195,7 @@
         <target>更多功能</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21ff217df6efdcb06cbf3eaaf597eebe0926accc" datatype="html">
@@ -187,7 +203,7 @@
         <target>章节</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c407f2e6d2a204884111aa1d0e3decdf1d30ae3c" datatype="html">
@@ -195,7 +211,7 @@
         <target>段落</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/navigation-bar/navigation-bar.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="def755457793d5ad40597886d2d317bc5f415a2f" datatype="html">
@@ -216,10 +232,430 @@
       </trans-unit>
       <trans-unit id="dcf574dc54586fa7da64c9b2c1e3aae1d6c1c402" datatype="html">
         <source>copyied</source>
-        <target>Code copied to clipboard</target>
+        <target>代码已拷贝到剪贴板</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
           <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bbc85c9fed776acefe39b4727987f9e62a5ca5e0" datatype="html">
+        <source>not saved</source>
+        <target>在档案保存前，无法离开当前页面。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16b42e8cda68f79b9920e38f184cc6fe79055c43" datatype="html">
+        <source>not changed</source>
+        <target>数据未变化，无需保存。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16ccde7a30897f2efb75dce5ef9ceb938af582fd" datatype="html">
+        <source>waiting save</source>
+        <target>正在等待服务器响应，忽略本次保存操作。</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a8abd9150e25f98fbce18a0746e4254df3690fc3" datatype="html">
+        <source>save success</source>
+        <target>保存成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="99920685ab733ce960aa2d39a31be2dc09a6a03b" datatype="html">
+        <source>save sort success</source>
+        <target>保存序列成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d5bd2cdbe6a672004d43c10426131bb1ca13c47" datatype="html">
+        <source>new chapter success</source>
+        <target>创建章节成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8346eb5e440bc6a2f84592baecd9296877191a05" datatype="html">
+        <source>save chapter success</source>
+        <target>保存章节成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e90c667b3e3a017df04d3f0f0cf0dfcdf5123ee9" datatype="html">
+        <source>remove chapter success</source>
+        <target>删除章节成功</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4db52c0cfb1ae9b7cacb238b8dfd39e55bda2b93" datatype="html">
+        <source>data copied</source>
+        <target>已复制到剪贴板</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d8bcc9c4ee939429759fcf9c9633703096ad4d4a" datatype="html">
+        <source>File deleted</source>
+        <target>档案已删除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a14910389fc940405fb5f8e96a20218e0a32b167" datatype="html">
+        <source>File renamed</source>
+        <target>档案已重命名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="158b1fb046945af0852d6a01bbb336aa21adc43b" datatype="html">
+        <source>New Chapter</source>
+        <target>新增</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/new-chapter/new-chapter.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7cf4d9e81df51650a783e1377b69eb800bc5bb94" datatype="html">
+        <source>Chapter Name placeholder</source>
+        <target>请输入章节名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/new-chapter/new-chapter.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/edit-chapter/edit-chapter.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7a2a9203a438682ac35a37de323d3a968bd4372c" datatype="html">
+        <source>Invalid Chapter Name</source>
+        <target>无效的章节名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/new-chapter/new-chapter.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/edit-chapter/edit-chapter.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7315b67493eecb05f4c0b291a71cca9b1bc46248" datatype="html">
+        <source>Chapter ID placeholder</source>
+        <target>请输入章节 ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/new-chapter/new-chapter.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/edit-chapter/edit-chapter.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ce8cb999c1da39cf2c02be0204b94d2aa63d9d7e" datatype="html">
+        <source>Invalid Chapter ID</source>
+        <target>无效的 ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/new-chapter/new-chapter.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/edit-chapter/edit-chapter.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f0dc0497ad16adbd386a3b2f2c55d81c51a1f029" datatype="html">
+        <source>Sure</source>
+        <target>确认</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/new-chapter/new-chapter.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/edit-chapter/edit-chapter.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/rename/rename.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/change-id/change-id.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/remove/remove.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <target>取消</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/new-chapter/new-chapter.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/edit-chapter/edit-chapter.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/rename/rename.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/change-id/change-id.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/books/dialog/remove/remove.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f7a6b0b92036ebf19280ee5c92773ee2c4ba1e63" datatype="html">
+        <source>Edit Chapter</source>
+        <target>修改</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/edit-chapter/edit-chapter.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="32060d055b203b94b978563f929fd9f4515fc4f6" datatype="html">
+        <source>Chapter Remove Title</source>
+        <target>删除章节</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3efa47b006a29af2e17cfdf1611510b6c294ed82" datatype="html">
+        <source>Chapter Remove <x id="INTERPOLATION" equiv-text="{{data.name}}"/>?</source>
+        <target>删除将无法恢复，你确定要删除《<x id="INTERPOLATION" equiv-text="{{data.name}}"/>》吗？</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-chapter/remove-chapter.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="18c85b57c80e4f5d986ff3ab19ff52790aaa0037" datatype="html">
+        <source>Dialog Upload Files</source>
+        <target>档案上传</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d2225b3e00af653ad30e16f0f5ede3a42ffc206b" datatype="html">
+        <source>Queue length</source>
+        <target>队列长度</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4b3972c3e9485218508a95f7a4ce7758e3f09ced" datatype="html">
+        <source>Upload</source>
+        <target>上传</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="019d4bd6a5690f0cfa0ecf346a4e6bf7f0d8debb" datatype="html">
+        <source>Remove</source>
+        <target>移除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68635380a12e90f80223c01dba0c572c2b19dc05" datatype="html">
+        <source>Select Files</source>
+        <target>选取档案</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c328d95876c4d432be175ac4bf14d9b698416768" datatype="html">
+        <source>Upload all file</source>
+        <target>全部上传</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6276360f457a8f0a657f6b0993d19867491636e8" datatype="html">
+        <source>Upload cancel all file</source>
+        <target>全部取消</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="05ad0f6357f934ff17f8d123bc2584811c4c6107" datatype="html">
+        <source>Upload remove all file</source>
+        <target>全部移除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-upload/file-upload.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6f19b93953b1bdf3e8923bb24c286fb46909355d" datatype="html">
+        <source>File Remove Title</source>
+        <target>删除档案</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f7d8a0ba2922afbc86a21cd053b1068b538c2450" datatype="html">
+        <source>File Remove <x id="INTERPOLATION" equiv-text="{{data}}"/>?</source>
+        <target>档案删除将无法恢复，你确定要删除“<x id="INTERPOLATION" equiv-text="{{data}}"/>”吗？</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/remove-file/remove-file.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d438fadfdcaab681912629a26e1e011374f9971" datatype="html">
+        <source>File Rename</source>
+        <target>档案重命名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ea089321b1598c8eab968be77a48c03f1487b36f" datatype="html">
+        <source>File Rename placeholder</source>
+        <target>请输入档案新名称</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="acf84b7e8ebe05a4e2f6846ebc2fefc656105a25" datatype="html">
+        <source>Invalid File Name</source>
+        <target>无效的档案名称</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-edit/file-edit.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="480a3c694962b42b90834a1595e353a0f12916f4" datatype="html">
+        <source>File management</source>
+        <target>档案管理</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1979da7460819153e11d2078244645d94291b69c" datatype="html">
+        <source>Copy</source>
+        <target>复制</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target>编辑</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target>删除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/dialog/file-management/file-management.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="523792b38b726c926ac3a8f544d23f47917ea033" datatype="html">
+        <source>Delete Chapter</source>
+        <target>删除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5d586c4ce3eb8d1fae9832be5d89295001e40646" datatype="html">
+        <source>Sort Chapter</source>
+        <target>保存序列</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/markdown/markdown-edit/markdown-edit.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e5fb254607ba2b0bdee5c290f639153bb78141b9" datatype="html">
@@ -344,46 +780,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/books/books/books.component.html</context>
           <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="f0dc0497ad16adbd386a3b2f2c55d81c51a1f029" datatype="html">
-        <source>Sure</source>
-        <target>确认</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/books/dialog/rename/rename.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/books/dialog/change-id/change-id.component.html</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/books/dialog/remove/remove.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
-        <source>Cancel</source>
-        <target>取消</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/books/dialog/new/new.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/books/dialog/rename/rename.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/books/dialog/change-id/change-id.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/books/dialog/remove/remove.component.html</context>
-          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="534a40b1fd1bb41f6228fa8ba4950924b6dedc88" datatype="html">
