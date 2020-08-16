@@ -35,7 +35,7 @@
             </section>
         </div>
 
-        <div class="navigate-view" *ngIf="markdown && markdown.HTML">
+        <div class="navigate-view" *ngIf="text && markdown && markdown.HTML">
             <a [routerLink]="['/view', previous.book,previous.chapter]" *ngIf="previous">
                 <button mat-button class="previous no-outline">
                     <mat-icon>navigate_before</mat-icon>

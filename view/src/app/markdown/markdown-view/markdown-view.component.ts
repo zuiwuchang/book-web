@@ -11,6 +11,7 @@ import { HighlightJsService } from 'angular2-highlight-js';
 import { ToasterService } from 'angular2-toaster';
 import { Router } from '@angular/router';
 import { I18nService } from 'src/app/core/i18n/i18n.service';
+import { isString } from 'king-node/dist/core';
 
 declare const $: any
 class Navigate {
@@ -31,7 +32,7 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
     private readonly toasterService: ToasterService,
     private readonly router: Router,
   ) { }
-
+  text = false
   @Input()
   set loader(l: Loader) {
     const opened = l.opened
@@ -39,6 +40,9 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
     this.book = book
     const text = l.text
     this.title = l.title
+    if (isString(text) && text.length > 0) {
+      this.text = true
+    }
     requireDynamic('showdown').then((showdown) => {
       this.markdown = new Markdown(showdown,
         this.domSanitizer,

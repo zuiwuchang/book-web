@@ -2,14 +2,18 @@ package manipulator
 
 import (
 	"book-web/configure"
+	"book-web/db/data"
 	"fmt"
+	"os"
 	"path/filepath"
+
+	"gitlab.com/king011/king-go/os/fileperm"
 )
 
 var _FileRoot string
 
 // Init 初始化 設置
-func Init() {
+func Init() (e error) {
 	cnf := configure.Single()
 	_FileRoot = cnf.FileRoot
 
@@ -17,6 +21,36 @@ func Init() {
 	_User.Name = cnf.Root.Name
 	_User.Nickname = cnf.Root.Nickname
 	_User.Password = cnf.Root.Password
+
+	//
+	id := `home`
+	os.MkdirAll(BookDirectory(id), fileperm.Directory)
+	var mBook Book
+	_, _, e = mBook.get(id)
+	if os.IsNotExist(e) {
+		_, e = mBook.save(&data.Book{
+			ID:   id,
+			Name: `書單`,
+		})
+		if e != nil {
+			return
+		}
+	}
+	filename := BookChapter(id, `0`)
+	f, e := os.Open(filename)
+	if e == nil {
+		f.Close()
+		return
+	}
+
+	if os.IsNotExist(e) {
+		f, e = os.Create(filename)
+		if e != nil {
+			return
+		}
+		f.Close()
+	}
+	return
 }
 
 // BookDefinition 返回 書 定義路徑

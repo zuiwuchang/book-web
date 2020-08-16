@@ -16,7 +16,7 @@ v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會
 
 人類的記憶既弱又不可靠 我很早就發現了 在網路時代 最好的記憶神器就是 web 於是早前開發了一個網站用於 編輯查看資料 你現在依然可以訪問她 [doc.king011.com](https://doc.king011.com) 其[源碼](https://gitlab.com/king011/king-document-build)同樣是以GPL3開源 不過其文檔是以純html編寫 現在看來 比較愚笨
 
-最近使用了下 gitbook 感覺 使用 markdown編寫文檔 比較方便 同時便於 git 保存
+在使用了 gitbook 後 感覺 使用 markdown編寫文檔 比較方便 同時便於 git 保存
 然 gitbook 官網 打開實在太慢 而且 遇到了問題 提問也沒人解答 於是 自己決定開發一個 替代工具 故有此項目 
 
 # 特性

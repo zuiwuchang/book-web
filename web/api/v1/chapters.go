@@ -101,7 +101,7 @@ func (h Chapters) sort(c *gin.Context) {
 func (h Chapters) post(c *gin.Context) {
 	var obj struct {
 		Book string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
-		ID   string `form:"id" json:"id" xml:"id" yaml:"id" binding:"required"`
+		ID   string `form:"id" json:"id" xml:"id" yaml:"id"`
 		Name string `form:"name" json:"name" xml:"name" yaml:"name" binding:"required"`
 	}
 	e := h.Bind(c, &obj)

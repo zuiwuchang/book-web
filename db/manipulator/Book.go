@@ -40,6 +40,9 @@ func (m Book) Get(id string) (book *data.Book, modTime time.Time, e error) {
 	filename := BookDirectory(id)
 	f, e := os.Open(filename)
 	if e != nil {
+		if id == `home` && os.IsNotExist(e) {
+			e = nil
+		}
 		return
 	}
 	defer f.Close()
