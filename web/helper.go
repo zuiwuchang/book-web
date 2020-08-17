@@ -20,7 +20,9 @@ var Offered = []string{
 	binding.MIMEXML,
 	binding.MIMEYAML,
 }
-var _compression = compression.Compression(compression.BrDefaultCompression, compression.GzDefaultCompression)
+var _compression = compression.Compression(compression.BrDefaultCompression,
+	compression.GzDefaultCompression,
+)
 
 // Helper 輔助類型
 type Helper struct {
