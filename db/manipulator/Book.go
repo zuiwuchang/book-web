@@ -331,6 +331,10 @@ func (Book) UpdateChapter(id, chapter, val string) (e error) {
 	if e != nil {
 		return
 	}
+	st, _ := os.Stat(filepath)
+	if st != nil {
+		fmt.Println(st.ModTime())
+	}
 	return
 }
 

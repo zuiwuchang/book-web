@@ -214,7 +214,6 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
           className: "fas fa-upload",
           title: "File management",
           action: (editor: any) => {
-            console.log('file-management')
             this.matDialog.open(FileManagementComponent, {
               width: '80%',
               maxWidth: 800,
@@ -228,7 +227,6 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
           className: "fas fa-file-upload",
           title: "File upload",
           action: (editor: any) => {
-            console.log('file-upload')
             this.matDialog.open(FileUploadComponent, {
               width: '80%',
               maxWidth: 800,
@@ -388,7 +386,6 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
     if (!book || !book.chapter || book.chapter.length < 2) {
       return
     }
-    console.log(book.chapter)
     const chapters = []
     for (let i = 0; i < book.chapter.length; i++) {
       chapters.push(book.chapter[i].id)
