@@ -3,11 +3,11 @@ package web
 import (
 	"book-web/cookie"
 	"book-web/logger"
+	"book-web/web/contrib/compression"
 	"fmt"
 	"net/http"
 	"reflect"
 
-	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"go.uber.org/zap"
@@ -20,7 +20,7 @@ var Offered = []string{
 	binding.MIMEXML,
 	binding.MIMEYAML,
 }
-var compression = gzip.Gzip(gzip.DefaultCompression)
+var _compression = compression.Compression(compression.BrDefaultCompression, compression.GzDefaultCompression)
 
 // Helper 輔助類型
 type Helper struct {
@@ -142,7 +142,7 @@ func (h Helper) BindQuery(c *gin.Context, obj interface{}) error {
 	return h.BindWith(c, obj, binding.Query)
 }
 
-// Gzip .
-func (h Helper) Gzip() gin.HandlerFunc {
-	return compression
+// Compression .
+func (h Helper) Compression() gin.HandlerFunc {
+	return _compression
 }

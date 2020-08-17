@@ -1,9 +1,7 @@
 module book-web
 
-go 1.13
-
 require (
-	github.com/gin-contrib/gzip v0.0.2
+	github.com/andybalholm/brotli v1.0.0
 	github.com/gin-gonic/gin v1.6.3
 	github.com/google/go-jsonnet v0.16.0
 	github.com/gorilla/securecookie v1.1.1

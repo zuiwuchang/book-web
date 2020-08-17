@@ -67,7 +67,7 @@ func (h Helper) Register(router *gin.RouterGroup) {
 	// 重寫定向舊版系統到新路由
 	router.GET(`/angular/zh-Hant/*path`, h.redirectAngular)
 	r := router.Group(BaseURL)
-	r.Use(h.Gzip())
+	r.Use(h.Compression())
 	r.GET(`/:locale`, h.viewOrRedirect)
 	r.GET(`/:locale/*path`, h.view)
 }

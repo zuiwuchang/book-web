@@ -7,7 +7,6 @@ import (
 	"book-web/logger"
 	"book-web/web"
 
-	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 	"github.com/rakyll/statik/fs"
 	"go.uber.org/zap"
@@ -36,11 +35,11 @@ func (h Helper) Register(router *gin.RouterGroup) {
 		}
 		os.Exit(1)
 	}
-	router.GET("3rdpartylicenses.txt", gzip.Gzip(gzip.DefaultCompression), h.licenses)
-	router.GET("favicon.ico", gzip.Gzip(gzip.DefaultCompression), h.favicon)
+	router.GET("3rdpartylicenses.txt", h.Compression(), h.licenses)
+	router.GET("favicon.ico", h.Compression(), h.favicon)
 
 	r := router.Group(BaseURL)
-	r.Use(h.Gzip())
+	r.Use(h.Compression())
 	r.GET(`/*path`, h.view)
 }
 func (h Helper) view(c *gin.Context) {

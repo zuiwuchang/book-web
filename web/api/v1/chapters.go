@@ -21,7 +21,7 @@ func (h Chapters) Register(router *gin.RouterGroup) {
 	r.POST(``, h.CheckSession, h.post)
 	r.PUT(``, h.CheckSession, h.put)
 	r.DELETE(``, h.CheckSession, h.remove)
-	r.GET(`text`, h.Gzip(), h.getText)
+	r.GET(`text`, h.Compression(), h.getText)
 	r.PUT(`text`, h.CheckSession, h.putText)
 	r.PUT(`sort`, h.CheckSession, h.sort)
 
