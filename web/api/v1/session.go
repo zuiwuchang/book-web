@@ -107,7 +107,6 @@ func (h Session) login(c *gin.Context) {
 	var obj struct {
 		Name     string `form:"name" json:"name" xml:"name" yaml:"name" binding:"required"`
 		Password string `form:"password" json:"password" xml:"password" yaml:"password" binding:"required"`
-		Remember bool   `form:"remember" json:"remember" xml:"remember" yaml:"remember" `
 	}
 	e := h.Bind(c, &obj)
 	if e != nil {
@@ -139,25 +138,23 @@ func (h Session) login(c *gin.Context) {
 		return
 	}
 	// 生成 cookie
-	val, e := session.Cookie()
+	token, e := session.Cookie()
 	if e != nil {
 		h.NegotiateError(c, http.StatusInternalServerError, e)
 		return
 	}
-	maxage := 0
-	if obj.Remember {
-		maxage = int(cookie.MaxAge())
-	}
 
 	// 響應 數據
-	c.SetCookie(cookie.CookieName, val, maxage, `/`, ``, false, true)
-	h.NegotiateData(c, http.StatusCreated, session)
+	h.NegotiateData(c, http.StatusCreated, gin.H{
+		`session`: session,
+		`token`:   token,
+		`maxage`:  cookie.MaxAge(),
+	})
 
 	if ce := logger.Logger.Check(zap.WarnLevel, c.FullPath()); ce != nil {
 		ce.Write(
 			zap.String(`method`, c.Request.Method),
 			zap.String(`session`, session.String()),
-			zap.Int(`maxage`, maxage),
 			zap.String(`client ip`, c.ClientIP()),
 		)
 	}

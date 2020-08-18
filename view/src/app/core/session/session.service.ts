@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ServerAPI } from '../core/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Completer } from 'king-node/dist/async/completer';
 import { Mutex } from 'king-node/dist/async/sync';
-import { isString, Exception } from 'king-node/dist/core';
+import { isString, Exception, isNumber } from 'king-node/dist/core';
+import { SaveToken, LoadToken, DeleteToken } from './token'
+interface Response {
+  session: Session
+  token: string
+  maxage: number
+}
 export class Session {
   name: string
   nickname: string
   root = false
+  token: string
 }
 @Injectable({
   providedIn: 'root'
@@ -30,11 +37,19 @@ export class SessionService {
   private async _restore() {
     console.log('start session restore')
     await this.mutex_.lock()
+    const token = LoadToken()
     try {
-      const response = await ServerAPI.v1.session.get<Session>(this.httpClient)
-      if (response && isString(response.name)) {
-        console.info(`session restore`, response)
-        this.subject_.next(response)
+      if (token) {
+        const response = await ServerAPI.v1.session.get<Session>(this.httpClient, {
+          headers: new HttpHeaders({
+            'token': token.value,
+          }),
+        })
+        if (response && isString(response.name)) {
+          console.info(`session restore`, response)
+          response.token = token.value
+          this.subject_.next(response)
+        }
       }
     } catch (e) {
       console.error(`restore error : `, e)
@@ -53,14 +68,17 @@ export class SessionService {
     await this.mutex_.lock()
     let result: Session
     try {
-      const response = await ServerAPI.v1.session.post<Session>(this.httpClient, {
+      const timestamp = new Date().getTime()
+      const response = await ServerAPI.v1.session.post<Response>(this.httpClient, {
         name: name,
         password: password,
-        remember: remember,
       })
       if (response) {
-        console.info(`login success`, response)
-        this.subject_.next(response)
+        if (remember && isString(response.token) && isNumber(response.maxage)) {
+          SaveToken(response.token, timestamp, response.maxage)
+        }
+        response.session.token = response.token
+        this.subject_.next(response.session)
       } else {
         console.warn(`login unknow result`, response)
         throw new Exception("login unknow result")
@@ -80,10 +98,16 @@ export class SessionService {
       if (this.subject_.value == null) {
         return
       }
-      await ServerAPI.v1.session.delete(this.httpClient)
+      DeleteToken(this.subject_.value.token)
       this.subject_.next(null)
     } finally {
       this.mutex_.unlock()
     }
+  }
+  token(): string {
+    if (this.subject_.value) {
+      return this.subject_.value.token
+    }
+    return null
   }
 }

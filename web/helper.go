@@ -99,15 +99,12 @@ func (Helper) ShouldBindSession(c *gin.Context) (session *cookie.Session, e erro
 		}
 		return
 	}
-	val, e := c.Cookie(cookie.CookieName)
-	if e != nil {
-		c.Set(`session`, e)
-		return
-	} else if val == "" {
+	token := c.GetHeader("token")
+	if token == "" {
 		c.Set(`session`, nil)
 		return
 	}
-	session, e = cookie.FromCookie(val)
+	session, e = cookie.FromCookie(token)
 	if e == nil {
 		c.Set(`session`, session)
 	} else {
