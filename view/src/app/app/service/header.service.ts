@@ -12,7 +12,6 @@ export class HeaderInterceptor implements HttpInterceptor {
     if (req.method == "GET" || req.method == "HEAD") {
       headers = headers.set('ngsw-bypass', '')
     }
-    console.log(req.url)
     if (!headers.has('token')) {
       const token = this.sessionService.token()
       console.log(token)
