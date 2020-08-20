@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"book-web/configure"
 	"book-web/db/manipulator"
 	"book-web/web"
 	"fmt"
@@ -14,8 +15,18 @@ type Chapters struct {
 	web.Helper
 }
 
+var _CacheControl string
+
+func setCacheControl(c *gin.Context) {
+	if _CacheControl != "" {
+		c.Header("Cache-Control", _CacheControl)
+	}
+}
+
 // Register impl IHelper
 func (h Chapters) Register(router *gin.RouterGroup) {
+	_CacheControl = configure.Single().HTTP.CacheControl
+
 	r := router.Group(`chapters`)
 	r.GET(``, h.get)
 	r.POST(``, h.CheckSession, h.post)
@@ -41,8 +52,10 @@ func (h Chapters) get(c *gin.Context) {
 		h.NegotiateError(c, http.StatusInternalServerError, e)
 		return
 	}
+	setCacheControl(c)
 	h.NegotiateJSONFile(c, obj.ID, modTime, book)
 }
+
 func (h Chapters) getText(c *gin.Context) {
 	var obj struct {
 		Book    string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`
@@ -59,8 +72,10 @@ func (h Chapters) getText(c *gin.Context) {
 		h.NegotiateError(c, http.StatusInternalServerError, e)
 		return
 	}
+	setCacheControl(c)
 	c.File(filename)
 }
+
 func (h Chapters) putText(c *gin.Context) {
 	var obj struct {
 		Book    string `form:"book" json:"book" xml:"book" yaml:"book" binding:"required"`

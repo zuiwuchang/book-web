@@ -12,6 +12,7 @@ type HTTP struct {
 	CertFile       string
 	KeyFile        string
 	MaxBytesReader int64
+	CacheControl   string
 }
 
 // TLS if tls return true

@@ -50,8 +50,15 @@ export class Loader {
                 callback(e)
             })
 
+            let headers
+            if (simplemde) {
+                headers = {
+                    "Cache-Control": "no-cache",
+                }
+            }
             // 請求 book
             ServerAPI.v1.chapters.get<Book>(httpClient, {
+                headers: headers,
                 params: {
                     id: opened.book,
                 },
@@ -80,6 +87,7 @@ export class Loader {
             })
             // 請求 文本
             ServerAPI.v1.text.get(httpClient, {
+                headers: headers,
                 params: {
                     book: opened.book,
                     chapter: opened.chapter,
