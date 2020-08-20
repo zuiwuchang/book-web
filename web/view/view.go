@@ -141,10 +141,13 @@ func (h Helper) view(c *gin.Context) {
 		return
 	}
 	if obj.Locale == "zh-Hant" {
+		c.Header("Cache-Control", "max-age=2419200")
 		h.NegotiateFilesystem(c, zhHant, obj.Path)
 	} else if obj.Locale == "zh-Hans" {
+		c.Header("Cache-Control", "max-age=2419200")
 		h.NegotiateFilesystem(c, zhHans, obj.Path)
 	} else if obj.Locale == "en-US" {
+		c.Header("Cache-Control", "max-age=2419200")
 		h.NegotiateFilesystem(c, enUS, obj.Path)
 	} else {
 		h.NegotiateErrorString(c, http.StatusNotFound, `not support locale`)

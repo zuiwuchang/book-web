@@ -50,11 +50,14 @@ func (h Helper) view(c *gin.Context) {
 	if e != nil {
 		return
 	}
+	c.Header("Cache-Control", "max-age=31536000")
 	h.NegotiateFilesystem(c, filesystem, obj.Path)
 }
 func (h Helper) licenses(c *gin.Context) {
+	c.Header("Cache-Control", "max-age=31536000")
 	h.NegotiateFilesystem(c, filesystem, `/3rdpartylicenses.txt`)
 }
 func (h Helper) favicon(c *gin.Context) {
+	c.Header("Cache-Control", "max-age=31536000")
 	h.NegotiateFilesystem(c, filesystem, `/favicon.ico`)
 }
