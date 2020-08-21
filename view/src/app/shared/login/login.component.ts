@@ -5,7 +5,6 @@ import { ToasterService } from 'angular2-toaster';
 
 import { takeUntil, } from 'rxjs/operators';
 import { Closed, requireDynamic } from '../../core/core/utils';
-declare const requireLoad: any
 
 @Component({
   selector: 'app-login',

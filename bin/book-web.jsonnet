@@ -23,7 +23,7 @@ local GB=MB * 1024;
 		// 如果 < 0 不限制
 		MaxBytesReader: 5 * MB,
 		// Cache-Control 設置 如果爲空字符串 則不設置
-		CacheControl: "max-age=3600"
+		CacheControl: "max-age=432000"
 	},
 	// 管理員定義
 	Root: {

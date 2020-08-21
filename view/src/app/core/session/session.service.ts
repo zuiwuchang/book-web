@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ServerAPI } from '../core/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Completer } from 'king-node/dist/async/completer';
 import { Mutex } from 'king-node/dist/async/sync';
 import { isString, Exception, isNumber } from 'king-node/dist/core';
 import { SaveToken, LoadToken, DeleteToken } from './token'
+
 interface Response {
   session: Session
   token: string
@@ -40,11 +41,14 @@ export class SessionService {
     const token = LoadToken()
     try {
       if (token) {
-        const response = await ServerAPI.v1.session.get<Session>(this.httpClient, {
-          headers: new HttpHeaders({
-            'token': token.value,
-          }),
-        })
+        const response = await ServerAPI.v1.session.getOne<Session>(this.httpClient, [Math.floor(token.at / 1000), token.maxage, token.value, "token"])
+        // const response = await ServerAPI.v1.session.get<Session>(this.httpClient, {
+        //   params: {
+        //     at: token.at.toString(),
+        //     maxage: token.maxage.toString(),
+        //     token: token.value,
+        //   }
+        // })
         if (response && isString(response.name)) {
           console.info(`session restore`, response)
           response.token = token.value

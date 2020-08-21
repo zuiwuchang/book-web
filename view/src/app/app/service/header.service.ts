@@ -12,12 +12,9 @@ export class HeaderInterceptor implements HttpInterceptor {
     if (req.method == "GET" || req.method == "HEAD") {
       headers = headers.set('ngsw-bypass', '')
     }
-    if (!headers.has('token')) {
-      const token = this.sessionService.token()
-      console.log(token)
-      if (isString(token)) {
-        headers = headers.set('token', token)
-      }
+    const token = this.sessionService.token()
+    if (isString(token) && !headers.has('token')) {
+      headers = headers.set('token', token)
     }
     return next.handle(req.clone({
       headers: headers,

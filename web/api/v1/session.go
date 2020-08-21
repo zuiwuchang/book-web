@@ -2,7 +2,10 @@ package v1
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
+	"net/url"
+	"strconv"
 	"sync"
 	"time"
 
@@ -99,7 +102,7 @@ type Session struct {
 func (h Session) Register(router *gin.RouterGroup) {
 	r := router.Group(`/session`)
 	r.POST(``, h.login)
-	r.GET(``, h.restore)
+	r.GET(`:at/:maxage/:token/token`, h.restore)
 	r.DELETE(``, h.logout)
 }
 func (h Session) login(c *gin.Context) {
@@ -160,16 +163,37 @@ func (h Session) login(c *gin.Context) {
 	}
 }
 func (h Session) restore(c *gin.Context) {
-	session, e := h.ShouldBindSession(c)
+	var obj struct {
+		Token  string `uri:"token" binding:"required"`
+		At     int64  `uri:"at" binding:"required"`
+		Maxage int64  `uri:"maxage" binding:"required"`
+	}
+	e := h.BindURI(c, &obj)
+	if e != nil {
+		return
+	}
+	obj.Token, e = url.QueryUnescape(obj.Token)
+	if e != nil {
+		h.NegotiateError(c, http.StatusBadRequest, e)
+		return
+	}
+	session, e := cookie.FromCookie(obj.Token)
 	if e != nil {
 		h.NegotiateError(c, http.StatusUnauthorized, e)
 		return
-	} else if session == nil {
-		h.NegotiateErrorString(c, http.StatusNotFound, `not found`)
-		return
 	}
-	h.NegotiateData(c, http.StatusOK, session)
-
+	now := time.Now()
+	if obj.Maxage > 0 && obj.At > 0 {
+		at := time.Unix(obj.At, 0).Local()
+		expired := at.Add(time.Duration(obj.Maxage) * time.Second)
+		fmt.Println(at, expired)
+		maxage := expired.Sub(now) / time.Second
+		if maxage < 0 {
+			maxage = 0
+		}
+		c.Header("Cache-Control", "max-age="+strconv.Itoa((int(maxage))))
+	}
+	h.NegotiateJSONFile(c, `token`, now, session)
 	if ce := logger.Logger.Check(zap.InfoLevel, c.FullPath()); ce != nil {
 		ce.Write(
 			zap.String(`method`, c.Request.Method),

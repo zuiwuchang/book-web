@@ -5,8 +5,7 @@ import { ToasterService } from 'angular2-toaster';
 import { Title } from '@angular/platform-browser';
 import { I18nService } from 'src/app/core/i18n/i18n.service';
 import { isNumber } from 'king-node/dist/core';
-import * as moment from 'moment';
-import { unix, Moment, now } from 'moment';
+import { unix, duration, now, Moment } from 'moment';
 import { interval } from 'rxjs';
 import { Closed } from 'src/app/core/core/utils';
 import { takeUntil } from 'rxjs/operators';
@@ -30,7 +29,7 @@ export class VersionComponent implements OnInit, OnDestroy {
   VERSION = VERSION
   version: Version
   startAt: Moment
-  started: any
+  started: string
   private closed_ = new Closed()
   constructor(private httpClient: HttpClient,
     private toasterService: ToasterService,
@@ -40,11 +39,9 @@ export class VersionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.title.setTitle(this.i18nService.get('Version'))
-
     ServerAPI.v1.version.get<Version>(this.httpClient).then((data) => {
       this.version = data
       if (isNumber(data.startAt)) {
-        moment.unix
         this.startAt = unix(data.startAt)
       }
     }, (e) => {
@@ -58,8 +55,9 @@ export class VersionComponent implements OnInit, OnDestroy {
       takeUntil(this.closed_.observable),
     ).subscribe(() => {
       if (this.startAt) {
-        const duration = moment.duration(moment().diff(this.startAt))
-        this.started = `${Math.floor(duration.asDays())} day ${Math.floor(duration.asHours()) % 24} hours ${Math.floor(duration.asMinutes()) % 60} minutes ${Math.floor(duration.asSeconds()) % 60} seconds`
+        console.log(new Date().getTime() == now())
+        const d = duration(unix(now() / 1000).diff(this.startAt))
+        this.started = `${Math.floor(d.asDays())} day ${Math.floor(d.asHours()) % 24} hours ${Math.floor(d.asMinutes()) % 60} minutes ${Math.floor(d.asSeconds()) % 60} seconds`
       }
     })
   }
