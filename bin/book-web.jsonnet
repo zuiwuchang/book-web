@@ -48,6 +48,8 @@ local GB=MB * 1024;
 		Analytics:"",
 		// AdSense data-ad-client 如果爲空則不啓用
 		AdSense:"",
+		// Ads 檔案路徑
+		Ads:"ads.txt",
 	},
 	Logger: {
 		// zap http
