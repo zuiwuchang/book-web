@@ -31,10 +31,11 @@ import { FileUploadComponent } from './dialog/file-upload/file-upload.component'
 import { FileManagementComponent } from './dialog/file-management/file-management.component';
 import { RemoveFileComponent } from './dialog/remove-file/remove-file.component';
 import { FileEditComponent } from './dialog/file-edit/file-edit.component';
+import { NavigateComponent } from './navigate/navigate.component';
 
 
 @NgModule({
-  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent, FileUploadComponent, FileManagementComponent, RemoveFileComponent, FileEditComponent],
+  declarations: [ViewComponent, MarkdownViewComponent, BarComponent, EditComponent, MarkdownEditComponent, NewChapterComponent, EditChapterComponent, RemoveChapterComponent, FileUploadComponent, FileManagementComponent, RemoveFileComponent, FileEditComponent, NavigateComponent],
   imports: [
     CommonModule, FormsModule, RouterModule,
     SortablejsModule, FileUploadModule,

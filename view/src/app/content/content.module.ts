@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LicenseComponent } from './license/license.component';
 import { AboutComponent } from './about/about.component';
 import { VersionComponent } from './version/version.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { VersionComponent } from './version/version.component';
   imports: [
     CommonModule,
     MatButtonModule, MatCardModule, MatListModule,
-    MatIconModule,
+    MatIconModule, SharedModule,
     ContentRoutingModule
   ]
 })

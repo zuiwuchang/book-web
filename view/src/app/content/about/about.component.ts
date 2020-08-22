@@ -5,6 +5,8 @@ import { ToasterService } from 'angular2-toaster';
 import { resolveError } from 'src/app/core/core/restful';
 import { Title } from "@angular/platform-browser";
 import { I18nService } from 'src/app/core/i18n/i18n.service';
+import { AdsService } from 'src/app/core/ads/ads.service';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -17,6 +19,7 @@ export class AboutComponent implements OnInit {
     private readonly toasterService: ToasterService,
     private readonly i18nService: I18nService,
     private readonly title: Title,
+    private readonly adsService: AdsService,
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +29,7 @@ export class AboutComponent implements OnInit {
       responseType: 'text',
     }).subscribe((text) => {
       this.content = text
+      this.adsService.load()
     }, (e) => {
 
       this.toasterService.pop('error',

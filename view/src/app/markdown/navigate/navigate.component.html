@@ -1,0 +1,39 @@
+<ng-container *ngIf="ads;then adsView;else noadsView;"></ng-container>
+<ng-template #adsView>
+    <div class="navigate-view">
+        <a [href]="prepareExternalUrl(previousUrl)" *ngIf="previous">
+            <button mat-button class="previous no-outline">
+                <mat-icon>navigate_before</mat-icon>
+                {{previousName}}
+            </button>
+        </a>
+        <div class="navigate-fill">
+            <div class="title">{{title}}</div>
+        </div>
+        <a [href]="prepareExternalUrl(nextUrl)" *ngIf="next">
+            <button mat-button class="next no-outline">
+                {{nextName}}
+                <mat-icon>navigate_next</mat-icon>
+            </button>
+        </a>
+    </div>
+</ng-template>
+<ng-template #noadsView>
+    <div class="navigate-view">
+        <a [routerLink]="previousUrl" *ngIf="previous">
+            <button mat-button class="previous no-outline">
+                <mat-icon>navigate_before</mat-icon>
+                {{previousName}}
+            </button>
+        </a>
+        <div class="navigate-fill">
+            <div class="title">{{title}}</div>
+        </div>
+        <a [routerLink]="nextUrl" *ngIf="next">
+            <button mat-button class="next no-outline">
+                {{nextName}}
+                <mat-icon>navigate_next</mat-icon>
+            </button>
+        </a>
+    </div>
+</ng-template>

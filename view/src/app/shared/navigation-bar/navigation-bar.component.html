@@ -2,7 +2,12 @@
 <ng-template #view>
     <div class="fill"></div>
     <mat-toolbar class="header" color="primary">
-        <a routerLink="/">
+        <a [href]="prepareExternalUrl('/')" *ngIf="ads">
+            <button mat-icon-button i18n-matTooltip matTooltip="Home Tooltip">
+                <mat-icon>home</mat-icon>
+            </button>
+        </a>
+        <a routerLink="/" *ngIf="!ads">
             <button mat-icon-button i18n-matTooltip matTooltip="Home Tooltip">
                 <mat-icon>home</mat-icon>
             </button>
@@ -13,13 +18,23 @@
             </button>
         </a>
 
-        <a routerLink="/content/license">
+        <a [href]="prepareExternalUrl('/content/license')" *ngIf="ads">
+            <button mat-icon-button i18n-matTooltip matTooltip="License Tooltip">
+                <mat-icon>import_contacts</mat-icon>
+            </button>
+        </a>
+        <a routerLink="/content/license" *ngIf="!ads">
             <button mat-icon-button i18n-matTooltip matTooltip="License Tooltip">
                 <mat-icon>import_contacts</mat-icon>
             </button>
         </a>
 
-        <a routerLink="/content/about">
+        <a [href]="prepareExternalUrl('/content/about')" *ngIf="ads">
+            <button mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
+                <mat-icon>info</mat-icon>
+            </button>
+        </a>
+        <a routerLink="/content/about" *ngIf="!ads">
             <button mat-icon-button i18n-matTooltip matTooltip="About Tooltip">
                 <mat-icon>info</mat-icon>
             </button>

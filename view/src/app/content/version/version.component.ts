@@ -9,6 +9,7 @@ import { unix, duration, now, Moment } from 'moment';
 import { interval } from 'rxjs';
 import { Closed } from 'src/app/core/core/utils';
 import { takeUntil } from 'rxjs/operators';
+import { AdsService } from 'src/app/core/ads/ads.service';
 interface Version {
   platform: string
   tag: string
@@ -35,6 +36,7 @@ export class VersionComponent implements OnInit, OnDestroy {
     private toasterService: ToasterService,
     private readonly i18nService: I18nService,
     private readonly title: Title,
+    private readonly adsService: AdsService,
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +46,7 @@ export class VersionComponent implements OnInit, OnDestroy {
       if (isNumber(data.startAt)) {
         this.startAt = unix(data.startAt)
       }
+      this.adsService.load()
     }, (e) => {
       this.toasterService.pop('error',
         undefined,

@@ -12,6 +12,8 @@ import { ToasterService } from 'angular2-toaster';
 import { Router } from '@angular/router';
 import { I18nService } from 'src/app/core/i18n/i18n.service';
 import { isString } from 'king-node/dist/core';
+import { LocationStrategy } from '@angular/common';
+import { AdsService } from 'src/app/core/ads/ads.service';
 
 declare const $: any
 class Navigate {
@@ -31,6 +33,8 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
     private readonly highlightJsService: HighlightJsService,
     private readonly toasterService: ToasterService,
     private readonly router: Router,
+    private readonly locationStrategy: LocationStrategy,
+    private readonly adsService: AdsService,
   ) { }
   text = false
   @Input()
@@ -64,7 +68,17 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
   previous: Navigate
   next: Navigate
   private clipboard: any
+  ads = false
+  prepareExternalUrl(...url: Array<string>) {
+    console.log(this.locationStrategy.prepareExternalUrl(url.join('/')))
+    return this.locationStrategy.prepareExternalUrl(url.join('/'))
+  }
   ngOnInit(): void {
+    this.adsService.ready.then((id) => {
+      if (isString(id) && id.length > 0) {
+        this.ads = true
+      }
+    })
     this.settingsService.chapterObservable.pipe(
       takeUntil(this.closed_.observable),
     ).subscribe((ok) => {

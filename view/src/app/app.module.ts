@@ -5,7 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderInterceptor } from './app/service/header.service';
-
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 import { SortablejsModule } from 'ngx-sortablejs';

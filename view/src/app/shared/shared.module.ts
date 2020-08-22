@@ -21,6 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { ValidatorIdDirective } from './validators/validator-id.directive';
 import { ValidatorBookFindDirective } from './validators/validator-book-find.directive';
 
+
+
 @NgModule({
   declarations: [NavigationBarComponent, LoginComponent, ValidatorIdDirective, ValidatorBookFindDirective],
   imports: [

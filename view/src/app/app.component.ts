@@ -8,6 +8,7 @@ import { isString } from 'king-node/dist/core';
 import { requireDynamic } from './core/core/utils';
 import { Router, NavigationEnd } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { AdsService } from './core/ads/ads.service';
 interface Google {
   analytics: string
   adSense: string
@@ -26,6 +27,7 @@ export class AppComponent implements AfterViewInit {
     private readonly i18nService: I18nService,
     private readonly httpClient: HttpClient,
     private readonly router: Router,
+    private readonly adsService: AdsService,
   ) {
     this.matIconRegistry.registerFontClassAlias(
       'fontawesome-fa', // 為此 Icon Font 定義一個 別名
@@ -46,14 +48,20 @@ export class AppComponent implements AfterViewInit {
 
     ServerAPI.v1.google.get<Google>(this.httpClient).then((cnf) => {
       if (!cnf) {
+        this.adsService.resolve(null)
         return
       }
       if (isString(cnf.analytics) && cnf.analytics.length > 0) {
         this._initAnalytics(cnf.analytics)
       }
       if (isString(cnf.adSense) && cnf.adSense.length > 0) {
-        this._initAdSense(cnf.adSense)
+        this.adsService.resolve(cnf.adSense)
+        // this._initAdSense(cnf.adSense)
+      } else {
+        this.adsService.resolve(null)
       }
+    }, (e) => {
+      this.adsService.resolve(null)
     })
   }
   @ViewChild("xi18n")

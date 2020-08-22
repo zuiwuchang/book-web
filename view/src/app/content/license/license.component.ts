@@ -5,6 +5,7 @@ import { resolveError } from 'src/app/core/core/restful';
 import { ToasterService } from 'angular2-toaster';
 import { Title } from '@angular/platform-browser';
 import { I18nService } from 'src/app/core/i18n/i18n.service';
+import { AdsService } from 'src/app/core/ads/ads.service';
 @Component({
   selector: 'app-license',
   templateUrl: './license.component.html',
@@ -15,6 +16,7 @@ export class LicenseComponent implements OnInit {
     private toasterService: ToasterService,
     private readonly i18nService: I18nService,
     private readonly title: Title,
+    private readonly adsService: AdsService,
   ) { }
   content = ''
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class LicenseComponent implements OnInit {
       responseType: 'text',
     }).subscribe((text) => {
       this.content = text
+      this.adsService.load()
     }, (e) => {
 
       this.toasterService.pop('error',
