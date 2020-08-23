@@ -275,10 +275,11 @@ export class Markdown {
     }
     private _split(str: string): Array<string> {
         const strs = new Array<string>()
-        let h1, h2, min
+        let h1, h2, h3, min
         while (true) {
             h1 = str.indexOf('</h1>')
             h2 = str.indexOf('</h2>')
+            h3 = str.indexOf('</h3>')
             min = -1
             if (h1 >= 0) {
                 min = h1
@@ -290,6 +291,14 @@ export class Markdown {
                     min = h2
                 }
             }
+            if (h3 >= 0) {
+                if (min < 0) {
+                    min = h3
+                } else if (h3 < min) {
+                    min = h3
+                }
+            }
+
             if (min < 0) {
                 if (str.length > 0) {
                     strs.push(str)
