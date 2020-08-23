@@ -6,9 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { I18nService } from 'src/app/core/i18n/i18n.service';
 import { Title } from '@angular/platform-browser';
 import { Loader } from '../loader';
-import { AdsService } from 'src/app/core/ads/ads.service';
-import { timer } from 'rxjs';
-
 
 @Component({
   selector: 'markdown-view',
@@ -20,7 +17,6 @@ export class ViewComponent implements OnInit, OnDestroy {
     private readonly i18nService: I18nService,
     private readonly title: Title,
     private readonly settingsService: SettingsService,
-    private readonly adsService: AdsService,
   ) { }
   error: any
   loader: Loader
@@ -41,11 +37,6 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.title.setTitle(title)
         this.settingsService.nextViewPage()
         this.loading = false
-        timer(1000).pipe(
-          takeUntil(this.closed_.observable),
-        ).subscribe(() => {
-          this.adsService.load()
-        })
       }, (e) => {
         if (this.loader != loader) {
           return

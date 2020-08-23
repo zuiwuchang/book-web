@@ -8,10 +8,10 @@ import { isString } from 'king-node/dist/core';
 import { requireDynamic } from './core/core/utils';
 import { Router, NavigationEnd } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { AdsService } from './core/ads/ads.service';
+import { AdsService, AdSense, Ads, chechAds } from './core/ads/ads.service';
 interface Google {
   analytics: string
-  adSense: string
+  adSense: AdSense
 }
 @Component({
   selector: 'app-root',
@@ -54,9 +54,8 @@ export class AppComponent implements AfterViewInit {
       if (isString(cnf.analytics) && cnf.analytics.length > 0) {
         this._initAnalytics(cnf.analytics)
       }
-      if (isString(cnf.adSense) && cnf.adSense.length > 0) {
-        this.adsService.resolve(cnf.adSense)
-        // this._initAdSense(cnf.adSense)
+      if (cnf.adSense) {
+        this._initAdSense(cnf.adSense)
       } else {
         this.adsService.resolve(null)
       }
@@ -93,8 +92,29 @@ export class AppComponent implements AfterViewInit {
       )
     })
   }
-  private _initAdSense(id: string) {
-    loadJS('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', undefined, id)
+  private _checkAdSense(adSense: AdSense): boolean {
+    if (!adSense) {
+      return false
+    }
+    return chechAds(adSense.top) || chechAds(adSense.bottom)
+  }
+  private _initAdSense(adSense: AdSense) {
+    if (!this._checkAdSense(adSense)) {
+      this.adsService.resolve(null)
+      return
+    }
+    this._loadAdSense(adSense)
+  }
+  private _loadAdSense(adSense: AdSense) {
+    console.log(adSense)
+    requireDynamic('adsbygoogle').then(() => {
+      this.adsService.resolve(adSense)
+    }, (e) => {
+      console.log(e)
+      setTimeout(() => {
+        this._loadAdSense(adSense)
+      }, 10000)
+    })
   }
 }
 function loadJS(url: string, callback?: Function, id?: string) {

@@ -8,14 +8,17 @@ import (
 // Google google service
 type Google struct {
 	Analytics string
-	AdSense   string
+	AdSense   AdSense
 	Ads       string
 }
 
 // Format .
 func (g *Google) Format(basePath string) (e error) {
 	g.Analytics = strings.TrimSpace(g.Analytics)
-	g.AdSense = strings.TrimSpace(g.AdSense)
+	e = g.AdSense.Format(basePath)
+	if e != nil {
+		return
+	}
 	g.Ads = strings.TrimSpace(g.Ads)
 	if g.Ads == `` {
 		g.Ads = filepath.Clean(basePath + "/ads.txt")
@@ -24,5 +27,39 @@ func (g *Google) Format(basePath string) (e error) {
 	} else {
 		g.Ads = filepath.Clean(basePath + "/" + g.Ads)
 	}
+	return
+}
+
+// AdSense .
+type AdSense struct {
+	Top    Ads
+	Bottom Ads
+	Text   Ads
+}
+
+// Format .
+func (a *AdSense) Format(basePath string) (e error) {
+	e = a.Top.Format(basePath)
+	if e != nil {
+		return
+	}
+	e = a.Bottom.Format(basePath)
+	if e != nil {
+		return
+	}
+	return
+}
+
+// Ads .
+type Ads struct {
+	ID        string
+	Slot      string
+	Frequency int
+}
+
+// Format .
+func (a *Ads) Format(basePath string) (e error) {
+	a.ID = strings.TrimSpace(a.ID)
+	a.Slot = strings.TrimSpace(a.Slot)
 	return
 }

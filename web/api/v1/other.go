@@ -48,6 +48,20 @@ func (h Other) google(c *gin.Context) {
 	cnf := configure.Single().Google
 	h.NegotiateData(c, http.StatusOK, gin.H{
 		`analytics`: cnf.Analytics,
-		`adSense`:   cnf.AdSense,
+		`adSense`: gin.H{
+			`top`: gin.H{
+				`id`:   cnf.AdSense.Top.ID,
+				`slot`: cnf.AdSense.Top.Slot,
+			},
+			`bottom`: gin.H{
+				`id`:   cnf.AdSense.Bottom.ID,
+				`slot`: cnf.AdSense.Bottom.Slot,
+			},
+			`text`: gin.H{
+				`id`:        cnf.AdSense.Text.ID,
+				`slot`:      cnf.AdSense.Text.Slot,
+				`frequency`: cnf.AdSense.Text.Frequency,
+			},
+		},
 	})
 }

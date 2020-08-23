@@ -5,9 +5,6 @@ import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { Closed } from 'src/app/core/core/utils';
-import { LocationStrategy } from '@angular/common';
-import { AdsService } from 'src/app/core/ads/ads.service';
-import { isString } from 'king-node/dist/core';
 
 @Component({
   selector: 'shared-navigation-bar',
@@ -20,8 +17,6 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     private readonly settingsService: SettingsService,
     private readonly sessionService: SessionService,
     private readonly matDialog: MatDialog,
-    private readonly adsService: AdsService,
-    private readonly locationStrategy: LocationStrategy,
   ) { }
   private closed_ = new Closed()
   fullscreen = false
@@ -31,16 +26,8 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   header = false
   opened: OpenedBook
   private page_ = PageView.Nil
-  ads = false
-  prepareExternalUrl(url: string) {
-    return this.locationStrategy.prepareExternalUrl(url)
-  }
+
   ngOnInit(): void {
-    this.adsService.ready.then((id) => {
-      if (isString(id) && id.length > 0) {
-        this.ads = true
-      }
-    })
     this.sessionService.ready.then((data) => {
       this.ready = data
       this.sessionService.observable.pipe(

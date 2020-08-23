@@ -61,8 +61,11 @@ function getController(str: string): string | null {
 }
 export class Markdown {
     HTML: SafeHtml = ''
+    HTMLS: Array<SafeHtml>
     Header: Array<MarkdownHeader> = null;
-    constructor(showdown: any, domSanitizer: DomSanitizer, book: string, chapter: string, markdown: string) {
+    constructor(showdown: any, domSanitizer: DomSanitizer, book: string, chapter: string, markdown: string,
+        public readonly view?: boolean,
+    ) {
         const headers = new Array<MarkdownHeader>();
         let autoID = 0;
         showdown.extension('custom-header-id', function () {
@@ -227,7 +230,30 @@ export class Markdown {
             parseImgDimensions: true,
             tables: true,
         });
-        const html = converter.makeHtml(markdown);
+        const html: string = converter.makeHtml(markdown);
+        if (this.view) {
+            const items = new Array<any>()
+            let tmp = ''
+            this._split(html).forEach((str) => {
+                tmp += str
+                if (tmp.length > 512) {
+                    if (domSanitizer) {
+                        items.push(domSanitizer.bypassSecurityTrustHtml(tmp))
+                    } else {
+                        items.push(tmp)
+                    }
+                    tmp = ''
+                }
+            })
+            if (tmp.length != 0) {
+                if (domSanitizer) {
+                    items.push(domSanitizer.bypassSecurityTrustHtml(tmp))
+                } else {
+                    items.push(tmp)
+                }
+            }
+            this.HTMLS = items
+        }
         if (domSanitizer) {
             this.HTML = domSanitizer.bypassSecurityTrustHtml(html);
         } else {
@@ -246,5 +272,33 @@ export class Markdown {
             }
         }
         this.Header = headers;
+    }
+    private _split(str: string): Array<string> {
+        const strs = new Array<string>()
+        let h1, h2, min
+        while (true) {
+            h1 = str.indexOf('</h1>')
+            h2 = str.indexOf('</h2>')
+            min = -1
+            if (h1 >= 0) {
+                min = h1
+            }
+            if (h2 >= 0) {
+                if (min < 0) {
+                    min = h2
+                } else if (h2 < min) {
+                    min = h2
+                }
+            }
+            if (min < 0) {
+                if (str.length > 0) {
+                    strs.push(str)
+                }
+                break
+            }
+            strs.push(str.substring(0, min + 5))
+            str = str.substring(min + 5)
+        }
+        return strs
     }
 }

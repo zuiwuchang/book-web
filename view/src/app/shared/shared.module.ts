@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { AdsenseModule } from 'ng2-adsense';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -20,19 +21,20 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { LoginComponent } from './login/login.component';
 import { ValidatorIdDirective } from './validators/validator-id.directive';
 import { ValidatorBookFindDirective } from './validators/validator-book-find.directive';
-
-
+import { AdsComponent } from './ads/ads/ads.component';
 
 @NgModule({
-  declarations: [NavigationBarComponent, LoginComponent, ValidatorIdDirective, ValidatorBookFindDirective],
+  declarations: [NavigationBarComponent, LoginComponent, ValidatorIdDirective, ValidatorBookFindDirective, AdsComponent],
   imports: [
     CommonModule, RouterModule, FormsModule,
+    AdsenseModule.forRoot(),
     MatToolbarModule, MatTooltipModule, MatIconModule,
     MatMenuModule, MatButtonModule, MatProgressSpinnerModule,
     MatDialogModule, MatProgressBarModule, MatFormFieldModule,
     MatSlideToggleModule, MatInputModule,
   ],
   exports: [NavigationBarComponent, ValidatorIdDirective, ValidatorBookFindDirective,
+    AdsComponent,
   ],
   entryComponents: [LoginComponent],
 })

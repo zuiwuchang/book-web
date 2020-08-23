@@ -11,9 +11,8 @@ import { HighlightJsService } from 'angular2-highlight-js';
 import { ToasterService } from 'angular2-toaster';
 import { Router } from '@angular/router';
 import { I18nService } from 'src/app/core/i18n/i18n.service';
-import { isString } from 'king-node/dist/core';
-import { LocationStrategy } from '@angular/common';
-import { AdsService } from 'src/app/core/ads/ads.service';
+import { isString, isNumber } from 'king-node/dist/core';
+import { AdsService, AdSense, Ads, chechAds } from 'src/app/core/ads/ads.service';
 
 declare const $: any
 class Navigate {
@@ -33,9 +32,9 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
     private readonly highlightJsService: HighlightJsService,
     private readonly toasterService: ToasterService,
     private readonly router: Router,
-    private readonly locationStrategy: LocationStrategy,
     private readonly adsService: AdsService,
   ) { }
+  adSene: AdSense
   text = false
   @Input()
   set loader(l: Loader) {
@@ -53,6 +52,7 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
         opened.book,
         opened.chapter,
         text,
+        true,
       )
       this._initNavigate(book, opened.chapter)
       this.update_ = true
@@ -68,16 +68,9 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
   previous: Navigate
   next: Navigate
   private clipboard: any
-  ads = false
-  prepareExternalUrl(...url: Array<string>) {
-    console.log(this.locationStrategy.prepareExternalUrl(url.join('/')))
-    return this.locationStrategy.prepareExternalUrl(url.join('/'))
-  }
   ngOnInit(): void {
-    this.adsService.ready.then((id) => {
-      if (isString(id) && id.length > 0) {
-        this.ads = true
-      }
+    this.adsService.ready.then((adSene) => {
+      this.adSene = adSene
     })
     this.settingsService.chapterObservable.pipe(
       takeUntil(this.closed_.observable),
@@ -189,5 +182,22 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
       this.btnClipboard.nativeElement.click();
     }
     ele.appendChild(newEle);
+  }
+  getAds(i: number, count: number): Ads {
+    if (!this.adSene || !chechAds(this.adSene.text)) {
+      return null
+    }
+    if (i == 0 || i + 1 == count) {
+      return null
+    }
+    let frequency = this.adSene.text.frequency
+    if (!isNumber(frequency) || isNaN(frequency) || frequency < 1) {
+      return null
+    }
+    frequency = Math.floor(frequency)
+    if (i % 3 == 0) {
+      return this.adSene.text
+    }
+    return null
   }
 }
