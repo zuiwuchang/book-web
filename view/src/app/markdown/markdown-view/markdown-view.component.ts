@@ -190,12 +190,16 @@ export class MarkdownViewComponent implements OnInit, OnDestroy, AfterViewInit, 
     if (i == 0 || i + 1 == count) {
       return null
     }
+    if (i + 1 == count && chechAds(this.adSene.bottom)) {
+      return null
+    }
+
     let frequency = this.adSene.text.frequency
     if (!isNumber(frequency) || isNaN(frequency) || frequency < 1) {
       return null
     }
     frequency = Math.floor(frequency)
-    if (i % 3 == 0) {
+    if (i % frequency == 0) {
       return this.adSene.text
     }
     return null
