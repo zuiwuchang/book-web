@@ -34,4 +34,6 @@ export class AdsComponent implements OnInit {
   fullWidthResponsive: boolean
   @Input()
   layout: string
+  @Input()
+  pageLevelAds: boolean
 }
