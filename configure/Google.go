@@ -32,6 +32,7 @@ func (g *Google) Format(basePath string) (e error) {
 
 // AdSense .
 type AdSense struct {
+	Auto   string
 	Top    Ads
 	Bottom Ads
 	Text   Ads
@@ -39,6 +40,7 @@ type AdSense struct {
 
 // Format .
 func (a *AdSense) Format(basePath string) (e error) {
+	a.Auto = strings.TrimSpace(a.Auto)
 	e = a.Top.Format(basePath)
 	if e != nil {
 		return

@@ -49,6 +49,7 @@ func (h Other) google(c *gin.Context) {
 	h.NegotiateData(c, http.StatusOK, gin.H{
 		`analytics`: cnf.Analytics,
 		`adSense`: gin.H{
+			`auto`: cnf.AdSense.Auto,
 			`top`: gin.H{
 				`id`:   cnf.AdSense.Top.ID,
 				`slot`: cnf.AdSense.Top.Slot,

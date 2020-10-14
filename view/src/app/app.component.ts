@@ -8,7 +8,7 @@ import { isString } from 'king-node/dist/core';
 import { requireDynamic } from './core/core/utils';
 import { Router, NavigationEnd } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { AdsService, AdSense, Ads, chechAds } from './core/ads/ads.service';
+import { AdsService, AdSense, chechAds } from './core/ads/ads.service';
 interface Google {
   analytics: string
   adSense: AdSense
@@ -99,11 +99,19 @@ export class AppComponent implements AfterViewInit {
     return chechAds(adSense.top) || chechAds(adSense.bottom)
   }
   private _initAdSense(adSense: AdSense) {
+    if (adSense.auto) {
+      this._loadAdSenseAuto(adSense.auto)
+      this.adsService.resolve(null)
+      return
+    }
     if (!this._checkAdSense(adSense)) {
       this.adsService.resolve(null)
       return
     }
     this._loadAdSense(adSense)
+  }
+  private _loadAdSenseAuto(id: string) {
+    loadJS('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', undefined, id)
   }
   private _loadAdSense(adSense: AdSense) {
     console.log(adSense)

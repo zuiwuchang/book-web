@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Completer } from 'king-node/dist/async/completer';
 import { isString } from 'king-node/dist/core';
 export interface AdSense {
+  auto: string
   top: Ads
   text: Ads
   bottom: Ads
