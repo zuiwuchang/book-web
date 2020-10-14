@@ -28,3 +28,4 @@ done
 * [root highlight](/home/highlight)
 
 ![tux](assets/tux.jpg)
+[tux](assets/tux.jpg)

@@ -161,7 +161,10 @@ export class MarkdownEditComponent implements OnInit, OnDestroy, AfterViewInit, 
       })
     })
     $(this.elementRef.nativeElement).delegate(".ng-router-a", "click", (evt: any) => {
-      const url = $(evt.target).attr("href");
+      const url = $(evt.target).attr("href") as string;
+      if (url.startsWith('/book/assets')) {
+        return true;
+      }
       this.router.navigate([url]);
       return false;
     })
