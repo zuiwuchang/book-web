@@ -101,7 +101,6 @@ export class AppComponent implements AfterViewInit {
   private _initAdSense(adSense: AdSense) {
     if (adSense.auto) {
       this._loadAdSenseAuto(adSense.auto)
-      this.adsService.resolve(null)
       return
     }
     if (!this._checkAdSense(adSense)) {
@@ -111,7 +110,37 @@ export class AppComponent implements AfterViewInit {
     this._loadAdSense(adSense)
   }
   private _loadAdSenseAuto(id: string) {
-    loadJS('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', undefined, id)
+    // setTimeout(() => {
+    // loadJS('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', undefined, id)
+    console.log(`auto adSense ${id}`)
+    // const old = new Set<string>()
+    // for (const key in window) {
+    //   old.add(key)
+    // }
+    requireDynamic('adsbygoogle').then(() => {
+      // ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({
+      //   google_ad_client: `ca-pub-${id}`,
+      //   enable_page_level_ads: true,
+      // });
+      // console.log('-----------------')
+      // for (const key in window) {
+      //   if (old.has(key)) {
+      //     continue
+      //   }
+      //   console.log(key)
+      // }
+      // console.log(`window`, window)
+
+      this.adsService.resolve({
+        auto: id,
+      })
+    }, (e) => {
+      console.log(e)
+      setTimeout(() => {
+        this._loadAdSenseAuto(id)
+      }, 10000)
+    })
+    // }, 1000 * 2);
   }
   private _loadAdSense(adSense: AdSense) {
     console.log(adSense)

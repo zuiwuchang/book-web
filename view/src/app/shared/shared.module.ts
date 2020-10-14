@@ -22,9 +22,11 @@ import { LoginComponent } from './login/login.component';
 import { ValidatorIdDirective } from './validators/validator-id.directive';
 import { ValidatorBookFindDirective } from './validators/validator-book-find.directive';
 import { AdsComponent } from './ads/ads/ads.component';
+import { AutoComponent } from './ads/auto/auto.component';
+import { AdsenseComponent } from './ads/adsense/adsense.component';
 
 @NgModule({
-  declarations: [NavigationBarComponent, LoginComponent, ValidatorIdDirective, ValidatorBookFindDirective, AdsComponent],
+  declarations: [NavigationBarComponent, LoginComponent, ValidatorIdDirective, ValidatorBookFindDirective, AdsComponent, AutoComponent, AdsenseComponent],
   imports: [
     CommonModule, RouterModule, FormsModule,
     AdsenseModule.forRoot(),
@@ -34,7 +36,7 @@ import { AdsComponent } from './ads/ads/ads.component';
     MatSlideToggleModule, MatInputModule,
   ],
   exports: [NavigationBarComponent, ValidatorIdDirective, ValidatorBookFindDirective,
-    AdsComponent,
+    AdsComponent, AutoComponent,
   ],
   entryComponents: [LoginComponent],
 })

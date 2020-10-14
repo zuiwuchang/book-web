@@ -9,7 +9,6 @@ import { unix, duration, now, Moment } from 'moment';
 import { interval } from 'rxjs';
 import { Closed } from 'src/app/core/core/utils';
 import { takeUntil } from 'rxjs/operators';
-import { AdsService, AdSense } from 'src/app/core/ads/ads.service';
 interface Version {
   platform: string
   tag: string
@@ -31,20 +30,15 @@ export class VersionComponent implements OnInit, OnDestroy {
   version: Version
   startAt: Moment
   started: string
-  adSene: AdSense
   private closed_ = new Closed()
   constructor(private httpClient: HttpClient,
     private toasterService: ToasterService,
     private readonly i18nService: I18nService,
     private readonly title: Title,
-    private readonly adsService: AdsService,
   ) { }
 
   ngOnInit(): void {
     this.title.setTitle(this.i18nService.get('Version'))
-    this.adsService.ready.then((adSene) => {
-      this.adSene = adSene
-    })
     ServerAPI.v1.version.get<Version>(this.httpClient).then((data) => {
       this.version = data
       if (isNumber(data.startAt)) {
