@@ -49,7 +49,7 @@ local GB=MB * 1024;
 		// AdSense google 廣告 
 		AdSense:{
 			// 自動廣告 如果啓用自動廣告則會自動禁用其他廣告
-			Auto: "2456323419251313",
+			Auto: "",
 			// 頂部廣告 如果 id 或 slot 爲空字符串則不顯示廣告
 			Top: {
 				ID: "",

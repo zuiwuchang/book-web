@@ -105,8 +105,30 @@ local GB=MB * 1024;
 	Google: {
 		// analytics id 如果爲空則不啓用
 		Analytics:"",
-		// AdSense data-ad-client 如果爲空則不啓用
-		AdSense:"",
+		// AdSense google 廣告 
+		AdSense:{
+			// 自動廣告 如果啓用自動廣告則會自動禁用其他廣告
+			Auto: "",
+			// 頂部廣告 如果 id 或 slot 爲空字符串則不顯示廣告
+			Top: {
+				ID: "",
+				Slot: "",
+			},
+			// 頂部廣告
+			Bottom: {
+				ID: "",
+				Slot: "",
+			},
+			// 文章中的 廣告
+			Text: {
+				ID: "",
+				Slot: "",
+				// 文章中廣告顯示頻率 值越小 顯示越頻繁 最小值爲0<不顯示>
+				Frequency: 3, 
+			},
+		},
+		// Ads 檔案路徑
+		Ads:"ads.txt",
 	},
 	Logger: {
 		// zap http
