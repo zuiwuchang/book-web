@@ -55,7 +55,6 @@ export class VersionComponent implements OnInit, OnDestroy {
       takeUntil(this.closed_.observable),
     ).subscribe(() => {
       if (this.startAt) {
-        console.log(new Date().getTime() == now())
         const d = duration(unix(now() / 1000).diff(this.startAt))
         this.started = `${Math.floor(d.asDays())} day ${Math.floor(d.asHours()) % 24} hours ${Math.floor(d.asMinutes()) % 60} minutes ${Math.floor(d.asSeconds()) % 60} seconds`
       }
