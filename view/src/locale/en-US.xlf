@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="2177c841bf548bc76db5b969b789f3a03c93c83f" datatype="html">
         <source>sign in</source>
-        <target>登出</target>
+        <target>sign in</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/login/login.component.html</context>
           <context context-type="linenumber">1</context>
