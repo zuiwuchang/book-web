@@ -52,7 +52,7 @@ func (h Chapters) get(c *gin.Context) {
 		h.NegotiateError(c, http.StatusInternalServerError, e)
 		return
 	}
-	setCacheControl(c)
+	c.Header("Cache-Control", `max-age=0`)
 	h.NegotiateJSONFile(c, obj.ID, modTime, book)
 }
 
@@ -72,7 +72,7 @@ func (h Chapters) getText(c *gin.Context) {
 		h.NegotiateError(c, http.StatusInternalServerError, e)
 		return
 	}
-	setCacheControl(c)
+	c.Header("Cache-Control", `max-age=0`)
 	c.File(filename)
 }
 
