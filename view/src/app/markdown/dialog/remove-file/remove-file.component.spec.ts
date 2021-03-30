@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RemoveFileComponent } from './remove-file.component';
 
@@ -6,7 +6,7 @@ describe('RemoveFileComponent', () => {
   let component: RemoveFileComponent;
   let fixture: ComponentFixture<RemoveFileComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RemoveFileComponent ]
     })

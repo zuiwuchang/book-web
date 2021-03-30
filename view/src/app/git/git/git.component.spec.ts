@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { GitComponent } from './git.component';
 
@@ -6,7 +6,7 @@ describe('GitComponent', () => {
   let component: GitComponent;
   let fixture: ComponentFixture<GitComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ GitComponent ]
     })
