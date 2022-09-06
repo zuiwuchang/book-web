@@ -28,7 +28,7 @@ func (h Other) Register(router *gin.RouterGroup) {
 func (h Other) version(c *gin.Context) {
 	h.NegotiateData(c, http.StatusOK, gin.H{
 		`platform`:     version.Platform,
-		`tag`:          version.Version,
+		`version`:      version.Version,
 		`goMaxprocs`:   runtime.GOMAXPROCS(0),
 		`numCgoCall`:   runtime.NumCgoCall(),
 		`numGoroutine`: runtime.NumGoroutine(),
