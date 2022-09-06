@@ -51,7 +51,7 @@ do
 done
 
 cd "$Dir/docker"
-cp ../bin/webpc_linux_amd64.tar.gz source/webpc.tar.gz
+cp ../bin/book-web_linux_amd64.tar.gz root/linux_amd64.tar.gz
 args=(
     sudo docker build --network host -t "\"$Docker:$Version\"" .
 )

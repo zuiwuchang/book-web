@@ -34,6 +34,44 @@ v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會
 2. 解壓 linux.windows.7z
 4. 執行 book-web daemon 運行項目
 
+# Docker
+
+1. 你可以設置環境變量 PUID/PGID 來設定 book-web 進程使用的用戶
+2. 你可以設置環境變量 TZ 來設定容器時區
+3. 容器中 /config/.gitconfig 是 git 設定檔案
+4. 容器中 /data 是默認的數據存儲路徑
+
+
+```
+docker run --name book-web\
+ -e PUID=1000 \
+ -e PGID=1000 \
+ -e TZ=Asia/Shanghai \
+ -v Your_Git_Config:/config/.gitconfig:ro \
+ -v Your_Project_Dir:/data \
+ -p 9000:80 \
+ -d king011/book-web:v1.1.0
+```
+
+
+docker-compose
+```
+version: "1"
+services:
+  main:
+    image: king011/book-web:v1.1.0
+    restart: always
+    ports:
+      - 9000:80
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+	volumes:
+      - Your_Git_Config:/config/.gitconfig:ro
+      - Your_Project_Dir:/data
+```
+
 # Build
 
 此項目 網頁 由 angular2 編寫 後端服務 用 golang gin 編寫 需要先編譯前端 再編譯後端

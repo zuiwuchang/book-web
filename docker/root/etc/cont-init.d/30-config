@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+
+# permissions
+chown abc:abc \
+    /data
+chown abc:abc \
+    /opt/book-web -R
