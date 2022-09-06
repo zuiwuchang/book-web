@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"runtime"
 
 	"book-web/version"
 
@@ -20,12 +19,10 @@ var rootCmd = &cobra.Command{
 	Short: "generate tools create full",
 	Run: func(cmd *cobra.Command, args []string) {
 		if v {
-			fmt.Println(runtime.GOOS, runtime.GOARCH, runtime.Version())
 			fmt.Println(version.Platform)
 			fmt.Println(version.Version)
 		} else {
 			fmt.Println(App)
-			fmt.Println(runtime.GOOS, runtime.GOARCH, runtime.Version())
 			fmt.Println(version.Platform)
 			fmt.Println(version.Version)
 			fmt.Printf(`Use "%v --help" for more information about this program.
