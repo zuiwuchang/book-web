@@ -6,8 +6,7 @@
         <p>angular {{VERSION.full}}</p>
         <div *ngIf="version">
             <p>{{version.platform}}</p>
-            <p>{{version.tag}} {{version.date}}</p>
-            <p>{{version.commit}}</p>
+            <p>{{version.version}}</p>
             <p>GOMAXPROCS : {{version.goMaxprocs}}</p>
             <p>NumCgoCall : {{version.numCgoCall}}</p>
             <p>NumGoroutine : {{version.numGoroutine}}</p>
@@ -15,4 +14,3 @@
         </div>
     </mat-card-content>
 </mat-card>
-

@@ -40,13 +40,13 @@ v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會
 
 ## 編譯 前端網頁
 1. 自行安裝好 node 環境 和 angular2 框架
-2. 下載 源碼 git clone git@gitlab.com:king011/book-web.git && cd book-web/src/view && npm install
-3. 運行 編譯 腳本 ./build.sh
+2. 下載 源碼 git clone https://github.com/zuiwuchang/book-web.git && cd book-web/view
+3. 運行 編譯 腳本 ../build.sh view
 
 ## 編譯 後端服務器
 1. 自行配置好 golang環境 
-2. 下載 源碼 git clone git@gitlab.com:king011/book-web.git
-3. 編譯資源 ./build.sh -s
+2. 下載 源碼 https://github.com/zuiwuchang/book-web.git && cd book-web
+3. 編譯資源 ./build.sh view -s
 4. 編譯可執行程序 ./build.sh go
 
 

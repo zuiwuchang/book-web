@@ -11,9 +11,7 @@ import { Closed } from 'src/app/core/core/utils';
 import { takeUntil } from 'rxjs/operators';
 interface Version {
   platform: string
-  tag: string
-  commit: string
-  date: string
+  version: string
   goMaxprocs: number
   numCgoCall: number
   numGoroutine: number
