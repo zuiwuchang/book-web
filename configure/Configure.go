@@ -13,6 +13,7 @@ import (
 // Configure global configure
 type Configure struct {
 	FileRoot string
+	Branch   string
 
 	HTTP   HTTP
 	Cookie Cookie
@@ -27,6 +28,9 @@ func (c *Configure) Format(basePath string) (e error) {
 		c.FileRoot = "fileroot"
 	}
 	c.FileRoot = utils.Abs(basePath, c.FileRoot)
+	if c.Branch == `` {
+		c.Branch = `master`
+	}
 
 	if e = c.HTTP.Format(basePath); e != nil {
 		return

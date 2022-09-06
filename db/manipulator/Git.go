@@ -1,6 +1,7 @@
 package manipulator
 
 import (
+	"book-web/configure"
 	"fmt"
 	"os/exec"
 	"regexp"
@@ -27,11 +28,11 @@ func (m Git) Execute(command, extend string) (result string, e error) {
 			e = fmt.Errorf("not support message [%v]", extend)
 			return
 		}
-		result, e = m.execute("git", "commit", "-m", fmt.Sprintf(`"%v"`, extend))
+		result, e = m.execute("git", "commit", "-m", extend)
 	case "push":
-		result, e = m.execute("git", "push", "origin", "master")
+		result, e = m.execute("git", "push", "origin", configure.Single().Branch)
 	case "pull":
-		result, e = m.execute("git", "pull", "origin", "master")
+		result, e = m.execute("git", "pull", "origin", configure.Single().Branch)
 	case "log":
 		result, e = m.execute("git", "log", "-10")
 	default:
@@ -45,11 +46,6 @@ func (m Git) execute(name string, arg ...string) (result string, e error) {
 	var b []byte
 	b, e = cmd.Output()
 	if e != nil {
-		if b != nil {
-			name = "$ > " + name + " " + strings.Join(arg, " ") + " \n"
-			result = fmt.Sprintf("%s%s", name, b)
-			e = nil
-		}
 		return
 	}
 	name = "$ > " + name + " " + strings.Join(arg, " ") + " \n"

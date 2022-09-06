@@ -9,6 +9,7 @@ local GB=MB * 1024;
 {
 	// 檔案夾定義
 	FileRoot: "fileroot",
+	// Branch: "master",
 	// HTTP 服務器訂閱
 	HTTP: {
 		// 服務器監聽地址

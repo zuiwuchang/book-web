@@ -1,4 +1,5 @@
 #!/usr/bin/with-contenv bash
+export HOME="/config"
 exec \
     s6-setuidgid abc \
     /opt/book-web/book-web daemon -c /opt/book-web/book-web.jsonnet

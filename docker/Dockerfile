@@ -2,7 +2,7 @@ FROM ghcr.io/linuxserver/baseimage-ubuntu:focal
 
 RUN set -ex; \
     apt-get update; \
-    apt-get install -y --no-install-recommends git; \
+    apt-get install -y --no-install-recommends openssh-client git; \
     rm -rf /var/lib/apt/lists/*
 
 COPY root/ /

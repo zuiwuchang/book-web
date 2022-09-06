@@ -1,7 +1,7 @@
 Target="book-web"
 Docker="king011/book-web"
 Dir=$(cd "$(dirname $BASH_SOURCE)/.." && pwd)
-Version="v1.1.0"
+Version="v1.1.1"
 View=1
 Platforms=(
     windows/amd64
