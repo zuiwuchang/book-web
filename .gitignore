@@ -15,9 +15,8 @@
 /version/version.go
 *.tar.gz
 *.7z
-
-/assets/
-/static/3rdpartylicenses.txt
+/static/view
+/static/public/3rdpartylicenses.txt
 
 
 /book-web
