@@ -1,5 +1,5 @@
 [Unit]
-Description=book-web 服務
+Description=book-web service
 After=network.target
  
 [Service]

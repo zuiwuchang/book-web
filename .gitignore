@@ -15,6 +15,7 @@
 /version/version.go
 *.tar.gz
 *.7z
+*.sha256
 /static/view
 /static/public/3rdpartylicenses.txt
 

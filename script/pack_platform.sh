@@ -116,29 +116,15 @@ cd "$Dir/bin"
 if [[ -f "$name" ]];then
     rm "$name"
 fi
-if [[ "$os" == "windows" ]];then
-    source=(
-        "$target"
-        etc
-        winpty-agent.exe winpty.dll
-        shell-windows.bat shell-bash.bat
-        webpc-master.exe webpc-slave.exe webpc-master.xml webpc-slave.xml
-        controller.bat
-        nginx_webpc.conf
-    )
-else
-    source=(
-        "$target"
-        etc
-        useradd.sh run-linux shell-linux
-        webpc-master.service webpc-slave.service
-        nginx_webpc.conf
-    )
-fi
+source=(
+    "$target"
+    book-web.jsonnet book-web.service
+)
+
 exec="${args[@]} ${source[@]}"
 echo $exec
 eval "$exec >> /dev/null"
 
-exec="sha256sum $name > $name.sha256.txt"
+exec="sha256sum $name > $name.sha256"
 echo $exec
 eval "$exec"
