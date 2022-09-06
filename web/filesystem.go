@@ -10,38 +10,42 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (h Helper) toHTTPError(c *gin.Context, e error) {
+func (h Helper) toHTTPError(c *gin.Context, name string, e error) {
 	if os.IsNotExist(e) {
-		h.NegotiateError(c, http.StatusNotFound, e)
+		h.NegotiateErrorString(c, http.StatusNotFound, `not exists : `+name)
 		return
 	}
 	if os.IsPermission(e) {
-		h.NegotiateError(c, http.StatusForbidden, e)
+		h.NegotiateErrorString(c, http.StatusForbidden, `forbidden : `+name)
 		return
 	}
 	h.NegotiateError(c, http.StatusInternalServerError, e)
 }
 
 // NegotiateFilesystem .
-func (h Helper) NegotiateFilesystem(c *gin.Context, fs http.FileSystem, path string) {
+func (h Helper) NegotiateFilesystem(c *gin.Context, fs http.FileSystem, path string, index bool) {
 	if path == `/` || path == `` {
 		path = `/index.html`
 	}
 	f, e := fs.Open(path)
 	if e != nil {
-		if os.IsNotExist(e) {
+		if !index {
+			h.toHTTPError(c, path, e)
+			return
+		}
+		if path != `/index.html` && os.IsNotExist(e) {
 			path = `/index.html`
 			f, e = fs.Open(path)
 		}
 	}
 	if e != nil {
-		h.toHTTPError(c, e)
+		h.toHTTPError(c, path, e)
 		return
 	}
 	stat, e := f.Stat()
 	if e != nil {
 		f.Close()
-		h.toHTTPError(c, e)
+		h.toHTTPError(c, path, e)
 		return
 	}
 	if stat.IsDir() {

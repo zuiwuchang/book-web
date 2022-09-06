@@ -21,15 +21,13 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if v {
 			fmt.Println(runtime.GOOS, runtime.GOARCH, runtime.Version())
-			fmt.Println(version.Tag)
-			fmt.Println(version.Commit)
-			fmt.Println(version.Date)
+			fmt.Println(version.Platform)
+			fmt.Println(version.Version)
 		} else {
 			fmt.Println(App)
 			fmt.Println(runtime.GOOS, runtime.GOARCH, runtime.Version())
-			fmt.Println(version.Tag)
-			fmt.Println(version.Commit)
-			fmt.Println(version.Date)
+			fmt.Println(version.Platform)
+			fmt.Println(version.Version)
 			fmt.Printf(`Use "%v --help" for more information about this program.
 `, App)
 		}

@@ -10,7 +10,6 @@ import (
 	"book-web/logger"
 
 	"github.com/gorilla/securecookie"
-	"gitlab.com/king011/webpc/helper"
 	"go.uber.org/zap"
 )
 
@@ -80,7 +79,7 @@ func Init(filename string, maxAge time.Duration) (e error) {
 		return
 	}
 	var key _Key
-	e = helper.Unmarshal(b, &key)
+	e = json.Unmarshal(b, &key)
 	if e != nil {
 		if ce := logger.Logger.Check(zap.FatalLevel, "unmarshal securecookie"); ce != nil {
 			ce.Write(
@@ -123,7 +122,6 @@ func initKey(hashKey, blockKey []byte, maxAge time.Duration) {
 			zap.String("timeout", maxAge.String()),
 		)
 	}
-	return
 }
 func newGenerate(filename string, maxAge time.Duration) {
 	hashKey, blockKey := Generate()

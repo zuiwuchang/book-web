@@ -1,9 +1,8 @@
 package configure
 
 import (
+	"book-web/utils"
 	"time"
-
-	"gitlab.com/king011/webpc/utils"
 )
 
 // Cookie configure cookie

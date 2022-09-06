@@ -1,6 +1,5 @@
 # book-web
 
-* [gitlab](https://gitlab.com/king011/book-web)
 * [github](https://github.com/zuiwuchang/book-web)
 
 book-web 是一個在線的 個人資料整理 web 以書爲單位 每種類型的 資料 作爲一本書 使用 markdown 進行編寫 以html 呈現內容
@@ -47,12 +46,8 @@ v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會
 ## 編譯 後端服務器
 1. 自行配置好 golang環境 
 2. 下載 源碼 git clone git@gitlab.com:king011/book-web.git
-3. 編譯資源 ./build.sh s
-4. 編譯可執行程序 ./build.sh l
-
-> 若要編譯 windows 程式 執行 ./build.sh w
->
-> 若要編譯 mac 程式 執行 ./build.sh d
+3. 編譯資源 ./build.sh -s
+4. 編譯可執行程序 ./build.sh go
 
 
 # Configure

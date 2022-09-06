@@ -1,10 +1,6 @@
 package main
 
 import (
-	_ "book-web/assets/en-US/statik"
-	_ "book-web/assets/static/statik"
-	_ "book-web/assets/zh-Hans/statik"
-	_ "book-web/assets/zh-Hant/statik"
 	"book-web/cmd"
 	"log"
 )

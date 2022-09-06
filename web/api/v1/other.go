@@ -3,10 +3,8 @@ package v1
 import (
 	"book-web/configure"
 	"book-web/version"
-	"fmt"
 	"net/http"
 	"runtime"
-	"strings"
 	"time"
 
 	"book-web/web"
@@ -28,16 +26,9 @@ func (h Other) Register(router *gin.RouterGroup) {
 	router.GET(`/google`, h.google)
 }
 func (h Other) version(c *gin.Context) {
-	gv := gin.Version
-	if strings.HasPrefix(gv, "v") {
-		gv = gv[1:]
-	}
-
 	h.NegotiateData(c, http.StatusOK, gin.H{
-		`platform`:     fmt.Sprintf(`%s %s %s gin%s`, runtime.GOOS, runtime.GOARCH, runtime.Version(), gv),
-		`tag`:          version.Tag,
-		`commit`:       version.Commit,
-		`date`:         version.Date,
+		`platform`:     version.Platform,
+		`tag`:          version.Version,
 		`goMaxprocs`:   runtime.GOMAXPROCS(0),
 		`numCgoCall`:   runtime.NumCgoCall(),
 		`numGoroutine`: runtime.NumGoroutine(),
