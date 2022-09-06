@@ -48,6 +48,7 @@ docker run --name book-web\
  -e PGID=1000 \
  -e TZ=Asia/Shanghai \
  -v Your_Git_Config:/config/.gitconfig:ro \
+ -v Your_SSH_KEY_Dir:/config/.ssh \
  -v Your_Project_Dir:/data \
  -p 9000:80 \
  -d king011/book-web:v1.1.0
@@ -67,8 +68,9 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Shanghai
-	volumes:
+    volumes:
       - Your_Git_Config:/config/.gitconfig:ro
+      - Your_SSH_KEY_Dir:/config/.ssh
       - Your_Project_Dir:/data
 ```
 
