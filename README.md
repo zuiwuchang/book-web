@@ -40,7 +40,7 @@ v1 是完全重構的一個版本 其後端和前端都將被完成重寫 但會
 2. 你可以設置環境變量 TZ 來設定容器時區
 3. 容器中 /config/.gitconfig 是 git 設定檔案
 4. 容器中 /data 是默認的數據存儲路徑
-
+5. 要改變 book-web 設定，爲 /opt/book-web/book-web.jsonnet 設定卷
 
 ```
 docker run --name book-web\
