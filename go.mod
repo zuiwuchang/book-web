@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/andybalholm/brotli v1.0.4
-	github.com/gin-gonic/gin v1.7.3
+	github.com/gin-gonic/gin v1.7.7
 	github.com/google/go-jsonnet v0.16.0
 	github.com/gorilla/securecookie v1.1.1
 	github.com/json-iterator/go v1.1.10
